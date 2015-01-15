@@ -1,0 +1,27 @@
+
+girl.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+student-girl-1
+  rotate: false
+  xy: 2, 2
+  size: 333, 600
+  orig: 333, 600
+  offset: 0, 0
+  index: -1
+student-girl-2
+  rotate: false
+  xy: 337, 2
+  size: 333, 600
+  orig: 333, 600
+  offset: 0, 0
+  index: -1
+student-girl-3
+  rotate: false
+  xy: 672, 2
+  size: 333, 600
+  orig: 333, 600
+  offset: 0, 0
+  index: -1
