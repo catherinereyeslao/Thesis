@@ -1,10 +1,10 @@
 package com.example.aralingpanlipunan.views;
 
-import android.util.Log;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.views.chapters.ChapterOne;
 
 /**
  * This is called when selecting "Student" from the Menu.
@@ -18,7 +18,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private String loggedInStudentName;
     private StudentProfile studentProfile;
     private ChapterSelect chapterSelect;
-    private ChapterView chapterView;
+    private ChapterOne chapterOne;
     private AndroidInterface android;
 
     /**
@@ -48,7 +48,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.display(batch);
                 break;
             case CHAPTER_VIEW:
-                chapterView.display(batch);
+                chapterOne.display(batch);
                 break;
         }
     }
@@ -63,7 +63,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.dispose();
                 break;
             case CHAPTER_VIEW:
-                chapterView.dispose();
+                chapterOne.dispose();
                 break;
         }
     }
@@ -83,19 +83,15 @@ public class Student extends AppView implements AppFragment, Disposable {
                 selectedChapter = chapterSelect.touchDown(x, y);
                 if (selectedChapter != 0) {
                     chapterSelect.dispose();
-                    chapterView = new ChapterView(selectedChapter);
-                    chapterView.setUp(screenWidth, screenHeight);
+                    chapterOne = new ChapterOne(android, loggedInStudentName);
+                    chapterOne.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_VIEW;
                 }
                 break;
             case CHAPTER_VIEW:
-                int score = chapterView.touchDown(x, y);
+                int score = chapterOne.touchDown(x, y);
                 if (score != 100) {
-                    if (score != 50) {
-                        android.showToast("You scored " + score, 1);
-                        android.setStudentScore(loggedInStudentName, "1", score);
-                    }
-                    chapterView.dispose();
+                    chapterOne.dispose();
                     chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
@@ -114,7 +110,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.touchDragged(x, y);
                 break;
             case CHAPTER_VIEW:
-                chapterView.touchDragged(x);
+                chapterOne.touchDragged(x);
                 break;
         }
     }
@@ -122,7 +118,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     public void touchUp(int x, int y) {
         switch (triage) {
             case CHAPTER_VIEW:
-                chapterView.touchUp();
+                chapterOne.touchUp();
                 break;
         }
     }
@@ -141,8 +137,8 @@ public class Student extends AppView implements AppFragment, Disposable {
                 studentProfile.keyDown(keycode);
                 break;
             case CHAPTER_VIEW:
-                if (chapterView.keydown(keycode) == 1) {
-                    chapterView.dispose();
+                if (chapterOne.keyDown(keycode) == 1) {
+                    chapterOne.dispose();
                     chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
