@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.views.chapters.ChapterOne;
+import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
 
 /**
  * This is called when selecting "Student" from the Menu.
@@ -19,6 +20,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private StudentProfile studentProfile;
     private ChapterSelect chapterSelect;
     private ChapterOne chapterOne;
+    private ChapterTwo chapterTwo;
     private AndroidInterface android;
 
     /**
@@ -48,7 +50,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.display(batch);
                 break;
             case CHAPTER_VIEW:
-                chapterOne.display(batch);
+                renderChapter(selectedChapter, batch);
                 break;
         }
     }
@@ -81,17 +83,17 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case CHAPTER_SELECT:
                 selectedChapter = chapterSelect.touchDown(x, y);
-                if (selectedChapter != 0) {
-                    chapterSelect.dispose();
-                    chapterOne = new ChapterOne(android, loggedInStudentName);
-                    chapterOne.setUp(screenWidth, screenHeight);
-                    triage = CHAPTER_VIEW;
-                }
+                if (selectedChapter != 0)
+                    openChapter(selectedChapter);
                 break;
             case CHAPTER_VIEW:
-                int score = chapterOne.touchDown(x, y);
-                if (score != 100) {
-                    chapterOne.dispose();
+                int score = chapterTouchDown(selectedChapter, x, y);
+                if (score > 500) {
+                    selectedChapter = score - 500;
+                    disposeChapter(selectedChapter);
+                    openChapter(selectedChapter);
+                } else if (score != 100) {
+                    disposeChapter(selectedChapter);
                     chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
@@ -101,16 +103,29 @@ public class Student extends AppView implements AppFragment, Disposable {
         return 0;
     }
 
+    private void disposeChapter(int chapNum) {
+        switch (chapNum) {
+            case 1:
+                chapterOne.dispose();
+                break;
+        }
+    }
+
+    private int chapterTouchDown(int chapNum, float x, float y) {
+        switch (chapNum) {
+            case 1:
+                return chapterOne.touchDown(x, y);
+        }
+        return 100;
+    }
+
     public void touchDragged(int x, int y) {
         switch (triage) {
-            case STUDENT_PROFILE:
-                //TODO: Maybe completely remove this if not needed?
-                break;
             case CHAPTER_SELECT:
                 chapterSelect.touchDragged(x, y);
                 break;
             case CHAPTER_VIEW:
-                chapterOne.touchDragged(x);
+                chapterTouchDrag(selectedChapter, x, y);
                 break;
         }
     }
@@ -118,6 +133,14 @@ public class Student extends AppView implements AppFragment, Disposable {
     public void touchUp(int x, int y) {
         switch (triage) {
             case CHAPTER_VIEW:
+                chapterTouchUp(selectedChapter, x, y);
+                break;
+        }
+    }
+
+    private void chapterTouchUp(int chapNum, int x, int y) {
+        switch (chapNum) {
+            case 1:
                 chapterOne.touchUp();
                 break;
         }
@@ -137,13 +160,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 studentProfile.keyDown(keycode);
                 break;
             case CHAPTER_VIEW:
-                if (chapterOne.keyDown(keycode) == 1) {
-                    chapterOne.dispose();
-                    chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
-                    chapterSelect.setUp(screenWidth, screenHeight);
-                    triage = CHAPTER_SELECT;
-                    return 0;
-                }
+                chapterKeyDown(selectedChapter, keycode);
                 break;
         }
         return 0;
@@ -152,5 +169,86 @@ public class Student extends AppView implements AppFragment, Disposable {
     public void keyTyped(char character) {
         if (triage == STUDENT_PROFILE)
             studentProfile.keyTyped(character);
+    }
+
+    /**
+     * Opens the Chapter lecture
+     * @param chapNum The chapter number to open
+     */
+    private void openChapter(int chapNum) {
+        try {
+            chapterSelect.dispose();
+        } catch (NullPointerException e) {
+            // Do nothing, user probably didn't open a chapter from Chapter select menu (e.g. Chapter 1)
+        }
+        switch (chapNum) {
+            case 1:
+                chapterOne = new ChapterOne(android, loggedInStudentName);
+                chapterOne.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+            case 2:
+                chapterTwo = new ChapterTwo(android, loggedInStudentName);
+                chapterTwo.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+        }
+    }
+
+    /**
+     * Renders the correct chapter class
+     * @param chapNum Chapter number to render
+     * @param batch batch where we will draw the chapter class
+     */
+    private void renderChapter(int chapNum, Batch batch) {
+        switch (chapNum) {
+            case 1:
+                chapterOne.display(batch);
+                break;
+            case 2:
+                chapterTwo.display(batch);
+                break;
+        }
+    }
+
+    /**
+     * Set Key down listener
+     * @param chapNum Chapter number to render
+     * @param keycode number of keycode pressed in android device
+     * @return int
+     */
+    private int chapterKeyDown(int chapNum, int keycode) {
+        boolean backPressed = false;
+        switch (chapNum) {
+            case 1:
+                if (chapterOne.keyDown(keycode) == 1) {
+                    chapterOne.dispose();
+                    backPressed = true;
+                }
+                break;
+            case 2:
+                if (chapterTwo.keyDown(keycode) == 1) {
+                    chapterTwo.dispose();
+                    backPressed = true;
+                }
+                break;
+            default:
+                return 100;
+        }
+        if (backPressed) {
+            chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
+            chapterSelect.setUp(screenWidth, screenHeight);
+            triage = CHAPTER_SELECT;
+            return 0;
+        }
+        return 100;
+    }
+
+    private void chapterTouchDrag(int chapNum, int x, int y) {
+        switch (chapNum) {
+            case 1:
+                chapterOne.touchDragged(x);
+                break;
+        }
     }
 }
