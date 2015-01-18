@@ -74,7 +74,6 @@ public class ChapterTwo extends ChapterCore {
                     break;
                 case 2:
                     tingSound.stop();
-
                     break;
             }
         }
@@ -90,6 +89,11 @@ public class ChapterTwo extends ChapterCore {
      */
     private void assetManager() {
         switch (chapterSection) {
+            case 0:
+                backgroundSprite.setTexture(introBgTexture);
+                balloonSprite.setTexture(introBalloonTexture);
+                balloonSprite.setAlpha(1);
+                break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setAlpha(0);
