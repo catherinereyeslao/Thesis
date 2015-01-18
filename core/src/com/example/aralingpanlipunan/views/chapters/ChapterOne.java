@@ -131,19 +131,6 @@ public class ChapterOne extends ChapterCore {
         bukid2Texture = new Texture("chapters/chapter1/balloons/bukid2.png");
         lungsod1Texture = new Texture("chapters/chapter1/balloons/lungsod1.png");
         lungsod2Texture = new Texture("chapters/chapter1/balloons/lungsod2.png");
-
-        startQuiz = new Sprite(startQuizTexture);
-        startQuiz.setSize(startQuiz.getWidth() * getButtonScale(), startQuiz.getHeight() * getButtonScale());
-        final float startQuizX = (screenW - (screenW / 8)) - (startQuiz.getWidth() / 2);
-        final float startQuizY = (screenH / 4) - (startQuiz.getHeight() / 2);
-        startQuiz.setPosition(startQuizX, startQuizY);
-        startQuiz.setBounds(startQuizX, startQuizY, startQuiz.getWidth(), startQuiz.getHeight());
-
-        backToChapters = new Sprite(backToChapterTexture);
-        backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-        final float backToChapY = startQuizY - (backToChapters.getHeight());
-        backToChapters.setPosition(startQuizX, backToChapY);
-        backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
     }
 
     @Override

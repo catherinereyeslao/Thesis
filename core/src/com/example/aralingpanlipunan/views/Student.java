@@ -115,6 +115,8 @@ public class Student extends AppView implements AppFragment, Disposable {
         switch (chapNum) {
             case 1:
                 return chapterOne.touchDown(x, y);
+            case 2:
+                return chapterTwo.touchDown(x, y);
         }
         return 100;
     }
@@ -142,6 +144,9 @@ public class Student extends AppView implements AppFragment, Disposable {
         switch (chapNum) {
             case 1:
                 chapterOne.touchUp();
+                break;
+            case 2:
+                chapterTwo.touchUp();
                 break;
         }
     }
@@ -249,6 +254,8 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 1:
                 chapterOne.touchDragged(x);
                 break;
+            case 2:
+                chapterTwo.touchDragged(x);
         }
     }
 }

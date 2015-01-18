@@ -17,10 +17,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected Animation girlAnimation;
     protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz;
     protected String loggedInStudent;
-    protected int chapterSection, correctAnswers, startOfQuestionSection = 0;
+    protected int chapterSection, correctAnswers = 0;
+    protected int startOfQuestionSection = 10;
     protected boolean assetNeedUpdate, lectureStarted, isDragging = false;
     protected float animationCounter, touchX = 0;
-    private Texture helpTexture, soundTexture;
+    private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
         this.android = androidInterface;
@@ -47,6 +48,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         Texture introBalloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
         helpTexture = new Texture("buttons/help.png");
         soundTexture = new Texture("buttons/sound.png");
+        startQuizTexture = new Texture("buttons/menu/start.png");
+        backToChapterTexture = new Texture("buttons/back-to-chapters.png");
 
         backgroundSprite = new Sprite(introBalloonTexture);
         backgroundSprite.setSize(screenWidth, screenHeight);
@@ -78,6 +81,19 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         soundSprite.setPosition(soundSpriteX, helpSpriteY);
         soundSprite.setBounds(soundSpriteX, helpSpriteY, soundSprite.getWidth(), soundSprite.getHeight());
 
+        startQuiz = new Sprite(startQuizTexture);
+        startQuiz.setSize(startQuiz.getWidth() * getButtonScale(), startQuiz.getHeight() * getButtonScale());
+        final float startQuizX = (screenWidth - (screenWidth / 8)) - (startQuiz.getWidth() / 2);
+        final float startQuizY = (screenHeight / 4) - (startQuiz.getHeight() / 2);
+        startQuiz.setPosition(startQuizX, startQuizY);
+        startQuiz.setBounds(startQuizX, startQuizY, startQuiz.getWidth(), startQuiz.getHeight());
+
+        backToChapters = new Sprite(backToChapterTexture);
+        backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
+        final float backToChapY = startQuizY - (backToChapters.getHeight());
+        backToChapters.setPosition(startQuizX, backToChapY);
+        backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
+
         introBalloonTexture.dispose();
     }
 
@@ -86,7 +102,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * Put this in the chapter's draw method to put the animating girl and balloon
      * @param batch Batch
      */
-    protected void renderSharedAssets(Batch batch) {
+    protected void  renderSharedAssets(Batch batch) {
         backgroundSprite.draw(batch);
         if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
             girl.setX(girl.getX() + 5);
@@ -121,7 +137,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
-            } else if (chapterSection < 8 && slide >= screenWidth * 0.20f) {
+            } else if (chapterSection < startOfQuestionSection-1 && slide >= screenWidth * 0.20f) {
                 chapterSection++;
                 isDragging = true;
                 assetNeedUpdate = true;
