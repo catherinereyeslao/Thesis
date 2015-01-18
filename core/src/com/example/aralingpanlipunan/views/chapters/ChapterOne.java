@@ -1,47 +1,39 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.utils.Disposable;
-import com.example.aralingpanlipunan.AppFragment;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
-import com.example.aralingpanlipunan.views.AppView;
 
-public class ChapterOne extends AppView implements AppFragment, Disposable {
+public class ChapterOne extends ChapterCore {
     private static final String LUNGSOD = "Lungsod";
     private static final String KABUNDUKAN = "Kabundukan";
     private static final String BUKIRIN = "BUKIRIN";
     private static final String BAYBAYIN = "Baybayin";
 
     private String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    private String loggedInStudent;
-    private int chapterSection, correctAnswers = 0;
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, questionBg, backToChapterTexture, startQuizTexture, helpTexture, soundTexture, retakeTexture, exitTexture, nextChapTexture;
-    private TextureAtlas girlAtlas;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, questionBg, backToChapterTexture, startQuizTexture, retakeTexture, exitTexture, nextChapTexture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
-    private Animation girlAnimation;
-    private Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz, ans1, ans2, ans3, ans4;
+    private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont question, answer1, answer2, answer3, answer4;
-    private float animationCounter, questionX, questionY, questionWidth, answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y, touchX;
-    private boolean assetNeedUpdate, lectureStarted, isDragging = false;
-    private AndroidInterface android;
+    private float questionX, questionY, questionWidth, answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
     private int currentScore;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName) {
-        loggedInStudent = studentName;
-        android = androidInterface;
+        super(androidInterface, studentName);
     }
 
     @Override
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+        startOfQuestionSection = 9;
 
         currentScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score
 
@@ -63,14 +55,16 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         questionBg = new Texture("backgrounds/question.jpg");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         startQuizTexture = new Texture("buttons/menu/start.png");
-        helpTexture = new Texture("buttons/help.png");
-        soundTexture = new Texture("buttons/sound.png");
         retakeTexture = new Texture("buttons/retake.png");
         exitTexture = new Texture("buttons/exit.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
+        intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
+
+        setUpDefaultAssets();
 
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
+        balloonSprite.setTexture(intro1balloonTexture);
 
         question = new BitmapFont(screenSizeUtil.fontAsset(screenW));
         question.setColor(1, 1, 1, 1);
@@ -89,7 +83,6 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         ans1.setAlpha(0);
         ans1.setSize(answer1.getBounds(LUNGSOD).width, answer1.getBounds(LUNGSOD).height);
         ans1.setPosition(answerX, answerY - answer1.getBounds(LUNGSOD).height);
-
 
         answer2 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
         answer2.setScale(1.7f);
@@ -139,21 +132,6 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         lungsod1Texture = new Texture("chapters/chapter1/balloons/lungsod1.png");
         lungsod2Texture = new Texture("chapters/chapter1/balloons/lungsod2.png");
 
-        girlAtlas = new TextureAtlas("characters/girl/girl.atlas");
-        girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
-        girlAnimation = new Animation(0.15f, girlAtlas.getRegions());
-        girl = new Sprite(girlAnimation.getKeyFrames()[0]);
-        girl.setSize((girl.getWidth() * getButtonScale()) * 1.4f, (girl.getHeight() * getButtonScale()) * 1.4f);
-        final float girlX = (screenW / 4) * -1;
-        final float girlY = (screenH / 3) - (girl.getHeight() / 2);
-        girl.setPosition(girlX, girlY);
-        girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
-
-        intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
-        balloonSprite = new Sprite(intro1balloonTexture);
-        balloonSprite.setSize((balloonSprite.getWidth() * getButtonScale()) * 2.5f, (balloonSprite.getHeight() * getButtonScale()) * 2.5f);
-        balloonSprite.setPosition((screenWidth / 5) + (girl.getWidth() / 2), girlY + (girl.getHeight() / 2));
-
         startQuiz = new Sprite(startQuizTexture);
         startQuiz.setSize(startQuiz.getWidth() * getButtonScale(), startQuiz.getHeight() * getButtonScale());
         final float startQuizX = (screenW - (screenW / 8)) - (startQuiz.getWidth() / 2);
@@ -166,33 +144,18 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         final float backToChapY = startQuizY - (backToChapters.getHeight());
         backToChapters.setPosition(startQuizX, backToChapY);
         backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
-
-        helpSprite = new Sprite(helpTexture);
-        helpSprite.setSize((helpSprite.getWidth() * getButtonScale() / 1.8f), (helpSprite.getHeight() * getButtonScale() / 1.8f));
-        final float helpSpriteX = (screenW / 10) - (helpSprite.getWidth() / 2);
-        final float helpSpriteY = (screenH - (screenH / 10)) - (helpSprite.getHeight() / 2);
-        helpSprite.setPosition(helpSpriteX, helpSpriteY);
-        helpSprite.setBounds(helpSpriteX, helpSpriteY, helpSprite.getWidth(), helpSprite.getHeight());
-
-        soundSprite = new Sprite(soundTexture);
-        soundSprite.setSize(helpSprite.getWidth(), helpSprite.getHeight());
-        final float soundSpriteX = helpSpriteX + soundSprite.getWidth();
-        soundSprite.setPosition(soundSpriteX, helpSpriteY);
-        soundSprite.setBounds(soundSpriteX, helpSpriteY, soundSprite.getWidth(), soundSprite.getHeight());
     }
 
     @Override
     public void display(Batch batch) {
-        if (assetNeedUpdate) chapter1AssetManager();
-        chapter1Display(batch);
+        if (assetNeedUpdate) assetManager();
+            chapter1Display(batch);
     }
 
     @Override
     public void dispose() {
         exitTexture.dispose();
         nextChapTexture.dispose();
-        helpTexture.dispose();
-        soundTexture.dispose();
         baybayin1sound.dispose();
         baybayin2sound.dispose();
         baybayin3sound.dispose();
@@ -212,17 +175,7 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         girlAtlas.dispose();
         backToChapterTexture.dispose();
         startQuizTexture.dispose();
-    }
-
-    /**
-     * If android's back key is pressed, return 1 to Student class
-     * to give a signal to go back to Chapter Select
-     *
-     * @param keycode the keycode of the pressed button
-     * @return int
-     */
-    public int keyDown(int keycode) {
-        return keycode == 4 ? 1 : 0;
+        disposeSharedAssets();
     }
 
     /**
@@ -236,8 +189,9 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
      * @param y The y coordinate of touched screen
      * @return int
      */
+    @Override
     public int touchDown(float x, float y) {
-        touchX = x;
+        super.touchDown(x, y);
         if (soundSprite.getBoundingRectangle().contains(x, y)) {
             playSoundForSection();
         }
@@ -329,11 +283,10 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
                 break;
             case 13:
                 // If failed, we give student the option to retake quiz or back to chapters
-                Log.i("correct answers", "current score is " + correctAnswers);
                 if (correctAnswers < 2) {
                     if (startQuiz.getBoundingRectangle().contains(x, y)) {
                         questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
-                        chapterSection = 9;
+                        chapterSection = startOfQuestionSection;
                         correctAnswers = 0;
                         assetNeedUpdate = true;
                         imageQuestion.setAlpha(1);
@@ -344,7 +297,7 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
                         return 500;
                 } else {
                     if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                        //TODO: MOVE TO NEXT CHAPTER
+                        return 502;
                     } else if (backToChapters.getBoundingRectangle().contains(x, y)) {
                         android.exit();
                     }
@@ -395,27 +348,13 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
         }
     }
 
-    public void touchDragged(int x) {
-        float slide = touchX - x;
-        if (chapterSection < 9 && lectureStarted && !isDragging) {
-            if (chapterSection > 0 && slide <= screenWidth * -0.20f) {
-                chapterSection--;
-                isDragging = true;
-                assetNeedUpdate = true;
-            } else if (chapterSection < 8 && slide >= screenWidth * 0.20f) {
-                chapterSection++;
-                isDragging = true;
-                assetNeedUpdate = true;
-            }
-        }
-    }
-
-    public void touchUp() {
-        touchX = 0;
-        isDragging = false;
-    }
-
-    private void chapter1AssetManager() {
+    /**
+     * When assetNeedUpdate is true, this will be called to update
+     * properties of objects & other assets. Any tasks that are
+     * not supposed to be called at all time should be placed here to
+     * help improve performance
+     */
+    private void assetManager() {
         switch (chapterSection) {
             case 0:
                 balloonSprite.setTexture(intro1balloonTexture);
@@ -523,23 +462,9 @@ public class ChapterOne extends AppView implements AppFragment, Disposable {
     private void chapter1Display(Batch batch) {
         backgroundSprite.draw(batch);
 
-        if (chapterSection < 9) {
-            if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
-                girl.setX(girl.getX() + 5);
-            } else {
-                lectureStarted = true;
-                animationCounter += Gdx.graphics.getDeltaTime();
-                girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
-                balloonSprite.draw(batch);
-            }
-            girl.draw(batch);
-            helpSprite.draw(batch);
-            soundSprite.draw(batch);
-            if (chapterSection == 8) {
-                startQuiz.draw(batch);
-                backToChapters.draw(batch);
-            }
-        } else if (chapterSection >= 9 && chapterSection < 13) {
+        if (chapterSection < startOfQuestionSection) {
+            renderSharedAssets(batch);
+        } else if (chapterSection >= startOfQuestionSection && chapterSection < 13) {
             question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
             answer1.draw(batch, LUNGSOD, answerX, answerY);
             answer2.draw(batch, BUKIRIN, answer2X, answer2Y);

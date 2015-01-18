@@ -253,10 +253,13 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         touchY = y;
 
         for (int c = 0; c < 19; c++) {
-            if ((c == 0 || chapterScores.get(c) > 0) && buttonSprites.get(c).getBoundingRectangle().contains(x, y))
-                return c + 1;
+            try {
+                if ((c == 0 || chapterScores.get(c - 1) > 0) && buttonSprites.get(c).getBoundingRectangle().contains(x, y))
+                    return c + 1;
+            } catch (IndexOutOfBoundsException e) {
+                // Do nothing, loop will probably look for chapterScores(-1) at first which doesn't exist
+            }
         }
-
         return 0;
     }
 
