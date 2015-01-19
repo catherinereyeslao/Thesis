@@ -1,6 +1,5 @@
 package com.example.aralingpanlipunan.views.chapters;
 
-import android.database.sqlite.SQLiteException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,12 +16,11 @@ public class ChapterOne extends ChapterCore {
     private static final String BUKIRIN = "BUKIRIN";
     private static final String BAYBAYIN = "Baybayin";
 
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, retakeTexture, exitTexture, nextChapTexture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
-    private int currentScore;
     private boolean questionStarted = false;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName) {
@@ -55,9 +53,6 @@ public class ChapterOne extends ChapterCore {
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         startQuizTexture = new Texture("buttons/menu/start.png");
-        retakeTexture = new Texture("buttons/retake.png");
-        exitTexture = new Texture("buttons/exit.png");
-        nextChapTexture = new Texture("buttons/next-chapter.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
 
         backgroundSprite = new Sprite(introBg);
@@ -256,27 +251,7 @@ public class ChapterOne extends ChapterCore {
                 }
                 break;
             case 13:
-                // If failed, we give student the option to retake quiz or back to chapters
-                if (correctAnswers < 2) {
-                    if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                        questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
-                        chapterSection = startOfQuestionSection;
-                        correctAnswers = 0;
-                        assetNeedUpdate = true;
-                        imageQuestion.setAlpha(1);
-                        question.setScale(2.2f);
-                        tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-                    }
-                    else if (backToChapters.getBoundingRectangle().contains(x, y))
-                        return 500;
-                } else {
-                    if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                        return 502;
-                    } else if (backToChapters.getBoundingRectangle().contains(x, y)) {
-                        android.exit();
-                    }
-                }
-                break;
+                return displayLastSectionButtons(1, x, y);
         }
         return 100;
     }
@@ -394,7 +369,7 @@ public class ChapterOne extends ChapterCore {
                 question.setScale(3.5f);
                 questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
                 tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
-                saveProgress();
+                saveProgress(DatabaseSetup.CHAPTER_ONE_SCORE);
                 backToChapters.setPosition(
                         screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
                         screenHeight / 4.2f
@@ -406,27 +381,12 @@ public class ChapterOne extends ChapterCore {
                     startQuiz.setTexture(nextChapTexture);
                     backToChapters.setTexture(exitTexture);
                 }
-                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
                 startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
+                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
                 break;
 
         }
         assetNeedUpdate = false;
-    }
-
-    /**
-     * If achieved score is higher than currently recorded chapter 1 score, then update
-     * the student's score record.
-     */
-    private void saveProgress() {
-        if (correctAnswers > currentScore) {
-            try {
-                android.setStudentScore(loggedInStudent, DatabaseSetup.CHAPTER_ONE_SCORE, correctAnswers);
-                android.showToast("Your progress has been saved", 1);
-            } catch (SQLiteException e) {
-                android.showToast("Failed to save data", 1);
-            }
-        }
     }
 
     /**

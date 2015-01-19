@@ -1,9 +1,13 @@
 package com.example.aralingpanlipunan.views.chapters;
 
-import android.util.Log;
+import android.database.sqlite.SQLiteException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
@@ -21,8 +25,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable = false;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    protected Texture questionBg;
+    protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture;
     protected BitmapFont question;
+    protected int currentScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
@@ -41,6 +46,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         startQuizTexture = new Texture("buttons/menu/start.png");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         questionBg = new Texture("backgrounds/question.jpg");
+        retakeTexture = new Texture("buttons/retake.png");
+        exitTexture = new Texture("buttons/exit.png");
+        nextChapTexture = new Texture("buttons/next-chapter.png");
 
         backgroundSprite = new Sprite(introBalloonTexture);
         backgroundSprite.setSize(screenW, screenH);
@@ -176,6 +184,54 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     public void touchUp() {
         touchX = 0;
         isDragging = false;
+    }
+
+    /**
+     * If achieved score is higher than currently recorded chapter 1 score, then update
+     * the student's score record.
+     * @param chapter String The name of the database table to update the chapter record after the game
+     */
+    protected void saveProgress(String chapter) {
+        if (correctAnswers > currentScore) {
+            try {
+                android.setStudentScore(loggedInStudent, chapter, correctAnswers);
+                android.showToast("Your progress has been saved", 1);
+            } catch (SQLiteException e) {
+                android.showToast("Failed to save data", 1);
+            }
+        }
+    }
+
+    /**
+     * Display the last 2 buttons at the end of the quiz. User will be able to retake the quiz
+     * if they failed. If passed, they'll have the option to take the next chapter
+     * @param currentChapNum int Current Chapter number
+     * @param x float The x coordinate of touched screen
+     * @param y float The y coordinate of touched screen
+     * @return int
+     */
+    protected int displayLastSectionButtons(int currentChapNum, float x, float y) {
+        // If failed, we give student the option to retake quiz or back to chapters
+        if (correctAnswers < 2) {
+            if (startQuiz.getBoundingRectangle().contains(x, y)) {
+                questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
+                chapterSection = startOfQuestionSection;
+                correctAnswers = 0;
+                assetNeedUpdate = true;
+                imageQuestion.setAlpha(1);
+                question.setScale(2.2f);
+                tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
+            }
+            else if (backToChapters.getBoundingRectangle().contains(x, y))
+                return 500;
+        } else {
+            if (startQuiz.getBoundingRectangle().contains(x, y)) {
+                return currentChapNum + 501;
+            } else if (backToChapters.getBoundingRectangle().contains(x, y)) {
+                android.exit();
+            }
+        }
+        return 100;
     }
 
     /**

@@ -124,23 +124,23 @@ public class Student extends AppView implements AppFragment, Disposable {
     public void touchDragged(int x, int y) {
         switch (triage) {
             case CHAPTER_SELECT:
-                chapterSelect.touchDragged(x, y);
+                chapterSelect.touchDragged(x);
                 break;
             case CHAPTER_VIEW:
-                chapterTouchDrag(selectedChapter, x, y);
+                chapterTouchDrag(selectedChapter, x);
                 break;
         }
     }
 
-    public void touchUp(int x, int y) {
+    public void touchUp() {
         switch (triage) {
             case CHAPTER_VIEW:
-                chapterTouchUp(selectedChapter, x, y);
+                chapterTouchUp(selectedChapter);
                 break;
         }
     }
 
-    private void chapterTouchUp(int chapNum, int x, int y) {
+    private void chapterTouchUp(int chapNum) {
         switch (chapNum) {
             case 1:
                 chapterOne.touchUp();
@@ -162,8 +162,7 @@ public class Student extends AppView implements AppFragment, Disposable {
             case CHAPTER_SELECT:
                 return keycode == 4 && chapterSelect.isSetUp() ? 1 : 0;
             case STUDENT_PROFILE:
-                studentProfile.keyDown(keycode);
-                break;
+                return studentProfile.keyDown(keycode);
             case CHAPTER_VIEW:
                 chapterKeyDown(selectedChapter, keycode);
                 break;
@@ -249,7 +248,7 @@ public class Student extends AppView implements AppFragment, Disposable {
         return 100;
     }
 
-    private void chapterTouchDrag(int chapNum, int x, int y) {
+    private void chapterTouchDrag(int chapNum, int x) {
         switch (chapNum) {
             case 1:
                 chapterOne.touchDragged(x);

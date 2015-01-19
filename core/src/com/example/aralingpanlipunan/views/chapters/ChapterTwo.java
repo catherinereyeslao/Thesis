@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterTwo extends ChapterCore {
@@ -27,8 +28,9 @@ public class ChapterTwo extends ChapterCore {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
+        currentScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
         startOfQuestionSection = 12;
-        lastChapterSection = 19;
+        lastChapterSection = 20;
         tanong = "SAANG DAKO NG PILIPINAS MATAGTAGPUAN ANG SULU?";
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
@@ -105,6 +107,10 @@ public class ChapterTwo extends ChapterCore {
             answer2.draw(batch, ans2Char, answer2X, answer2Y);
             answer3.draw(batch, ans3Char, answer3X, answer3Y);
             answer4.draw(batch, ans4Char, answer4X, answer4Y);
+        }
+        if (chapterSection == lastChapterSection) {
+            startQuiz.draw(batch);
+            backToChapters.draw(batch);
         }
     }
 
@@ -227,6 +233,8 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
+            case 20:
+                return displayLastSectionButtons(2, x, y);
         }
         return 100;
     }
@@ -312,7 +320,24 @@ public class ChapterTwo extends ChapterCore {
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG MINDANAO?";
                 break;
             case 20:
-                tanong = "You Scored " + correctAnswers + "! Will improve this later";
+                tanong = correctAnswers > 2 ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
+                answer1.setColor(1, 1, 1, 0);
+                answer2.setColor(1, 1, 1, 0);
+                answer3.setColor(1, 1, 1, 0);
+                backToChapters.setPosition(
+                        screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
+                        screenHeight / 4.2f
+                );
+                // If student fails the test
+                if (correctAnswers < 2) {
+                    startQuiz.setTexture(retakeTexture);
+                } else {
+                    startQuiz.setTexture(nextChapTexture);
+                    backToChapters.setTexture(exitTexture);
+                }
+                startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
+                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
+                saveProgress(DatabaseSetup.CHAPTER_TWO_SCORE);
                 break;
         }
         assetNeedUpdate = false;

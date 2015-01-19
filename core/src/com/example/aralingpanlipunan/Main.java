@@ -240,7 +240,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					break;
 			}
 		} else if (triage == STUDENT) {
-			student.touchUp(screenX, normalisedY);
+			student.touchUp();
 		}
 		return false;
 	}

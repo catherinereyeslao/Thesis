@@ -29,24 +29,24 @@ public class StudentProfile extends AppView implements AppFragment, Disposable {
 
         screenSizeUtil = new ScreenSizeUtil();
         background = new Texture("backgrounds/start-background.jpg");
-        balloonTexture = new Texture("balloons/empty-balloon.png");
-        enterTexture = new Texture("buttons/student/enter.png");
+        balloonTexture = new Texture("balloons/textbox.png");
+        enterTexture = new Texture("buttons/enter.png");
 
         text = new BitmapFont(screenSizeUtil.fontAsset(screenW));
         text.setColor(0.3f, 0.3f, 0.3f, 0.7f);
         text.scale(1.6f);
 
         balloon = new Sprite(balloonTexture);
-        balloon.setSize((balloon.getWidth() * getButtonScale()) * 3, balloon.getHeight() * getButtonScale());
-        final float balloonX = (screenW / 3) - (balloon.getWidth() / 2);
-        final float balloonY = (screenH - (screenH / 6)) - (balloon.getHeight() / 2);
+        balloon.setSize((balloon.getWidth() * getButtonScale()) * 1.8f, balloon.getHeight() * getButtonScale());
+        final float balloonX = (screenW / 2) - (balloon.getWidth() / 2);
+        final float balloonY = (screenH / 1.85f) - (balloon.getHeight() / 2);
         balloon.setPosition(balloonX, balloonY);
         balloon.setBounds(balloonX, balloonY, balloon.getWidth(), balloon.getHeight());
 
         enter = new Sprite(enterTexture);
         enter.setSize(enter.getWidth() * getButtonScale(), enter.getHeight() * getButtonScale());
-        final float enterX = (screenW - (screenW / 6)) - (enter.getWidth() / 2);
-        final float enterY = (screenH - (screenH / 7)) - (enter.getHeight() / 2);
+        final float enterX = (screenW / 2) - (enter.getWidth() / 2);
+        final float enterY = balloonY - (enter.getHeight() * 1.4f);
         enter.setPosition(enterX, enterY);
         enter.setBounds(enterX, enterY, enter.getWidth(), enter.getHeight());
     }
