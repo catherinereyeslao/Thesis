@@ -1,14 +1,13 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import android.util.Log;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
 
 public abstract class ChapterCore extends AppView implements AppFragment, Disposable {
@@ -18,10 +17,12 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz;
     protected String loggedInStudent;
     protected int chapterSection, correctAnswers = 0;
-    protected int startOfQuestionSection = 10;
-    protected boolean assetNeedUpdate, lectureStarted, isDragging = false;
-    protected float animationCounter, touchX = 0;
+    protected int startOfQuestionSection, lastChapterSection = 10;
+    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable = false;
+    protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
+    protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg;
+    protected BitmapFont question;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
@@ -33,6 +34,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         Texture introBalloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
         helpTexture = new Texture("buttons/help.png");
         soundTexture = new Texture("buttons/sound.png");
@@ -83,6 +85,13 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         backToChapters.setPosition(startQuizX, backToChapY);
         backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
 
+        question = new BitmapFont(screenSizeUtil.fontAsset(screenW));
+        question.setColor(1, 1, 1, 1);
+        question.setScale(2.2f);
+        questionWidth = screenWidth / 1.5f;
+        questionX = (screenW / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
+        questionY = (screenH - (screenH / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
+
         introBalloonTexture.dispose();
     }
 
@@ -115,15 +124,17 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         backgroundSprite.draw(batch);
         if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
             girl.setX(girl.getX() + 5);
-        } else {
+        } else if (chapterSection < startOfQuestionSection) {
             lectureStarted = true;
             animationCounter += Gdx.graphics.getDeltaTime();
             girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
             balloonSprite.draw(batch);
         }
-        girl.draw(batch);
-        helpSprite.draw(batch);
-        soundSprite.draw(batch);
+        if (chapterSection < startOfQuestionSection) {
+            girl.draw(batch);
+            helpSprite.draw(batch);
+            soundSprite.draw(batch);
+        }
         if (chapterSection == startOfQuestionSection - 1) {
             startQuiz.draw(batch);
             backToChapters.draw(batch);
@@ -147,15 +158,17 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      */
     public void touchDragged(int x) {
         float slide = touchX - x;
-        if (chapterSection < startOfQuestionSection && lectureStarted && !isDragging) {
-            if (chapterSection > 0 && slide <= screenWidth * -0.20f) {
+        if ((chapterSection < startOfQuestionSection || questionIsDraggable) && lectureStarted && !isDragging) {
+            if (((chapterSection > 0 && chapterSection < startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
-            } else if (chapterSection < startOfQuestionSection-1 && slide >= screenWidth * 0.20f) {
-                chapterSection++;
-                isDragging = true;
-                assetNeedUpdate = true;
+            } else if ((questionIsDraggable || chapterSection < startOfQuestionSection-1) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
+                if (chapterSection != startOfQuestionSection-1) {
+                    chapterSection++;
+                    isDragging = true;
+                    assetNeedUpdate = true;
+                }
             }
         }
     }
