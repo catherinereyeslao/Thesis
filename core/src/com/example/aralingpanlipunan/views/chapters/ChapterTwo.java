@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 
 public class ChapterTwo extends ChapterCore {
-    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture;
+    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture, startGameBg;
     private Sound tingSound;
 
     public ChapterTwo(AndroidInterface androidInterface, String studName) {
@@ -16,10 +16,8 @@ public class ChapterTwo extends ChapterCore {
 
     @Override
     public void setUp(int screenW, int screenH) {
-        screenWidth = screenW;
-        screenHeight = screenH;
+        super.setUp(screenW, screenH);
         startOfQuestionSection = 11;
-        setUpDefaultAssets();
 
         introBgTexture = new Texture("chapters/chapter2/backgrounds/intro.png");
         introBalloonTexture = new Texture("chapters/chapter2/balloons/intro.png");
@@ -34,6 +32,8 @@ public class ChapterTwo extends ChapterCore {
         map2BalloonTexture = new Texture("chapters/chapter2/balloons/map2.png");
         map3BalloonTexture = new Texture("chapters/chapter2/balloons/map3.png");
         map4BalloonTexture = new Texture("chapters/chapter2/balloons/map4.png");
+        startGameBg = new Texture("chapters/chapter2/backgrounds/start-game.jpg");
+
         tingSound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/ting.mp3"));
 
         backgroundSprite.setTexture(introBgTexture);
@@ -48,6 +48,7 @@ public class ChapterTwo extends ChapterCore {
 
     @Override
     public void dispose() {
+        super.dispose();
         introBgTexture.dispose();
         introBalloonTexture.dispose();
         directionTexture.dispose();
@@ -61,21 +62,24 @@ public class ChapterTwo extends ChapterCore {
         map2BalloonTexture.dispose();
         map3BalloonTexture.dispose();
         map4BalloonTexture.dispose();
-        disposeSharedAssets();
     }
 
     @Override
     public int touchDown(float x, float y) {
         super.touchDown(x, y);
-        if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            switch (chapterSection) {
-                case 1:
+        switch (chapterSection) {
+            case 1:
+                //TODO: Play the correct voice over here in 1 & 2
+                if (soundSprite.getBoundingRectangle().contains(x, y))
                     tingSound.play();
-                    break;
-                case 2:
-                    tingSound.stop();
-                    break;
-            }
+                break;
+            case 2:
+                tingSound.stop();
+                break;
+            case 10:
+                if (backToChapters.getBoundingRectangle().contains(x, y))
+                    return 50;
+                break;
         }
         return 100;
     }
@@ -129,7 +133,13 @@ public class ChapterTwo extends ChapterCore {
                 balloonSprite.setTexture(map4BalloonTexture);
                 break;
             case 11:
-                //TODO: Create the Question/game view here
+                // This is now the game/question area, hide girl & balloon
+                girl.setAlpha(0);
+                balloonSprite.setAlpha(0);
+                backgroundSprite.setTexture(startGameBg);
+                break;
+            case 12:
+                backgroundSprite.setTexture(questionBg);
                 break;
         }
         assetNeedUpdate = false;

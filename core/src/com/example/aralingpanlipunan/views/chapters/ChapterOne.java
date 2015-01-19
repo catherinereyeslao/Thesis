@@ -18,7 +18,7 @@ public class ChapterOne extends ChapterCore {
     private static final String BAYBAYIN = "Baybayin";
 
     private String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, questionBg, backToChapterTexture, startQuizTexture, retakeTexture, exitTexture, nextChapTexture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, retakeTexture, exitTexture, nextChapTexture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont question, answer1, answer2, answer3, answer4;
@@ -31,6 +31,7 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     public void setUp(int screenW, int screenH) {
+        super.setUp(screenW, screenH);
         screenWidth = screenW;
         screenHeight = screenH;
         startOfQuestionSection = 9;
@@ -52,15 +53,12 @@ public class ChapterOne extends ChapterCore {
         kabukirinBg = new Texture("chapters/chapter1/backgrounds/kabukirin.png");
         kabundukanBg = new Texture("chapters/chapter1/backgrounds/kabundukan.png");
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
-        questionBg = new Texture("backgrounds/question.jpg");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         startQuizTexture = new Texture("buttons/menu/start.png");
         retakeTexture = new Texture("buttons/retake.png");
         exitTexture = new Texture("buttons/exit.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
-
-        setUpDefaultAssets();
 
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
@@ -141,6 +139,7 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     public void dispose() {
+        super.dispose();
         exitTexture.dispose();
         nextChapTexture.dispose();
         baybayin1sound.dispose();
@@ -162,7 +161,6 @@ public class ChapterOne extends ChapterCore {
         girlAtlas.dispose();
         backToChapterTexture.dispose();
         startQuizTexture.dispose();
-        disposeSharedAssets();
     }
 
     /**
@@ -185,10 +183,6 @@ public class ChapterOne extends ChapterCore {
 
         switch (chapterSection) {
             case 8:
-                if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
                 break;
