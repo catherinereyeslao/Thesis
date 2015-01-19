@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.views.chapters.ChapterOne;
+import com.example.aralingpanlipunan.views.chapters.ChapterThree;
 import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
 
 /**
@@ -21,6 +22,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private ChapterSelect chapterSelect;
     private ChapterOne chapterOne;
     private ChapterTwo chapterTwo;
+    private ChapterThree chapterThree;
     private AndroidInterface android;
 
     /**
@@ -108,6 +110,12 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 1:
                 chapterOne.dispose();
                 break;
+            case 2:
+                chapterTwo.dispose();
+                break;
+            case 3:
+                chapterThree.dispose();
+                break;
         }
     }
 
@@ -117,6 +125,8 @@ public class Student extends AppView implements AppFragment, Disposable {
                 return chapterOne.touchDown(x, y);
             case 2:
                 return chapterTwo.touchDown(x, y);
+            case 3:
+            	return chapterThree.touchDown(x, y);
         }
         return 100;
     }
@@ -147,6 +157,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 2:
                 chapterTwo.touchUp();
+                break;
+            case 3:
+                chapterThree.touchUp();
                 break;
         }
     }
@@ -196,6 +209,11 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterTwo.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+            case 3:
+                chapterThree = new ChapterThree(android, loggedInStudentName);
+                chapterThree.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
         }
     }
 
@@ -211,6 +229,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 2:
                 chapterTwo.display(batch);
+                break;
+            case 3:
+                chapterThree.display(batch);
                 break;
         }
     }
