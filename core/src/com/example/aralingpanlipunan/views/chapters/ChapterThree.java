@@ -5,19 +5,23 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 
 public class ChapterThree extends ChapterCore {
-	
+
 	private Texture introBg, introBalloon, alituntunin1Bg, alituntunin2Bg, alituntunin3Bg, alituntunin4Bg, alituntunin5Bg, a1B1, a1B2, a2B1, a3B1, a3B2, a4B1, a4B2, a5B1, a5B2;
-	
+
 	public ChapterThree(AndroidInterface androidInterface, String studName) {
-        super(androidInterface, studName);
-    }
+		super(androidInterface, studName);
+	}
 
 	@Override
 	public void setUp(int screenW, int screenH){
-		
+
 		super.setUp(screenW, screenH);
+		startOfQuestionSection = 9;
+		lastChapterSection = 15;
+		currentScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
+
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
-		introBalloon = new Texture("chapters/chapter3/balloons/intro.png");
+		introBalloon = new Texture("chapters/chapter3/balloons/Intro.png");
 		alituntunin1Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin1.png");
 		alituntunin2Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin2.png");
 		alituntunin3Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin3.png");
@@ -32,17 +36,42 @@ public class ChapterThree extends ChapterCore {
 		a4B2 = new Texture("chapters/chapter3/balloons/Alituntunin4.2.png");
 		a5B1 = new Texture("chapters/chapter3/balloons/Alituntunin5.1.png");
 		a5B2 = new Texture("chapters/chapter3/balloons/Alituntunin5.2.png");
-		
+
+		backgroundSprite.setTexture(introBg);
+		balloonSprite.setTexture(introBalloon);
 	}
-	
+
 	@Override
 	public void display(Batch batch){
 		if (assetNeedUpdate) assetManager();
-        renderSharedAssets(batch);
+		renderSharedAssets(batch);
 	}
 
 	private void assetManager(){
-		
+		switch (chapterSection) {
+			case 0:
+				backgroundSprite.setTexture(introBg);
+				balloonSprite.setTexture(introBalloon);
+				break;
+			case 1:
+				backgroundSprite.setTexture(alituntunin1Bg);
+				balloonSprite.setTexture(a1B1);
+				break;
+			case 2:
+				balloonSprite.setTexture(a1B2);
+				break;
+			case 3:
+				backgroundSprite.setTexture(alituntunin2Bg);
+				balloonSprite.setTexture(a2B1);
+				break;
+			case 4:
+				balloonSprite.setTexture(a3B1);
+				break;
+			case 5:
+				balloonSprite.setTexture(a3B2);
+				break;
+		}
+		assetNeedUpdate = false;
 	}
 
 	@Override
@@ -64,6 +93,5 @@ public class ChapterThree extends ChapterCore {
 		a4B2.dispose();
 		a5B1.dispose();
 		a5B2.dispose();
-		
 	}
 }
