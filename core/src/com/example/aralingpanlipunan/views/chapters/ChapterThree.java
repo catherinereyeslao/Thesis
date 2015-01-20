@@ -37,6 +37,11 @@ public class ChapterThree extends ChapterCore {
 	
 	@Override
 	public void display(Batch batch){
+		if (assetNeedUpdate) assetManager();
+        renderSharedAssets(batch);
+	}
+
+	private void assetManager(){
 		
 	}
 
