@@ -234,7 +234,7 @@ public class ChapterTwo extends ChapterCore {
                 }
                 break;
             case 20:
-                return displayLastSectionButtons(2, x, y);
+                return displayLastSectionButtons(2, 4, x, y);
         }
         return 100;
     }
@@ -292,7 +292,15 @@ public class ChapterTwo extends ChapterCore {
                 balloonSprite.setTexture(map4BalloonTexture);
                 break;
             case 12: // This is now the game/question area, hide girl & balloon
+                question.setScale(getQuestionFontScale());
+                questionX = (screenWidth / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
+                questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
+                ans2Char = "b. Silangan";
                 backgroundSprite.setTexture(question1Bg);
+                answer1.setColor(1, 1, 1, 1);
+                answer2.setColor(1, 1, 1, 1);
+                answer3.setColor(1, 1, 1, 1);
+                answer4.setColor(1, 1, 1, 1);
                 break;
             case 13:
                 backgroundSprite.setTexture(questionBg);

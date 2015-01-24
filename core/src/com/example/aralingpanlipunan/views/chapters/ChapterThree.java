@@ -24,7 +24,6 @@ public class ChapterThree extends ChapterCore {
 		startOfQuestionSection = 15;
 		lastChapterSection = 16;
 		currentScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
-		correctAnswers = 5;
 
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");
@@ -34,7 +33,7 @@ public class ChapterThree extends ChapterCore {
 		alituntunin3Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin3.png");
 		alituntunin4Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin4.png");
 		alituntunin5Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin5.png");
-		answerMarker = new Texture("chapters/chapter3/mark.png");
+		answerMarker = new Texture("mark.png");
 		gameBg = new Texture("chapters/chapter3/backgrounds/gameBg.jpg");
 		a1B1 = new Texture("chapters/chapter3/balloons/Alituntunin1.png");
 		a1B2 = new Texture("chapters/chapter3/balloons/Alituntunin1.1.png");
@@ -136,26 +135,23 @@ public class ChapterThree extends ChapterCore {
 				balloonSprite.setTexture(a5B3);
 				break;
 			case 15: // Start of game
+				correctAnswers = 0;
 				backgroundSprite.setTexture(gameBg);
+				backToChapters.setBounds(0, 0, 0, 0);
 				setUpGame();
 				break;
 			case 16:
-				backgroundSprite.setTexture(questionBg);
-				tanong = correctAnswers > 4 ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
-				backToChapters.setPosition(
-						screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
-						screenHeight / 4.2f
-				);
-				// If student fails the test
-				if (correctAnswers < 5) {
-					startQuiz.setTexture(retakeTexture);
-				} else {
-					startQuiz.setTexture(nextChapTexture);
-					backToChapters.setTexture(exitTexture);
-				}
-				startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
-				backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-				saveProgress(DatabaseSetup.CHAPTER_THREE_SCORE);
+				if (ans1Touched) correctAnswers--;
+				if (ans2Touched) correctAnswers++;
+				if (ans3Touched) correctAnswers++;
+				if (ans4Touched) correctAnswers--;
+				if (ans5Touched) correctAnswers++;
+				if (ans6Touched) correctAnswers--;
+				if (ans7Touched) correctAnswers++;
+				if (ans8Touched) correctAnswers++;
+				if (ans9Touched) correctAnswers++;
+				if (correctAnswers < 0) correctAnswers = 0; // Make sure score is not negative
+				displayQuizResult(DatabaseSetup.CHAPTER_THREE_SCORE, 5);
 				break;
 		}
 		assetNeedUpdate = false;
@@ -236,84 +232,52 @@ public class ChapterThree extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
+		if (chapterSection == lastChapterSection) {
+			return displayLastSectionButtons(3, 6, x, y);
+		}
 		if (chapterSection == 15) {
 			if (ans1.getBoundingRectangle().contains(x, y)) {
 				ans1Touched = !ans1Touched;
 				ans1.setAlpha(ans1Touched ? 0.8f : 0);
-				if (ans1Touched)
-					correctAnswers--;
-				else
-					correctAnswers++;
 			}
 			if (ans2.getBoundingRectangle().contains(x, y)) {
 				ans2Touched = !ans2Touched;
 				ans2.setAlpha(ans2Touched ? 0.8f : 0);
-				if (ans2Touched)
-					correctAnswers++;
-				else
-					correctAnswers--;
 			}
 			if (ans3.getBoundingRectangle().contains(x, y)) {
 				ans3Touched = !ans3Touched;
 				ans3.setAlpha(ans3Touched ? 0.8f : 0);
-				if (ans3Touched)
-					correctAnswers++;
-				else correctAnswers--;
 			}
 			if (ans4.getBoundingRectangle().contains(x, y)) {
 				ans4Touched = !ans4Touched;
 				ans4.setAlpha(ans4Touched ? 0.8f : 0);
-				if (ans4Touched)
-					correctAnswers--;
-				else
-					correctAnswers++;
 			}
 			if (ans5.getBoundingRectangle().contains(x, y)) {
 				ans5Touched = !ans5Touched;
 				ans5.setAlpha(ans5Touched ? 0.8f : 0);
-				if (ans5Touched)
-					correctAnswers++;
-				else
-					correctAnswers--;
 			}
 			if (ans6.getBoundingRectangle().contains(x, y)) {
 				ans6Touched = !ans6Touched;
 				ans6.setAlpha(ans6Touched ? 0.8f : 0);
-				if (ans6Touched)
-					correctAnswers--;
-				else
-					correctAnswers++;
 			}
 			if (ans7.getBoundingRectangle().contains(x, y)) {
 				ans7Touched = !ans7Touched;
 				ans7.setAlpha(ans7Touched ? 0.8f : 0);
-				if (ans7Touched)
-					correctAnswers++;
-				else
-					correctAnswers--;
 			}
 			if (ans8.getBoundingRectangle().contains(x, y)) {
 				ans8Touched = !ans8Touched;
 				ans8.setAlpha(ans8Touched ? 0.8f : 0);
-				if (ans8Touched)
-					correctAnswers++;
-				else
-					correctAnswers--;
 			}
 			if (ans9.getBoundingRectangle().contains(x, y)) {
 				ans9Touched = !ans9Touched;
 				ans9.setAlpha(ans9Touched ? 0.8f : 0);
-				if (ans9Touched)
-					correctAnswers++;
-				else
-					correctAnswers--;
 			}
 			if (submit.getBoundingRectangle().contains(x, y)) {
 				chapterSection++;
 				assetNeedUpdate = true;
 			}
 			if (chapterSection == lastChapterSection) {
-				displayLastSectionButtons(3, x, y);
+				displayLastSectionButtons(3, 5, x, y);
 			}
 		}
 		return super.touchDown(x, y);
