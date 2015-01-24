@@ -24,7 +24,7 @@ public class ChapterFive extends ChapterCore {
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
-		mangangalakalBg = new Texture("chapters/chapter5/backgrounds/Mangangalakal.png");
+		mangangalakalBg = new Texture("chapters/chapter5/backgrounds/Mangagalakal.png");
 		pagmiminaBg = new Texture("chapters/chapter5/backgrounds/Pagmimina.png");
 		pagsasakaBg = new Texture("chapters/chapter5/backgrounds/Pagsasaka.png");
 		pangingisdaBg = new Texture("chapters/chapter5/backgrounds/Pangingisda.png");
