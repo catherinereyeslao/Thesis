@@ -251,7 +251,7 @@ public class ChapterOne extends ChapterCore {
                 }
                 break;
             case 13:
-                return displayLastSectionButtons(1, x, y);
+                return displayLastSectionButtons(1, 2, x, y);
         }
         return 100;
     }
@@ -351,6 +351,7 @@ public class ChapterOne extends ChapterCore {
                 lungsod1sound.stop();
                 break;
             case 9:
+                imageQuestion.setAlpha(1);
                 backgroundSprite.setTexture(questionBg);
                 lungsod2sound.stop();
                 questionStarted = true;

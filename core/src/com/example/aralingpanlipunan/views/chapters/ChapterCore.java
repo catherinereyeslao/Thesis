@@ -203,6 +203,30 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     /**
+     * Display the result of the test
+     * @param chapterFieldToUpdate The Database Chapter field to save the data to
+     * @param passingScore The passing score
+     */
+    protected void displayQuizResult(String chapterFieldToUpdate, int passingScore) {
+        backgroundSprite.setTexture(questionBg);
+        tanong = correctAnswers >= passingScore ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
+        backToChapters.setPosition(
+                screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
+                screenHeight / 4.2f
+        );
+        // If student fails the test
+        if (correctAnswers < passingScore) {
+            startQuiz.setTexture(retakeTexture);
+        } else {
+            startQuiz.setTexture(nextChapTexture);
+            backToChapters.setTexture(exitTexture);
+        }
+        startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
+        backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
+        saveProgress(chapterFieldToUpdate);
+    }
+
+    /**
      * Display the last 2 buttons at the end of the quiz. User will be able to retake the quiz
      * if they failed. If passed, they'll have the option to take the next chapter
      * @param currentChapNum int Current Chapter number
@@ -210,15 +234,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param y float The y coordinate of touched screen
      * @return int
      */
-    protected int displayLastSectionButtons(int currentChapNum, float x, float y) {
+    protected int displayLastSectionButtons(int currentChapNum, int passingScore, float x, float y) {
         // If failed, we give student the option to retake quiz or back to chapters
-        if (correctAnswers < 2) {
+        if (correctAnswers < passingScore) {
             if (startQuiz.getBoundingRectangle().contains(x, y)) {
                 questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
                 chapterSection = startOfQuestionSection;
                 correctAnswers = 0;
                 assetNeedUpdate = true;
-                imageQuestion.setAlpha(1);
                 question.setScale(getQuestionFontScale() + 0.4f);
                 tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
             }
@@ -227,85 +250,15 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         } else {
             if (startQuiz.getBoundingRectangle().contains(x, y)) {
                 return currentChapNum + 501;
-            } else if (backToChapters.getBoundingRectangle().contains(x, y)) {
+            }
+            if (backToChapters.getBoundingRectangle().contains(x, y)) {
                 android.exit();
             }
         }
         return 100;
     }
 
-    /**
-     * All shared across all chapters (all those we've loaded here
-     * in chapterCore) will be disposed.
-     *
-     * @deprecated Please use super.dispose() instead
-     */
-    protected void disposeSharedAssets() {
-        helpTexture.dispose();
-        soundTexture.dispose();
-    }
-
-    /**
-     * Default assets being shared between all chapters should be placed
-     * here. Always place this in the setUp() method of the child class
-     * This sets up the girl & balloon above her
-     *
-     * @deprecated Please use super.setUp(screenW, screenH)
-     */
-    protected void setUpDefaultAssets() {
-        Texture introBalloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
-        helpTexture = new Texture("buttons/help.png");
-        soundTexture = new Texture("buttons/sound.png");
-        startQuizTexture = new Texture("buttons/menu/start.png");
-        backToChapterTexture = new Texture("buttons/back-to-chapters.png");
-
-        backgroundSprite = new Sprite(introBalloonTexture);
-        backgroundSprite.setSize(screenWidth, screenHeight);
-
-        girlAtlas = new TextureAtlas("characters/girl/girl.atlas");
-        girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
-        girlAnimation = new Animation(0.15f, girlAtlas.getRegions());
-        girl = new Sprite(girlAnimation.getKeyFrames()[0]);
-        girl.setSize((girl.getWidth() * getButtonScale()) * 1.2f, (girl.getHeight() * getButtonScale()) * 1.2f);
-        final float girlX = (screenWidth / 4) * -1;
-        final float girlY = (screenHeight / 3) - (girl.getHeight() / 2);
-        girl.setPosition(girlX, girlY);
-        girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
-
-        balloonSprite = new Sprite(introBalloonTexture);
-        balloonSprite.setSize((balloonSprite.getWidth() * getButtonScale()) * 2, (balloonSprite.getHeight() * getButtonScale()) * 2);
-        balloonSprite.setPosition((screenWidth / 5) + (girl.getWidth() / 2), girlY + (girl.getHeight() / 2));
-
-        helpSprite = new Sprite(helpTexture);
-        helpSprite.setSize((helpSprite.getWidth() * getButtonScale() / 1.8f), (helpSprite.getHeight() * getButtonScale() / 1.8f));
-        final float helpSpriteX = (screenWidth / 10) - (helpSprite.getWidth() / 2);
-        final float helpSpriteY = (screenHeight - (screenHeight / 10)) - (helpSprite.getHeight() / 2);
-        helpSprite.setPosition(helpSpriteX, helpSpriteY);
-        helpSprite.setBounds(helpSpriteX, helpSpriteY, helpSprite.getWidth(), helpSprite.getHeight());
-
-        soundSprite = new Sprite(soundTexture);
-        soundSprite.setSize(helpSprite.getWidth(), helpSprite.getHeight());
-        final float soundSpriteX = helpSpriteX + soundSprite.getWidth();
-        soundSprite.setPosition(soundSpriteX, helpSpriteY);
-        soundSprite.setBounds(soundSpriteX, helpSpriteY, soundSprite.getWidth(), soundSprite.getHeight());
-
-        startQuiz = new Sprite(startQuizTexture);
-        startQuiz.setSize(startQuiz.getWidth() * getButtonScale(), startQuiz.getHeight() * getButtonScale());
-        final float startQuizX = (screenWidth - (screenWidth / 8)) - (startQuiz.getWidth() / 2);
-        final float startQuizY = (screenHeight / 4) - (startQuiz.getHeight() / 2);
-        startQuiz.setPosition(startQuizX, startQuizY);
-        startQuiz.setBounds(startQuizX, startQuizY, startQuiz.getWidth(), startQuiz.getHeight());
-
-        backToChapters = new Sprite(backToChapterTexture);
-        backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-        final float backToChapY = startQuizY - (backToChapters.getHeight());
-        backToChapters.setPosition(startQuizX, backToChapY);
-        backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
-
-        introBalloonTexture.dispose();
-    }
-
-    private float getQuestionFontScale() {
+    protected float getQuestionFontScale() {
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         switch (screenSizeUtil.getScreenCategory(screenWidth)) {
             case ScreenSizeUtil.LDPI:
