@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 
 import java.util.ArrayList;
 
@@ -47,8 +48,12 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         screenHeight = screenH;
         screenWidth = screenW;
 
-        chapterScores = android.getScoresByStudent(loggedInUserName);
+        //chapterScores = android.getScoresByStudent(loggedInUserName);
 
+        DummyAndroidInterface dummyAndroidInterface = new DummyAndroidInterface();
+        chapterScores = dummyAndroidInterface.getScoresByStudent(loggedInUserName);
+        
+        
         background = new Texture("backgrounds/start-background.jpg");
         chap1Texture = new Texture("buttons/chapters/b1-1.png");
         chap2Texture = new Texture("buttons/chapters/b1-2.png");
