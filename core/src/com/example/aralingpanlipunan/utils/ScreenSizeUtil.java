@@ -1,6 +1,5 @@
 package com.example.aralingpanlipunan.utils;
 
-import android.util.Log;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

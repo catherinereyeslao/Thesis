@@ -72,7 +72,7 @@ public class ChapterThree extends ChapterCore {
 			submit.draw(batch);
 		}
 		if (chapterSection == 16) {
-			question.draw(batch, tanong, questionX, questionY);
+			question.drawMultiLine(batch, tanong, questionX, questionY);
 			backToChapters.draw(batch);
 			startQuiz.draw(batch);
 		}
@@ -312,6 +312,9 @@ public class ChapterThree extends ChapterCore {
 				chapterSection++;
 				assetNeedUpdate = true;
 			}
+			if (chapterSection == lastChapterSection) {
+				displayLastSectionButtons(3, x, y);
+			}
 		}
 		return super.touchDown(x, y);
 	}
@@ -347,12 +350,16 @@ public class ChapterThree extends ChapterCore {
 	private int getAnswerSpacing() {
 		ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
 		switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+			case ScreenSizeUtil.LDPI:
+				return -10;
+			case ScreenSizeUtil.MDPI:
+				return 0;
 			case ScreenSizeUtil.HDPI:
 				return 10;
 			case ScreenSizeUtil.XHDPI:
 				return 20;
 			case ScreenSizeUtil.XXHDPI:
-				return 30;
+				return 25;
 			default:
 				return 0;
 		}

@@ -60,7 +60,7 @@ public class ChapterOne extends ChapterCore {
         balloonSprite.setTexture(intro1balloonTexture);
 
         answer1 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer1.setScale(1.7f);
+        answer1.setScale(getAnswerFontScale());
         answer1.setColor(1, 1, 1, 1);
         answerX = (screenW - (screenW / 6)) - (answer1.getBounds(LUNGSOD).width / 2);
         answerY = (screenH / 1.5f) + (answer1.getBounds(LUNGSOD).height / 2);
@@ -72,7 +72,7 @@ public class ChapterOne extends ChapterCore {
         ans1.setPosition(answerX, answerY - answer1.getBounds(LUNGSOD).height);
 
         answer2 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer2.setScale(1.7f);
+        answer2.setScale(getAnswerFontScale());
         answer2.setColor(1, 1, 1, 1);
         answer2X = answerX;
         answer2Y = answerY - (answer2.getBounds(BUKIRIN).height * 3);
@@ -83,7 +83,7 @@ public class ChapterOne extends ChapterCore {
         ans2.setPosition(answer2X, answer2Y - answer2.getBounds(LUNGSOD).height);
 
         answer3 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer3.setScale(1.7f);
+        answer3.setScale(getAnswerFontScale());
         answer3.setColor(1, 1, 1, 1);
         answer3X = answerX;
         answer3Y = answer2Y - (answer3.getBounds(BAYBAYIN).height * 3);
@@ -94,7 +94,7 @@ public class ChapterOne extends ChapterCore {
         ans3.setPosition(answer3X, answer3Y - answer3.getBounds(LUNGSOD).height);
 
         answer4 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer4.setScale(1.7f);
+        answer4.setScale(getAnswerFontScale());
         answer4.setColor(1, 1, 1, 1);
         answer4X = answerX;
         answer4Y = answer3Y - (answer4.getBounds(KABUNDUKAN).height * 3);
@@ -366,7 +366,6 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 13:
                 imageQuestion.setAlpha(0);
-                question.setScale(3.5f);
                 questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
                 tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
                 saveProgress(DatabaseSetup.CHAPTER_ONE_SCORE);
@@ -409,6 +408,20 @@ public class ChapterOne extends ChapterCore {
             question.drawMultiLine(batch, tanong, questionX, questionY, screenWidth * 0.65f, BitmapFont.HAlignment.CENTER);
             startQuiz.draw(batch);
             backToChapters.draw(batch);
+        }
+    }
+
+    private float getAnswerFontScale() {
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+            case ScreenSizeUtil.LDPI:
+                return 1;
+            case ScreenSizeUtil.MDPI:
+                return 1.4f;
+            case ScreenSizeUtil.HDPI:
+                return 1.6f;
+            default:
+                return 1.7f;
         }
     }
 }

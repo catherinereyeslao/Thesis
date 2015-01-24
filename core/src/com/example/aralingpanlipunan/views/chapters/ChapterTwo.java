@@ -55,7 +55,7 @@ public class ChapterTwo extends ChapterCore {
         balloonSprite.setTexture(introBalloonTexture);
 
         answer1 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer1.setScale(2.2f);
+        answer1.setScale(getAnswerFontScale());
         answer1.setColor(1, 1, 1, 1);
         answerX = (screenW - (screenW / 1.75f)) - (answer1.getBounds(ans1Char).width / 2);
         answerY = (screenH / 1.65f) + (answer1.getBounds(ans1Char).height / 2);
@@ -66,7 +66,7 @@ public class ChapterTwo extends ChapterCore {
         ans1.setPosition(answerX, answerY - answer1.getBounds(ans1Char).height);
 
         answer2 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer2.setScale(2.2f);
+        answer2.setScale(getAnswerFontScale());
         answer2.setColor(1, 1, 1, 1);
         answer2X = answerX;
         answer2Y = answerY - (answer2.getBounds(ans2Char).height * 3);
@@ -76,7 +76,7 @@ public class ChapterTwo extends ChapterCore {
         ans2.setPosition(answer2X, answer2Y - answer2.getBounds(ans2Char).height);
 
         answer3 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer3.setScale(2.2f);
+        answer3.setScale(getAnswerFontScale());
         answer3.setColor(1, 1, 1, 1);
         answer3X = (screenW - (screenW / 4.8f)) - (answer1.getBounds(ans1Char).width / 2);
         answer3Y = answerY;
@@ -86,7 +86,7 @@ public class ChapterTwo extends ChapterCore {
         ans3.setPosition(answer3X, answer3Y - answer3.getBounds(ans3Char).height);
 
         answer4 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer4.setScale(2.2f);
+        answer4.setScale(getAnswerFontScale());
         answer4.setColor(1, 1, 1, 1);
         answer4X = answer3X;
         answer4Y = answer2Y;
@@ -360,5 +360,19 @@ public class ChapterTwo extends ChapterCore {
             return 4;
         else
             return 0;
+    }
+
+    private float getAnswerFontScale() {
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+            case ScreenSizeUtil.LDPI:
+                return 1.6f;
+            case ScreenSizeUtil.MDPI:
+                return 1.8f;
+            case ScreenSizeUtil.HDPI:
+                return 2;
+            default:
+                return 2.2f;
+        }
     }
 }

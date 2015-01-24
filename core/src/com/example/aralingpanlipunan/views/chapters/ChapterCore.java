@@ -57,14 +57,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
         girlAnimation = new Animation(0.15f, girlAtlas.getRegions());
         girl = new Sprite(girlAnimation.getKeyFrames()[0]);
-        girl.setSize((girl.getWidth() * getButtonScale()) * 1.4f, (girl.getHeight() * getButtonScale()) * 1.4f);
+        girl.setSize(girl.getWidth() * getButtonScale() * 1.3f, girl.getHeight() * getButtonScale() * 1.3f);
         final float girlX = (screenW / 4) * -1;
-        final float girlY = (screenH / 3) - (girl.getHeight() / 2);
+        final float girlY = (screenH / 2.8f) - (girl.getHeight() / 2);
         girl.setPosition(girlX, girlY);
         girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
 
         balloonSprite = new Sprite(introBalloonTexture);
-        balloonSprite.setSize((balloonSprite.getWidth() * getButtonScale()) * 2.5f, (balloonSprite.getHeight() * getButtonScale()) * 2.5f);
+        balloonSprite.setSize(balloonSprite.getWidth() * getButtonScale() * 2.3f, balloonSprite.getHeight() * getButtonScale() * 2.3f);
         balloonSprite.setPosition((screenW / 5) + (girl.getWidth() / 2), girlY + (girl.getHeight() / 2));
 
         helpSprite = new Sprite(helpTexture);
@@ -95,7 +95,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
 
         question = new BitmapFont(screenSizeUtil.fontAsset(screenW));
         question.setColor(1, 1, 1, 1);
-        question.setScale(2.2f);
+        question.setScale(getQuestionFontScale());
         questionWidth = screenWidth / 1.5f;
         questionX = (screenW / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
         questionY = (screenH - (screenH / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
@@ -219,7 +219,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 correctAnswers = 0;
                 assetNeedUpdate = true;
                 imageQuestion.setAlpha(1);
-                question.setScale(2.2f);
+                question.setScale(getQuestionFontScale() + 0.4f);
                 tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
             }
             else if (backToChapters.getBoundingRectangle().contains(x, y))
@@ -303,5 +303,21 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
 
         introBalloonTexture.dispose();
+    }
+
+    private float getQuestionFontScale() {
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+            case ScreenSizeUtil.LDPI:
+                return 1.4f;
+            case ScreenSizeUtil.MDPI:
+                return 1.8f;
+            case ScreenSizeUtil.HDPI:
+                return 2;
+            case ScreenSizeUtil.XHDPI:
+                return 2.2f;
+            default:
+                return 2.2f;
+        }
     }
 }
