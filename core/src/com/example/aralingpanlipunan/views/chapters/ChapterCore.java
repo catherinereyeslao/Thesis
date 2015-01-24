@@ -266,14 +266,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
         girlAnimation = new Animation(0.15f, girlAtlas.getRegions());
         girl = new Sprite(girlAnimation.getKeyFrames()[0]);
-        girl.setSize((girl.getWidth() * getButtonScale()) * 1.4f, (girl.getHeight() * getButtonScale()) * 1.4f);
+        girl.setSize((girl.getWidth() * getButtonScale()) * 1.2f, (girl.getHeight() * getButtonScale()) * 1.2f);
         final float girlX = (screenWidth / 4) * -1;
         final float girlY = (screenHeight / 3) - (girl.getHeight() / 2);
         girl.setPosition(girlX, girlY);
         girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
 
         balloonSprite = new Sprite(introBalloonTexture);
-        balloonSprite.setSize((balloonSprite.getWidth() * getButtonScale()) * 2.5f, (balloonSprite.getHeight() * getButtonScale()) * 2.5f);
+        balloonSprite.setSize((balloonSprite.getWidth() * getButtonScale()) * 2, (balloonSprite.getHeight() * getButtonScale()) * 2);
         balloonSprite.setPosition((screenWidth / 5) + (girl.getWidth() / 2), girlY + (girl.getHeight() / 2));
 
         helpSprite = new Sprite(helpTexture);

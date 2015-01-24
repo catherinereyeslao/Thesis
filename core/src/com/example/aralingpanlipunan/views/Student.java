@@ -67,7 +67,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.dispose();
                 break;
             case CHAPTER_VIEW:
-                chapterOne.dispose();
+                disposeChapter(selectedChapter);
                 break;
         }
     }
@@ -92,7 +92,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 int score = chapterTouchDown(selectedChapter, x, y);
                 if (score > 500) {
                     selectedChapter = score - 500;
-                    disposeChapter(selectedChapter);
+                    disposeChapter(selectedChapter - 1);
                     openChapter(selectedChapter);
                 } else if (score != 100) {
                     disposeChapter(selectedChapter);
