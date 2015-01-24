@@ -17,13 +17,12 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
     public static final int STUDENT = 0;
     private int userType = STUDENT;
     private int chapterSection, upTimer = 0;
-    private float touchX, touchY, movementCursorLimit, movementCursor = 0;
+    private float touchX, movementCursor = 0;
     private boolean isMovingRight, isMovingLeft = false;
     private String loggedInUserName;
     private ArrayList<Sprite> buttonSprites;
     private ArrayList<Integer> chapterScores;
     private Texture chap1Texture, chap2Texture, chap3Texture, chap4Texture,chap5Texture, chap6Texture,chap7Texture, chap8Texture,chap9Texture, chap10Texture,chap11Texture, chap12Texture,chap13Texture, chap14Texture,chap15Texture, chap16Texture,chap17Texture, chap18Texture, background;
-    private Sprite chap1, chap2, chap3, chap4,chap5, chap6,chap7, chap8,chap9, chap10,chap11, chap12,chap13, chap14,chap15, chap16,chap17, chap18;
     private AndroidInterface android;
 
     /**
@@ -72,14 +71,14 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
 
         buttonSprites = new ArrayList<Sprite>();
 
-        chap1 = new Sprite(chap1Texture);
+        Sprite chap1 = new Sprite(chap1Texture);
         chap1.setSize(chap1.getWidth() * getButtonScale(), chap1.getHeight() * getButtonScale());
         final float chap1X = (screenW / 3) - (chap1.getWidth() / 2);
         final float chap1Y = screenH - (screenH / 4);
         chap1.setBounds(chap1X, chap1Y, chap1.getWidth(), chap1.getHeight());
         buttonSprites.add(chap1);
 
-        chap2 = new Sprite(chap2Texture);
+        Sprite chap2 = new Sprite(chap2Texture);
         chap2.setSize(chap2.getWidth() * getButtonScale(), chap2.getHeight() * getButtonScale());
         if (chapterScores.get(0) == 0) chap2.setAlpha(0.5f);
         final float chap2X = (screenW / 3) - (chap2.getWidth() / 2);
@@ -87,7 +86,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap2.setBounds(chap2X, chap2Y, chap2.getWidth(), chap2.getHeight());
         buttonSprites.add(chap2);
 
-        chap3 = new Sprite(chap3Texture);
+        Sprite chap3 = new Sprite(chap3Texture);
         chap3.setSize(chap3.getWidth() * getButtonScale(), chap3.getHeight() * getButtonScale());
         if (chapterScores.get(1) == 0) chap3.setAlpha(0.5f);
         final float chap3X = (screenW / 3) - (chap3.getWidth() / 2);
@@ -95,28 +94,28 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap3.setBounds(chap3X, chap3Y, chap3.getWidth(), chap3.getHeight());
         buttonSprites.add(chap3);
 
-        chap4 = new Sprite(chap4Texture);
+        Sprite chap4 = new Sprite(chap4Texture);
         chap4.setSize(chap4.getWidth() * getButtonScale(), chap4.getHeight() * getButtonScale());
         if (chapterScores.get(2) == 0) chap4.setAlpha(0.5f);
         final float chap4X = (screenW / 1.8f);
         chap4.setBounds(chap4X, chap1Y, chap4.getWidth(), chap4.getHeight());
         buttonSprites.add(chap4);
 
-        chap5 = new Sprite(chap5Texture);
+        Sprite chap5 = new Sprite(chap5Texture);
         chap5.setSize(chap5.getWidth() * getButtonScale(), chap5.getHeight() * getButtonScale());
         if (chapterScores.get(3) == 0) chap5.setAlpha(0.5f);
         final float chap5X = (screenW / 1.8f);
         chap5.setBounds(chap5X, chap2Y, chap5.getWidth(), chap5.getHeight());
         buttonSprites.add(chap5);
 
-        chap6 = new Sprite(chap6Texture);
+        Sprite chap6 = new Sprite(chap6Texture);
         chap6.setSize(chap6.getWidth() * getButtonScale(), chap6.getHeight() * getButtonScale());
         if (chapterScores.get(4) == 0) chap6.setAlpha(0.5f);
         final float chap6X = (screenW / 1.8f);
         chap6.setBounds(chap6X, chap3Y, chap6.getWidth(), chap6.getHeight());
         buttonSprites.add(chap6);
 
-        chap7 = new Sprite(chap7Texture);
+        Sprite chap7 = new Sprite(chap7Texture);
         chap7.setSize(chap7.getWidth() * getButtonScale(), chap7.getHeight() * getButtonScale());
         if (chapterScores.get(5) == 0) chap7.setAlpha(0.5f);
         final float chap7X = ((screenW / 3) - (chap7.getWidth() / 2) + screenW);
@@ -124,7 +123,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap7.setBounds(chap7X, chap7Y, chap7.getWidth(), chap7.getHeight());
         buttonSprites.add(chap7);
 
-        chap8 = new Sprite(chap8Texture);
+        Sprite chap8 = new Sprite(chap8Texture);
         chap8.setSize(chap8.getWidth() * getButtonScale(), chap8.getHeight() * getButtonScale());
         if (chapterScores.get(6) == 0) chap8.setAlpha(0.5f);
         final float chap8X = ((screenW / 3) - (chap8.getWidth() / 2) + screenW);
@@ -132,7 +131,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap8.setBounds(chap8X, chap8Y, chap8.getWidth(), chap8.getHeight());
         buttonSprites.add(chap8);
 
-        chap9 = new Sprite(chap9Texture);
+        Sprite chap9 = new Sprite(chap9Texture);
         chap9.setSize(chap9.getWidth() * getButtonScale(), chap9.getHeight() * getButtonScale());
         if (chapterScores.get(7) == 0) chap9.setAlpha(0.5f);
         final float chap9X = ((screenW / 3) - (chap9.getWidth() / 2)) + screenW;
@@ -140,28 +139,28 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap9.setBounds(chap9X, chap9Y, chap9.getWidth(), chap9.getHeight());
         buttonSprites.add(chap9);
 
-        chap10 = new Sprite(chap10Texture);
+        Sprite chap10 = new Sprite(chap10Texture);
         chap10.setSize(chap10.getWidth() * getButtonScale(), chap10.getHeight() * getButtonScale());
         if (chapterScores.get(8) == 0) chap10.setAlpha(0.5f);
         final float chap10X = (screenW / 1.8f) + screenW;
         chap10.setBounds(chap10X, chap1Y, chap10.getWidth(), chap10.getHeight());
         buttonSprites.add(chap10);
 
-        chap11 = new Sprite(chap11Texture);
+        Sprite chap11 = new Sprite(chap11Texture);
         chap11.setSize(chap11.getWidth() * getButtonScale(), chap11.getHeight() * getButtonScale());
         if (chapterScores.get(9) == 0) chap11.setAlpha(0.5f);
         final float chap11X = (screenW / 1.8f) + screenW;
         chap11.setBounds(chap11X, chap2Y, chap11.getWidth(), chap11.getHeight());
         buttonSprites.add(chap11);
 
-        chap12 = new Sprite(chap12Texture);
+        Sprite chap12 = new Sprite(chap12Texture);
         chap12.setSize(chap12.getWidth() * getButtonScale(), chap12.getHeight() * getButtonScale());
         if (chapterScores.get(10) == 0) chap12.setAlpha(0.5f);
         final float chap12X = (screenW / 1.8f) + screenW;
         chap12.setBounds(chap12X, chap3Y, chap12.getWidth(), chap12.getHeight());
         buttonSprites.add(chap12);
 
-        chap13 = new Sprite(chap13Texture);
+        Sprite chap13 = new Sprite(chap13Texture);
         chap13.setSize(chap13.getWidth() * getButtonScale(), chap13.getHeight() * getButtonScale());
         if (chapterScores.get(11) == 0) chap13.setAlpha(0.5f);
         final float chap13X = ((screenW / 3) - (chap13.getWidth() / 2) + (screenW * 2));
@@ -169,7 +168,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap13.setBounds(chap13X, chap13Y, chap13.getWidth(), chap13.getHeight());
         buttonSprites.add(chap13);
 
-        chap14 = new Sprite(chap14Texture);
+        Sprite chap14 = new Sprite(chap14Texture);
         chap14.setSize(chap14.getWidth() * getButtonScale(), chap14.getHeight() * getButtonScale());
         if (chapterScores.get(12) == 0) chap14.setAlpha(0.5f);
         final float chap14X = ((screenW / 3) - (chap14.getWidth() / 2) + (screenW * 2));
@@ -177,7 +176,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap14.setBounds(chap14X, chap14Y, chap14.getWidth(), chap14.getHeight());
         buttonSprites.add(chap14);
 
-        chap15 = new Sprite(chap15Texture);
+        Sprite chap15 = new Sprite(chap15Texture);
         chap15.setSize(chap15.getWidth() * getButtonScale(), chap15.getHeight() * getButtonScale());
         if (chapterScores.get(13) == 0) chap15.setAlpha(0.5f);
         final float chap15X = ((screenW / 3) - (chap15.getWidth() / 2)) + (screenW * 2);
@@ -185,21 +184,21 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap15.setBounds(chap15X, chap15Y, chap15.getWidth(), chap15.getHeight());
         buttonSprites.add(chap15);
 
-        chap16 = new Sprite(chap16Texture);
+        Sprite chap16 = new Sprite(chap16Texture);
         chap16.setSize(chap16.getWidth() * getButtonScale(), chap16.getHeight() * getButtonScale());
         if (chapterScores.get(14) == 0) chap16.setAlpha(0.5f);
         final float chap16X = (screenW / 1.8f) + (screenW * 2);
         chap16.setBounds(chap16X, chap1Y, chap16.getWidth(), chap16.getHeight());
         buttonSprites.add(chap16);
 
-        chap17 = new Sprite(chap17Texture);
+        Sprite chap17 = new Sprite(chap17Texture);
         chap17.setSize(chap17.getWidth() * getButtonScale(), chap17.getHeight() * getButtonScale());
         if (chapterScores.get(15) == 0) chap17.setAlpha(0.5f);
         final float chap17X = (screenW / 1.8f) + (screenW * 2);
         chap17.setBounds(chap17X, chap2Y, chap17.getWidth(), chap17.getHeight());
         buttonSprites.add(chap17);
 
-        chap18 = new Sprite(chap18Texture);
+        Sprite chap18 = new Sprite(chap18Texture);
         chap18.setSize(chap18.getWidth() * getButtonScale(), chap18.getHeight() * getButtonScale());
         if (chapterScores.get(16) == 0) chap18.setAlpha(0.5f);
         final float chap18X = (screenW / 1.8f) + (screenW * 2);
@@ -250,7 +249,6 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
      */
     public int touchDown(float x, float y) {
         touchX = x;
-        touchY = y;
 
         for (int c = 0; c < 19; c++) {
             try {
@@ -263,7 +261,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         return 0;
     }
 
-    public void touchDragged(int x, int y) {
+    public void touchDragged(int x) {
         float slide = touchX - x;
         if (slide >= screenWidth * 0.20f)
             moveLeft();
@@ -299,6 +297,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
      */
     private void buttonMovementManager() {
         final float scrollSpeed = 60;
+        float movementCursorLimit;
         if (isMovingLeft) {
             movementCursorLimit = screenWidth * chapterSection;
             for (Sprite button : buttonSprites) {

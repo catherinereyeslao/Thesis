@@ -96,7 +96,7 @@ public class StudentData {
     public int setStudentScore(String studName, String chapter, int score) {
         ContentValues cv = new ContentValues();
         String bindParams[] = {studName};
-        cv.put(DatabaseSetup.CHAPTER_ONE_SCORE, score);
+        cv.put(chapter, score);
         return db.update(DatabaseSetup.STUDENT_TABLE, cv, DatabaseSetup.STUDENT_NAME + " = ?", bindParams);
     }
 }

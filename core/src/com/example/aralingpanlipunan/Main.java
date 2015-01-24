@@ -11,6 +11,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 import com.example.aralingpanlipunan.views.Menu;
 import com.example.aralingpanlipunan.views.Start;
 import com.example.aralingpanlipunan.views.Student;
@@ -30,7 +31,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 	private AndroidInterface android;
 
 	public Main() {
-		android = null;
+		android = new DummyAndroidInterface();
 	}
 
 	public Main(AndroidInterface androidInterface) {
@@ -240,7 +241,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					break;
 			}
 		} else if (triage == STUDENT) {
-			student.touchUp(screenX, normalisedY);
+			student.touchUp();
 		}
 		return false;
 	}

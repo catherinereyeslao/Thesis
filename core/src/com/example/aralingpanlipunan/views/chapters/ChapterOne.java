@@ -1,6 +1,5 @@
 package com.example.aralingpanlipunan.views.chapters;
 
-import android.database.sqlite.SQLiteException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,13 +16,12 @@ public class ChapterOne extends ChapterCore {
     private static final String BUKIRIN = "BUKIRIN";
     private static final String BAYBAYIN = "Baybayin";
 
-    private String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, questionBg, backToChapterTexture, startQuizTexture, retakeTexture, exitTexture, nextChapTexture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
-    private BitmapFont question, answer1, answer2, answer3, answer4;
-    private float questionX, questionY, questionWidth, answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
-    private int currentScore;
+    private BitmapFont answer1, answer2, answer3, answer4;
+    private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
+    private boolean questionStarted = false;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName) {
         super(androidInterface, studentName);
@@ -31,6 +29,7 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     public void setUp(int screenW, int screenH) {
+        super.setUp(screenW, screenH);
         screenWidth = screenW;
         screenHeight = screenH;
         startOfQuestionSection = 9;
@@ -52,32 +51,20 @@ public class ChapterOne extends ChapterCore {
         kabukirinBg = new Texture("chapters/chapter1/backgrounds/kabukirin.png");
         kabundukanBg = new Texture("chapters/chapter1/backgrounds/kabundukan.png");
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
-        questionBg = new Texture("backgrounds/question.jpg");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         startQuizTexture = new Texture("buttons/menu/start.png");
-        retakeTexture = new Texture("buttons/retake.png");
-        exitTexture = new Texture("buttons/exit.png");
-        nextChapTexture = new Texture("buttons/next-chapter.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
-
-        setUpDefaultAssets();
 
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
         balloonSprite.setTexture(intro1balloonTexture);
 
-        question = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        question.setColor(1, 1, 1, 1);
-        question.setScale(2.2f);
-        questionWidth = screenWidth / 1.5f;
-        questionX = (screenW / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
-        questionY = (screenH - (screenH / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
-
         answer1 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer1.setScale(1.7f);
+        answer1.setScale(getAnswerFontScale());
         answer1.setColor(1, 1, 1, 1);
         answerX = (screenW - (screenW / 6)) - (answer1.getBounds(LUNGSOD).width / 2);
         answerY = (screenH / 1.5f) + (answer1.getBounds(LUNGSOD).height / 2);
+
         // Set an invisible sprite to detect touch on answer fonts
         ans1 = new Sprite(startQuizTexture);
         ans1.setAlpha(0);
@@ -85,7 +72,7 @@ public class ChapterOne extends ChapterCore {
         ans1.setPosition(answerX, answerY - answer1.getBounds(LUNGSOD).height);
 
         answer2 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer2.setScale(1.7f);
+        answer2.setScale(getAnswerFontScale());
         answer2.setColor(1, 1, 1, 1);
         answer2X = answerX;
         answer2Y = answerY - (answer2.getBounds(BUKIRIN).height * 3);
@@ -96,7 +83,7 @@ public class ChapterOne extends ChapterCore {
         ans2.setPosition(answer2X, answer2Y - answer2.getBounds(LUNGSOD).height);
 
         answer3 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer3.setScale(1.7f);
+        answer3.setScale(getAnswerFontScale());
         answer3.setColor(1, 1, 1, 1);
         answer3X = answerX;
         answer3Y = answer2Y - (answer3.getBounds(BAYBAYIN).height * 3);
@@ -107,7 +94,7 @@ public class ChapterOne extends ChapterCore {
         ans3.setPosition(answer3X, answer3Y - answer3.getBounds(LUNGSOD).height);
 
         answer4 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer4.setScale(1.7f);
+        answer4.setScale(getAnswerFontScale());
         answer4.setColor(1, 1, 1, 1);
         answer4X = answerX;
         answer4Y = answer3Y - (answer4.getBounds(KABUNDUKAN).height * 3);
@@ -131,19 +118,6 @@ public class ChapterOne extends ChapterCore {
         bukid2Texture = new Texture("chapters/chapter1/balloons/bukid2.png");
         lungsod1Texture = new Texture("chapters/chapter1/balloons/lungsod1.png");
         lungsod2Texture = new Texture("chapters/chapter1/balloons/lungsod2.png");
-
-        startQuiz = new Sprite(startQuizTexture);
-        startQuiz.setSize(startQuiz.getWidth() * getButtonScale(), startQuiz.getHeight() * getButtonScale());
-        final float startQuizX = (screenW - (screenW / 8)) - (startQuiz.getWidth() / 2);
-        final float startQuizY = (screenH / 4) - (startQuiz.getHeight() / 2);
-        startQuiz.setPosition(startQuizX, startQuizY);
-        startQuiz.setBounds(startQuizX, startQuizY, startQuiz.getWidth(), startQuiz.getHeight());
-
-        backToChapters = new Sprite(backToChapterTexture);
-        backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-        final float backToChapY = startQuizY - (backToChapters.getHeight());
-        backToChapters.setPosition(startQuizX, backToChapY);
-        backToChapters.setBounds(startQuizX, backToChapY, backToChapters.getWidth(), backToChapters.getHeight());
     }
 
     @Override
@@ -154,6 +128,7 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     public void dispose() {
+        super.dispose();
         exitTexture.dispose();
         nextChapTexture.dispose();
         baybayin1sound.dispose();
@@ -172,10 +147,8 @@ public class ChapterOne extends ChapterCore {
         kabukirinBg.dispose();
         kabundukanBg.dispose();
         lungsodBg.dispose();
-        girlAtlas.dispose();
         backToChapterTexture.dispose();
         startQuizTexture.dispose();
-        disposeSharedAssets();
     }
 
     /**
@@ -198,10 +171,6 @@ public class ChapterOne extends ChapterCore {
 
         switch (chapterSection) {
             case 8:
-                if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
                 break;
@@ -218,7 +187,7 @@ public class ChapterOne extends ChapterCore {
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
-                else if (ans4.getBoundingRectangle().contains(x, y)) {
+                else if (questionStarted && ans4.getBoundingRectangle().contains(x, y)) {
                     correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
@@ -282,27 +251,7 @@ public class ChapterOne extends ChapterCore {
                 }
                 break;
             case 13:
-                // If failed, we give student the option to retake quiz or back to chapters
-                if (correctAnswers < 2) {
-                    if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                        questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
-                        chapterSection = startOfQuestionSection;
-                        correctAnswers = 0;
-                        assetNeedUpdate = true;
-                        imageQuestion.setAlpha(1);
-                        question.setScale(2.2f);
-                        tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-                    }
-                    else if (backToChapters.getBoundingRectangle().contains(x, y))
-                        return 500;
-                } else {
-                    if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                        return 502;
-                    } else if (backToChapters.getBoundingRectangle().contains(x, y)) {
-                        android.exit();
-                    }
-                }
-                break;
+                return displayLastSectionButtons(1, x, y);
         }
         return 100;
     }
@@ -397,14 +346,14 @@ public class ChapterOne extends ChapterCore {
                 bukid2sound.stop();
                 break;
             case 8:
-                if (backgroundSprite.getTexture() != lungsodBg)
-                    backgroundSprite.setTexture(lungsodBg);
+                backgroundSprite.setTexture(lungsodBg);
                 balloonSprite.setTexture(lungsod2Texture);
                 lungsod1sound.stop();
                 break;
             case 9:
                 backgroundSprite.setTexture(questionBg);
                 lungsod2sound.stop();
+                questionStarted = true;
                 break;
             case 10:
                 imageQuestion.setTexture(kabundukanBg);
@@ -417,10 +366,9 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 13:
                 imageQuestion.setAlpha(0);
-                question.setScale(3.5f);
                 questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
                 tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
-                saveProgress();
+                saveProgress(DatabaseSetup.CHAPTER_ONE_SCORE);
                 backToChapters.setPosition(
                         screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
                         screenHeight / 4.2f
@@ -432,27 +380,12 @@ public class ChapterOne extends ChapterCore {
                     startQuiz.setTexture(nextChapTexture);
                     backToChapters.setTexture(exitTexture);
                 }
-                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
                 startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
+                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
                 break;
 
         }
         assetNeedUpdate = false;
-    }
-
-    /**
-     * If achieved score is higher than currently recorded chapter 1 score, then update
-     * the student's score record.
-     */
-    private void saveProgress() {
-        if (correctAnswers > currentScore) {
-            try {
-                android.setStudentScore(loggedInStudent, DatabaseSetup.CHAPTER_ONE_SCORE, correctAnswers);
-                android.showToast("Your progress has been saved", 1);
-            } catch (SQLiteException e) {
-                android.showToast("Failed to save data", 1);
-            }
-        }
     }
 
     /**
@@ -471,11 +404,24 @@ public class ChapterOne extends ChapterCore {
             answer3.draw(batch, BAYBAYIN, answer3X, answer3Y);
             answer4.draw(batch, KABUNDUKAN, answer4X, answer4Y);
             imageQuestion.draw(batch);
-            ans1.draw(batch);
         } else if (chapterSection == 13) {
             question.drawMultiLine(batch, tanong, questionX, questionY, screenWidth * 0.65f, BitmapFont.HAlignment.CENTER);
             startQuiz.draw(batch);
             backToChapters.draw(batch);
+        }
+    }
+
+    private float getAnswerFontScale() {
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+            case ScreenSizeUtil.LDPI:
+                return 1;
+            case ScreenSizeUtil.MDPI:
+                return 1.4f;
+            case ScreenSizeUtil.HDPI:
+                return 1.6f;
+            default:
+                return 1.7f;
         }
     }
 }

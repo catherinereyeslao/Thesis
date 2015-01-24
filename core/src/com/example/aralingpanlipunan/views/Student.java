@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.views.chapters.ChapterFour;
 import com.example.aralingpanlipunan.views.chapters.ChapterOne;
+import com.example.aralingpanlipunan.views.chapters.ChapterThree;
 import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
 
 /**
@@ -21,6 +23,8 @@ public class Student extends AppView implements AppFragment, Disposable {
     private ChapterSelect chapterSelect;
     private ChapterOne chapterOne;
     private ChapterTwo chapterTwo;
+    private ChapterThree chapterThree;
+    private ChapterFour chapterFour;
     private AndroidInterface android;
 
     /**
@@ -65,7 +69,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterSelect.dispose();
                 break;
             case CHAPTER_VIEW:
-                chapterOne.dispose();
+                disposeChapter(selectedChapter);
                 break;
         }
     }
@@ -90,7 +94,7 @@ public class Student extends AppView implements AppFragment, Disposable {
                 int score = chapterTouchDown(selectedChapter, x, y);
                 if (score > 500) {
                     selectedChapter = score - 500;
-                    disposeChapter(selectedChapter);
+                    disposeChapter(selectedChapter - 1);
                     openChapter(selectedChapter);
                 } else if (score != 100) {
                     disposeChapter(selectedChapter);
@@ -108,6 +112,15 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 1:
                 chapterOne.dispose();
                 break;
+            case 2:
+                chapterTwo.dispose();
+                break;
+            case 3:
+                chapterThree.dispose();
+                break;
+            case 4:
+                chapterFour.dispose();
+                break;
         }
     }
 
@@ -115,6 +128,12 @@ public class Student extends AppView implements AppFragment, Disposable {
         switch (chapNum) {
             case 1:
                 return chapterOne.touchDown(x, y);
+            case 2:
+                return chapterTwo.touchDown(x, y);
+            case 3:
+            	return chapterThree.touchDown(x, y);
+            case 4:
+                return chapterFour.touchDown(x, y);
         }
         return 100;
     }
@@ -122,26 +141,35 @@ public class Student extends AppView implements AppFragment, Disposable {
     public void touchDragged(int x, int y) {
         switch (triage) {
             case CHAPTER_SELECT:
-                chapterSelect.touchDragged(x, y);
+                chapterSelect.touchDragged(x);
                 break;
             case CHAPTER_VIEW:
-                chapterTouchDrag(selectedChapter, x, y);
+                chapterTouchDrag(selectedChapter, x);
                 break;
         }
     }
 
-    public void touchUp(int x, int y) {
+    public void touchUp() {
         switch (triage) {
             case CHAPTER_VIEW:
-                chapterTouchUp(selectedChapter, x, y);
+                chapterTouchUp(selectedChapter);
                 break;
         }
     }
 
-    private void chapterTouchUp(int chapNum, int x, int y) {
+    private void chapterTouchUp(int chapNum) {
         switch (chapNum) {
             case 1:
                 chapterOne.touchUp();
+                break;
+            case 2:
+                chapterTwo.touchUp();
+                break;
+            case 3:
+                chapterThree.touchUp();
+                break;
+            case 4:
+                chapterFour.touchUp();
                 break;
         }
     }
@@ -157,8 +185,7 @@ public class Student extends AppView implements AppFragment, Disposable {
             case CHAPTER_SELECT:
                 return keycode == 4 && chapterSelect.isSetUp() ? 1 : 0;
             case STUDENT_PROFILE:
-                studentProfile.keyDown(keycode);
-                break;
+                return studentProfile.keyDown(keycode);
             case CHAPTER_VIEW:
                 chapterKeyDown(selectedChapter, keycode);
                 break;
@@ -192,6 +219,16 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterTwo.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+            case 3:
+                chapterThree = new ChapterThree(android, loggedInStudentName);
+                chapterThree.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+            case 4:
+                chapterFour = new ChapterFour(android, loggedInStudentName);
+                chapterFour.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
         }
     }
 
@@ -207,6 +244,12 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 2:
                 chapterTwo.display(batch);
+                break;
+            case 3:
+                chapterThree.display(batch);
+                break;
+            case 4:
+                chapterFour.display(batch);
                 break;
         }
     }
@@ -232,8 +275,18 @@ public class Student extends AppView implements AppFragment, Disposable {
                     backPressed = true;
                 }
                 break;
-            default:
-                return 100;
+            case 3:
+                if (chapterThree.keyDown(keycode) == 1) {
+                    chapterThree.dispose();
+                    backPressed = true;
+                }
+                break;
+            case 4:
+                if (chapterFour.keyDown(keycode) == 1) {
+                    chapterFour.dispose();
+                    backPressed = true;
+                }
+                break;
         }
         if (backPressed) {
             chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
@@ -244,10 +297,19 @@ public class Student extends AppView implements AppFragment, Disposable {
         return 100;
     }
 
-    private void chapterTouchDrag(int chapNum, int x, int y) {
+    private void chapterTouchDrag(int chapNum, int x) {
         switch (chapNum) {
             case 1:
                 chapterOne.touchDragged(x);
+                break;
+            case 2:
+                chapterTwo.touchDragged(x);
+                break;
+            case 3:
+                chapterThree.touchDragged(x);
+                break;
+            case 4:
+                chapterFour.touchDragged(x);
                 break;
         }
     }
