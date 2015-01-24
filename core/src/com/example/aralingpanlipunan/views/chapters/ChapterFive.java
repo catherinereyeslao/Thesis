@@ -19,7 +19,8 @@ public class ChapterFive extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH){
 		super.setUp(screenW, screenH);
-		
+		startOfQuestionSection = 9;
+		lastChapterSection = 12;
 		gameBg = new Texture("chapters/chapter5/backgrounds/gameBg.jpg");
 		
 		//backgrounds

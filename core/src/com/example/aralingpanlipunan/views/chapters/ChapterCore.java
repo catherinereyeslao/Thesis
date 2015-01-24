@@ -156,6 +156,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 chapterSection++;
                 assetNeedUpdate = true;
             }
+            if (backToChapters.getBoundingRectangle().contains(x, y))
+                return 500;
         }
         return 100;
     }
