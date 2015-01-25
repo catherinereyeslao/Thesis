@@ -11,8 +11,8 @@ public class ChapterFive extends ChapterCore {
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
 					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture; //still no manggagawa balloon, removed manggagawa bg
-	private Sprite truck, miner;
+					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture, farmerTexture; //still no manggagawa balloon, removed manggagawa bg
+	private Sprite truck, miner, farmer;
 	private float characterX, characterY;
 	
 	public ChapterFive(AndroidInterface androidInterface, String studName) {
@@ -50,7 +50,11 @@ public class ChapterFive extends ChapterCore {
 
 		minerTexture = new Texture("chapters/chapter5/characters/miner.png");
 		miner = new Sprite(minerTexture);
-		miner.setSize(miner.getWidth() * getButtonScale(), miner.getHeight() * getButtonScale());
+		miner.setSize(miner.getWidth() * getButtonScale() * 1.3f, miner.getHeight() * getButtonScale() * 1.3f);
+
+		farmerTexture = new Texture("chapters/chapter5/characters/farmer.png");
+		farmer = new Sprite(farmerTexture);
+		farmer.setSize(farmer.getWidth() * getButtonScale(), farmer.getHeight() * getButtonScale());
 
 		characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
 		characterY = (screenHeight / 3) - (truck.getHeight() / 2);
@@ -72,13 +76,12 @@ public class ChapterFive extends ChapterCore {
 				drawMovingTruck(batch);
 				break;
 			case 4:
-				characterX += getCharacterVelocityByScreen();
 				drawMiner(batch);
 				break;
 		}
 
 		// Make sure no other characters are blocking the talkative girl and balloon
-		if (chapterSection < startOfQuestionSection) {
+		if (chapterSection > 1 && chapterSection < startOfQuestionSection) {
 			girl.draw(batch);
 			balloonSprite.draw(batch);
 		}
@@ -103,14 +106,16 @@ public class ChapterFive extends ChapterCore {
 			balloonSprite.setTexture(mangangalakalBalloon2);
 			break;
 		case 4:
-			characterX = -20;
-			characterY = miner.getHeight() / 2;
 			backgroundSprite.setTexture(pagmiminaBg);
 			balloonSprite.setTexture(pagmiminaBalloon);
+			characterX = miner.getWidth() * -1.15f;
+			characterY = 0;
 			break;
 		case 5:
 			backgroundSprite.setTexture(pagsasakaBg);
 			balloonSprite.setTexture(pagsasakaBalloon1);
+			characterX = farmer.getWidth() * -1.15f;
+			characterY = (screenHeight / 2) - (farmer.getHeight());
 			break;
 		case 6:
 			balloonSprite.setTexture(pagsasakaBalloon2);
@@ -127,10 +132,8 @@ public class ChapterFive extends ChapterCore {
 			backgroundSprite.setTexture(gameBg);
 			setUpGame();
 			break;
-			
-		
 		}
-		
+		assetNeedUpdate = false;
 	}
 
 	private void setUpGame() {
@@ -156,6 +159,7 @@ public class ChapterFive extends ChapterCore {
 		pangingisdaBalloon2.dispose();
 		gameBg.dispose();
 		truckTexture.dispose();
+		minerTexture.dispose();
 	}
 
 	/**
@@ -183,7 +187,7 @@ public class ChapterFive extends ChapterCore {
 	}
 
 	/**
-	 * Draw a moving miner until it reaches the lower right portion
+	 * Draw a moving miner until it reaches the right portion
 	 * of the screen
 	 * @param batch Batch
 	 */
@@ -191,7 +195,8 @@ public class ChapterFive extends ChapterCore {
 		miner.setPosition(characterX, characterY);
 		miner.draw(batch);
 
-		characterX += getCharacterVelocityByScreen();
+		if (characterX < screenWidth / 1.5f)
+			characterX += getCharacterVelocityByScreen();
 	}
 
 	/**
