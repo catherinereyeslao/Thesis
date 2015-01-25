@@ -35,6 +35,11 @@ public class ChapterSixVideo extends Activity implements OnCompletionListener {
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
         finish();
     }
