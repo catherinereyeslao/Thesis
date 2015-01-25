@@ -1,12 +1,14 @@
 package com.example.aralingpanlipunan.android;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.database.sqlite.SQLiteException;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.widget.Toast;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -27,6 +29,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useGLSurfaceView20API18 = true;
+		config.useWakelock = true;
 		initialize(new Main(this), config);
 	}
 
@@ -129,28 +132,36 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 	}
 
 	@Override
-	public void run() {
-		// Doesn't work with Android API 8
-//		final AlertDialog alert = new AlertDialog.Builder(this, AlertDialog.THEME_TRADITIONAL).create();
-//		alert.setTitle(alertMessage[0]);
-//		alert.setMessage(alertMessage[1]);
-//		alert.setButton(AlertDialog.BUTTON_POSITIVE, alertMessage[2], this);
-//		alert.setButton(AlertDialog.BUTTON_NEGATIVE, alertMessage[3], this);
-//		alert.show();
+	public void playChap6Video() {
+		Intent chap6VideoIntent;
+		if (Build.VERSION.SDK_INT >= 13)
+			chap6VideoIntent = new Intent(this, ChapterSixVideo.class);
+		else
+			chap6VideoIntent = new Intent(this, ChapterSixVideoCompat.class);
+		startActivity(chap6VideoIntent);
+	}
 
+	@Override
+	public void run() {
 		switch (androidBackgroudnTask) {
 			case ALERT:
-				final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-				alert.setTitle(alertMessage[0]);
-				alert.setMessage(alertMessage[1]);
-				alert.setCancelable(false);
-				alert.setPositiveButton(alertMessage[2], this);
-				alert.setNegativeButton(alertMessage[3], this);
-				alert.show();
-
-//				final Dialog dialog = new Dialog(this);
-//				dialog.setTitle(alertMessage[1]);
-//				dialog.show();
+				if (Build.VERSION.SDK_INT < 11) {
+					// For older android version compatibility, use old alertDialog box
+					final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+					alert.setTitle(alertMessage[0]);
+					alert.setMessage(alertMessage[1]);
+					alert.setCancelable(false);
+					alert.setPositiveButton(alertMessage[2], this);
+					alert.setNegativeButton(alertMessage[3], this);
+					alert.show();
+				} else {
+					final AlertDialog alert = new AlertDialog.Builder(this, AlertDialog.THEME_HOLO_DARK).create();
+					alert.setTitle(alertMessage[0]);
+					alert.setMessage(alertMessage[1]);
+					alert.setButton(AlertDialog.BUTTON_POSITIVE, alertMessage[2], this);
+					alert.setButton(AlertDialog.BUTTON_NEGATIVE, alertMessage[3], this);
+					alert.show();
+				}
 				break;
 			case TOAST:
 				Toast.makeText(this, alertMessage[0], Integer.parseInt(alertMessage[1]) > 0 ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();

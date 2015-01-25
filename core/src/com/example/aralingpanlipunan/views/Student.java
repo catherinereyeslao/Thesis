@@ -4,11 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
-import com.example.aralingpanlipunan.views.chapters.ChapterFive;
-import com.example.aralingpanlipunan.views.chapters.ChapterFour;
-import com.example.aralingpanlipunan.views.chapters.ChapterOne;
-import com.example.aralingpanlipunan.views.chapters.ChapterThree;
-import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
+import com.example.aralingpanlipunan.views.chapters.*;
 
 /**
  * This is called when selecting "Student" from the Menu.
@@ -27,6 +23,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private ChapterThree chapterThree;
     private ChapterFour chapterFour;
     private ChapterFive chapterFive;
+    private ChapterSix chapterSix;
     private AndroidInterface android;
 
     /**
@@ -126,6 +123,9 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 5:
                 chapterFive.dispose();
                 break;
+            case 6:
+                chapterSix.dispose();
+                break;
         }
     }
 
@@ -141,6 +141,8 @@ public class Student extends AppView implements AppFragment, Disposable {
                 return chapterFour.touchDown(x, y);
             case 5:
                 return chapterFive.touchDown(x, y);
+            case 6:
+                return chapterSix.touchDown(x, y);
         }
         return 100;
     }
@@ -180,6 +182,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 5:
                 chapterFive.touchUp();
+                break;
+            case 6:
+                chapterSix.touchUp();
                 break;
         }
     }
@@ -244,6 +249,11 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterFive.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+            case 6:
+                chapterSix = new ChapterSix(android, loggedInStudentName);
+                chapterSix.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
         }
     }
 
@@ -268,6 +278,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 5:
                 chapterFive.display(batch);
+                break;
+            case 6:
+                chapterSix.display(batch);
                 break;
         }
     }
@@ -311,6 +324,12 @@ public class Student extends AppView implements AppFragment, Disposable {
                     backPressed = true;
                 }
                 break;
+            case 6:
+                if (chapterSix.keyDown(keycode) == 1) {
+                    chapterSix.dispose();
+                    backPressed = true;
+                }
+                break;
         }
         if (backPressed) {
             chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
@@ -337,6 +356,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 5:
                 chapterFive.touchDragged(x);
+                break;
+            case 6:
+                chapterSix.touchDragged(x);
                 break;
         }
     }
