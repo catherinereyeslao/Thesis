@@ -47,4 +47,9 @@ public class DummyAndroidInterface implements AndroidInterface {
     public void setStudentScore(String studName, String chapter, int studScore) {
         System.out.println("New student score");
     }
+
+    @Override
+    public void playChap6Video() {
+        // We will not support video playing in Desktop
+    }
 }

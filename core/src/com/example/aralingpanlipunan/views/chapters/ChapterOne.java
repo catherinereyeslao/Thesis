@@ -11,10 +11,10 @@ import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterOne extends ChapterCore {
-    private static final String LUNGSOD = "Lungsod";
-    private static final String KABUNDUKAN = "Kabundukan";
-    private static final String BUKIRIN = "BUKIRIN";
-    private static final String BAYBAYIN = "Baybayin";
+    private static final String LUNGSOD = "a. Lungsod";
+    private static final String KABUNDUKAN = "b. Kabundukan";
+    private static final String BUKIRIN = "c. BUKIRIN";
+    private static final String BAYBAYIN = "d. Baybayin";
 
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;

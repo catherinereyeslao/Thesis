@@ -42,7 +42,23 @@ public interface AndroidInterface {
      */
     public boolean showAlertDialog(String title, String message, String yesButton, String noButton);
 
+    /**
+     * Use Android's Toast widget to display a message
+     * @param message A String that will be displayed as a message
+     * @param length 1 to display toast for longer duration. 0 for short duration
+     */
     public void showToast(String message, int length);
 
+    /**
+     * Update a student's chapter score
+     * @param studName Name of the student to update the score
+     * @param chapter Chapter number to update
+     * @param studScore The new score
+     */
     public void setStudentScore(String studName, String chapter, int studScore);
+
+    /**
+     * Opens a new Android Video Activity
+     */
+    public void playChap6Video();
 }

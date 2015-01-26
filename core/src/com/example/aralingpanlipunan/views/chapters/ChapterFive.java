@@ -2,18 +2,21 @@ package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterFive extends ChapterCore {
 	
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
 					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, gameBg; //still no manggagawa balloon, removed manggagawa bg
+					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture; //still no manggagawa balloon, removed manggagawa bg
+	private Sprite truck, miner;
+	private float characterX, characterY;
 	
 	public ChapterFive(AndroidInterface androidInterface, String studName) {
 		super(androidInterface, studName);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -40,22 +43,48 @@ public class ChapterFive extends ChapterCore {
 		pagsasakaBalloon2 = new Texture("chapters/chapter5/balloons/Magsasaka2.png");
 		pangingisdaBalloon1 = new Texture("chapters/chapter5/balloons/Pangingisda1.png");
 		pangingisdaBalloon2 = new Texture("chapters/chapter5/balloons/Pangingisda2.png");
-		
+
+		truckTexture = new Texture("chapters/chapter5/characters/truck.png");
+		truck = new Sprite(truckTexture);
+		truck.setSize((truck.getWidth() * getButtonScale() * 1.3f), (truck.getHeight() * getButtonScale()) * 1.3f);
+
+		minerTexture = new Texture("chapters/chapter5/characters/miner.png");
+		miner = new Sprite(minerTexture);
+		miner.setSize(miner.getWidth() * getButtonScale(), miner.getHeight() * getButtonScale());
+
+		characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
+		characterY = (screenHeight / 3) - (truck.getHeight() / 2);
+
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
-		
-	
 	}
 
 	@Override
 	public void display(Batch batch){
 		if (assetNeedUpdate) assetManager();
 		renderSharedAssets(batch);
-		
+
+		switch (chapterSection) {
+			case 2:
+				drawMovingTruck(batch);
+				break;
+			case 3:
+				drawMovingTruck(batch);
+				break;
+			case 4:
+				characterX += getCharacterVelocityByScreen();
+				drawMiner(batch);
+				break;
+		}
+
+		// Make sure no other characters are blocking the talkative girl and balloon
+		if (chapterSection < startOfQuestionSection) {
+			girl.draw(batch);
+			balloonSprite.draw(batch);
+		}
 	}
-	
+
 	private void assetManager() {
-		// TODO Auto-generated method stub
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
@@ -70,9 +99,12 @@ public class ChapterFive extends ChapterCore {
 			balloonSprite.setTexture(mangangalakalBalloon1);
 			break;
 		case 3:
+			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon2);
 			break;
 		case 4:
+			characterX = -20;
+			characterY = miner.getHeight() / 2;
 			backgroundSprite.setTexture(pagmiminaBg);
 			balloonSprite.setTexture(pagmiminaBalloon);
 			break;
@@ -102,13 +134,12 @@ public class ChapterFive extends ChapterCore {
 	}
 
 	private void setUpGame() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dispose(){
-		
+		super.dispose();
 		introBg.dispose();
 		mangangalakalBg.dispose();
 		pagmiminaBg.dispose();
@@ -124,7 +155,62 @@ public class ChapterFive extends ChapterCore {
 		pangingisdaBalloon1.dispose();
 		pangingisdaBalloon2.dispose();
 		gameBg.dispose();
-		
-		
+		truckTexture.dispose();
+	}
+
+	/**
+	 * Draws the moving truck from left to right. If it goes
+	 * beyond the outer right screen, start it over from the left
+	 * @param batch Batch
+	 */
+	private void drawMovingTruck(Batch batch) {
+		truck.setPosition(characterX, characterY);
+		truck.draw(batch);
+
+		if (characterX > screenWidth + truck.getWidth() * 1.1f)
+			truck.flip(true, false);
+		if (characterX < truck.getWidth() * -1.1f) {
+			truck.setFlip(false, false);
+		}
+
+		if (truck.isFlipX()) {
+			characterX -= getCharacterVelocityByScreen();
+			characterY = (screenHeight / 2) - (truck.getHeight() / 2);
+		} else {
+			characterX += getCharacterVelocityByScreen();
+			characterY = (screenHeight / 3) - (truck.getHeight() / 2);
+		}
+	}
+
+	/**
+	 * Draw a moving miner until it reaches the lower right portion
+	 * of the screen
+	 * @param batch Batch
+	 */
+	private void drawMiner(Batch batch) {
+		miner.setPosition(characterX, characterY);
+		miner.draw(batch);
+
+		characterX += getCharacterVelocityByScreen();
+	}
+
+	/**
+	 * Get the speed of moving characters based on device's screen size
+	 * @return float
+	 */
+	private float getCharacterVelocityByScreen() {
+		ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+		switch (screenSizeUtil.getScreenCategory(screenWidth)) {
+			case ScreenSizeUtil.LDPI:
+				return 2;
+			case ScreenSizeUtil.MDPI:
+				return 3;
+			case ScreenSizeUtil.HDPI:
+				return 4;
+			case ScreenSizeUtil.XHDPI:
+				return 4.75f;
+			default:
+				return 5.2f;
+		}
 	}
 }
