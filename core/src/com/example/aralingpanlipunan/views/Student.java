@@ -4,6 +4,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.views.chapters.ChapterFive;
+import com.example.aralingpanlipunan.views.chapters.ChapterFour;
+import com.example.aralingpanlipunan.views.chapters.ChapterOne;
+import com.example.aralingpanlipunan.views.chapters.ChapterThree;
+import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
 
 /**
  * This is called when selecting "Student" from the Menu.
