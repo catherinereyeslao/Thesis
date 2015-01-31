@@ -4,16 +4,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterFive extends ChapterCore {
-	
+    //TODO: still no manggagawa balloon, removed manggagawa bg
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
 					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture, farmerTexture; //still no manggagawa balloon, removed manggagawa bg
-	private Sprite truck, miner, farmer;
-	private float characterX, characterY;
+					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture,
+                    farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
+                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture;
+	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
+	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
+    private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
+
 	
 	public ChapterFive(AndroidInterface androidInterface, String studName) {
 		super(androidInterface, studName);
@@ -23,8 +28,10 @@ public class ChapterFive extends ChapterCore {
 	public void setUp(int screenW, int screenH){
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 9;
-		lastChapterSection = 12;
-		gameBg = new Texture("chapters/chapter5/backgrounds/gameBg.jpg");
+		lastChapterSection = 10;
+        characterSpeed = getCharacterVelocityByScreen();
+		gameBg = new Texture("chapters/chapter5/backgrounds/question.jpg");
+        boxTexture = new Texture("chapters/chapter5/box.png");
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
@@ -56,8 +63,99 @@ public class ChapterFive extends ChapterCore {
 		farmer = new Sprite(farmerTexture);
 		farmer.setSize(farmer.getWidth() * getButtonScale(), farmer.getHeight() * getButtonScale());
 
+        fisherTexture = new Texture("chapters/chapter5/characters/fisher.png");
+        fisher = new Sprite(fisherTexture);
+        fisher.setSize(fisher.getWidth() * getButtonScale() * 1.2f, fisher.getHeight() * getButtonScale() * 1.2f);
+
 		characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
 		characterY = (screenHeight / 3) - (truck.getHeight() / 2);
+
+        baybayinTexture = new Texture("chapters/chapter5/answers/baybayin.png");
+        baybayin = new Sprite(baybayinTexture);
+        baybayin.setSize(getAnswerWidth(baybayin), getAnswerHeight(baybayin));
+        baybayinX = (screenWidth / 2.8f) - (baybayin.getWidth() / 2);
+        baybayinY = (screenHeight / 1.45f) - (baybayin.getHeight() / 2);
+        baybayin.setPosition(baybayinX, baybayinY);
+        baybayin.setBounds(baybayinX, baybayinY, baybayin.getWidth(), baybayin.getHeight());
+
+        ibaTexture = new Texture("chapters/chapter5/answers/iba.png");
+        iba = new Sprite(ibaTexture);
+        iba.setSize(getAnswerWidth(iba), getAnswerHeight(iba));
+        ibaX = (screenWidth / 1.85f) - (iba.getWidth() / 2);
+        ibaY = baybayinY;
+        iba.setPosition(ibaX, ibaY);
+        iba.setBounds(ibaX, ibaY, iba.getWidth(), iba.getHeight());
+
+        kabukiranTexture = new Texture("chapters/chapter5/answers/kabukiran.png");
+        kabukiran = new Sprite(kabukiranTexture);
+        kabukiran.setSize(getAnswerWidth(kabukiran), getAnswerHeight(kabukiran));
+        kabukiranX = (screenWidth / 1.4f) - (kabukiran.getWidth() / 2);
+        kabukiranY = baybayinY;
+        kabukiran.setPosition(kabukiranX, kabukiranY);
+        kabukiran.setBounds(kabukiranX, kabukiranY, kabukiran.getWidth(), kabukiran.getHeight());
+
+        kabundukanTexture = new Texture("chapters/chapter5/answers/kabundukan.png");
+        kabundukan = new Sprite(kabundukanTexture);
+        kabundukan.setSize(getAnswerWidth(kabundukan), getAnswerHeight(kabundukan));
+        kabundukanX = (screenWidth / 1.15f) - (kabundukan.getWidth() / 2);
+        kabundukanY = baybayinY;
+        kabundukan.setPosition(kabundukanX, kabundukanY);
+        kabundukan.setBounds(kabundukanX, kabukiranY, kabundukan.getWidth(), kabundukan.getHeight());
+
+        lungsodTexture = new Texture("chapters/chapter5/answers/lungsod.png");
+        lungsod = new Sprite(lungsodTexture);
+        lungsod.setSize(getAnswerWidth(lungsod), getAnswerHeight(lungsod));
+        lungsodX = baybayinX;
+        lungsodY = (screenHeight / 1.65f) - (lungsod.getHeight() / 2);
+        lungsod.setPosition(lungsodX, lungsodY);
+        lungsod.setBounds(lungsodX, lungsodY, lungsod.getWidth(), lungsod.getHeight());
+
+        parkeTexture = new Texture("chapters/chapter5/answers/parke.png");
+        parke = new Sprite(parkeTexture);
+        parke.setSize(getAnswerWidth(parke), getAnswerHeight(parke));
+        parkeX = ibaX;
+        parkeY = lungsodY;
+        parke.setPosition(parkeX, parkeY);
+        parke.setBounds(parkeX, parkeY, parke.getWidth(), parke.getHeight());
+
+        box = new Sprite(boxTexture);
+        box.setSize(iba.getWidth(), iba.getHeight());
+        final float boxX = (screenWidth / 1.25f) - (box.getWidth() / 2);
+        final float boxY = (screenHeight / 2.15f) - (box.getHeight() / 2);
+        box.setPosition(boxX, boxY);
+        box.setBounds(boxX, boxY, box.getWidth(), box.getHeight());
+
+        box2 = new Sprite(boxTexture);
+        box2.setSize(iba.getWidth(), iba.getHeight());
+        final float box2Y = (screenHeight / 2.45f) - (box2.getHeight() / 2);
+        box2.setPosition(boxX, box2Y);
+        box2.setBounds(boxX, box2Y, box2.getWidth(), box2.getHeight());
+
+        box3 = new Sprite(boxTexture);
+        box3.setSize(iba.getWidth(), iba.getHeight());
+        final float box3Y = (screenHeight / 2.8f) - (box3.getHeight() / 2);
+        box3.setPosition(boxX, box3Y);
+        box3.setBounds(boxX, box3Y, box3.getWidth(), box3.getHeight());
+
+        box4 = new Sprite(boxTexture);
+        box4.setSize(iba.getWidth(), iba.getHeight());
+        final float box4Y = (screenHeight / 3.3f) - (box4.getHeight() / 2);
+        box4.setPosition(boxX, box4Y);
+        box4.setBounds(boxX, box4Y, box4.getWidth(), box4.getHeight());
+
+        box5 = new Sprite(boxTexture);
+        box5.setSize(iba.getWidth(), iba.getHeight());
+        final float box5Y = (screenHeight / 3.95f) - (box5.getHeight() / 2);
+        box5.setPosition(boxX, box5Y);
+        box5.setBounds(boxX, box5Y, box5.getWidth(), box5.getHeight());
+
+        nextTexture = new Texture("buttons/enter.png");
+        next = new Sprite(nextTexture);
+        next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
+        final float nextX = (screenWidth / 1.4f);
+        final float nextY = next.getHeight() / 10;
+        next.setPosition(nextX, nextY);
+        next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
 
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
@@ -78,6 +176,38 @@ public class ChapterFive extends ChapterCore {
 			case 4:
 				drawMiner(batch);
 				break;
+            case 5:
+                drawFarmer(batch);
+                break;
+            case 6:
+                drawFarmer(batch);
+                break;
+            case 7:
+                fisher.draw(batch);
+                break;
+            case 8:
+                fisher.draw(batch);
+                break;
+            case 9:
+                baybayin.draw(batch);
+                iba.draw(batch);
+                kabukiran.draw(batch);
+                kabundukan.draw(batch);
+                lungsod.draw(batch);
+                parke.draw(batch);
+
+                box.draw(batch);
+                box2.draw(batch);
+                box3.draw(batch);
+                box4.draw(batch);
+                box5.draw(batch);
+                next.draw(batch);
+                break;
+            case 10:
+                question.drawMultiLine(batch, tanong, questionX, questionY);
+                startQuiz.draw(batch);
+                backToChapters.draw(batch);
+                break;
 		}
 
 		// Make sure no other characters are blocking the talkative girl and balloon
@@ -87,7 +217,7 @@ public class ChapterFive extends ChapterCore {
 		}
 	}
 
-	private void assetManager() {
+    private void assetManager() {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
@@ -123,22 +253,112 @@ public class ChapterFive extends ChapterCore {
 		case 7:
 			backgroundSprite.setTexture(pangingisdaBg);
 			balloonSprite.setTexture(pangingisdaBalloon1);
+            characterX = (screenWidth / 2) - (fisher.getWidth() / 2);
+            characterY = (screenHeight / 4) - (fisher.getHeight() / 2);
+            fisher.setPosition(characterX, characterY);
 			break;
 		case 8:
 			balloonSprite.setTexture(pangingisdaBalloon2);
 			break;
 		//game
 		case 9:
+            baybayin.setPosition(baybayinX, baybayinY);
+            iba.setPosition(ibaX, ibaY);
+            kabukiran.setPosition(kabukiranX, kabukiranY);
+            kabundukan.setPosition(kabundukanX, kabundukanY);
+            lungsod.setPosition(lungsodX, lungsodY);
+            parke.setPosition(parkeX, parkeY);
 			backgroundSprite.setTexture(gameBg);
-			setUpGame();
 			break;
+        case 10:
+            displayQuizResult(DatabaseSetup.CHAPTER_FIVE_SCORE, 3);
+            break;
 		}
 		assetNeedUpdate = false;
 	}
 
-	private void setUpGame() {
+    @Override
+    public int touchDown(float x, float y) {
+        if (chapterSection == lastChapterSection)
+            return displayLastSectionButtons(5, 3, x, y);
 
-	}
+        if (next.getBoundingRectangle().contains(x, y)) {
+            // If next button is clicked, check the position of answers and count
+            // correct answers, then proceed to score page
+            if (kabukiran.getY() == box.getY())
+                correctAnswers++;
+            if (baybayin.getY() == box2.getY())
+                correctAnswers++;
+            if (kabundukan.getY() == box3.getY())
+                correctAnswers++;
+            if (lungsod.getY() == box4.getY())
+                correctAnswers++;
+            if (iba.getY() == box5.getY())
+                correctAnswers++;
+
+            chapterSection++;
+            assetNeedUpdate = true;
+        }
+        if (touchedAnswer == null) {
+            if (baybayin.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = baybayin;
+                baybayin.setPosition(baybayinX, baybayinY);
+            }
+            if (iba.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = iba;
+                iba.setPosition(ibaX, ibaY);
+            }
+            if (kabukiran.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = kabukiran;
+                kabukiran.setPosition(kabukiranX, kabukiranY);
+            }
+            if (kabundukan.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = kabundukan;
+                kabundukan.setPosition(kabundukanX, kabundukanY);
+            }
+            if (lungsod.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = lungsod;
+                lungsod.setPosition(lungsodX, lungsodY);
+            }
+            if (parke.getBoundingRectangle().contains(x, y)) {
+                touchedAnswer = parke;
+                parke.setPosition(parkeX, parkeY);
+            }
+            if (box.getBoundingRectangle().contains(x, y))
+                box1Set = false;
+            if (box2.getBoundingRectangle().contains(x, y))
+                box2Set = false;
+            if (box3.getBoundingRectangle().contains(x, y))
+                box3Set = false;
+            if (box4.getBoundingRectangle().contains(x, y))
+                box4Set = false;
+            if (box5.getBoundingRectangle().contains(x, y))
+                box5Set = false;
+        } else {
+            if (box.getBoundingRectangle().contains(x, y) && !box1Set) {
+                touchedAnswer.setPosition(box.getX(), box.getY());
+                box1Set = true;
+            }
+            else if (box2.getBoundingRectangle().contains(x, y) && !box2Set) {
+                touchedAnswer.setPosition(box2.getX(), box2.getY());
+                box2Set = true;
+            }
+            else if (box3.getBoundingRectangle().contains(x, y) && !box3Set) {
+                touchedAnswer.setPosition(box3.getX(), box3.getY());
+                box3Set = true;
+            }
+            else if (box4.getBoundingRectangle().contains(x, y) && !box4Set) {
+                touchedAnswer.setPosition(box4.getX(), box4.getY());
+                box4Set = true;
+            }
+            else if (box5.getBoundingRectangle().contains(x, y) && !box5Set) {
+                touchedAnswer.setPosition(box5.getX(), box5.getY());
+                box5Set = true;
+            }
+            touchedAnswer = null;
+        }
+        return super.touchDown(x, y);
+    }
 
 	@Override
 	public void dispose(){
@@ -160,11 +380,20 @@ public class ChapterFive extends ChapterCore {
 		gameBg.dispose();
 		truckTexture.dispose();
 		minerTexture.dispose();
+        farmerTexture.dispose();
+        fisherTexture.dispose();
+        baybayinTexture.dispose();
+        ibaTexture.dispose();
+        kabukiranTexture.dispose();
+        kabundukanTexture.dispose();
+        lungsodTexture.dispose();
+        parkeTexture.dispose();
+        boxTexture.dispose();
+        nextTexture.dispose();
 	}
 
 	/**
-	 * Draws the moving truck from left to right. If it goes
-	 * beyond the outer right screen, start it over from the left
+	 * Draws the moving truck from left to right, then right to left
 	 * @param batch Batch
 	 */
 	private void drawMovingTruck(Batch batch) {
@@ -178,10 +407,10 @@ public class ChapterFive extends ChapterCore {
 		}
 
 		if (truck.isFlipX()) {
-			characterX -= getCharacterVelocityByScreen();
+			characterX -= characterSpeed;
 			characterY = (screenHeight / 2) - (truck.getHeight() / 2);
 		} else {
-			characterX += getCharacterVelocityByScreen();
+			characterX += characterSpeed;
 			characterY = (screenHeight / 3) - (truck.getHeight() / 2);
 		}
 	}
@@ -196,8 +425,27 @@ public class ChapterFive extends ChapterCore {
 		miner.draw(batch);
 
 		if (characterX < screenWidth / 1.5f)
-			characterX += getCharacterVelocityByScreen();
+			characterX += characterSpeed;
 	}
+
+    /**
+     * Draws the moving farmer from left to right, then right to left
+     * @param batch Batch
+     */
+    private void drawFarmer(Batch batch) {
+        farmer.setPosition(characterX, characterY);
+        farmer.draw(batch);
+
+        if (characterX > screenWidth + farmer.getWidth() * 1.1f)
+            farmer.setFlip(true, false);
+        if (characterX < farmer.getWidth() * -1.1f)
+            farmer.setFlip(false, false);
+
+        if (farmer.isFlipX())
+            characterX -= characterSpeed;
+        else
+            characterX += characterSpeed;
+    }
 
 	/**
 	 * Get the speed of moving characters based on device's screen size
@@ -218,4 +466,22 @@ public class ChapterFive extends ChapterCore {
 				return 5.2f;
 		}
 	}
+
+    /**
+     * Gets the proper width for the answer sprite
+     * @param answer Sprite
+     * @return float
+     */
+    private float getAnswerWidth(Sprite answer) {
+        return (answer.getWidth() * getButtonScale() * 1.8f);
+    }
+
+    /**
+     * Gets the proper height of the answer sprite
+     * @param answer Sprite
+     * @return float
+     */
+    private float getAnswerHeight(Sprite answer) {
+        return (answer.getHeight() * getButtonScale() * 1.6f);
+    }
 }
