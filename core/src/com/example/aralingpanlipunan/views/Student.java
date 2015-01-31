@@ -4,12 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
-import com.example.aralingpanlipunan.views.chapters.ChapterFive;
-import com.example.aralingpanlipunan.views.chapters.ChapterFour;
-import com.example.aralingpanlipunan.views.chapters.ChapterOne;
-import com.example.aralingpanlipunan.views.chapters.ChapterSeven;
-import com.example.aralingpanlipunan.views.chapters.ChapterThree;
-import com.example.aralingpanlipunan.views.chapters.ChapterTwo;
+import com.example.aralingpanlipunan.views.chapters.*;
 
 /**
  * This is called when selecting "Student" from the Menu.
@@ -28,6 +23,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private ChapterThree chapterThree;
     private ChapterFour chapterFour;
     private ChapterFive chapterFive;
+    private ChapterSix chapterSix;
     private ChapterSeven chapterSeven;
 
     private AndroidInterface android;
@@ -130,6 +126,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterFive.dispose();
                 break;
             case 6:
+                chapterSix.dispose();
+                break;
+            case 7:
                 chapterSeven.dispose();
                 break;
             
@@ -149,13 +148,15 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 5:
                 return chapterFive.touchDown(x, y);
             case 6:
+                return chapterSix.touchDown(x, y);
+            case 7:
                 return chapterSeven.touchDown(x, y);
            
         }
         return 100;
     }
 
-    public void touchDragged(int x, int y) {
+    public void touchDragged(int x) {
         switch (triage) {
             case CHAPTER_SELECT:
                 chapterSelect.touchDragged(x);
@@ -192,6 +193,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterFive.touchUp();
                 break;
             case 6:
+                chapterSix.touchUp();
+                break;
+            case 7:
                 chapterSeven.touchUp();
                 break;
            
@@ -259,6 +263,11 @@ public class Student extends AppView implements AppFragment, Disposable {
                 triage = CHAPTER_VIEW;
                 break;
             case 6:
+                chapterSix = new ChapterSix(android, loggedInStudentName);
+                chapterSix.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+            case 7:
                 chapterSeven = new ChapterSeven(android, loggedInStudentName);
                 chapterSeven.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
@@ -290,6 +299,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterFive.display(batch);
                 break;
             case 6:
+                chapterSix.display(batch);
+                break;
+            case 7:
                 chapterSeven.display(batch);
                 break;
           
@@ -336,6 +348,12 @@ public class Student extends AppView implements AppFragment, Disposable {
                 }
                 break;
             case 6:
+                if (chapterSix.keyDown(keycode) == 1) {
+                    chapterSix.dispose();
+                    backPressed = true;
+                }
+                break;
+            case 7:
                 if (chapterSeven.keyDown(keycode) == 1) {
                     chapterSeven.dispose();
                     backPressed = true;
@@ -370,6 +388,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterFive.touchDragged(x);
                 break;
             case 6:
+                chapterSix.touchDragged(x);
+                break;
+            case 7:
                 chapterSeven.touchDragged(x);
                 break;
             

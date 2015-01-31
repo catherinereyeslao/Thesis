@@ -248,9 +248,8 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		final int normalisedY = Gdx.graphics.getHeight() - screenY;
 		if (triage == STUDENT)
-			student.touchDragged(screenX, normalisedY);
+			student.touchDragged(screenX);
 		return false;
 	}
 

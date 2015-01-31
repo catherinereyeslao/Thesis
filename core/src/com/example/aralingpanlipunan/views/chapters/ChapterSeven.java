@@ -18,7 +18,9 @@ public class ChapterSeven extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH){
 		super.setUp(screenW, screenH);
-		
+		startOfQuestionSection = 10;
+        lastChapterSection = 15;
+
 		//backgrounds
 		introBg = new Texture("chapters/chapter7/backgrounds/IntroForChapter7.png");
 		erectusBg = new Texture("chapters/chapter7/backgrounds/ChapterSevenBackgroundErectus.png");
@@ -26,16 +28,16 @@ public class ChapterSeven extends ChapterCore {
 		sapiensBg = new Texture("chapters/chapter7/backgrounds/ChapterSevenBackgroundSapiens.png");
 		
 		//balloons
-		introBalloon1 = new Texture("chapters/chapter7/balloons/intro1.png");
-		introBalloon2 = new Texture("chapters/chapter7/balloons/intro2.png");
-		erectusBalloon1 = new Texture("chapter/chapter7/balloons/Homoerectus1.png");
-		erectusBalloon2 = new Texture("chapter/chapter7/balloons/Homoerectus2.png");
-		erectusBalloon3 = new Texture("chapter/chapter7/balloons/Homoerectus3.png");
-		habilisBalloon1 = new Texture("chapter/chapter7/balloons/Habilis1.png");
-		habilisBalloon2 = new Texture("chapter/chapter7/balloons/Habilis2.png");
-		sapiensBalloon1 = new Texture("chapter/chapter7/balloons/Sapiens1.png");
-		sapiensBalloon2 = new Texture("chapter/chapter7/balloons/Sapiens2.png");
-		sapiensBalloon3 = new Texture("chapter/chapter7/balloons/Sapiens3.png");
+		introBalloon1 = new Texture("chapters/chapter7/balloons/Intro1.png");
+		introBalloon2 = new Texture("chapters/chapter7/balloons/Intro2.png");
+		erectusBalloon1 = new Texture("chapters/chapter7/balloons/Homoerectus1.png");
+		erectusBalloon2 = new Texture("chapters/chapter7/balloons/Homoerectus2.png");
+		erectusBalloon3 = new Texture("chapters/chapter7/balloons/Homoerectus3.png");
+		habilisBalloon1 = new Texture("chapters/chapter7/balloons/Habilis1.png");
+		habilisBalloon2 = new Texture("chapters/chapter7/balloons/Habilis2.png");
+		sapiensBalloon1 = new Texture("chapters/chapter7/balloons/Sapiens1.png");
+		sapiensBalloon2 = new Texture("chapters/chapter7/balloons/Sapiens2.png");
+		sapiensBalloon3 = new Texture("chapters/chapter7/balloons/Sapiens3.png");
 		
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
