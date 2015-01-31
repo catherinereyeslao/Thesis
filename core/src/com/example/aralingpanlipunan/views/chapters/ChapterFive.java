@@ -16,7 +16,7 @@ public class ChapterFive extends ChapterCore {
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
                     kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture;
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
-	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY, boxX, boxY, box2Y, box3Y, box4Y, box5Y;
+	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
 
 	
@@ -120,32 +120,32 @@ public class ChapterFive extends ChapterCore {
 
         box = new Sprite(boxTexture);
         box.setSize(iba.getWidth(), iba.getHeight());
-        boxX = (screenWidth / 1.25f) - (box.getWidth() / 2);
-        boxY = (screenHeight / 2.15f) - (box.getHeight() / 2);
+        final float boxX = (screenWidth / 1.25f) - (box.getWidth() / 2);
+        final float boxY = (screenHeight / 2.15f) - (box.getHeight() / 2);
         box.setPosition(boxX, boxY);
         box.setBounds(boxX, boxY, box.getWidth(), box.getHeight());
 
         box2 = new Sprite(boxTexture);
         box2.setSize(iba.getWidth(), iba.getHeight());
-        box2Y = (screenHeight / 2.45f) - (box2.getHeight() / 2);
+        final float box2Y = (screenHeight / 2.45f) - (box2.getHeight() / 2);
         box2.setPosition(boxX, box2Y);
         box2.setBounds(boxX, box2Y, box2.getWidth(), box2.getHeight());
 
         box3 = new Sprite(boxTexture);
         box3.setSize(iba.getWidth(), iba.getHeight());
-        box3Y = (screenHeight / 2.8f) - (box3.getHeight() / 2);
+        final float box3Y = (screenHeight / 2.8f) - (box3.getHeight() / 2);
         box3.setPosition(boxX, box3Y);
         box3.setBounds(boxX, box3Y, box3.getWidth(), box3.getHeight());
 
         box4 = new Sprite(boxTexture);
         box4.setSize(iba.getWidth(), iba.getHeight());
-        box4Y = (screenHeight / 3.3f) - (box4.getHeight() / 2);
+        final float box4Y = (screenHeight / 3.3f) - (box4.getHeight() / 2);
         box4.setPosition(boxX, box4Y);
         box4.setBounds(boxX, box4Y, box4.getWidth(), box4.getHeight());
 
         box5 = new Sprite(boxTexture);
         box5.setSize(iba.getWidth(), iba.getHeight());
-        box5Y = (screenHeight / 3.95f) - (box5.getHeight() / 2);
+        final float box5Y = (screenHeight / 3.95f) - (box5.getHeight() / 2);
         box5.setPosition(boxX, box5Y);
         box5.setBounds(boxX, box5Y, box5.getWidth(), box5.getHeight());
 
@@ -389,6 +389,7 @@ public class ChapterFive extends ChapterCore {
         lungsodTexture.dispose();
         parkeTexture.dispose();
         boxTexture.dispose();
+        nextTexture.dispose();
 	}
 
 	/**
