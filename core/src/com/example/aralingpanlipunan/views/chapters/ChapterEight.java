@@ -283,7 +283,7 @@ public class ChapterEight extends ChapterCore{
 		case 9:
             if (!renderedDancer) {
                 characterX = -character.getWidth();
-                characterY = (screenHeight / 2) - (character.getHeight() / 2);
+                characterY = (screenHeight / 3) - (character.getHeight() / 2);
                 renderedDancer = true;
             }
 			backgroundSprite.setTexture(sayawBg);
