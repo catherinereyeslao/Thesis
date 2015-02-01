@@ -27,6 +27,7 @@ public class Student extends AppView implements AppFragment, Disposable {
     private ChapterSeven chapterSeven;
     private ChapterEight chapterEight;
     private ChapterNine chapterNine;
+    private ChapterTen chapterTen;
 
     private AndroidInterface android;
 
@@ -139,6 +140,9 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 9:
                 chapterNine.dispose();
                 break;
+            case 10:
+                chapterTen.dispose();
+                break;
             
         }
     }
@@ -163,6 +167,8 @@ public class Student extends AppView implements AppFragment, Disposable {
             	return chapterEight.touchDown(x, y);
             case 9:
             	return chapterNine.touchDown(x, y);
+            case 10:
+            	return chapterTen.touchDown(x, y);
            
         }
         return 100;
@@ -215,6 +221,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 9:
             	chapterNine.touchUp();
+                break;
+            case 10:
+            	chapterTen.touchUp();
                 break;
         }
     }
@@ -299,6 +308,11 @@ public class Student extends AppView implements AppFragment, Disposable {
                 chapterNine.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+            case 10:
+                chapterTen = new ChapterTen(android, loggedInStudentName);
+                chapterTen.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
            
         }
     }
@@ -336,6 +350,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 9:
                 chapterNine.display(batch);
+                break;
+            case 10:
+                chapterTen.display(batch);
                 break;
           
         }
@@ -404,6 +421,12 @@ public class Student extends AppView implements AppFragment, Disposable {
                     backPressed = true;
                 }
                 break;
+            case 10:
+                if (chapterTen.keyDown(keycode) == 1) {
+                    chapterTen.dispose();
+                    backPressed = true;
+                }
+                break;
            
         }
         if (backPressed) {
@@ -443,6 +466,9 @@ public class Student extends AppView implements AppFragment, Disposable {
                 break;
             case 9:
                 chapterNine.touchDragged(x);
+                break;
+            case 10:
+                chapterTen.touchDragged(x);
                 break;
             
         }
