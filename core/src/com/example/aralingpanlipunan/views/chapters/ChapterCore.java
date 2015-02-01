@@ -22,7 +22,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected String loggedInStudent;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
-    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable = false;
+    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, isTeacher = false;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture;
@@ -33,6 +33,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
         this.android = androidInterface;
         this.loggedInStudent = studentName;
+    }
+
+    public ChapterCore(AndroidInterface androidInterface, boolean isTeacher) {
+        this.isTeacher = true;
+        this.android = androidInterface;
     }
 
     @Override
@@ -168,13 +173,27 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      */
     public void touchDragged(int x) {
         float slide = touchX - x;
-        if ((chapterSection < startOfQuestionSection || questionIsDraggable) && lectureStarted && !isDragging) {
-            if (((chapterSection > 0 && chapterSection < startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
+        if (!isTeacher) {
+            if ((chapterSection < startOfQuestionSection || questionIsDraggable) && lectureStarted && !isDragging) {
+                if (((chapterSection > 0 && chapterSection < startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
+                    chapterSection--;
+                    isDragging = true;
+                    assetNeedUpdate = true;
+                } else if ((questionIsDraggable || chapterSection < startOfQuestionSection - 1) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
+                    if (chapterSection != startOfQuestionSection - 1) {
+                        chapterSection++;
+                        isDragging = true;
+                        assetNeedUpdate = true;
+                    }
+                }
+            }
+        } else if (!isDragging) {
+            if (((chapterSection > startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
-            } else if ((questionIsDraggable || chapterSection < startOfQuestionSection-1) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
-                if (chapterSection != startOfQuestionSection-1) {
+            } else if ((chapterSection < lastChapterSection) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
+                if (chapterSection != startOfQuestionSection - 1) {
                     chapterSection++;
                     isDragging = true;
                     assetNeedUpdate = true;

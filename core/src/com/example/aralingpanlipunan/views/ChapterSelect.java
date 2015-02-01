@@ -48,8 +48,11 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         screenHeight = screenH;
         screenWidth = screenW;
 
-        //chapterScores = android.getScoresByStudent(loggedInUserName);
+        //TODO: Uncomment this when not in dev mode
+        //if (userType == STUDENT)
+        //    chapterScores = android.getScoresByStudent(loggedInUserName);
 
+        //TODO: Remove this when not in dev mode
         DummyAndroidInterface dummyAndroidInterface = new DummyAndroidInterface();
         chapterScores = dummyAndroidInterface.getScoresByStudent(loggedInUserName);
         

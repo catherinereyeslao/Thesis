@@ -15,6 +15,7 @@ import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 import com.example.aralingpanlipunan.views.Menu;
 import com.example.aralingpanlipunan.views.Start;
 import com.example.aralingpanlipunan.views.Student;
+import com.example.aralingpanlipunan.views.Teacher;
 
 public class Main extends ApplicationAdapter implements ApplicationListener, GestureListener, InputProcessor {
 	private static final int MENU = 0;
@@ -28,6 +29,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 	private Menu menu;
 	private Start start;
 	private Student student;
+    private Teacher teacher;
 	private AndroidInterface android;
 
 	public Main() {
@@ -65,6 +67,9 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case STUDENT:
 				student.setUp(screenW, screenH);
 				break;
+            case TEACHER:
+                teacher.setUp(screenW, screenH);
+                break;
 		}
 	}
 
@@ -81,7 +86,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 				student.display(batch);
 				break;
 			case TEACHER:
-				//TODO: SETUP VIEW FOR TEACHER
+				teacher.display(batch);
 				break;
 
 			case MINI_GAMES:
@@ -108,6 +113,10 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 				break;
 			case STUDENT:
 				student.dispose();
+                break;
+            case TEACHER:
+                teacher.dispose();
+                break;
 		}
 	}
 
@@ -134,6 +143,9 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case STUDENT:
 				student.touchDown(x, normalisedY);
 				break;
+            case TEACHER:
+                teacher.touchDown(x, normalisedY);
+                break;
 		}
 		return false;
 	}
@@ -235,6 +247,13 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					start = null;
 					triage = STUDENT;
 					break;
+                case Start.TEACHER:
+                    start.dispose();
+                    teacher = new Teacher(android);
+                    teacher.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    start = null;
+                    triage = TEACHER;
+                    break;
 				case Start.EXIT:
 					start.dispose();
 					android.exit();
@@ -242,14 +261,22 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			}
 		} else if (triage == STUDENT) {
 			student.touchUp();
-		}
+		} else if (triage == TEACHER) {
+            teacher.touchUp();
+        }
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if (triage == STUDENT)
-			student.touchDragged(screenX);
+		switch (triage) {
+            case STUDENT:
+                student.touchDragged(screenX);
+                break;
+            case TEACHER:
+                teacher.touchDragged(screenX);
+                break;
+        }
 		return false;
 	}
 

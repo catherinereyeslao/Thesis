@@ -418,7 +418,6 @@ public class Student extends AppView implements AppFragment, Disposable {
             case 8:
                 chapterEight.touchDragged(x);
                 break;
-            
         }
     }
 }

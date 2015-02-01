@@ -81,6 +81,8 @@ public class Start extends AppView implements AppFragment, Disposable {
     public void touchDown(float x, float y) {
         if (student.getBoundingRectangle().contains(x, y)) {
             touchedOption = STUDENT;
+        } else if (teacher.getBoundingRectangle().contains(x, y)) {
+            touchedOption = TEACHER;
         } else if (exit.getBoundingRectangle().contains(x, y)) {
             touchedOption = EXIT;
         }
@@ -89,6 +91,8 @@ public class Start extends AppView implements AppFragment, Disposable {
     public int touchUp(int x, int y) {
         if (student.getBoundingRectangle().contains(x, y) && touchedOption == STUDENT) {
             return STUDENT;
+        } else if (teacher.getBoundingRectangle().contains(x, y) && touchedOption == TEACHER) {
+            return TEACHER;
         } else if (exit.getBoundingRectangle().contains(x, y) && touchedOption == EXIT) {
             return EXIT;
         } else {

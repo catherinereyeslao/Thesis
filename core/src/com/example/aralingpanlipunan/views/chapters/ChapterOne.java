@@ -16,7 +16,7 @@ public class ChapterOne extends ChapterCore {
     private static final String BUKIRIN = "c. BUKIRIN";
     private static final String BAYBAYIN = "d. Baybayin";
 
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
@@ -27,12 +27,23 @@ public class ChapterOne extends ChapterCore {
         super(androidInterface, studentName);
     }
 
+    public ChapterOne(AndroidInterface android, boolean isTeacher) {
+        super(android, isTeacher);
+    }
+
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
         screenWidth = screenW;
         screenHeight = screenH;
         startOfQuestionSection = 9;
+        lastChapterSection = 13;
+
+        // Load answer keys if user type is teacher
+        if (isTeacher) {
+            answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
+            correctAnswers = 4;
+        }
 
         currentScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score
 
@@ -351,8 +362,13 @@ public class ChapterOne extends ChapterCore {
                 lungsod1sound.stop();
                 break;
             case 9:
-                imageQuestion.setAlpha(1);
-                backgroundSprite.setTexture(questionBg);
+                if (isTeacher) {
+                    backgroundSprite.setTexture(answer1Texture);
+                } else {
+                    imageQuestion.setAlpha(1);
+                    backgroundSprite.setTexture(questionBg);
+                }
+
                 lungsod2sound.stop();
                 questionStarted = true;
                 break;
@@ -398,7 +414,7 @@ public class ChapterOne extends ChapterCore {
 
         if (chapterSection < startOfQuestionSection) {
             renderSharedAssets(batch);
-        } else if (chapterSection >= startOfQuestionSection && chapterSection < 13) {
+        } else if (chapterSection >= startOfQuestionSection && chapterSection < 13 && !isTeacher) {
             question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
             answer1.draw(batch, LUNGSOD, answerX, answerY);
             answer2.draw(batch, BUKIRIN, answer2X, answer2Y);
