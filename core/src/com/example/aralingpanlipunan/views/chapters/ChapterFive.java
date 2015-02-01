@@ -31,7 +31,7 @@ public class ChapterFive extends ChapterCore {
 		lastChapterSection = 10;
         characterSpeed = getCharacterVelocityByScreen();
 		gameBg = new Texture("chapters/chapter5/backgrounds/question.jpg");
-        boxTexture = new Texture("chapters/chapter5/box.png");
+        boxTexture = new Texture("box.png");
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
