@@ -383,5 +383,6 @@ public class ChapterEight extends ChapterCore{
 
         nextTexture.dispose();
         dancerAtlas.dispose();
+        readerAtlas.dispose();
 	}
 }
