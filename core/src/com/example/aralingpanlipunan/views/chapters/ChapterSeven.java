@@ -226,7 +226,7 @@ public class ChapterSeven extends ChapterCore {
     @Override
     public int touchDown(float x, float y) {
         if (chapterSection == lastChapterSection)
-            return displayLastSectionButtons(5, 3, x, y);
+            return displayLastSectionButtons(7, 3, x, y);
 
         if (chapterSection >= startOfQuestionSection) {
             if (next.getBoundingRectangle().contains(x, y)) {
