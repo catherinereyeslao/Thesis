@@ -16,7 +16,7 @@ public class ChapterOne extends ChapterCore {
     private static final String BUKIRIN = "c. BUKIRIN";
     private static final String BAYBAYIN = "d. Baybayin";
 
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
     private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
@@ -42,10 +42,17 @@ public class ChapterOne extends ChapterCore {
         // Load answer keys if user type is teacher
         if (isTeacher) {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
+            //TODO: replace these with correct answer keys, to be provided by Charitie
+            answer2Texture = new Texture("chapters/chapter1/answerkeys/answer2.jpg");
+            answer3Texture = new Texture("chapters/chapter1/answerkeys/answer3.jpg");
+            answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpeg");
             correctAnswers = 4;
         }
 
-        currentScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score
+        if (!isTeacher)
+            currentScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score
+        else
+            currentScore = 5; // If teacher, no need to count score, they are always perfect!
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         baybayin1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
@@ -368,20 +375,27 @@ public class ChapterOne extends ChapterCore {
                     imageQuestion.setAlpha(1);
                     backgroundSprite.setTexture(questionBg);
                 }
-
                 lungsod2sound.stop();
                 questionStarted = true;
                 break;
             case 10:
+                if (isTeacher)
+                    backgroundSprite.setTexture(answer2Texture);
                 imageQuestion.setTexture(kabundukanBg);
                 break;
             case 11:
+                if (isTeacher)
+                    backgroundSprite.setTexture(answer3Texture);
                 imageQuestion.setTexture(lungsodBg);
                 break;
             case 12:
+                if (isTeacher)
+                    backgroundSprite.setTexture(answer4Texture);
                 imageQuestion.setTexture(kabukirinBg);
                 break;
             case 13:
+                if (isTeacher)
+                    backgroundSprite.setTexture(questionBg);
                 imageQuestion.setAlpha(0);
                 questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
                 tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
@@ -422,7 +436,8 @@ public class ChapterOne extends ChapterCore {
             answer4.draw(batch, KABUNDUKAN, answer4X, answer4Y);
             imageQuestion.draw(batch);
         } else if (chapterSection == 13) {
-            question.drawMultiLine(batch, tanong, questionX, questionY, screenWidth * 0.65f, BitmapFont.HAlignment.CENTER);
+            if (!isTeacher)
+                question.drawMultiLine(batch, tanong, questionX, questionY, screenWidth * 0.65f, BitmapFont.HAlignment.CENTER);
             startQuiz.draw(batch);
             backToChapters.draw(batch);
         }
