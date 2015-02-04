@@ -205,26 +205,16 @@ public class ChapterEleven extends ChapterCore {
 	@Override
 	public void dispose() {
 		
-		introBg = new Texture(
-				"chapters/chapter11/backgrounds/IntroForChapter11.png");
-		kalayaanBg = new Texture(
-				"chapters/chapter11/backgrounds/Araw ng kalayaan.png");
-		amaBg = new Texture(
-				"chapters/chapter11/backgrounds/Araw ng mga ama.png");
-		guroBg = new Texture(
-				"chapters/chapter11/backgrounds/Araw ng mga guro.png");
-		inaBg = new Texture(
-				"chapters/chapter11/backgrounds/Araw ng mga ina.png");
-		pusoBg = new Texture(
-				"chapters/chapter11/backgrounds/Araw ng mga puso.png");
-		mahalNaArawBg = new Texture(
-				"chapters/chapter11/backgrounds/Mahal na araw.png");
-		paskoBg = new Texture(
-				"chapters/chapter11/backgrounds/Pasko.png");
-		pistaBg = new Texture(
-				"chapters/chapter11/backgrounds/Pista.png");
-		santacruzanBg = new Texture(
-				"chapters/chapter11/backgrounds/Santacruzan.png");
+		introBg.dispose();
+		kalayaanBg.dispose();
+		amaBg.dispose();
+		guroBg.dispose();
+		inaBg.dispose();
+		pusoBg.dispose();
+		mahalNaArawBg.dispose();
+		paskoBg.dispose();
+		pistaBg.dispose();
+		santacruzanBg.dispose();
 		
 		//balloons
 		introBalloon1.dispose();
