@@ -14,6 +14,8 @@ import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
 
+import java.security.InvalidParameterException;
+
 public abstract class ChapterCore extends AppView implements AppFragment, Disposable {
     protected AndroidInterface android;
     protected TextureAtlas girlAtlas;
@@ -27,7 +29,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture;
     protected BitmapFont question;
-    protected int currentScore = 0;
+    protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
@@ -36,6 +38,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     public ChapterCore(AndroidInterface androidInterface, boolean isTeacher) {
+        if (!isTeacher)
+            throw new InvalidParameterException("2nd parameter can only be true or student name");
         this.isTeacher = true;
         this.android = androidInterface;
     }
@@ -213,7 +217,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param chapter String The name of the database table to update the chapter record after the game
      */
     protected void saveProgress(String chapter) {
-        if (correctAnswers > currentScore) {
+        if (correctAnswers > currentRecordedScore) {
             try {
                 android.setStudentScore(loggedInStudent, chapter, correctAnswers);
                 android.showToast("Your progress has been saved", 1);

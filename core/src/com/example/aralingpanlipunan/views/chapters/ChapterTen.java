@@ -85,7 +85,6 @@ public class ChapterTen extends ChapterCore {
 	}
 
 	private void assetManager() {
-		// TODO Auto-generated method stub
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);

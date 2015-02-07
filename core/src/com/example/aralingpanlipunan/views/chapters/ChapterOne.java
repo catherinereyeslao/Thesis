@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
-import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
+import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_ONE_SCORE;
 
 public class ChapterOne extends ChapterCore {
     private static final String LUNGSOD = "a. Lungsod";
@@ -39,7 +39,7 @@ public class ChapterOne extends ChapterCore {
         startOfQuestionSection = 9;
         lastChapterSection = 13;
 
-        // Load answer keys if user type is teacher
+        // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
             //TODO: replace these with correct answer keys, to be provided by Charitie
@@ -47,12 +47,9 @@ public class ChapterOne extends ChapterCore {
             answer3Texture = new Texture("chapters/chapter1/answerkeys/answer3.jpg");
             answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpeg");
             correctAnswers = 4;
-        }
-
-        if (!isTeacher)
-            currentScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score
-        else
-            currentScore = 5; // If teacher, no need to count score, they are always perfect!
+            currentRecordedScore = 5;
+        } else
+            currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score from db
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         baybayin1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
@@ -192,7 +189,7 @@ public class ChapterOne extends ChapterCore {
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
                 break;
-            case 9:
+            case 9: // Start of game
                 if (ans1.getBoundingRectangle().contains(x, y)) {
                     chapterSection++;
                     assetNeedUpdate = true;
@@ -274,6 +271,10 @@ public class ChapterOne extends ChapterCore {
         return 100;
     }
 
+    /**
+     * When the sound button is clicked, the appropriate
+     * sound is played according to current chapter section
+     */
     private void playSoundForSection() {
         switch (chapterSection) {
             case 0:
@@ -368,7 +369,7 @@ public class ChapterOne extends ChapterCore {
                 balloonSprite.setTexture(lungsod2Texture);
                 lungsod1sound.stop();
                 break;
-            case 9:
+            case 9: // Start of game
                 if (isTeacher) {
                     backgroundSprite.setTexture(answer1Texture);
                 } else {
@@ -399,7 +400,7 @@ public class ChapterOne extends ChapterCore {
                 imageQuestion.setAlpha(0);
                 questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
                 tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
-                saveProgress(DatabaseSetup.CHAPTER_ONE_SCORE);
+                saveProgress(CHAPTER_ONE_SCORE);
                 backToChapters.setPosition(
                         screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
                         screenHeight / 4.2f

@@ -27,7 +27,7 @@ public class ChapterThree extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 15;
 		lastChapterSection = 16;
-		currentScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
+		currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
 
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");

@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
-import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
+import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_TWO_SCORE;
 
 public class ChapterTwo extends ChapterCore {
     private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture, question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
@@ -34,9 +34,9 @@ public class ChapterTwo extends ChapterCore {
         super.setUp(screenW, screenH);
 
         if (!isTeacher)
-            currentScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
+            currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
         else
-            currentScore = correctAnswers = 10; // If teacher, no need to count score, they are always perfect!
+            currentRecordedScore = correctAnswers = 10; // If teacher, no need to count score, they are always perfect!
 
         startOfQuestionSection = 12;
         lastChapterSection = isTeacher ? 17 : 20; // If teacher, last section is 16, 20 if student
@@ -345,7 +345,7 @@ public class ChapterTwo extends ChapterCore {
                 break;
             case 17:
                 if (isTeacher)
-                    displayQuizResult(DatabaseSetup.CHAPTER_TWO_SCORE, 4);
+                    displayQuizResult(CHAPTER_TWO_SCORE, 4);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG LUZON?";
                 ans2Char = "b. Gitnang Bahagi";
                 ans2.setSize(answer2.getBounds(ans2Char).width, answer2.getBounds(ans2Char).height);
@@ -375,7 +375,7 @@ public class ChapterTwo extends ChapterCore {
                 }
                 startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
                 backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-                saveProgress(DatabaseSetup.CHAPTER_TWO_SCORE);
+                saveProgress(CHAPTER_TWO_SCORE);
                 break;
         }
         assetNeedUpdate = false;
