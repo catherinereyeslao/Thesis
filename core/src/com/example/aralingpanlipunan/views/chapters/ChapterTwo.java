@@ -11,7 +11,7 @@ import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterTwo extends ChapterCore {
-    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture, question1Bg;
+    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture, question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
     private Sound tingSound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
@@ -25,12 +25,21 @@ public class ChapterTwo extends ChapterCore {
         super(androidInterface, studName);
     }
 
+    public ChapterTwo(AndroidInterface androidInterface, boolean isTeacher) {
+        super(androidInterface, isTeacher);
+    }
+
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-        currentScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
+
+        if (!isTeacher)
+            currentScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
+        else
+            currentScore = correctAnswers = 10; // If teacher, no need to count score, they are always perfect!
+
         startOfQuestionSection = 12;
-        lastChapterSection = 20;
+        lastChapterSection = isTeacher ? 17 : 20; // If teacher, last section is 16, 20 if student
         tanong = "SAANG DAKO NG PILIPINAS MATAGTAGPUAN ANG SULU?";
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
@@ -48,6 +57,10 @@ public class ChapterTwo extends ChapterCore {
         map3BalloonTexture = new Texture("chapters/chapter2/balloons/map3.png");
         map4BalloonTexture = new Texture("chapters/chapter2/balloons/map4.png");
         question1Bg = new Texture("chapters/chapter2/backgrounds/game1.jpg");
+        ansKey1Texture = new Texture("chapters/chapter2/answerkeys/anskey1.jpg");
+        ansKey2Texture = new Texture("chapters/chapter2/answerkeys/anskey2.jpg");
+        ansKey3Texture = new Texture("chapters/chapter2/answerkeys/anskey3.jpg");
+        ansKey4Texture = new Texture("chapters/chapter2/answerkeys/anskey4.jpg");
 
         tingSound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/ting.mp3"));
 
@@ -101,7 +114,7 @@ public class ChapterTwo extends ChapterCore {
         if (assetNeedUpdate) assetManager();
         renderSharedAssets(batch);
 
-        if (chapterSection > 12) {
+        if (!isTeacher && chapterSection > 12) {
             question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
             answer1.draw(batch, ans1Char, answerX, answerY);
             answer2.draw(batch, ans2Char, answer2X, answer2Y);
@@ -130,6 +143,10 @@ public class ChapterTwo extends ChapterCore {
         map2BalloonTexture.dispose();
         map3BalloonTexture.dispose();
         map4BalloonTexture.dispose();
+        ansKey1Texture.dispose();
+        ansKey2Texture.dispose();
+        ansKey3Texture.dispose();
+        ansKey4Texture.dispose();
     }
 
     @Override
@@ -210,6 +227,8 @@ public class ChapterTwo extends ChapterCore {
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
+                if (isTeacher)
+                    return displayLastSectionButtons(2, 4, x, y);
                 break;
             case 18:
                 touched = answerTouchListener(x, y);
@@ -303,19 +322,30 @@ public class ChapterTwo extends ChapterCore {
                 answer4.setColor(1, 1, 1, 1);
                 break;
             case 13:
-                backgroundSprite.setTexture(questionBg);
+                if (isTeacher)
+                    backgroundSprite.setTexture(ansKey1Texture);
+                else
+                    backgroundSprite.setTexture(questionBg);
                 tanong = "SAANG DAKO NG PILIPINAS MATAGTAGPUAN ANG BATANES?";
                 break;
             case 14:
+                if (isTeacher)
+                    backgroundSprite.setTexture(ansKey2Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG SULU?";
                 break;
             case 15:
+                if (isTeacher)
+                    backgroundSprite.setTexture(ansKey3Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG DAGAT NG PILIPINAS?";
                 break;
             case 16:
+                if (isTeacher)
+                    backgroundSprite.setTexture(ansKey4Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG KARAGATANG PASIPIKO?";
                 break;
             case 17:
+                if (isTeacher)
+                    displayQuizResult(DatabaseSetup.CHAPTER_TWO_SCORE, 4);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG LUZON?";
                 ans2Char = "b. Gitnang Bahagi";
                 ans2.setSize(answer2.getBounds(ans2Char).width, answer2.getBounds(ans2Char).height);

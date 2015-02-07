@@ -17,8 +17,11 @@ public class ChapterNine extends ChapterCore {
 
 	public ChapterNine(AndroidInterface androidInterface, String studName) {
 		super(androidInterface, studName);
-		// TODO Auto-generated constructor stub
 	}
+
+    public ChapterNine(AndroidInterface androidInterface, boolean isTeacher) {
+        super(androidInterface, isTeacher);
+    }
 
 	@Override
 	public void setUp(int screenW, int screenH) {

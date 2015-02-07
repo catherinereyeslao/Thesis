@@ -187,11 +187,12 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if (triage == STUDENT) {
-			student.keyDown(keycode);
-		}
+        // Only student can type in keyboard for log in
+        if (triage == STUDENT)
+            student.keyDown(keycode);
+
 		// If back button is pushed in android
-		if (android != null && keycode == 4) {
+		if (keycode == 4) {
 			switch (triage) {
 				case MENU:
 					menu.dispose();
@@ -212,6 +213,15 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 						triage = START;
 					}
 					break;
+                case TEACHER:
+                    if (teacher.keyDown(keycode) == 1) {
+                        teacher.dispose();
+                        teacher = null;
+                        start = new Start();
+                        start.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                        triage = START;
+                    }
+                    break;
 			}
 		}
 		return false;
@@ -249,7 +259,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					break;
                 case Start.TEACHER:
                     start.dispose();
-                    teacher = new Teacher(android);
+                    teacher = new Teacher(android, true);
                     teacher.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                     start = null;
                     triage = TEACHER;

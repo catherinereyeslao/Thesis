@@ -15,6 +15,10 @@ public class ChapterFour extends ChapterCore {
         super(androidInterface, studentName);
     }
 
+    public ChapterFour(AndroidInterface androidInterface, boolean isTeacher) {
+        super(androidInterface, isTeacher);
+    }
+
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);

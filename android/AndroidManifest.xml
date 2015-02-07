@@ -6,6 +6,7 @@
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="21" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <application
         android:allowBackup="true"
