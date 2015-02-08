@@ -110,6 +110,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionY = (screenH - (screenH / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
 
         introBalloonTexture.dispose();
+        assetNeedUpdate = true;
     }
 
     @Override
