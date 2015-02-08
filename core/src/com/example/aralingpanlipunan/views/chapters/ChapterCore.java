@@ -170,7 +170,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             if (backToChapters.getBoundingRectangle().contains(x, y))
                 return 500;
         }
-        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
+        if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
             chapterSection++;
             assetNeedUpdate = true;
         }
