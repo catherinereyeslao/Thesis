@@ -16,8 +16,8 @@ public class ChapterNine extends ChapterCore {
 			bontocBalloon3, ifugaoBalloon1, ifugaoBalloon2, ifugaoBalloon3,
 			sulodBalloon1, sulodBalloon2, sulodBalloon3, sulodBalloon4, 
 			tboliBalloon1, tboliBalloon2, tboliBalloon3, tboliBalloon4, question1Bg,
-            question2Bg, question3Bg, ansMarkerTexture, nextTexture;
-    private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5, ansMarker6, ansMarker7, ansMarker8, next;
+            question2Bg, question3Bg, ansMarkerTexture;
+    private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5, ansMarker6, ansMarker7, ansMarker8;
     private boolean ansMarkerTouched, ansMarker6Touched, ansMarker7Touched;
 
 
@@ -138,13 +138,7 @@ public class ChapterNine extends ChapterCore {
             ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
             ansMarker8.setAlpha(0);
 
-            nextTexture = new Texture("buttons/enter.png");
-            next = new Sprite(nextTexture);
-            next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
-            final float nextX = (screenWidth / 1.4f);
-            final float nextY = next.getHeight() / 10;
-            next.setPosition(nextX, nextY);
-            next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
+            loadNextButton();
 
             currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(8); // Get Chapter9 score from db
         }
@@ -159,7 +153,7 @@ public class ChapterNine extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-        if (chapterSection >= startOfQuestionSection && chapterSection != lastChapterSection) {
+        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection != lastChapterSection) {
             ansMarker.draw(batch);
             ansMarker2.draw(batch);
             ansMarker3.draw(batch);
@@ -195,11 +189,9 @@ public class ChapterNine extends ChapterCore {
 			balloonSprite.setTexture(atiBalloon1);
 			break;
 		case 3:
-			
 			balloonSprite.setTexture(atiBalloon2);
 			break;
 		case 4:
-			
 			balloonSprite.setTexture(atiBalloon3);
 			break;
 		case 5:
@@ -265,136 +257,142 @@ public class ChapterNine extends ChapterCore {
 			balloonSprite.setTexture(tboliBalloon4);
 			break;
         case 24: // Start of question
-            ansMarkerX = (screenWidth / 1.5f) - (ansMarker.getWidth() / 2);
-            ansMarkerY = (screenHeight / 1.43f) - (ansMarker.getHeight() / 2);
-            ansMarker.setPosition(ansMarkerX, ansMarkerY);
-            ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
+            if (!isTeacher) {
+                ansMarkerX = (screenWidth / 1.5f) - (ansMarker.getWidth() / 2);
+                ansMarkerY = (screenHeight / 1.43f) - (ansMarker.getHeight() / 2);
+                ansMarker.setPosition(ansMarkerX, ansMarkerY);
+                ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker2Y = (screenHeight / 1.537f) - (ansMarker.getHeight() / 2);
-            ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
-            ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker2Y = (screenHeight / 1.537f) - (ansMarker.getHeight() / 2);
+                ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
+                ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker3Y = (screenHeight / 1.69f) - (ansMarker.getHeight() / 2);
-            ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
-            ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker3Y = (screenHeight / 1.69f) - (ansMarker.getHeight() / 2);
+                ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
+                ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker4Y = (screenHeight / 1.855f) - (ansMarker.getHeight() / 2);
-            ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
-            ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker4Y = (screenHeight / 1.855f) - (ansMarker.getHeight() / 2);
+                ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
+                ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker5Y = (screenHeight / 2.345f) - (ansMarker.getHeight() / 2);
-            ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
-            ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker5Y = (screenHeight / 2.345f) - (ansMarker.getHeight() / 2);
+                ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
+                ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker6Y = (screenHeight / 2.62f) - (ansMarker.getHeight() / 2);
-            ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
-            ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker6Y = (screenHeight / 2.62f) - (ansMarker.getHeight() / 2);
+                ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
+                ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker7Y = (screenHeight / 3.1f) - (ansMarker.getHeight() / 2);
-            ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
-            ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker7Y = (screenHeight / 3.1f) - (ansMarker.getHeight() / 2);
+                ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
+                ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
 
-            ansMarker8Y = (screenHeight / 3.645f) - (ansMarker.getHeight() / 2);
-            ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
-            ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker8Y = (screenHeight / 3.645f) - (ansMarker.getHeight() / 2);
+                ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
+                ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
+            }
 
             backgroundSprite.setTexture(question1Bg);
             break;
         case 25:
-            if (ansMarkerTouched)
-                correctAnswers++;
-            if (ansMarker6Touched)
-                correctAnswers++;
+            if (!isTeacher) {
+                if (ansMarkerTouched)
+                    correctAnswers++;
+                if (ansMarker6Touched)
+                    correctAnswers++;
 
-            ansMarkerX = (screenWidth / 1.4f) - (ansMarker.getWidth() / 2);
-            ansMarkerY = (screenHeight / 1.182f) - (ansMarker.getHeight() / 2);
-            ansMarker.setPosition(ansMarkerX, ansMarkerY);
-            ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker.setAlpha(0);
+                ansMarkerX = (screenWidth / 1.4f) - (ansMarker.getWidth() / 2);
+                ansMarkerY = (screenHeight / 1.182f) - (ansMarker.getHeight() / 2);
+                ansMarker.setPosition(ansMarkerX, ansMarkerY);
+                ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker.setAlpha(0);
 
-            ansMarker2Y = (screenHeight / 1.255f) - (ansMarker.getHeight() / 2);
-            ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
-            ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker2.setAlpha(0);
+                ansMarker2Y = (screenHeight / 1.255f) - (ansMarker.getHeight() / 2);
+                ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
+                ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker2.setAlpha(0);
 
-            ansMarker3Y = (screenHeight / 1.3681f) - (ansMarker.getHeight() / 2);
-            ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
-            ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker3.setAlpha(0);
+                ansMarker3Y = (screenHeight / 1.3681f) - (ansMarker.getHeight() / 2);
+                ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
+                ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker3.setAlpha(0);
 
-            ansMarker4Y = (screenHeight / 1.4545f) - (ansMarker.getHeight() / 2);
-            ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
-            ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker4.setAlpha(0);
+                ansMarker4Y = (screenHeight / 1.4545f) - (ansMarker.getHeight() / 2);
+                ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
+                ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker4.setAlpha(0);
 
-            ansMarker5Y = (screenHeight / 1.9f) - (ansMarker.getHeight() / 2);
-            ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
-            ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker5.setAlpha(0);
+                ansMarker5Y = (screenHeight / 1.9f) - (ansMarker.getHeight() / 2);
+                ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
+                ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker5.setAlpha(0);
 
-            ansMarker6Y = (screenHeight / 2.11f) - (ansMarker.getHeight() / 2);
-            ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
-            ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker6.setAlpha(0);
+                ansMarker6Y = (screenHeight / 2.11f) - (ansMarker.getHeight() / 2);
+                ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
+                ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker6.setAlpha(0);
 
-            ansMarker7Y = (screenHeight / 2.36f) - (ansMarker.getHeight() / 2);
-            ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
-            ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker7.setAlpha(0);
+                ansMarker7Y = (screenHeight / 2.36f) - (ansMarker.getHeight() / 2);
+                ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
+                ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker7.setAlpha(0);
 
-            ansMarker8Y = (screenHeight / 2.78f) - (ansMarker.getHeight() / 2);
-            ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
-            ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker8.setAlpha(0);
+                ansMarker8Y = (screenHeight / 2.78f) - (ansMarker.getHeight() / 2);
+                ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
+                ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker8.setAlpha(0);
+            }
 
             backgroundSprite.setTexture(question2Bg);
             break;
         case 26:
-            if (ansMarkerTouched)
-                correctAnswers++;
-            if (ansMarker7Touched)
-                correctAnswers++;
+            if (!isTeacher) {
+                if (ansMarkerTouched)
+                    correctAnswers++;
+                if (ansMarker7Touched)
+                    correctAnswers++;
 
-            ansMarkerX = (screenWidth / 1.427f) - (ansMarker.getWidth() / 2);
-            ansMarkerY = (screenHeight / 1.182f) - (ansMarker.getHeight() / 2);
-            ansMarker.setPosition(ansMarkerX, ansMarkerY);
-            ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker.setAlpha(0);
+                ansMarkerX = (screenWidth / 1.427f) - (ansMarker.getWidth() / 2);
+                ansMarkerY = (screenHeight / 1.182f) - (ansMarker.getHeight() / 2);
+                ansMarker.setPosition(ansMarkerX, ansMarkerY);
+                ansMarker.setBounds(ansMarkerX, ansMarkerY, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker.setAlpha(0);
 
-            ansMarker2Y = (screenHeight / 1.255f) - (ansMarker.getHeight() / 2);
-            ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
-            ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker2.setAlpha(0);
+                ansMarker2Y = (screenHeight / 1.255f) - (ansMarker.getHeight() / 2);
+                ansMarker2.setPosition(ansMarkerX, ansMarker2Y);
+                ansMarker2.setBounds(ansMarkerX, ansMarker2Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker2.setAlpha(0);
 
-            ansMarker3Y = (screenHeight / 1.3681f) - (ansMarker.getHeight() / 2);
-            ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
-            ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker3.setAlpha(0);
+                ansMarker3Y = (screenHeight / 1.3681f) - (ansMarker.getHeight() / 2);
+                ansMarker3.setPosition(ansMarkerX, ansMarker3Y);
+                ansMarker3.setBounds(ansMarkerX, ansMarker3Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker3.setAlpha(0);
 
-            ansMarker4Y = (screenHeight / 1.4545f) - (ansMarker.getHeight() / 2);
-            ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
-            ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker4.setAlpha(0);
+                ansMarker4Y = (screenHeight / 1.4545f) - (ansMarker.getHeight() / 2);
+                ansMarker4.setPosition(ansMarkerX, ansMarker4Y);
+                ansMarker4.setBounds(ansMarkerX, ansMarker4Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker4.setAlpha(0);
 
-            ansMarker5Y = (screenHeight / 2.11f) - (ansMarker.getHeight() / 2);
-            ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
-            ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker5.setAlpha(0);
+                ansMarker5Y = (screenHeight / 2.11f) - (ansMarker.getHeight() / 2);
+                ansMarker5.setPosition(ansMarkerX, ansMarker5Y);
+                ansMarker5.setBounds(ansMarkerX, ansMarker5Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker5.setAlpha(0);
 
-            ansMarker6Y = (screenHeight / 2.36f) - (ansMarker.getHeight() / 2);
-            ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
-            ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker6.setAlpha(0);
+                ansMarker6Y = (screenHeight / 2.36f) - (ansMarker.getHeight() / 2);
+                ansMarker6.setPosition(ansMarkerX, ansMarker6Y);
+                ansMarker6.setBounds(ansMarkerX, ansMarker6Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker6.setAlpha(0);
 
-            ansMarker7Y = (screenHeight / 2.78f) - (ansMarker.getHeight() / 2);
-            ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
-            ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker7.setAlpha(0);
+                ansMarker7Y = (screenHeight / 2.78f) - (ansMarker.getHeight() / 2);
+                ansMarker7.setPosition(ansMarkerX, ansMarker7Y);
+                ansMarker7.setBounds(ansMarkerX, ansMarker7Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker7.setAlpha(0);
 
-            ansMarker8Y = (screenHeight / 3.227f) - (ansMarker.getHeight() / 2);
-            ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
-            ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
-            ansMarker8.setAlpha(0);
+                ansMarker8Y = (screenHeight / 3.227f) - (ansMarker.getHeight() / 2);
+                ansMarker8.setPosition(ansMarkerX, ansMarker8Y);
+                ansMarker8.setBounds(ansMarkerX, ansMarker8Y, ansMarker.getWidth(), ansMarker.getHeight());
+                ansMarker8.setAlpha(0);
+            }
 
             backgroundSprite.setTexture(question3Bg);
             break;
@@ -411,11 +409,6 @@ public class ChapterNine extends ChapterCore {
             return displayLastSectionButtons(9, 3, x, y);
 
         if (chapterSection >= startOfQuestionSection && !isTeacher) {
-            if (next.getBoundingRectangle().contains(x, y)) {
-                chapterSection++;
-                assetNeedUpdate = true;
-            }
-
             if (ansMarker.getBoundingRectangle().contains(x, y)) {
                 ansMarker.setAlpha(1);
                 ansMarker2.setAlpha(0);
@@ -510,11 +503,13 @@ public class ChapterNine extends ChapterCore {
         tboliBalloon2.dispose();
         tboliBalloon3.dispose();
         tboliBalloon4.dispose();
+
         question1Bg.dispose();
         question2Bg.dispose();
         question3Bg.dispose();
-        ansMarkerTexture.dispose();
-        nextTexture.dispose();
+        if (!isTeacher) {
+            ansMarkerTexture.dispose();
+        }
 	}
 
 }

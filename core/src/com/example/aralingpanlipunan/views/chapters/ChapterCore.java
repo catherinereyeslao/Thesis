@@ -20,14 +20,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected AndroidInterface android;
     protected TextureAtlas girlAtlas;
     protected Animation girlAnimation;
-    protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz;
+    protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz, next;
     protected String loggedInStudent;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
     protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, isTeacher = false;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture;
+    protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture, nextTexture;
     protected BitmapFont question;
     protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
@@ -119,6 +119,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         startQuizTexture.dispose();
         backToChapterTexture.dispose();
         questionBg.dispose();
+        if (nextTexture != null)
+            nextTexture.dispose();
     }
 
     /**
@@ -168,6 +170,10 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             if (backToChapters.getBoundingRectangle().contains(x, y))
                 return 500;
         }
+        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
+            chapterSection++;
+            assetNeedUpdate = true;
+        }
         return 100;
     }
 
@@ -192,7 +198,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 }
             }
         } else if (!isDragging) {
-            if (((chapterSection > startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
+            if (slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
@@ -252,7 +258,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     /**
-     * Display the last 2 buttons at the end of the quiz. User will be able to retake the quiz
+     * Set touch listeners for the last 2 buttons at the end of the quiz. User will be able to retake the quiz
      * if they failed. If passed, they'll have the option to take the next chapter
      * @param currentChapNum int Current Chapter number
      * @param x float The x coordinate of touched screen
@@ -297,5 +303,21 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             default:
                 return 2.2f;
         }
+    }
+
+    /**
+     * Loads the next/enter button which will be located in
+     * lower right screen when taking the chapter quiz/game
+     * Make sure to call next.draw(batch) in the display method
+     * during the quiz/game section
+     */
+    protected void loadNextButton() {
+        nextTexture = new Texture("buttons/enter.png");
+        next = new Sprite(nextTexture);
+        next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
+        final float nextX = (screenWidth / 1.4f);
+        final float nextY = next.getHeight() / 10;
+        next.setPosition(nextX, nextY);
+        next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
     }
 }
