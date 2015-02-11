@@ -9,6 +9,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterTwelve extends ChapterCore {
     private Texture pagPintaTexture, panitikanTexture, sayawTexture, introTexture, musikaTexture, question1Texture, question2Texture, intro1Balloon, intro2Balloon, musika1Balloon, musika2Balloon, musika3Balloon, musika4Balloon, pagpinta1Balloon, pagpinta2Balloon, panitikan1Balloon, panitikan2Balloon, panitikan3Balloon, panitikan4Balloon, panitikan5Balloon, panitikan6Balloon, sayaw1Balloon, sayaw2Balloon, sayaw3Balloon, ansMarkerTexture;
     private Sprite ans1A, ans1B, ans1C, ans1D, ans2A, ans2B, ans2C, ans2D, ans3A, ans3B, ans3C, ans3D, ans4A, ans4B, ans4C, ans4D;
+    private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct, ans6Correct, ans7Correct;
 
     public ChapterTwelve(AndroidInterface androidInterface, String studentName) {
         super(androidInterface, studentName);
@@ -51,8 +52,9 @@ public class ChapterTwelve extends ChapterCore {
         sayaw3Balloon = new Texture("chapters/chapter12/balloons/sayaw3.png");
 
         if (isTeacher) {
-            question1Texture = new Texture("chapters/chapter12/answerleys/answer1.jpg");
-            question2Texture = new Texture("chapters/chapter12/answerleys/answer2.jpg");
+            question1Texture = new Texture("chapters/chapter12/answerkeys/answer1.jpg");
+            question2Texture = new Texture("chapters/chapter12/answerkeys/answer2.jpg");
+            correctAnswers = currentRecordedScore = 7;
         } else {
             question1Texture = new Texture("chapters/chapter12/backgrounds/question1.jpg");
             question2Texture = new Texture("chapters/chapter12/backgrounds/question2.jpg");
@@ -105,7 +107,9 @@ public class ChapterTwelve extends ChapterCore {
 
             ans4D = new Sprite(ansMarkerTexture);
             ans4D.setSize(ans1A.getWidth(), ans1A.getHeight());
+            loadNextButton();
         }
+        assetNeedUpdate = true;
     }
 
     @Override
@@ -131,6 +135,13 @@ public class ChapterTwelve extends ChapterCore {
             ans4B.draw(batch);
             ans4C.draw(batch);
             ans4D.draw(batch);
+            next.draw(batch);
+        }
+
+        if (chapterSection == lastChapterSection) {
+            question.drawMultiLine(batch, tanong, questionX, questionY);
+            startQuiz.draw(batch);
+            backToChapters.draw(batch);
         }
     }
 
@@ -199,69 +210,169 @@ public class ChapterTwelve extends ChapterCore {
                 break;
             case 17: // Start of game/quiz
                 backgroundSprite.setTexture(question1Texture);
-                leftCol = screenWidth / 3.1f;
-                rightCol = screenWidth / 1.66f;
-                row1 = screenHeight / 1.41f;
-                row2 = screenHeight / 1.51f;
-                row3 = screenHeight / 1.75f;
-                row4 = screenHeight / 1.93f;
-                row5 = screenHeight / 2.37f;
-                row6 = screenHeight / 2.65f;
-                row7 = screenHeight / 3.618f;
-                row8 = screenHeight / 4.3f;
 
-                ans1A.setPosition(leftCol, row1);
-                ans1A.setBounds(leftCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                if (!isTeacher) {
+                    ans1Correct = ans2Correct = ans3Correct = ans4Correct = false;
+                    leftCol = screenWidth / 3.1f;
+                    rightCol = screenWidth / 1.66f;
+                    row1 = screenHeight / 1.41f;
+                    row2 = screenHeight / 1.51f;
+                    row3 = screenHeight / 1.75f;
+                    row4 = screenHeight / 1.93f;
+                    row5 = screenHeight / 2.37f;
+                    row6 = screenHeight / 2.65f;
+                    row7 = screenHeight / 3.618f;
+                    row8 = screenHeight / 4.3f;
 
-                ans1B.setPosition(leftCol, row2);
-                ans1B.setBounds(leftCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1A.setPosition(leftCol, row1);
+                    ans1A.setBounds(leftCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                    ans1A.setAlpha(0);
 
-                ans1C.setPosition(rightCol, row1);
-                ans1C.setBounds(rightCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                    ans1B.setPosition(leftCol, row2);
+                    ans1B.setBounds(leftCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1B.setAlpha(0);
 
-                ans1D.setPosition(rightCol, row2);
-                ans1D.setBounds(rightCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1C.setPosition(rightCol, row1);
+                    ans1C.setBounds(rightCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                    ans1C.setAlpha(0);
 
-                ans2A.setPosition(leftCol, row3);
-                ans2A.setBounds(leftCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans1D.setPosition(rightCol, row2);
+                    ans1D.setBounds(rightCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1D.setAlpha(0);
 
-                ans2B.setPosition(leftCol, row4);
-                ans2B.setBounds(leftCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2A.setPosition(leftCol, row3);
+                    ans2A.setBounds(leftCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans2A.setAlpha(0);
 
-                ans2C.setPosition(rightCol, row3);
-                ans2C.setBounds(rightCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans2B.setPosition(leftCol, row4);
+                    ans2B.setBounds(leftCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2B.setAlpha(0);
 
-                ans2D.setPosition(rightCol, row4);
-                ans2D.setBounds(rightCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2C.setPosition(rightCol, row3);
+                    ans2C.setBounds(rightCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans2C.setAlpha(0);
 
-                ans3A.setPosition(leftCol, row5);
-                ans3A.setBounds(leftCol, row5, ans3A.getWidth(), ans3A.getHeight());
+                    ans2D.setPosition(rightCol, row4);
+                    ans2D.setBounds(rightCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2D.setAlpha(0);
 
-                ans3B.setPosition(leftCol, row6);
-                ans3B.setBounds(leftCol, row6, ans3B.getWidth(), ans3B.getHeight());
+                    ans3A.setSize(ans1A.getWidth(), ans1A.getHeight());
+                    ans3A.setPosition(leftCol, row5);
+                    ans3A.setBounds(leftCol, row5, ans3A.getWidth(), ans3A.getHeight());
+                    ans3A.setAlpha(0);
 
-                ans3C.setPosition(rightCol, row5);
-                ans3C.setBounds(rightCol, row5, ans3A.getWidth(), ans3A.getHeight());
+                    ans3B.setSize(ans1A.getWidth(), ans1A.getHeight());
+                    ans3B.setPosition(leftCol, row6);
+                    ans3B.setBounds(leftCol, row6, ans3B.getWidth(), ans3B.getHeight());
+                    ans3B.setAlpha(0);
 
-                ans3D.setPosition(rightCol, row6);
-                ans3D.setBounds(rightCol, row6, ans3B.getWidth(), ans3B.getHeight());
+                    ans3C.setPosition(rightCol, row5);
+                    ans3C.setBounds(rightCol, row5, ans3A.getWidth(), ans3A.getHeight());
+                    ans3C.setAlpha(0);
 
-                ans4A.setPosition(leftCol, row7);
-                ans4A.setBounds(leftCol, row7, ans4A.getWidth(), ans4A.getHeight());
+                    ans3D.setPosition(rightCol, row6);
+                    ans3D.setBounds(rightCol, row6, ans3B.getWidth(), ans3B.getHeight());
+                    ans3D.setAlpha(0);
 
-                ans4B.setPosition(leftCol, row8);
-                ans4B.setBounds(leftCol, row8, ans4B.getWidth(), ans4B.getHeight());
+                    ans4A.setPosition(leftCol, row7);
+                    ans4A.setBounds(leftCol, row7, ans4A.getWidth(), ans4A.getHeight());
+                    ans4A.setAlpha(0);
 
-                ans4C.setPosition(rightCol, row7);
-                ans4C.setBounds(rightCol, row7, ans4A.getWidth(), ans4A.getHeight());
+                    ans4B.setPosition(leftCol, row8);
+                    ans4B.setBounds(leftCol, row8, ans4B.getWidth(), ans4B.getHeight());
+                    ans4B.setAlpha(0);
 
-                ans4D.setPosition(rightCol, row8);
-                ans4D.setBounds(rightCol, row8, ans4B.getWidth(), ans4B.getHeight());
+                    ans4C.setPosition(rightCol, row7);
+                    ans4C.setBounds(rightCol, row7, ans4A.getWidth(), ans4A.getHeight());
+                    ans4C.setAlpha(0);
+
+                    ans4D.setPosition(rightCol, row8);
+                    ans4D.setBounds(rightCol, row8, ans4B.getWidth(), ans4B.getHeight());
+                    ans4D.setAlpha(0);
+                }
                 break;
             case 18:
                 backgroundSprite.setTexture(question2Texture);
+
+                if (!isTeacher) {
+                    if (ans1Correct) correctAnswers++;
+                    if (ans2Correct) correctAnswers++;
+                    if (ans3Correct) correctAnswers++;
+                    if (ans4Correct) correctAnswers++;
+
+                    ans5Correct = ans6Correct = ans7Correct = false;
+                    leftCol = screenWidth / 2.95f;
+                    rightCol = screenWidth / 1.59f;
+                    row1 = screenHeight / 1.33f;
+                    row2 = screenHeight / 1.43f;
+                    row3 = screenHeight / 1.64f;
+                    row4 = screenHeight / 1.8f;
+                    row5 = screenHeight / 2.41f;
+                    row6 = screenHeight / 2.68f;
+                    row7 = screenHeight / 3.12f;
+                    row8 = screenHeight / 3.75f;
+
+                    ans1A.setPosition(leftCol, row1);
+                    ans1A.setBounds(leftCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                    ans1A.setAlpha(0);
+
+                    ans1B.setPosition(leftCol, row2);
+                    ans1B.setBounds(leftCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1B.setAlpha(0);
+
+                    ans1C.setPosition(rightCol, row1);
+                    ans1C.setBounds(rightCol, row1, ans1A.getWidth(), ans1A.getHeight());
+                    ans1C.setAlpha(0);
+
+                    ans1D.setPosition(rightCol, row2);
+                    ans1D.setBounds(rightCol, row2, ans1B.getWidth(), ans1B.getHeight());
+                    ans1D.setAlpha(0);
+
+                    ans2A.setPosition(leftCol, row3);
+                    ans2A.setBounds(leftCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans2A.setAlpha(0);
+
+                    ans2B.setPosition(leftCol, row4);
+                    ans2B.setBounds(leftCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2B.setAlpha(0);
+
+                    ans2C.setPosition(rightCol, row3);
+                    ans2C.setBounds(rightCol, row3, ans2A.getWidth(), ans2A.getHeight());
+                    ans2C.setAlpha(0);
+
+                    ans2D.setPosition(rightCol, row4);
+                    ans2D.setBounds(rightCol, row4, ans2B.getWidth(), ans2B.getHeight());
+                    ans2D.setAlpha(0);
+
+                    ans3A.setSize(ans3A.getWidth() * 1.6f, ans3A.getHeight());
+                    ans3A.setPosition(leftCol, row5);
+                    ans3A.setBounds(leftCol, row5, ans3A.getWidth(), ans3A.getHeight());
+                    ans3A.setAlpha(0);
+
+                    ans3B.setSize(ans3B.getWidth() * 1.6f, ans3B.getHeight());
+                    ans3B.setPosition(leftCol, row6);
+                    ans3B.setBounds(leftCol, row6, ans3B.getWidth(), ans3B.getHeight());
+                    ans3B.setAlpha(0);
+
+                    ans3C.setPosition(leftCol, row7);
+                    ans3C.setBounds(leftCol, row7, ans3C.getWidth(), ans3C.getHeight());
+                    ans3C.setAlpha(0);
+
+                    ans3D.setPosition(leftCol, row8);
+                    ans3D.setBounds(leftCol, row8, ans3D.getWidth(), ans3D.getHeight());
+                    ans3D.setAlpha(0);
+
+                    ans4A.setAlpha(0);
+                    ans4B.setAlpha(0);
+                    ans4C.setAlpha(0);
+                    ans4D.setAlpha(0);
+                }
                 break;
             case 19:
+                if (!isTeacher && ans5Correct) correctAnswers++;
+                if (!isTeacher && ans6Correct) correctAnswers++;
+                if (!isTeacher && ans7Correct) correctAnswers++;
+
                 displayQuizResult(CHAPTER_TWELVE_SCORE, 4);
                 break;
         }
@@ -270,7 +381,197 @@ public class ChapterTwelve extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-        //TODO: apply touch listeners for the answers here
+        if (!isTeacher) {
+            switch (chapterSection) {
+                case 17:
+                    if (ans1A.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(1);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(1);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1C.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(1);
+                        ans1D.setAlpha(0);
+                        ans1Correct = true;
+                    } else if (ans1D.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(1);
+                        ans1Correct = false;
+                    }
+
+                    if (ans2A.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(1);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2Correct = true;
+                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(1);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2C.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(1);
+                        ans2D.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2D.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(1);
+                        ans2Correct = false;
+                    }
+
+                    if (ans3A.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(1);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(0);
+                        ans3Correct = false;
+                    } else if (ans3B.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(1);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(0);
+                        ans3Correct = true;
+                    } else if (ans3C.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(1);
+                        ans3D.setAlpha(0);
+                        ans3Correct = false;
+                    } else if (ans3D.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(1);
+                        ans3Correct = false;
+                    }
+
+                    if (ans4A.getBoundingRectangle().contains(x, y)) {
+                        ans4A.setAlpha(1);
+                        ans4B.setAlpha(0);
+                        ans4C.setAlpha(0);
+                        ans4D.setAlpha(0);
+                        ans4Correct = true;
+                    } else if (ans4B.getBoundingRectangle().contains(x, y)) {
+                        ans4A.setAlpha(0);
+                        ans4B.setAlpha(1);
+                        ans4C.setAlpha(0);
+                        ans4D.setAlpha(0);
+                        ans4Correct = false;
+                    } else if (ans4C.getBoundingRectangle().contains(x, y)) {
+                        ans4A.setAlpha(0);
+                        ans4B.setAlpha(0);
+                        ans4C.setAlpha(1);
+                        ans4D.setAlpha(0);
+                        ans4Correct = false;
+                    } else if (ans4D.getBoundingRectangle().contains(x, y)) {
+                        ans4A.setAlpha(0);
+                        ans4B.setAlpha(0);
+                        ans4C.setAlpha(0);
+                        ans4D.setAlpha(1);
+                        ans4Correct = false;
+                    }
+                    break;
+                case 18:
+                    if (ans1A.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(1);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans5Correct = false;
+                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(1);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans5Correct = true;
+                    } else if (ans1C.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(1);
+                        ans1D.setAlpha(0);
+                        ans5Correct = false;
+                    } else if (ans1D.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(1);
+                        ans5Correct = false;
+                    }
+
+                    if (ans2A.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(1);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans6Correct = false;
+                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(1);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans6Correct = false;
+                    } else if (ans2C.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(1);
+                        ans2D.setAlpha(0);
+                        ans6Correct = true;
+                    } else if (ans2D.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(1);
+                        ans6Correct = false;
+                    }
+
+                    if (ans3A.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(1);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(0);
+                        ans7Correct = true;
+                    } else if (ans3B.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(1);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(0);
+                        ans7Correct = false;
+                    } else if (ans3C.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(1);
+                        ans3D.setAlpha(0);
+                        ans7Correct = false;
+                    } else if (ans3D.getBoundingRectangle().contains(x, y)) {
+                        ans3A.setAlpha(0);
+                        ans3B.setAlpha(0);
+                        ans3C.setAlpha(0);
+                        ans3D.setAlpha(1);
+                        ans7Correct = false;
+                    }
+                    break;
+            }
+        }
+
+        if (chapterSection == lastChapterSection)
+            return displayLastSectionButtons(12, 4, x, y);
         return super.touchDown(x, y);
     }
 
