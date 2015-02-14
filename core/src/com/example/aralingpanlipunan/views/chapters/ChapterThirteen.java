@@ -243,161 +243,171 @@ public class ChapterThirteen extends ChapterCore {
 			break;
         case 22: // Start of game
             backgroundSprite.setTexture(question1Bg);
-            ans1Correct = ans2Correct = false;
-            ansX = screenWidth / 1.83f;
-            ans1APos = screenHeight / 1.66f;
-            ans1BPos = screenHeight / 1.8f;
-            ans1CPos = screenHeight / 1.97f;
-            ans1DPos = screenHeight / 2.18f;
-            ans1EPos = screenHeight / 2.43f;
 
-            ans1A.setPosition(ansX, ans1APos);
-            ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
-            ans1A.setAlpha(0);
+            if (!isTeacher) {
+                ans1Correct = ans2Correct = false;
+                ansX = screenWidth / 1.83f;
+                ans1APos = screenHeight / 1.66f;
+                ans1BPos = screenHeight / 1.8f;
+                ans1CPos = screenHeight / 1.97f;
+                ans1DPos = screenHeight / 2.18f;
+                ans1EPos = screenHeight / 2.43f;
 
-            ans1B.setPosition(ansX, ans1BPos);
-            ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1B.setAlpha(0);
+                ans1A.setPosition(ansX, ans1APos);
+                ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
+                ans1A.setAlpha(0);
 
-            ans1C.setPosition(ansX, ans1CPos);
-            ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1C.setAlpha(0);
+                ans1B.setPosition(ansX, ans1BPos);
+                ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1B.setAlpha(0);
 
-            ans1D.setPosition(ansX, ans1DPos);
-            ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1D.setAlpha(0);
+                ans1C.setPosition(ansX, ans1CPos);
+                ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1C.setAlpha(0);
 
-            ans1E.setPosition(ansX, ans1EPos);
-            ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1E.setAlpha(0);
+                ans1D.setPosition(ansX, ans1DPos);
+                ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1D.setAlpha(0);
 
-            ans2A.setAlpha(0);
-            ans2B.setAlpha(0);
-            ans2C.setAlpha(0);
-            ans2D.setAlpha(0);
-            ans2E.setAlpha(0);
+                ans1E.setPosition(ansX, ans1EPos);
+                ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1E.setAlpha(0);
+
+                ans2A.setAlpha(0);
+                ans2B.setAlpha(0);
+                ans2C.setAlpha(0);
+                ans2D.setAlpha(0);
+                ans2E.setAlpha(0);
+            }
             break;
         case 23:
             backgroundSprite.setTexture(question2Bg);
-            if (ans1Correct) correctAnswers++;
-            ans1Correct = ans2Correct = false;
 
-            ansX = screenWidth / 1.86f;
-            ans1APos = screenHeight / 1.23f;
-            ans1BPos = screenHeight / 1.33f;
-            ans1CPos = screenHeight / 1.43f;
-            ans1DPos = screenHeight / 1.53f;
-            ans1EPos = screenHeight / 1.63f;
+            if (!isTeacher) {
+                if (ans1Correct) correctAnswers++;
+                ans1Correct = ans2Correct = false;
 
-            ans2APos = screenHeight / 2.18f;
-            ans2BPos = screenHeight / 2.479f;
-            ans2CPos = screenHeight / 2.8f;
-            ans2DPos = screenHeight / 3.275f;
-            ans2EPos = screenHeight / 3.71f;
+                ansX = screenWidth / 1.86f;
+                ans1APos = screenHeight / 1.23f;
+                ans1BPos = screenHeight / 1.33f;
+                ans1CPos = screenHeight / 1.43f;
+                ans1DPos = screenHeight / 1.53f;
+                ans1EPos = screenHeight / 1.63f;
 
-            ans1A.setPosition(ansX, ans1APos);
-            ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
-            ans1A.setAlpha(0);
+                ans2APos = screenHeight / 2.18f;
+                ans2BPos = screenHeight / 2.479f;
+                ans2CPos = screenHeight / 2.8f;
+                ans2DPos = screenHeight / 3.275f;
+                ans2EPos = screenHeight / 3.71f;
 
-            ans1B.setPosition(ansX, ans1BPos);
-            ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1B.setAlpha(0);
+                ans1A.setPosition(ansX, ans1APos);
+                ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
+                ans1A.setAlpha(0);
 
-            ans1C.setPosition(ansX, ans1CPos);
-            ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1C.setAlpha(0);
+                ans1B.setPosition(ansX, ans1BPos);
+                ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1B.setAlpha(0);
 
-            ans1D.setPosition(ansX, ans1DPos);
-            ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1D.setAlpha(0);
+                ans1C.setPosition(ansX, ans1CPos);
+                ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1C.setAlpha(0);
 
-            ans1E.setPosition(ansX, ans1EPos);
-            ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1E.setAlpha(0);
+                ans1D.setPosition(ansX, ans1DPos);
+                ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1D.setAlpha(0);
 
-            ans2A.setPosition(ansX, ans2APos);
-            ans2A.setBounds(ansX, ans2APos, ans1A.getWidth(), ans1A.getHeight());
-            ans2A.setAlpha(0);
+                ans1E.setPosition(ansX, ans1EPos);
+                ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1E.setAlpha(0);
 
-            ans2B.setPosition(ansX, ans2BPos);
-            ans2B.setBounds(ansX, ans2BPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2B.setAlpha(0);
+                ans2A.setPosition(ansX, ans2APos);
+                ans2A.setBounds(ansX, ans2APos, ans1A.getWidth(), ans1A.getHeight());
+                ans2A.setAlpha(0);
 
-            ans2C.setPosition(ansX, ans2CPos);
-            ans2C.setBounds(ansX, ans2CPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2C.setAlpha(0);
+                ans2B.setPosition(ansX, ans2BPos);
+                ans2B.setBounds(ansX, ans2BPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2B.setAlpha(0);
 
-            ans2D.setPosition(ansX, ans2DPos);
-            ans2D.setBounds(ansX, ans2DPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2D.setAlpha(0);
+                ans2C.setPosition(ansX, ans2CPos);
+                ans2C.setBounds(ansX, ans2CPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2C.setAlpha(0);
 
-            ans2E.setPosition(ansX, ans2EPos);
-            ans2E.setBounds(ansX, ans2EPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2E.setAlpha(0);
+                ans2D.setPosition(ansX, ans2DPos);
+                ans2D.setBounds(ansX, ans2DPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2D.setAlpha(0);
+
+                ans2E.setPosition(ansX, ans2EPos);
+                ans2E.setBounds(ansX, ans2EPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2E.setAlpha(0);
+            }
             break;
         case 24:
             backgroundSprite.setTexture(question3Bg);
-            if (ans1Correct) correctAnswers++;
-            if (ans2Correct) correctAnswers++;
-            ans1Correct = ans2Correct = false;
 
-            ansX = screenWidth / 1.7f;
-            ans1APos = screenHeight / 1.3f;
-            ans1BPos = screenHeight / 1.4f;
-            ans1CPos = screenHeight / 1.5f;
-            ans1DPos = screenHeight / 1.6f;
-            ans1EPos = screenHeight / 1.725f;
+            if (!isTeacher) {
+                if (ans1Correct) correctAnswers++;
+                if (ans2Correct) correctAnswers++;
+                ans1Correct = ans2Correct = false;
 
-            ans2APos = screenHeight / 2.18f;
-            ans2BPos = screenHeight / 2.479f;
-            ans2CPos = screenHeight / 2.79f;
-            ans2DPos = screenHeight / 3.275f;
-            ans2EPos = screenHeight / 3.75f;
+                ansX = screenWidth / 1.7f;
+                ans1APos = screenHeight / 1.3f;
+                ans1BPos = screenHeight / 1.4f;
+                ans1CPos = screenHeight / 1.5f;
+                ans1DPos = screenHeight / 1.6f;
+                ans1EPos = screenHeight / 1.725f;
 
-            ans1A.setPosition(ansX, ans1APos);
-            ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
-            ans1A.setAlpha(0);
+                ans2APos = screenHeight / 2.18f;
+                ans2BPos = screenHeight / 2.479f;
+                ans2CPos = screenHeight / 2.79f;
+                ans2DPos = screenHeight / 3.275f;
+                ans2EPos = screenHeight / 3.75f;
 
-            ans1B.setPosition(ansX, ans1BPos);
-            ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1B.setAlpha(0);
+                ans1A.setPosition(ansX, ans1APos);
+                ans1A.setBounds(ansX, ans1APos, ans1A.getWidth(), ans1A.getHeight());
+                ans1A.setAlpha(0);
 
-            ans1C.setPosition(ansX, ans1CPos);
-            ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1C.setAlpha(0);
+                ans1B.setPosition(ansX, ans1BPos);
+                ans1B.setBounds(ansX, ans1BPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1B.setAlpha(0);
 
-            ans1D.setPosition(ansX, ans1DPos);
-            ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1D.setAlpha(0);
+                ans1C.setPosition(ansX, ans1CPos);
+                ans1C.setBounds(ansX, ans1CPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1C.setAlpha(0);
 
-            ans1E.setPosition(ansX, ans1EPos);
-            ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
-            ans1E.setAlpha(0);
+                ans1D.setPosition(ansX, ans1DPos);
+                ans1D.setBounds(ansX, ans1DPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1D.setAlpha(0);
 
-            ans2A.setPosition(ansX, ans2APos);
-            ans2A.setBounds(ansX, ans2APos, ans1A.getWidth(), ans1A.getHeight());
-            ans2A.setAlpha(0);
+                ans1E.setPosition(ansX, ans1EPos);
+                ans1E.setBounds(ansX, ans1EPos, ans1A.getWidth(), ans1A.getHeight());
+                ans1E.setAlpha(0);
 
-            ans2B.setPosition(ansX, ans2BPos);
-            ans2B.setBounds(ansX, ans2BPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2B.setAlpha(0);
+                ans2A.setPosition(ansX, ans2APos);
+                ans2A.setBounds(ansX, ans2APos, ans1A.getWidth(), ans1A.getHeight());
+                ans2A.setAlpha(0);
 
-            ans2C.setPosition(ansX, ans2CPos);
-            ans2C.setBounds(ansX, ans2CPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2C.setAlpha(0);
+                ans2B.setPosition(ansX, ans2BPos);
+                ans2B.setBounds(ansX, ans2BPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2B.setAlpha(0);
 
-            ans2D.setPosition(ansX, ans2DPos);
-            ans2D.setBounds(ansX, ans2DPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2D.setAlpha(0);
+                ans2C.setPosition(ansX, ans2CPos);
+                ans2C.setBounds(ansX, ans2CPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2C.setAlpha(0);
 
-            ans2E.setPosition(ansX, ans2EPos);
-            ans2E.setBounds(ansX, ans2EPos, ans1A.getWidth(), ans1A.getHeight());
-            ans2E.setAlpha(0);
+                ans2D.setPosition(ansX, ans2DPos);
+                ans2D.setBounds(ansX, ans2DPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2D.setAlpha(0);
+
+                ans2E.setPosition(ansX, ans2EPos);
+                ans2E.setBounds(ansX, ans2EPos, ans1A.getWidth(), ans1A.getHeight());
+                ans2E.setAlpha(0);
+            }
             break;
         case 25:
             backgroundSprite.setTexture(questionBg);
             if (ans1Correct) correctAnswers++;
             if (ans2Correct) correctAnswers++;
+            if (isTeacher) correctAnswers = 5;
             displayQuizResult(CHAPTER_THIRTEEN_SCORE, 3);
             break;
 		}
@@ -408,196 +418,201 @@ public class ChapterThirteen extends ChapterCore {
     public int touchDown(float x, float y) {
         switch (chapterSection) {
             case 22:
-                if (ans1A.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(1);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = true;
-                } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(1);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1C.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(1);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1D.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(1);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1E.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(1);
-                    ans1Correct = false;
+                if (!isTeacher) {
+                    if (ans1A.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(1);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = true;
+                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(1);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1C.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(1);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1D.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(1);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1E.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(1);
+                        ans1Correct = false;
+                    }
                 }
                 break;
             case 23:
-                if (ans1A.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(1);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(1);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = true;
-                } else if (ans1C.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(1);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1D.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(1);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1E.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(1);
-                    ans1Correct = false;
-                }
+                if (!isTeacher) {
+                    if (ans1A.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(1);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(1);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = true;
+                    } else if (ans1C.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(1);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1D.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(1);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1E.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(1);
+                        ans1Correct = false;
+                    }
 
-                if (ans2A.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(1);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2B.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(1);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2C.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(1);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = true;
-                } else if (ans2D.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(1);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2E.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(1);
-                    ans2Correct = false;
+                    if (ans2A.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(1);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(1);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2C.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(1);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = true;
+                    } else if (ans2D.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(1);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2E.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(1);
+                        ans2Correct = false;
+                    }
                 }
                 break;
             case 24:
-                if (ans1A.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(1);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(1);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1C.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(1);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(0);
-                    ans1Correct = false;
-                } else if (ans1D.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(1);
-                    ans1E.setAlpha(0);
-                    ans1Correct = true;
-                } else if (ans1E.getBoundingRectangle().contains(x, y)) {
-                    ans1A.setAlpha(0);
-                    ans1B.setAlpha(0);
-                    ans1C.setAlpha(0);
-                    ans1D.setAlpha(0);
-                    ans1E.setAlpha(1);
-                    ans1Correct = false;
-                }
+                if (!isTeacher) {
+                    if (ans1A.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(1);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(1);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1C.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(1);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(0);
+                        ans1Correct = false;
+                    } else if (ans1D.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(1);
+                        ans1E.setAlpha(0);
+                        ans1Correct = true;
+                    } else if (ans1E.getBoundingRectangle().contains(x, y)) {
+                        ans1A.setAlpha(0);
+                        ans1B.setAlpha(0);
+                        ans1C.setAlpha(0);
+                        ans1D.setAlpha(0);
+                        ans1E.setAlpha(1);
+                        ans1Correct = false;
+                    }
 
-                if (ans2A.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(1);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2B.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(1);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2C.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(1);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2D.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(1);
-                    ans2E.setAlpha(0);
-                    ans2Correct = false;
-                } else if (ans2E.getBoundingRectangle().contains(x, y)) {
-                    ans2A.setAlpha(0);
-                    ans2B.setAlpha(0);
-                    ans2C.setAlpha(0);
-                    ans2D.setAlpha(0);
-                    ans2E.setAlpha(1);
-                    ans2Correct = true;
+                    if (ans2A.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(1);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(1);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2C.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(1);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2D.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(1);
+                        ans2E.setAlpha(0);
+                        ans2Correct = false;
+                    } else if (ans2E.getBoundingRectangle().contains(x, y)) {
+                        ans2A.setAlpha(0);
+                        ans2B.setAlpha(0);
+                        ans2C.setAlpha(0);
+                        ans2D.setAlpha(0);
+                        ans2E.setAlpha(1);
+                        ans2Correct = true;
+                    }
                 }
                 break;
             case 25:
-                displayLastSectionButtons(13, 3, x, y);
-                break;
+                return displayLastSectionButtons(13, 3, x, y);
         }
         return super.touchDown(x, y);
     }
@@ -639,6 +654,6 @@ public class ChapterThirteen extends ChapterCore {
 		question1Bg.dispose();
 		question2Bg.dispose();
 		question3Bg.dispose();
-        ansMarkerTexture.dispose();
+        if (!isTeacher) ansMarkerTexture.dispose();
 	}
 }

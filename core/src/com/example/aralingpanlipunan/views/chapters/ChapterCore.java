@@ -199,7 +199,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 }
             }
         } else if (!isDragging) {
-            if (slide <= screenWidth * -0.20f) {
+            if (chapterSection > startOfQuestionSection && slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
@@ -255,7 +255,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         }
         startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
         backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-        saveProgress(chapterFieldToUpdate);
+        if (!isTeacher) saveProgress(chapterFieldToUpdate);
     }
 
     /**
