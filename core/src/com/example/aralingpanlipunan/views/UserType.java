@@ -35,6 +35,8 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
     protected ChapterTwelve chapterTwelve;
     protected ChapterThirteen chapterThirteen;
     protected ChapterFourteen chapterFourteen;
+    protected ChapterSixteen chapterSixteen;
+    protected ChapterSeventeen chapterSeventeen;
     protected AndroidInterface android;
 
     private boolean isTeacher = false;
@@ -107,8 +109,16 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.dispose();
                 break;
+
             case 14:
                 chapterFourteen.dispose();
+
+            case 16:
+                chapterSixteen.dispose();
+                break;
+            case 17:
+                chapterSeventeen.dispose();
+
                 break;
         }
     }
@@ -149,8 +159,15 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 return chapterTwelve.touchDown(x, y);
             case 13:
                 return chapterThirteen.touchDown(x, y);
+
             case 14:
                 return chapterFourteen.touchDown(x, y);
+
+
+            case 16:
+                return chapterSixteen.touchDown(x, y);
+            case 17:
+                return chapterSeventeen.touchDown(x, y);
 
         }
         return 100;
@@ -219,8 +236,16 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.touchDragged(x);
                 break;
+
             case 14:
                 chapterFourteen.touchDragged(x);
+
+            case 16:
+                chapterSixteen.touchDragged(x);
+                break;
+            case 17:
+                chapterSeventeen.touchDragged(x);
+
                 break;
         }
     }
@@ -282,8 +307,15 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.touchUp();
                 break;
+
             case 14:
                 chapterFourteen.touchUp();
+            case 16:
+                chapterSixteen.touchUp();
+                break;
+            case 17:
+                chapterSeventeen.touchUp();
+
                 break;
         }
     }
@@ -403,6 +435,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 chapterThirteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+
             case 14:
                 if (isTeacher)
                     chapterFourteen = new ChapterFourteen(android, true);
@@ -412,6 +445,23 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 triage = CHAPTER_VIEW;
                 break;
 
+
+            case 16:
+                if (isTeacher)
+                    chapterSixteen= new ChapterSixteen(android, true);
+                else
+                    chapterSixteen= new ChapterSixteen(android, loggedInStudentName);
+                chapterSixteen.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+            case 17:
+                if (isTeacher)
+                    chapterSeventeen= new ChapterSeventeen(android, true);
+                else
+                    chapterSeventeen= new ChapterSeventeen(android, loggedInStudentName);
+                chapterSeventeen.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
         }
     }
 
@@ -521,9 +571,21 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                     backPressed = true;
                 }
                 break;
+
             case 14:
                 if (chapterFourteen.keyDown(keycode) == 1) {
                 	chapterFourteen.dispose();
+                }
+                break;
+            case 16:
+                if (chapterSixteen.keyDown(keycode) == 1) {
+                    chapterSixteen.dispose();
+                    backPressed = true;
+                }
+                break;
+            case 17:
+                if (chapterSeventeen.keyDown(keycode) == 1) {
+                    chapterSeventeen.dispose();
                     backPressed = true;
                 }
                 break;
@@ -586,6 +648,11 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 break;
             case 14:
                 chapterFourteen.display(batch);
+            case 16:
+                chapterSixteen.display(batch);
+                break;
+            case 17:
+                chapterSeventeen.display(batch);
                 break;
         }
     }

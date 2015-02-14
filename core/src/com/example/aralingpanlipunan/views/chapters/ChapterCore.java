@@ -199,7 +199,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 }
             }
         } else if (!isDragging) {
-            if (slide <= screenWidth * -0.20f) {
+            if (chapterSection > startOfQuestionSection && slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
@@ -255,7 +255,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         }
         startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
         backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
-        saveProgress(chapterFieldToUpdate);
+        if (!isTeacher) saveProgress(chapterFieldToUpdate);
     }
 
     /**
@@ -320,5 +320,18 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         final float nextY = next.getHeight() / 10;
         next.setPosition(nextX, nextY);
         next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
+    }
+
+    /**
+     * Displays the Quiz result, containing a text to indicate
+     * pass or fail, and the score is displayed below
+     * @param batch Batch
+     */
+    protected void drawQuizResult(Batch batch) {
+        if (chapterSection == lastChapterSection) {
+            question.drawMultiLine(batch, tanong, questionX, questionY);
+            startQuiz.draw(batch);
+            backToChapters.draw(batch);
+        }
     }
 }
