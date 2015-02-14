@@ -155,11 +155,7 @@ public class ChapterEleven extends ChapterCore {
         if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection)
             next.draw(batch);
 
-        if (chapterSection == lastChapterSection) {
-            question.drawMultiLine(batch, tanong, questionX, questionY);
-            startQuiz.draw(batch);
-            backToChapters.draw(batch);
-        }
+        drawQuizResult(batch);
 	}
 
 	private void assetManager() {

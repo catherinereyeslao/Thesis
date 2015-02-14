@@ -138,11 +138,7 @@ public class ChapterTwelve extends ChapterCore {
             next.draw(batch);
         }
 
-        if (chapterSection == lastChapterSection) {
-            question.drawMultiLine(batch, tanong, questionX, questionY);
-            startQuiz.draw(batch);
-            backToChapters.draw(batch);
-        }
+        drawQuizResult(batch);
     }
 
     private void assetManager() {

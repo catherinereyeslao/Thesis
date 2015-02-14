@@ -321,4 +321,17 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         next.setPosition(nextX, nextY);
         next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
     }
+
+    /**
+     * Displays the Quiz result, containing a text to indicate
+     * pass or fail, and the score is displayed below
+     * @param batch Batch
+     */
+    protected void drawQuizResult(Batch batch) {
+        if (chapterSection == lastChapterSection) {
+            question.drawMultiLine(batch, tanong, questionX, questionY);
+            startQuiz.draw(batch);
+            backToChapters.draw(batch);
+        }
+    }
 }
