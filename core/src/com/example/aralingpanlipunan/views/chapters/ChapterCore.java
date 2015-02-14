@@ -323,14 +323,17 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     /**
-     * Displays the Quiz result, containing a text to indicate
-     * pass or fail, and the score is displayed below
+     * Displays the Quiz result, next chapter button or
+     * retake quiz button & back to chapters button.
+     * Will also contain a text to indicate pass or fail,
+     * and the score is displayed below.
      * @param batch Batch
      */
     protected void drawQuizResult(Batch batch) {
         if (chapterSection == lastChapterSection) {
             question.drawMultiLine(batch, tanong, questionX, questionY);
-            startQuiz.draw(batch);
+            if (!this.getClass().getName().equals(ChapterEighteen.class.getName()))
+                startQuiz.draw(batch);
             backToChapters.draw(batch);
         }
     }
