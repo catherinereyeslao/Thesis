@@ -107,6 +107,8 @@ public class ChapterThirteen extends ChapterCore {
 				"chapters/chapter13/balloons/Bonifacio3.png");
 		watawatBalloon1 = new Texture(
 				"chapters/chapter13/balloons/Watawat1.png");
+		watawatBalloon2 = new Texture(
+				"chapters/chapter13/balloons/Watawat2.png");
 		watawatBalloon2 = new Texture("chapters/chapter13/balloons/Watawat2.png");
 		watawatBalloon3 = new Texture(
 				"chapters/chapter13/balloons/Watawat3.png");
@@ -196,7 +198,7 @@ public class ChapterThirteen extends ChapterCore {
 			backgroundSprite.setTexture(bonifacioBg);
 			balloonSprite.setTexture(bonifacioBalloon1);
 			break;
-		case 8: 
+		case 8:
 			balloonSprite.setTexture(bonifacioBalloon2);
 			break;
 		case 9:
@@ -620,7 +622,7 @@ public class ChapterThirteen extends ChapterCore {
     @Override
 	public void dispose() {
 		introBg.dispose();
-		bonifacioBg.dispose(); 
+		bonifacioBg.dispose();
 		watawatBg.dispose();
 		aguinaldoBg.dispose();
 		rizalBg.dispose();

@@ -34,6 +34,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
     protected ChapterEleven chapterEleven;
     protected ChapterTwelve chapterTwelve;
     protected ChapterThirteen chapterThirteen;
+    protected ChapterFourteen chapterFourteen;
     protected ChapterSixteen chapterSixteen;
     protected ChapterSeventeen chapterSeventeen;
     protected ChapterEighteen chapterEighteen;
@@ -109,11 +110,16 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.dispose();
                 break;
+
+            case 14:
+                chapterFourteen.dispose();
+
             case 16:
                 chapterSixteen.dispose();
                 break;
             case 17:
                 chapterSeventeen.dispose();
+
                 break;
             case 18:
                 chapterEighteen.dispose();
@@ -157,12 +163,18 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 return chapterTwelve.touchDown(x, y);
             case 13:
                 return chapterThirteen.touchDown(x, y);
+
+            case 14:
+                return chapterFourteen.touchDown(x, y);
+
+
             case 16:
                 return chapterSixteen.touchDown(x, y);
             case 17:
                 return chapterSeventeen.touchDown(x, y);
             case 18:
                 return chapterEighteen.touchDown(x, y);
+
         }
         return 100;
     }
@@ -230,11 +242,16 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.touchDragged(x);
                 break;
+
+            case 14:
+                chapterFourteen.touchDragged(x);
+
             case 16:
                 chapterSixteen.touchDragged(x);
                 break;
             case 17:
                 chapterSeventeen.touchDragged(x);
+
                 break;
             case 18:
                 chapterEighteen.touchDragged(x);
@@ -299,11 +316,15 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.touchUp();
                 break;
+
+            case 14:
+                chapterFourteen.touchUp();
             case 16:
                 chapterSixteen.touchUp();
                 break;
             case 17:
                 chapterSeventeen.touchUp();
+
                 break;
             case 18:
                 chapterEighteen.touchUp();
@@ -426,6 +447,17 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 chapterThirteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
+
+            case 14:
+                if (isTeacher)
+                    chapterFourteen = new ChapterFourteen(android, true);
+                else
+                    chapterFourteen = new ChapterFourteen(android, loggedInStudentName);
+                chapterFourteen.setUp(screenWidth, screenHeight);
+                triage = CHAPTER_VIEW;
+                break;
+
+
             case 16:
                 if (isTeacher)
                     chapterSixteen= new ChapterSixteen(android, true);
@@ -559,6 +591,12 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                     backPressed = true;
                 }
                 break;
+
+            case 14:
+                if (chapterFourteen.keyDown(keycode) == 1) {
+                	chapterFourteen.dispose();
+                }
+                break;
             case 16:
                 if (chapterSixteen.keyDown(keycode) == 1) {
                     chapterSixteen.dispose();
@@ -634,6 +672,8 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.display(batch);
                 break;
+            case 14:
+                chapterFourteen.display(batch);
             case 16:
                 chapterSixteen.display(batch);
                 break;
