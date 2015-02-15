@@ -21,6 +21,9 @@ public class ChapterFifteen extends ChapterCore {
 		super(androidInterface, isTeacher);
 		// TODO Auto-generated constructor stub
 	}
+	public ChapterFifteen(AndroidInterface androidInterface, String studentName) {
+		super(androidInterface, studentName);
+	}
 
 	@Override
 	public void setUp(int screenW, int screenH) {
@@ -57,21 +60,22 @@ public class ChapterFifteen extends ChapterCore {
 		}
 		
 		
-		introBalloon1 = new Texture("chapters/chapter15/assets/EpektoNgPagtutulungan1.png");
-		introBalloon2 = new Texture("chapters/chapter15/assets/EpektoNgPagtutulungan2.png");
-		epektoTulunganBalloon1 = new Texture("chapters/chapter15/assets/EpektoNgPagtutulungan1.png");
-		epektoTulunganBalloon2 = new Texture("chapters/chapter15/assets/EpektoNgPagtutulungan1.png");
-		epektoTulunganBalloon3 = new Texture("chapters/chapter15/assets/EpektoNgPagtutulungan1.png");
-		gawainTulunganBalloon1  = new Texture("chapters/chapter15/assets/GawainSaPagtutulungan1.png");
-		gawainTulunganBalloon2 = new Texture("chapters/chapter15/assets/GawainSaPagtutulungan2.png");
-		gawainTulunganBalloon3 = new Texture("chapters/chapter15/assets/GawainSaPagtutulungan3.png");
-		pangangailanganBalloon1 = new Texture("chapters/chapter15/assets/Pangangailangan1.png");
-		pangangailanganBalloon2 = new Texture("chapters/chapter15/assets/Pangangailangan2.png");
-		pangangailanganBalloon3 = new Texture("chapters/chapter15/assets/Pangangailangan3.png");
-		pangangailanganBalloon4 = new Texture("chapters/chapter15/assets/Pangangailangan4.png");
-		tulongPangangailanganBalloon1 = new Texture("chapters/chapter15/assets/TaongKatulongSaPangangailangan1.png");
-		tulongPangangailanganBalloon2 = new Texture("chapters/chapter15/assets/TaongKatulongSaPangangailangan2.png");
-		tulongPangangailanganBalloon3 = new Texture("chapters/chapter15/assets/TaongKatulongSaPangangailangan3.png");
+		introBalloon1 = new Texture("chapters/chapter15/balloons/EpektoNgPagtutulungan1.png");
+		introBalloon2 = new Texture("chapters/chapter15/balloons/EpektoNgPagtutulungan2.png");
+		epektoTulunganBalloon1 = new Texture("chapters/chapter15/balloons/EpektoNgPagtutulungan1.png");
+		epektoTulunganBalloon2 = new Texture("chapters/chapter15/balloons/EpektoNgPagtutulungan2.png");
+		epektoTulunganBalloon3 = new Texture("chapters/chapter15/balloons/EpektoNgPagtutulungan3.png");
+		gawainTulunganBalloon1  = new Texture("chapters/chapter15/balloons/GawainSaPagtutulungan1.png");
+		gawainTulunganBalloon2 = new Texture("chapters/chapter15/balloons/GawainSaPagtutulungan2.png");
+		gawainTulunganBalloon3 = new Texture("chapters/chapter15/balloons/GawainSaPagtutulungan3.png");
+		pangangailanganBalloon1 = new Texture("chapters/chapter15/balloons/Pangangailangan1.png");
+		pangangailanganBalloon2 = new Texture("chapters/chapter15/balloons/Pangangailangan2.png");
+		pangangailanganBalloon3 = new Texture("chapters/chapter15/balloons/Pangangailangan3.png");
+		pangangailanganBalloon4 = new Texture("chapters/chapter15/balloons/Pangangailangan4.png");
+		tulongPangangailanganBalloon1 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan1.png");
+		tulongPangangailanganBalloon2 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan2.png");
+		tulongPangangailanganBalloon3 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan3.png");
+		
 	}
 
 	@Override
@@ -84,11 +88,91 @@ public class ChapterFifteen extends ChapterCore {
 
 	private void assetManager() {
 		// TODO Auto-generated method stub
+		
+		switch (chapterSection) {
+		case 0:
+			backgroundSprite.setTexture(introBg);
+			balloonSprite.setTexture(introBalloon1);
+			break;
+		case 1:
+			backgroundSprite.setTexture(introBg);
+			balloonSprite.setTexture(introBalloon2);
+			break;
+		case 2:
+			backgroundSprite.setTexture(epektoTulunganBg);
+			balloonSprite.setTexture(epektoTulunganBalloon1);
+			break;
+		case 3:
+			balloonSprite.setTexture(epektoTulunganBalloon2);
+			break;
+		case 4:
+			balloonSprite.setTexture(epektoTulunganBalloon3);
+			break;
+		case 5:
+			backgroundSprite.setTexture(gawainTulunganBg);
+			balloonSprite.setTexture(gawainTulunganBalloon1);
+			break;
+		case 6:
+			balloonSprite.setTexture(gawainTulunganBalloon2);
+			break;
+		case 7:
+			balloonSprite.setTexture(gawainTulunganBalloon3);
+			break;
+		case 8:
+			balloonSprite.setTexture(gawainTulunganBalloon4);
+			break;
+		case 9:
+			backgroundSprite.setTexture(pangangailanganNatinBg);
+			balloonSprite.setTexture(pangangailanganBalloon1);
+			break;
+		case 10:
+			balloonSprite.setTexture(pangangailanganBalloon2);
+			break;
+		case 11:
+			balloonSprite.setTexture(pangangailanganBalloon3);
+			break;
+		case 12:
+			balloonSprite.setTexture(pangangailanganBalloon4);
+			break;
+		case 13:
+			backgroundSprite.setTexture(tulongPangangailanganBg);
+			balloonSprite.setTexture(tulongPangangailanganBalloon1);
+			break;
+		case 14:
+			balloonSprite.setTexture(tulongPangangailanganBalloon2);
+			break;
+		case 15:
+			balloonSprite.setTexture(tulongPangangailanganBalloon3);
+			break;
+			
+		}
+		
 
 	}
 
 	@Override
 	public void dispose() {
+		
+		introBg.dispose();
+		epektoTulunganBg.dispose();
+		gawainTulunganBg.dispose();
+		tulongPangangailanganBg.dispose();
+		pangangailanganNatinBg.dispose();
+		introBalloon1.dispose();
+		introBalloon2.dispose();
+		epektoTulunganBalloon1.dispose();
+		epektoTulunganBalloon2.dispose();
+		epektoTulunganBalloon3.dispose();
+		gawainTulunganBalloon1.dispose();
+		gawainTulunganBalloon2.dispose();
+		gawainTulunganBalloon3.dispose();
+		pangangailanganBalloon1.dispose();
+		pangangailanganBalloon2.dispose();
+		pangangailanganBalloon3.dispose();
+		pangangailanganBalloon4.dispose();
+		tulongPangangailanganBalloon1.dispose();
+		tulongPangangailanganBalloon2.dispose();
+		tulongPangangailanganBalloon3.dispose();
 	}
 
 }
