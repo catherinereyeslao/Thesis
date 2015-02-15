@@ -1,8 +1,10 @@
 package com.example.aralingpanlipunan.views;
 
+import com.badlogic.gdx.utils.Disposable;
+import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
-public abstract class AppView {
+public abstract class AppView implements AppFragment, Disposable {
     protected int screenWidth, screenHeight;
     protected float exitScaledY = 0;
 

@@ -55,7 +55,7 @@ public class ChapterFour extends ChapterCore {
         libangan1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/libangan1.amr"));
         libangan2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/libangan2.amr"));
         pagaaral1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagaaral1.amr"));
-        pagaaral2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagaaral2.amr"));
+        pagaaral2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagaaral 2.amr"));
         pagkain = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagkain.amr"));
         
         if (isTeacher) {
@@ -445,31 +445,31 @@ public class ChapterFour extends ChapterCore {
              intro2S.stop();
              intro2S.play();
              break;
-         case 3:
+         case 2:
         	 kaligtasan1S.stop();
         	 kaligtasan1S.play();
         	 break;
-         case 4:
+         case 3:
              kaligtasan2S.stop();
              kaligtasan2S.play();
              break;
-         case 5:
+         case 4:
              libangan1S.stop();
              libangan1S.play();
              break;
-         case 6:
+         case 5:
              libangan2S.stop();
              libangan2S.play();
              break;
-         case 7:
+         case 6:
              pagaaral1S.stop();
              pagaaral1S.play();
              break;
-         case 8:
+         case 7:
              pagaaral2S.stop();
              pagaaral2S.play();
              break;
-         case 9:
+         case 8:
              pagkain.stop();
              pagkain.play();
              break;

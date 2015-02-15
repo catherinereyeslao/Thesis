@@ -6,11 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
 
+/**
+ * This is displayed after a user touches the start button from the Main Menu
+ */
 public class Start extends AppView implements AppFragment, Disposable {
-    public static final int STUDENT = 1;
-    public static final int TEACHER = 2;
-    public static final int MINI_GAMES = 3;
-    public static final int EXIT = 5;
+    public static final byte STUDENT = 1;
+    public static final byte TEACHER = 2;
+    public static final byte MINI_GAMES = 3;
+    public static final byte EXIT = 5;
 
     private Texture background, exitTexture, studentTexture, teacherTexture, miniGamesTexture;
     private Sprite exit, student, teacher, miniGames;
@@ -83,16 +86,26 @@ public class Start extends AppView implements AppFragment, Disposable {
             touchedOption = STUDENT;
         } else if (teacher.getBoundingRectangle().contains(x, y)) {
             touchedOption = TEACHER;
+        } else if (miniGames.getBoundingRectangle().contains(x, y)) {
+            touchedOption = MINI_GAMES;
         } else if (exit.getBoundingRectangle().contains(x, y)) {
             touchedOption = EXIT;
         }
     }
 
-    public int touchUp(int x, int y) {
+    /**
+     * Detects where the user stopped touching the screen
+     * @param x X coordinate where user stopped touching the screen
+     * @param y Y coordinate where user stopped touching the screen
+     * @return A byte number indicating which button is clicked
+     */
+    public byte touchUp(int x, int y) {
         if (student.getBoundingRectangle().contains(x, y) && touchedOption == STUDENT) {
             return STUDENT;
         } else if (teacher.getBoundingRectangle().contains(x, y) && touchedOption == TEACHER) {
             return TEACHER;
+        } else if (miniGames.getBoundingRectangle().contains(x, y) && touchedOption == MINI_GAMES) {
+            return MINI_GAMES;
         } else if (exit.getBoundingRectangle().contains(x, y) && touchedOption == EXIT) {
             return EXIT;
         } else {
