@@ -16,20 +16,22 @@ import com.example.aralingpanlipunan.views.Menu;
 import com.example.aralingpanlipunan.views.Start;
 import com.example.aralingpanlipunan.views.Student;
 import com.example.aralingpanlipunan.views.Teacher;
+import com.example.aralingpanlipunan.views.minigames.MiniGamesMenu;
 
 public class Main extends ApplicationAdapter implements ApplicationListener, GestureListener, InputProcessor {
-	private static final int MENU = 0;
-	private static final int START = 1;
-	private static final int STUDENT = 2;
-	private static final int TEACHER = 3;
-	private static final int MINI_GAMES = 5;
-	private static final int EXIT = 8;
-	private int triage = MENU;
+	private static final byte MENU = 0;
+	private static final byte START = 1;
+	private static final byte STUDENT = 2;
+	private static final byte TEACHER = 3;
+	private static final byte MINI_GAMES = 5;
+	private static final byte EXIT = 8;
+	private byte triage = MENU;
 	private SpriteBatch batch;
 	private Menu menu;
 	private Start start;
 	private Student student;
     private Teacher teacher;
+    private MiniGamesMenu miniGamesMenu;
 	private AndroidInterface android;
 
 	public Main() {
@@ -67,6 +69,9 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case STUDENT:
 				student.setUp(screenW, screenH);
 				break;
+            case MINI_GAMES:
+                miniGamesMenu.setUp(screenW, screenH);
+                break;
             case TEACHER:
                 teacher.setUp(screenW, screenH);
                 break;
@@ -88,12 +93,8 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case TEACHER:
 				teacher.display(batch);
 				break;
-
 			case MINI_GAMES:
-				//TODO: SETUP VIEW FOR MINI GAMES
-				break;
-			case EXIT:
-				//TODO: EXIT APPLICATION HERE
+				miniGamesMenu.display(batch);
 				break;
 			case MENU:
 				menu.display(batch);
@@ -114,6 +115,9 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case STUDENT:
 				student.dispose();
                 break;
+            case MINI_GAMES:
+                miniGamesMenu.dispose();
+                break;
             case TEACHER:
                 teacher.dispose();
                 break;
@@ -130,8 +134,12 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					start = new Start();
 					start.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 					triage = START;
-				}
-				else if (menu.clickedMenu(x, normalisedY) == Menu.EXIT) {
+				} else if (menu.clickedMenu(x, normalisedY) == Menu.MINI_GAMES) {
+                    menu.dispose();
+                    miniGamesMenu = new MiniGamesMenu();
+                    miniGamesMenu.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    triage = MINI_GAMES;
+                } else if (menu.clickedMenu(x, normalisedY) == Menu.EXIT) {
 					triage = EXIT;
 					dispose();
 					if (android != null) android.exit();
@@ -143,6 +151,9 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			case STUDENT:
 				student.touchDown(x, normalisedY);
 				break;
+            case MINI_GAMES:
+                miniGamesMenu.touchDown(x, normalisedY);
+                break;
             case TEACHER:
                 teacher.touchDown(x, normalisedY);
                 break;
@@ -222,6 +233,15 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
                         triage = START;
                     }
                     break;
+                case MINI_GAMES:
+                    if (miniGamesMenu.keyDown(keycode) == 1) {
+                        miniGamesMenu.dispose();
+                        miniGamesMenu = null;
+                        start = new Start();
+                        start.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                        triage = START;
+                    }
+                    break;
 			}
 		}
 		return false;
@@ -263,6 +283,13 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
                     teacher.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                     start = null;
                     triage = TEACHER;
+                    break;
+                case Start.MINI_GAMES:
+                    start.dispose();
+                    miniGamesMenu = new MiniGamesMenu();
+                    miniGamesMenu.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    start = null;
+                    triage = MINI_GAMES;
                     break;
 				case Start.EXIT:
 					start.dispose();

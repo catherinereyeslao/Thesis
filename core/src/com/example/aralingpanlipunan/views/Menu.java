@@ -11,9 +11,10 @@ import com.example.aralingpanlipunan.AppFragment;
  * This renders the Main Menu which can be seen once the App is opened
  */
 public class Menu extends AppView implements Disposable, AppFragment {
-    public static final int MENU = 1;
-    public static final int START = 2;
-    public static final int EXIT = 4;
+    public static final byte MENU = 1;
+    public static final byte START = 2;
+    public static final byte MINI_GAMES = 4;
+    public static final byte EXIT = 8;
 
     private Texture background, splashScreen, startTexture, exitTexture;
     private Sprite start, exit;
