@@ -147,6 +147,7 @@ public class ChapterTwo extends ChapterCore {
         ansKey2Texture.dispose();
         ansKey3Texture.dispose();
         ansKey4Texture.dispose();
+        tingSound.dispose();
     }
 
     @Override

@@ -114,9 +114,10 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
 
             case 14:
                 chapterFourteen.dispose();
+                break;
             case 15:
                 chapterFifteen.dispose();
-
+                break;
             case 16:
                 chapterSixteen.dispose();
                 break;
@@ -247,15 +248,15 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
 
             case 14:
                 chapterFourteen.touchDragged(x);
+                break;
             case 15:
                 chapterFifteen.touchDragged(x);
-
+                break;
             case 16:
                 chapterSixteen.touchDragged(x);
                 break;
             case 17:
                 chapterSeventeen.touchDragged(x);
-
                 break;
             case 18:
                 chapterEighteen.touchDragged(x);
@@ -320,17 +321,17 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 13:
                 chapterThirteen.touchUp();
                 break;
-
             case 14:
                 chapterFourteen.touchUp();
+                break;
             case 15:
                 chapterFifteen.touchUp();
+                break;
             case 16:
                 chapterSixteen.touchUp();
                 break;
             case 17:
                 chapterSeventeen.touchUp();
-
                 break;
             case 18:
                 chapterEighteen.touchUp();
@@ -691,8 +692,10 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 break;
             case 14:
                 chapterFourteen.display(batch);
+                break;
             case 15:
                 chapterFifteen.display(batch);
+                break;
             case 16:
                 chapterSixteen.display(batch);
                 break;

@@ -71,8 +71,8 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap11Texture = new Texture("buttons/chapters/b4-2.png");
         chap12Texture = new Texture("buttons/chapters/b4-3.png");
         chap13Texture = new Texture("buttons/chapters/b5-1.png");
-        chap14Texture = new Texture("buttons/chapters/b5-2.png");
-        chap15Texture = new Texture("buttons/chapters/b5-3.png");
+        chap14Texture = new Texture("buttons/chapters/b5-3.png");
+        chap15Texture = new Texture("buttons/chapters/b5-2.png");
         chap16Texture = new Texture("buttons/chapters/b6-1.png");
         chap17Texture = new Texture("buttons/chapters/b6-2.png");
         chap18Texture = new Texture("buttons/chapters/b6-3.png");
