@@ -10,10 +10,12 @@ import com.example.aralingpanlipunan.views.AppView;
  */
 public class MiniGamesMenu extends AppView {
     private static final byte MINI_GAME_MENU = 0;
-    private static final byte MEMORY_GAME = 1;
+    private static final byte MEMORY_MENU = 1;
+    private static final byte MEMORY_GAME = 2;
     private byte selectedMenu = MINI_GAME_MENU;
     private Texture menuBgTexture, memoryMenuBgTexture;
     private Sprite memory, fourPics;
+    private MemoryGame memoryGame;
 
     @Override
     public void setUp(int screenW, int screenH) {
@@ -45,8 +47,11 @@ public class MiniGamesMenu extends AppView {
                 memory.draw(batch);
                 fourPics.draw(batch);
                 break;
-            case MEMORY_GAME:
+            case MEMORY_MENU:
                 batch.draw(memoryMenuBgTexture, 0, 0, screenWidth, screenHeight);
+                break;
+            case MEMORY_GAME:
+                memoryGame.display(batch);
                 break;
         }
         memory.draw(batch);
@@ -56,6 +61,7 @@ public class MiniGamesMenu extends AppView {
     @Override
     public void dispose() {
         menuBgTexture.dispose();
+        memoryGame.dispose();
     }
 
     /**
@@ -67,13 +73,16 @@ public class MiniGamesMenu extends AppView {
         switch (selectedMenu) {
             case MINI_GAME_MENU:
                 if (memory.getBoundingRectangle().contains(x, y)) {
-                    selectedMenu = MEMORY_GAME;
+                    selectedMenu = MEMORY_MENU;
                 } else if (fourPics.getBoundingRectangle().contains(x, y)) {
                     //TODO: Place logic here to open fourpics game
                 }
                 break;
-            case MEMORY_GAME:
-                //TODO: Put touch listeners here to select memory game level
+            case MEMORY_MENU:
+                //TODO: Put touch listeners to open different game difficulties
+                memoryGame = new MemoryGame(MemoryGame.EASY);
+                memoryGame.setUp(screenWidth, screenHeight);
+                selectedMenu = MEMORY_GAME;
                 break;
         }
     }
@@ -88,8 +97,15 @@ public class MiniGamesMenu extends AppView {
         switch (selectedMenu) {
             case MINI_GAME_MENU:
                 return keycode == 4 ? 1 : 0;
-            case MEMORY_GAME:
+            case MEMORY_MENU:
                 if (keycode == 4) selectedMenu = MINI_GAME_MENU;
+                break;
+            case MEMORY_GAME:
+                if (keycode == 4) {
+                    memoryGame.dispose();
+                    memoryGame = null;
+                    selectedMenu = MINI_GAME_MENU;
+                }
                 break;
         }
         return 0;
