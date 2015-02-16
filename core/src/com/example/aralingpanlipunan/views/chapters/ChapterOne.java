@@ -144,6 +144,15 @@ public class ChapterOne extends ChapterCore {
     @Override
     public void dispose() {
         super.dispose();
+        baybayin1sound.stop();
+        baybayin2sound.stop();
+        baybayin3sound.stop();
+        intro1sound.stop();
+        intro2sound.stop();
+        lungsod1sound.stop();
+        lungsod2sound.stop();
+        bukid1sound.stop();
+        bukid2sound.stop();
         exitTexture.dispose();
         nextChapTexture.dispose();
         baybayin1sound.dispose();

@@ -408,10 +408,10 @@ public class ChapterFive extends ChapterCore {
 	             break;
 	         case 1:
 	        	 intro1S.stop();
+	        	 intro2S.stop();
 	        	 intro2S.play();
 	        	 break;
-	         case 2:
-	        	 
+	         
 	    	 }
 		
 	}

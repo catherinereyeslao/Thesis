@@ -132,42 +132,49 @@ public class ChapterFour extends ChapterCore {
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro2Balloon);
                 intro1S.stop();
+                kaligtasan1S.stop();
                 
                 break;
             case 2:
                 backgroundSprite.setTexture(pangKalusuganBg);
                 balloonSprite.setTexture(kaligtasan1Balloon);
                 intro2S.stop();
+                kaligtasan2S.stop();
                 
                 break;
             case 3:
                 backgroundSprite.setTexture(pangKalusuganBg);
                 balloonSprite.setTexture(kaligtasan2Balloon);
                 kaligtasan1S.stop();
+                libangan1S.stop();
                 
                 break;
             case 4:
                 backgroundSprite.setTexture(libanganBg);
                 balloonSprite.setTexture(libangan1Balloon);
                 kaligtasan2S.stop();
+                libangan2S.stop();
                
                 break;
             case 5:
                 backgroundSprite.setTexture(libanganBg);
                 balloonSprite.setTexture(libangan2Balloon);
                 libangan1S.stop();
+                pagaaral1S.stop();
                 
                 break;
             case 6:
                 backgroundSprite.setTexture(pangEdukasyonBg);
                 balloonSprite.setTexture(pagaaral1Balloon);
                 libangan2S.stop();
+                pagaaral2S.stop();
                
                 break;
             case 7:
                 backgroundSprite.setTexture(pangEdukasyonBg);
                 balloonSprite.setTexture(pagaaral2Balloon);
                 pagaaral1S.stop();
+                pagkain.stop();
                
                 break;
             case 8:
@@ -450,42 +457,42 @@ public class ChapterFour extends ChapterCore {
              intro1S.play();
              break;
          case 1:
-             intro1S.stop();
+             
              intro2S.stop();
              intro2S.play();
              break;
          case 2:
-        	 intro2S.stop();
+        	 
         	 kaligtasan1S.stop();
         	 kaligtasan1S.play();
         	 break;
          case 3:
-        	 kaligtasan1S.stop();
+        	 
         	 kaligtasan2S.stop();
              kaligtasan2S.play();
              break;
          case 4:
-        	 kaligtasan2S.stop();
+        	
         	 libangan1S.stop();
         	 libangan1S.play();
              break;
          case 5:
-        	 libangan1S.stop();
+        	 
         	 libangan2S.stop();
         	 libangan2S.play();
              break;
          case 6:
-        	 libangan2S.stop();
+        	 
         	 pagaaral1S.stop();
         	 pagaaral1S.play();
              break;
          case 7:
-        	 pagaaral1S.stop();
+        	 
         	 pagaaral2S.stop();
         	 pagaaral2S.play();
              break;
          case 8:
-        	 pagaaral2S.stop();
+        	 
         	 pagkain.stop();
         	 pagkain.play();
              break;
@@ -496,6 +503,15 @@ public class ChapterFour extends ChapterCore {
 	@Override
     public void dispose() {
         super.dispose();
+        intro1S.stop();
+        intro2S.stop();
+        kaligtasan1S.stop();
+        kaligtasan2S.stop();
+        libangan1S.stop(); 
+        libangan2S.stop(); 
+        pagaaral1S.stop();
+        pagaaral2S.stop();
+        pagkain.stop();
         introBg.dispose();
         libanganBg.dispose();
         pabahayBg.dispose();
@@ -516,6 +532,8 @@ public class ChapterFour extends ChapterCore {
         question1Bg.dispose();
         question2Bg.dispose();
         question3Bg.dispose();
+        
+        
         
 
         // If user entered the game, dispose these loaded game assets
