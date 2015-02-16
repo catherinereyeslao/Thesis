@@ -322,6 +322,7 @@ public class ChapterTwo extends ChapterCore {
                 backgroundSprite.setTexture(introBgTexture);
                 balloonSprite.setTexture(introBalloonTexture);
                 balloonSprite.setAlpha(1);
+                
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);

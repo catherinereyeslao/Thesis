@@ -250,21 +250,25 @@ public class ChapterFive extends ChapterCore {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
 			intro1S.stop();
+			mangangalakal1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon1);
 			intro2S.stop();
+			mangangalakal2S.stop();
 			break;
 		case 3:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon2);
 			mangangalakal1S.stop();
+			pagmimina1S.stop();
 			break;
 		case 4:
 			backgroundSprite.setTexture(pagmiminaBg);
@@ -272,6 +276,7 @@ public class ChapterFive extends ChapterCore {
 			characterX = miner.getWidth() * -1.15f;
 			characterY = 0;
 			mangangalakal2S.stop();
+			magsasaka1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(pagsasakaBg);
@@ -279,10 +284,12 @@ public class ChapterFive extends ChapterCore {
 			characterX = farmer.getWidth() * -1.15f;
 			characterY = (screenHeight / 2) - (farmer.getHeight());
 			pagmimina1S.stop();
+			magsasaka2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(pagsasakaBalloon2);
 			magsasaka1S.stop();
+			pangingisda1S.stop();
 			break;
 		case 7:
 			backgroundSprite.setTexture(pangingisdaBg);
@@ -291,6 +298,7 @@ public class ChapterFive extends ChapterCore {
             characterY = (screenHeight / 4) - (fisher.getHeight() / 2);
             fisher.setPosition(characterX, characterY);
             magsasaka2S.stop();
+            pangingisda2S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(pangingisdaBalloon2);
@@ -321,6 +329,7 @@ public class ChapterFive extends ChapterCore {
         if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(5, 3, x, y);
 
+        if(!isTeacher){
         if (next.getBoundingRectangle().contains(x, y)) {
             // If next button is clicked, check the position of answers and count
             // correct answers, then proceed to score page
@@ -396,6 +405,7 @@ public class ChapterFive extends ChapterCore {
             }
             touchedAnswer = null;
         }
+        }
         return super.touchDown(x, y);
     }
 
@@ -407,9 +417,37 @@ public class ChapterFive extends ChapterCore {
 	             intro1S.play();
 	             break;
 	         case 1:
-	        	 intro1S.stop();
+	        	
 	        	 intro2S.stop();
 	        	 intro2S.play();
+	        	 break;
+	         case 2:
+	        	 mangangalakal1S.stop();
+	        	 mangangalakal1S.play();
+	        	 break;
+	         case 3:
+	        	 mangangalakal2S.stop();
+	        	 mangangalakal2S.play();
+	        	 break;
+	         case 4:
+	        	 pagmimina1S.stop();
+	        	 pagmimina1S.play();
+	        	 break;
+	         case 5:
+	        	 magsasaka1S.stop();
+	        	 magsasaka1S.play();
+	        	 break;
+	         case 6:
+	        	 magsasaka2S.stop();
+	        	 magsasaka2S.play();
+	        	 break;
+	         case 7:
+	        	 pangingisda1S.stop();
+	        	 pangingisda1S.play();
+	        	 break;
+	         case 8:
+	        	 pangingisda2S.stop();
+	        	 pangingisda2S.play();
 	        	 break;
 	         
 	    	 }
@@ -419,6 +457,25 @@ public class ChapterFive extends ChapterCore {
 	@Override
 	public void dispose(){
 		super.dispose();
+		intro1S.stop();
+		intro2S.stop();
+		mangangalakal1S.stop();
+		mangangalakal2S.stop();
+		pagmimina1S.stop();
+		magsasaka1S.stop();
+		magsasaka2S.stop();
+		pangingisda1S.stop();
+		pangingisda2S.stop();
+		intro1S.dispose();
+		intro2S.dispose();
+		mangangalakal1S.dispose();
+		mangangalakal2S.dispose();
+		pagmimina1S.dispose();
+		magsasaka1S.dispose();
+		magsasaka2S.dispose();
+		pangingisda1S.dispose();
+		pangingisda2S.dispose();
+		
 		introBg.dispose();
 		mangangalakalBg.dispose();
 		pagmiminaBg.dispose();
@@ -433,7 +490,7 @@ public class ChapterFive extends ChapterCore {
 		pagsasakaBalloon2.dispose();
 		pangingisdaBalloon1.dispose();
 		pangingisdaBalloon2.dispose();
-		gameBg.dispose();
+		questionBg.dispose();
 		truckTexture.dispose();
 		minerTexture.dispose();
         farmerTexture.dispose();

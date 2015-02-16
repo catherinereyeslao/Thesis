@@ -350,6 +350,7 @@ public class ChapterFour extends ChapterCore {
              playSoundForSection();
          }
         if (chapterSection >= startOfQuestionSection) {
+        	if(!isTeacher){
             if (next.getBoundingRectangle().contains(x, y)) {
                 chapterSection++;
                 assetNeedUpdate = true;
@@ -444,6 +445,8 @@ public class ChapterFour extends ChapterCore {
                 } else
                     ans5False.setAlpha(0);
             }
+            
+        }
             return displayLastSectionButtons(4, 5, x,y);
         }
         return super.touchDown(x, y);

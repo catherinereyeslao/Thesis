@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -12,6 +14,7 @@ public class ChapterSeven extends ChapterCore {
 					introBalloon1, introBalloon2, erectusBalloon1, erectusBalloon2, erectusBalloon3, 
 					habilisBalloon1, habilisBalloon2, sapiensBalloon1, 
 					sapiensBalloon2, sapiensBalloon3, question1Bg, question2Bg, selectedAnsTexture, nextTexture;
+	private Sound intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S, habilis2S, sapiens1S, sapiens2S, sapiens3S;
     private Sprite ans, ans2, ans3, ans4, ans5, ans6, next;
     private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched, ans5Touched, ans6Touched = false;
 
@@ -28,6 +31,19 @@ public class ChapterSeven extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 10;
         lastChapterSection = 12;
+        
+        //sounds
+        intro1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/intro1chap7.m4a"));
+        intro2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/intro2chap7.m4a"));
+        erectus1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/homoerectus1.m4a"));
+        erectus2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/homorectus2.m4a"));
+        erectus3S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/homoerectus3.m4a"));
+        habilis1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/habilis1.m4a"));
+        habilis2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/habilis2.m4a"));
+        sapiens1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/sapiens1.m4a"));
+        sapiens2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/sapiens2.m4a"));
+        sapiens3S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter7/sounds/sapiens3.m4a"));
+        
 
 		//backgrounds
 		introBg = new Texture("chapters/chapter7/backgrounds/IntroForChapter7.png");
@@ -36,6 +52,21 @@ public class ChapterSeven extends ChapterCore {
 		sapiensBg = new Texture("chapters/chapter7/backgrounds/ChapterSevenBackgroundSapiens.png");
         question1Bg = new Texture("chapters/chapter7/backgrounds/question1bg.jpg");
         question2Bg = new Texture("chapters/chapter7/backgrounds/question2bg.jpg");
+        if (isTeacher) {
+			question1Bg = new Texture(
+					"chapters/chapter7/answerkeys/answer1.jpg");
+			question2Bg = new Texture(
+					"chapters/chapter7/answerkeys/answer2.jpg");
+			
+
+			correctAnswers = 5;
+		} else {
+			question1Bg = new Texture(
+					"chapters/chapter7/backgrounds/question1bg.jpg");
+			question2Bg = new Texture(
+					"chapters/chapter7/backgrounds/question2bg.jpg");
+			
+		}
 		
 		//balloons
 		introBalloon1 = new Texture("chapters/chapter7/balloons/Intro1.png");
@@ -141,38 +172,56 @@ public class ChapterSeven extends ChapterCore {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
 			
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
+			erectus1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(erectusBg);
 			balloonSprite.setTexture(erectusBalloon1);
+			intro2S.stop();
+			erectus2S.stop();
 			break;
 		case 3:
 			balloonSprite.setTexture(erectusBalloon2);
+			erectus1S.stop();
+			erectus3S.stop();
 			break;
 		case 4:
 			balloonSprite.setTexture(erectusBalloon3);
+			erectus2S.stop();
+			habilis1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(habilisBg);
 			balloonSprite.setTexture(habilisBalloon1);
+			erectus3S.stop();
+			habilis2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(habilisBalloon2);
+			habilis1S.stop();
+			sapiens1S.stop();
 			break;
 		case 7:
 			backgroundSprite.setTexture(sapiensBg);
 			balloonSprite.setTexture(sapiensBalloon1);
+			habilis2S.stop();
+			sapiens2S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(sapiensBalloon2);
+			sapiens1S.stop();
+			sapiens3S.stop();
 			break;
 		case 9:
 			balloonSprite.setTexture(sapiensBalloon3);
+			sapiens2S.stop();
 			break;
         case 10:
             backgroundSprite.setTexture(question1Bg);
@@ -274,6 +323,27 @@ public class ChapterSeven extends ChapterCore {
 
 	@Override
 	public void dispose(){
+		intro1S.stop();
+        intro2S.stop();
+        erectus1S.stop();
+        erectus2S.stop();
+        erectus3S.stop();
+        habilis1S.stop();
+        habilis2S.stop();
+        sapiens1S.stop();
+        sapiens2S.stop();
+        sapiens3S.stop();
+        
+        intro1S.dispose();
+        intro2S.dispose();
+        erectus1S.dispose();
+        erectus2S.dispose();
+        erectus3S.dispose();
+        habilis1S.dispose();
+        habilis2S.dispose();
+        sapiens1S.dispose();
+        sapiens2S.dispose();
+        sapiens3S.dispose();
 		introBg.dispose();
 		erectusBg.dispose();
 		habilisBg.dispose();
