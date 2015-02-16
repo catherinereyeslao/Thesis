@@ -178,16 +178,12 @@ public class ChapterTwo extends ChapterCore {
     @Override
     public int touchDown(float x, float y) {
         super.touchDown(x, y);
+        if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         int touched;
         switch (chapterSection) {
-            case 1:
-                //TODO: Play the correct voice over here in 1 & 2
-                if (soundSprite.getBoundingRectangle().contains(x, y))
-                    tingSound.play();
-                break;
-            case 2:
-                tingSound.stop();
-                break;
+            
             case 11:
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;

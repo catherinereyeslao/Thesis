@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,7 +16,10 @@ public class ChapterFive extends ChapterCore {
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
 					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture,
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
-                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture;
+                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
+                    question1Bg;
+	private Sound intro1S, intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
+					pangingisda1S, pangingisda2S;
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
 	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
@@ -36,6 +41,25 @@ public class ChapterFive extends ChapterCore {
         characterSpeed = getCharacterVelocityByScreen();
 		gameBg = new Texture("chapters/chapter5/backgrounds/question.jpg");
         boxTexture = new Texture("box.png");
+        
+        if (isTeacher) {
+			question1Bg = new Texture(
+					"chapters/chapter5/answers/answer.jpg");
+			correctAnswers = 5;
+		} else {
+			question1Bg = new Texture(
+					"chapters/chapter5/backgrounds/question.jpg");
+		}
+        //sounds
+        intro1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro1chap5.m4a"));
+        intro2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro2chap5.m4a"));
+        magsasaka1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka1.m4a"));
+        magsasaka2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka2.m4a"));
+        mangangalakal1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal1.m4a"));
+        mangangalakal2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal2.m4a"));
+        pagmimina1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
+        pangingisda1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda1.m4a"));
+        pangingisda2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda2.m4a"));
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
@@ -230,29 +254,35 @@ public class ChapterFive extends ChapterCore {
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon1);
+			intro2S.stop();
 			break;
 		case 3:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon2);
+			mangangalakal1S.stop();
 			break;
 		case 4:
 			backgroundSprite.setTexture(pagmiminaBg);
 			balloonSprite.setTexture(pagmiminaBalloon);
 			characterX = miner.getWidth() * -1.15f;
 			characterY = 0;
+			mangangalakal2S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(pagsasakaBg);
 			balloonSprite.setTexture(pagsasakaBalloon1);
 			characterX = farmer.getWidth() * -1.15f;
 			characterY = (screenHeight / 2) - (farmer.getHeight());
+			pagmimina1S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(pagsasakaBalloon2);
+			magsasaka1S.stop();
 			break;
 		case 7:
 			backgroundSprite.setTexture(pangingisdaBg);
@@ -260,9 +290,11 @@ public class ChapterFive extends ChapterCore {
             characterX = (screenWidth / 2) - (fisher.getWidth() / 2);
             characterY = (screenHeight / 4) - (fisher.getHeight() / 2);
             fisher.setPosition(characterX, characterY);
+            magsasaka2S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(pangingisdaBalloon2);
+			pangingisda1S.stop();
 			break;
 		//game
 		case 9:
@@ -283,6 +315,9 @@ public class ChapterFive extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(5, 3, x, y);
 
@@ -363,6 +398,23 @@ public class ChapterFive extends ChapterCore {
         }
         return super.touchDown(x, y);
     }
+
+	private void playSoundForSection() {
+		// TODO Auto-generated method stub
+	    	 switch (chapterSection) {
+	         case 0:
+	             intro1S.stop();
+	             intro1S.play();
+	             break;
+	         case 1:
+	        	 intro1S.stop();
+	        	 intro2S.play();
+	        	 break;
+	         case 2:
+	        	 
+	    	 }
+		
+	}
 
 	@Override
 	public void dispose(){

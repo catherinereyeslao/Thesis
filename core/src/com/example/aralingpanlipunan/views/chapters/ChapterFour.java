@@ -66,7 +66,7 @@ public class ChapterFour extends ChapterCore {
 			question3Bg = new Texture(
 					"chapters/chapter4/answerkeys/answer3.jpg");
 
-			correctAnswers = 5;
+			correctAnswers = 10;
 		} else {
 			question1Bg = new Texture(
 					"chapters/chapter4/backgrounds/question1.jpg");
@@ -126,48 +126,55 @@ public class ChapterFour extends ChapterCore {
             case 0:
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro1Balloon);
-                intro1S.stop();
+                
                 break;
             case 1:
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro2Balloon);
+                intro1S.stop();
                 
-                intro2S.stop();
                 break;
             case 2:
                 backgroundSprite.setTexture(pangKalusuganBg);
                 balloonSprite.setTexture(kaligtasan1Balloon);
-                kaligtasan1S.stop();
+                intro2S.stop();
+                
                 break;
             case 3:
                 backgroundSprite.setTexture(pangKalusuganBg);
                 balloonSprite.setTexture(kaligtasan2Balloon);
-                kaligtasan2S.stop();
+                kaligtasan1S.stop();
+                
                 break;
             case 4:
                 backgroundSprite.setTexture(libanganBg);
                 balloonSprite.setTexture(libangan1Balloon);
-                libangan1S.stop();
+                kaligtasan2S.stop();
+               
                 break;
             case 5:
                 backgroundSprite.setTexture(libanganBg);
                 balloonSprite.setTexture(libangan2Balloon);
-                libangan2S.stop();
+                libangan1S.stop();
+                
                 break;
             case 6:
                 backgroundSprite.setTexture(pangEdukasyonBg);
                 balloonSprite.setTexture(pagaaral1Balloon);
-                pagaaral1S.stop();
+                libangan2S.stop();
+               
                 break;
             case 7:
                 backgroundSprite.setTexture(pangEdukasyonBg);
                 balloonSprite.setTexture(pagaaral2Balloon);
-                pagaaral2S.stop();
+                pagaaral1S.stop();
+               
                 break;
             case 8:
                 backgroundSprite.setTexture(pagkainBg);
                 balloonSprite.setTexture(pagkainBalloon);
-                pagkain.stop();
+                pagaaral2S.stop();
+                //pagkain.stop();
                 break;
             case 9: // Start of Game
                 correctAnswers = 0;
@@ -444,35 +451,43 @@ public class ChapterFour extends ChapterCore {
              break;
          case 1:
              intro1S.stop();
+             intro2S.stop();
              intro2S.play();
              break;
          case 2:
         	 intro2S.stop();
+        	 kaligtasan1S.stop();
         	 kaligtasan1S.play();
         	 break;
          case 3:
         	 kaligtasan1S.stop();
+        	 kaligtasan2S.stop();
              kaligtasan2S.play();
              break;
          case 4:
         	 kaligtasan2S.stop();
-             libangan1S.play();
+        	 libangan1S.stop();
+        	 libangan1S.play();
              break;
          case 5:
         	 libangan1S.stop();
-             libangan2S.play();
+        	 libangan2S.stop();
+        	 libangan2S.play();
              break;
          case 6:
         	 libangan2S.stop();
-             pagaaral1S.play();
+        	 pagaaral1S.stop();
+        	 pagaaral1S.play();
              break;
          case 7:
         	 pagaaral1S.stop();
-             pagaaral2S.play();
+        	 pagaaral2S.stop();
+        	 pagaaral2S.play();
              break;
          case 8:
         	 pagaaral2S.stop();
-             pagkain.play();
+        	 pagkain.stop();
+        	 pagkain.play();
              break;
     	 }
 		
