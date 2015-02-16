@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.views.AppView;
 import java.lang.IllegalArgumentException;
+import java.util.HashMap;
 
 public class MemoryGame extends AppView {
     public static final byte EASY = 0;
@@ -79,14 +80,21 @@ public class MemoryGame extends AppView {
      * Loads a memory game in easy level
      */
     private void loadEasy() {
-        final float col1 = screenWidth / 3;
-        final float col2 = screenWidth / 2.2f;
+        final float col1 = screenWidth / 3.2f;
+        final float col2 = screenWidth / 2.3f;
         final float col3 = screenWidth / 1.8f;
         final float row1 = screenHeight / 1.8f;
         final float row2 = screenHeight / 3;
 
+        float pos1[] = {col1, row1};
+        float pos2[] = {col2, row1};
+        float pos3[] = {col3, row1};
+        float pos4[] = {col1, row2};
+        float pos5[] = {col2, row2};
+        float pos6[] = {col3, row2};
+
         icon1 = new Sprite(easyTexture1);
-        icon1.setSize(icon1.getWidth() * getButtonScale(), icon1.getHeight() * getButtonScale());
+        icon1.setSize((icon1.getWidth() * getButtonScale()) * 1.5f, (icon1.getHeight() * getButtonScale()) * 1.5f);
         icon1.setPosition(col1, row1);
 
         icon2 = new Sprite(easyTexture1);
