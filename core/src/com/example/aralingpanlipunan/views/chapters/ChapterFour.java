@@ -131,6 +131,7 @@ public class ChapterFour extends ChapterCore {
             case 1:
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro2Balloon);
+                
                 intro2S.stop();
                 break;
             case 2:
@@ -442,35 +443,35 @@ public class ChapterFour extends ChapterCore {
              intro1S.play();
              break;
          case 1:
-             intro2S.stop();
+             intro1S.stop();
              intro2S.play();
              break;
          case 2:
-        	 kaligtasan1S.stop();
+        	 intro2S.stop();
         	 kaligtasan1S.play();
         	 break;
          case 3:
-             kaligtasan2S.stop();
+        	 kaligtasan1S.stop();
              kaligtasan2S.play();
              break;
          case 4:
-             libangan1S.stop();
+        	 kaligtasan2S.stop();
              libangan1S.play();
              break;
          case 5:
-             libangan2S.stop();
+        	 libangan1S.stop();
              libangan2S.play();
              break;
          case 6:
-             pagaaral1S.stop();
+        	 libangan2S.stop();
              pagaaral1S.play();
              break;
          case 7:
-             pagaaral2S.stop();
+        	 pagaaral1S.stop();
              pagaaral2S.play();
              break;
          case 8:
-             pagkain.stop();
+        	 pagaaral2S.stop();
              pagkain.play();
              break;
     	 }
