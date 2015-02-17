@@ -14,7 +14,7 @@ public class ChapterFive extends ChapterCore {
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
 					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture,
+					pangingisdaBalloon1, pangingisdaBalloon2, truckTexture, minerTexture,
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
                     kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
                     question1Bg;
@@ -39,13 +39,15 @@ public class ChapterFive extends ChapterCore {
 		startOfQuestionSection = 9;
 		lastChapterSection = 10;
         characterSpeed = getCharacterVelocityByScreen();
-		gameBg = new Texture("chapters/chapter5/backgrounds/question.jpg");
+		
         boxTexture = new Texture("box.png");
         
         if (isTeacher) {
+        	
 			question1Bg = new Texture(
 					"chapters/chapter5/answers/answer.jpg");
 			correctAnswers = 5;
+			
 		} else {
 			question1Bg = new Texture(
 					"chapters/chapter5/backgrounds/question.jpg");
@@ -312,7 +314,7 @@ public class ChapterFive extends ChapterCore {
             kabundukan.setPosition(kabundukanX, kabundukanY);
             lungsod.setPosition(lungsodX, lungsodY);
             parke.setPosition(parkeX, parkeY);
-			backgroundSprite.setTexture(gameBg);
+			backgroundSprite.setTexture(questionBg);
 			break;
         case 10:
             displayQuizResult(DatabaseSetup.CHAPTER_FIVE_SCORE, 3);
