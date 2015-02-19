@@ -14,13 +14,14 @@ public class MiniGamesMenu extends AppView {
     private static final byte MEMORY_GAME = 2;
     private byte selectedMenu = MINI_GAME_MENU;
     private Texture menuBgTexture, memoryMenuBgTexture;
-    private Sprite memory, fourPics;
+    private Sprite memory, fourPics, easyMemory, medMemory, hardMemory;
     private MemoryGame memoryGame;
 
     @Override
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+
         float optionY = screenHeight / 3.24f;
         float memoryX = screenWidth / 3.86f;
         float fourPicX = screenWidth / 1.82f;
@@ -37,6 +38,27 @@ public class MiniGamesMenu extends AppView {
         fourPics.setSize(memory.getWidth(), memory.getHeight());
         fourPics.setBounds(fourPicX, optionY, fourPics.getWidth(), fourPics.getHeight());
         fourPics.setAlpha(0);
+
+        // Set touch listeners for Memory Game Menu
+        float easyX = screenWidth / 4.69f;
+        float mediumX = screenWidth / 2.455f;
+        float hardX = screenWidth / 1.63f;
+        float memoryMenuY = screenHeight / 2.75f;
+
+        easyMemory = new Sprite(menuBgTexture);
+        easyMemory.setSize(memory.getWidth() / 1.188f, memory.getHeight() / 1.3f);
+        easyMemory.setPosition(easyX, memoryMenuY);
+        easyMemory.setBounds(easyX, memoryMenuY, easyMemory.getWidth(), easyMemory.getHeight());
+
+        medMemory = new Sprite(menuBgTexture);
+        medMemory.setSize(easyMemory.getWidth(), easyMemory.getHeight());
+        medMemory.setPosition(mediumX, memoryMenuY);
+        medMemory.setBounds(mediumX, memoryMenuY, medMemory.getWidth(), medMemory.getHeight());
+
+        hardMemory = new Sprite(menuBgTexture);
+        hardMemory.setSize(easyMemory.getWidth(), easyMemory.getHeight());
+        hardMemory.setPosition(hardX, memoryMenuY);
+        hardMemory.setBounds(hardX, memoryMenuY, easyMemory.getWidth(), easyMemory.getHeight());
     }
 
     @Override
@@ -83,8 +105,14 @@ public class MiniGamesMenu extends AppView {
                 }
                 break;
             case MEMORY_MENU:
-                //TODO: Put touch listeners to open different game difficulties
-                memoryGame = new MemoryGame(MemoryGame.EASY);
+                if (easyMemory.getBoundingRectangle().contains(x, y)) {
+                    memoryGame = new MemoryGame(MemoryGame.EASY);
+                } else if (medMemory.getBoundingRectangle().contains(x, y)) {
+                    memoryGame = new MemoryGame(MemoryGame.MEDIUM);
+                } else if (medMemory.getBoundingRectangle().contains(x, y)) {
+                    memoryGame = new MemoryGame(MemoryGame.HARD);
+                }
+
                 memoryGame.setUp(screenWidth, screenHeight);
                 selectedMenu = MEMORY_GAME;
                 break;
