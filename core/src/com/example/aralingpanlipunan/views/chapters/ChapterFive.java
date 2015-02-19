@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,7 +18,7 @@ public class ChapterFive extends ChapterCore {
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
                     kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
                     question1Bg;
-	private Sound intro1S, intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
+	private Music intro1S, intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
 					pangingisda1S, pangingisda2S;
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
 	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
@@ -144,15 +144,15 @@ public class ChapterFive extends ChapterCore {
             next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
 		}
         //sounds
-        intro1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro1chap5.m4a"));
-        intro2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro2chap5.m4a"));
-        magsasaka1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka1.m4a"));
-        magsasaka2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka2.m4a"));
-        mangangalakal1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal1.m4a"));
-        mangangalakal2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal2.m4a"));
-        pagmimina1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
-        pangingisda1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda1.m4a"));
-        pangingisda2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda2.m4a"));
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/intro1chap5.m4a"));
+        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/intro2chap5.m4a"));
+        magsasaka1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/magsasaka1.m4a"));
+        magsasaka2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/magsasaka2.m4a"));
+        mangangalakal1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal1.m4a"));
+        mangangalakal2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal2.m4a"));
+        pagmimina1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
+        pangingisda1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pangingisda1.m4a"));
+        pangingisda2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pangingisda2.m4a"));
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
@@ -330,6 +330,7 @@ public class ChapterFive extends ChapterCore {
                 parke.setPosition(parkeX, parkeY);
                 backgroundSprite.setTexture(question1Bg);
             }
+            pangingisda2S.stop();
 
 			break;
         case 10:

@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,7 +17,7 @@ public class ChapterOne extends ChapterCore {
     private static final String BAYBAYIN = "d. Baybayin";
 
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
-    private Sound baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
+    private Music baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
@@ -52,15 +52,15 @@ public class ChapterOne extends ChapterCore {
             currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score from db
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
-        baybayin1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
-        baybayin2sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));
-        baybayin3sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/baybayin3.mp3"));
-        bukid1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/bukid1.mp3"));
-        bukid2sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/bukid2.mp3"));
-        intro1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/intro1.mp3"));
-        intro2sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/intro2.mp3"));
-        lungsod1sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/lungsod1.mp3"));
-        lungsod2sound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter1/sounds/lungsod2.mp3"));
+        baybayin1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
+        baybayin2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));
+        baybayin3sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin3.mp3"));
+        bukid1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/bukid1.mp3"));
+        bukid2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/bukid2.mp3"));
+        intro1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/intro1.mp3"));
+        intro2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/intro2.mp3"));
+        lungsod1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/lungsod1.mp3"));
+        lungsod2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/lungsod2.mp3"));
         introBg = new Texture("chapters/chapter1/backgrounds/intro.png");
         baybayinBg = new Texture("chapters/chapter1/backgrounds/baybayin.png");
         kabukirinBg = new Texture("chapters/chapter1/backgrounds/kabukirin.png");

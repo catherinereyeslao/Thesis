@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -15,7 +15,7 @@ public class ChapterSeven extends ChapterCore {
 			habilisBalloon1, habilisBalloon2, sapiensBalloon1, sapiensBalloon2,
 			sapiensBalloon3, question1Bg, question2Bg, selectedAnsTexture,
 			nextTexture;
-	private Sound intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
+	private Music intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
 			habilis2S, sapiens1S, sapiens2S, sapiens3S;
 	private Sprite ans, ans2, ans3, ans4, ans5, ans6, next;
 	private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched,
@@ -36,25 +36,25 @@ public class ChapterSeven extends ChapterCore {
 		lastChapterSection = 12;
 
 		// sounds
-		intro1S = Gdx.audio.newSound(Gdx.files
+		intro1S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/intro1chap7.m4a"));
-		intro2S = Gdx.audio.newSound(Gdx.files
+		intro2S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/intro2chap7.m4a"));
-		erectus1S = Gdx.audio.newSound(Gdx.files
+		erectus1S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/homoerectus1.m4a"));
-		erectus2S = Gdx.audio.newSound(Gdx.files
+		erectus2S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/homorectus2.m4a"));
-		erectus3S = Gdx.audio.newSound(Gdx.files
+		erectus3S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/homoerectus3.m4a"));
-		habilis1S = Gdx.audio.newSound(Gdx.files
+		habilis1S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/habilis1.m4a"));
-		habilis2S = Gdx.audio.newSound(Gdx.files
+		habilis2S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/habilis2.m4a"));
-		sapiens1S = Gdx.audio.newSound(Gdx.files
+		sapiens1S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/sapiens1.m4a"));
-		sapiens2S = Gdx.audio.newSound(Gdx.files
+		sapiens2S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/sapiens2.m4a"));
-		sapiens3S = Gdx.audio.newSound(Gdx.files
+		sapiens3S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sounds/sapiens3.m4a"));
 
 		// backgrounds

@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,7 +14,7 @@ public class ChapterFour extends ChapterCore {
     				pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker, nextTexture,
     				question1Bg, question2Bg, question3Bg;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False, next;
-    private Sound intro1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;
+    private Music intro1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;
     private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched =false;
 
     public ChapterFour(AndroidInterface androidInterface, String studentName) {
@@ -48,15 +48,15 @@ public class ChapterFour extends ChapterCore {
         pagaaral2Balloon = new Texture("chapters/chapter4/balloons/Pagaaral2.png");
         pagkainBalloon = new Texture("chapters/chapter4/balloons/Pagkain.png");
         
-        intro1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/intro1.amr"));
-        intro2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/intro2.amr"));
-        kaligtasan1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan1.amr"));
-        kaligtasan2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan2.amr"));
-        libangan1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/libangan1.amr"));
-        libangan2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/libangan2.amr"));
-        pagaaral1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagaaral1.amr"));
-        pagaaral2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagaaral 2.amr"));
-        pagkain = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter4/sounds/pagkain.amr"));
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/intro1.amr"));
+        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/intro2.amr"));
+        kaligtasan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan1.amr"));
+        kaligtasan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan2.amr"));
+        libangan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/libangan1.amr"));
+        libangan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/libangan2.amr"));
+        pagaaral1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagaaral1.amr"));
+        pagaaral2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagaaral 2.amr"));
+        pagkain = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagkain.amr"));
         
         if (isTeacher) {
 			question1Bg = new Texture(

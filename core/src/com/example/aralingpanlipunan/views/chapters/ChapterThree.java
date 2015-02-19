@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,7 +16,7 @@ public class ChapterThree extends ChapterCore {
 					a1B1, a1B2, a1B3, a2B1, a2B2, a3B1, a3B2, a3B3, a4B1, a4B2, a4B3, a5B1, a5B2, a5B3, 
 					answerMarker, submitTexture;
 	private Sprite  ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, submit;
-	private Sound introS, a1S1, a1S2, a1S3, a2S1, a2S2, a3S1, a3S2, a3S3, a4S1, a4S2, a4S3, a5S1, a5S2, a5S3;
+	private Music introS, a1S1, a1S2, a1S3, a2S1, a2S2, a3S1, a3S2, a3S3, a4S1, a4S2, a4S3, a5S1, a5S2, a5S3;
 	boolean ans1Touched, ans2Touched, ans3Touched, ans4Touched, ans5Touched, ans6Touched, ans7Touched, ans8Touched, ans9Touched = false;
 
 	public ChapterThree(AndroidInterface androidInterface, String studName) {
@@ -59,21 +59,21 @@ public class ChapterThree extends ChapterCore {
 		a5B1 = new Texture("chapters/chapter3/balloons/Alituntunin5.png");
 		a5B2 = new Texture("chapters/chapter3/balloons/Alituntunin5.1.png");
 		a5B3 = new Texture("chapters/chapter3/balloons/Alituntunin5.2.png");
-		introS = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/intro.amr"));
-		a1S1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin1.amr"));
-		a1S2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin11.amr"));
-		a1S3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin12.amr"));
-		a2S1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin2.amr"));
-		a2S2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin22.amr"));
-		a3S1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin3.amr"));
-		a3S2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin31.amr"));
-		a3S3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin32.amr"));
-		a4S1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin4.amr"));
-		a4S2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin41.amr"));
-		a4S3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin42.amr"));
-		a5S1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alintuntunin5.amr"));
-		a5S2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin51.amr"));
-		a5S3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/intro.amr"));
+		a1S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin1.amr"));
+		a1S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin11.amr"));
+		a1S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin12.amr"));
+		a2S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin2.amr"));
+		a2S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin22.amr"));
+		a3S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin3.amr"));
+		a3S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin31.amr"));
+		a3S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin32.amr"));
+		a4S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin4.amr"));
+		a4S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin41.amr"));
+		a4S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin42.amr"));
+		a5S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alintuntunin5.amr"));
+		a5S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin51.amr"));
+		a5S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));
 		
 		
 
@@ -110,78 +110,94 @@ public class ChapterThree extends ChapterCore {
 				backgroundSprite.setTexture(introBg);
 				balloonSprite.setTexture(introBalloon);
 				introS.stop();
+				a1S1.stop();
 				break;
 			case 1:
 				backgroundSprite.setTexture(alituntunin1Bg);
 				balloonSprite.setTexture(a1B1);
-				a1S1.stop();
+				introS.stop();
+				a1S2.stop();
 				break;
 			case 2:
 				balloonSprite.setTexture(a1B2);
-				a1S2.stop();
+				a1S1.stop();
+				a1S3.stop();
 				break;
 			case 3:
 				backgroundSprite.setTexture(alituntunin1Bg);
 				balloonSprite.setTexture(a1B3);
-				a1S3.stop();
+				a1S2.stop();
+				a2S1.stop();
 				break;
 			case 4:
 				backgroundSprite.setTexture(alituntunin2Bg);
 				balloonSprite.setTexture(a2B1);
-				a2S1.stop();
+				a1S3.stop();
+				a2S2.stop();
 				break;
 			case 5:
 				backgroundSprite.setTexture(alituntunin2Bg);
 				balloonSprite.setTexture(a2B2);
-				a2S2.stop();
+				a2S1.stop();
+				
 				break;
 			case 6:
 				backgroundSprite.setTexture(alituntunin3Bg);
 				balloonSprite.setTexture(a3B1);
-				a3S1.stop();
+				a2S2.stop();
+				a3S2.stop();
 				break;
 			case 7:
 				balloonSprite.setTexture(a3B2);
-				a3S2.stop();
+				a3S1.stop();
+				a3S3.stop();
 				break;
 			case 8:
 				backgroundSprite.setTexture(alituntunin3Bg);
 				balloonSprite.setTexture(a3B3);
-				a3S3.stop();
+				a3S2.stop();
+				a4S1.stop();
 				break;
 			case 9:
 				backgroundSprite.setTexture(alituntunin4Bg);
 				balloonSprite.setTexture(a4B1);
-				a4S1.stop();
+				a3S3.stop();
+				a4S2.stop();
 				break;
 			case 10:
 				balloonSprite.setTexture(a4B2);
-				a4S2.stop();
+				a4S1.stop();
+				a4S3.stop();
 				break;
 				
 			case 11:
 				backgroundSprite.setTexture(alituntunin4Bg);
 				balloonSprite.setTexture(a4B3);
-				a4S3.stop();
+				a4S2.stop();
+				a5S1.stop();
 				break;
 			case 12:
 				backgroundSprite.setTexture(alituntunin5Bg);
 				balloonSprite.setTexture(a5B1);
-				a5S1.stop();
+				a4S3.stop();
+				a5S2.stop();
 				break;
 			case 13:
 				balloonSprite.setTexture(a5B2);
-				a5S2.stop();
+				a5S1.stop();
+				a5S3.stop();
 				break;
 			case 14:
 				balloonSprite.setTexture(a5B3);
-				a5S3.stop();
+				a5S2.stop();
+				
 				break;
 			case 15: // Start of game
 				correctAnswers = 0;
 				backgroundSprite.setTexture(gameBg);
 				backToChapters.setBounds(0, 0, 0, 0);
 				setUpGame();
+				a5S3.stop();
 				break;
 			case 16:
 				if (ans1Touched) correctAnswers--;
@@ -402,6 +418,21 @@ public class ChapterThree extends ChapterCore {
 	@Override
 	public void dispose(){
 		super.dispose();
+		introS.stop();
+		a1S1.stop();
+		a1S2.stop();
+		a1S3.stop();
+		a2S1.stop();
+		a2S2.stop();
+		a3S1.stop();
+		a3S2.stop();
+		a3S3.stop();
+		a4S1.stop();
+		a4S2.stop();
+		a4S3.stop();
+		a5S1.stop();
+		a5S2.stop();
+		a5S3.stop();
 		introBg.dispose();
 		introBalloon.dispose();
 		alituntunin1Bg.dispose();
