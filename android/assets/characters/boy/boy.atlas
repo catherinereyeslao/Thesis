@@ -1,0 +1,20 @@
+
+boy.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+StudentBoy1
+  rotate: false
+  xy: 2, 2
+  size: 333, 600
+  orig: 333, 600
+  offset: 0, 0
+  index: -1
+StudentBoy2
+  rotate: false
+  xy: 337, 2
+  size: 333, 600
+  orig: 333, 600
+  offset: 0, 0
+  index: -1

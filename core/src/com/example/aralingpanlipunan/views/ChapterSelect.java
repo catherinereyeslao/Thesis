@@ -39,7 +39,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
             case STUDENT:
                 loggedInUserName = userName;
                 userType = STUDENT;
-                android = androidInterface;
+                android = new DummyAndroidInterface();
                 break;
         }
     }

@@ -46,6 +46,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 	public void create () {
 		batch = new SpriteBatch();
 		menu = new Menu();
+
 		menu.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 		// Set input listeners
@@ -100,7 +101,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 				menu.display(batch);
 				break;
 		}
-		batch.end();
+        batch.end();
 	}
 
 	@Override
@@ -127,37 +128,37 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 	@Override
 	public boolean touchDown(float x, float y, int pointer, int button) {
 		final float normalisedY = Gdx.graphics.getHeight() - y;
-		switch (triage) {
-			case MENU:
-				if (menu.clickedMenu(x, normalisedY) == Menu.START) {
-					menu.dispose();
-					start = new Start();
-					start.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-					triage = START;
-				} else if (menu.clickedMenu(x, normalisedY) == Menu.MINI_GAMES) {
+        switch (triage) {
+            case MENU:
+                if (menu.clickedMenu(x, normalisedY) == Menu.START) {
+                    menu.dispose();
+                    start = new Start();
+                    start.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                    triage = START;
+                } else if (menu.clickedMenu(x, normalisedY) == Menu.MINI_GAMES) {
                     menu.dispose();
                     miniGamesMenu = new MiniGamesMenu();
                     miniGamesMenu.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                     triage = MINI_GAMES;
                 } else if (menu.clickedMenu(x, normalisedY) == Menu.EXIT) {
-					triage = EXIT;
-					dispose();
-					if (android != null) android.exit();
-				}
-				break;
-			case START:
-				start.touchDown(x, normalisedY);
-				break;
-			case STUDENT:
-				student.touchDown(x, normalisedY);
-				break;
+                    triage = EXIT;
+                    dispose();
+                    if (android != null) android.exit();
+                }
+                break;
+            case START:
+                start.touchDown(x, normalisedY);
+                break;
+            case STUDENT:
+                student.touchDown(x, normalisedY);
+                break;
             case MINI_GAMES:
                 miniGamesMenu.touchDown(x, normalisedY);
                 break;
             case TEACHER:
                 teacher.touchDown(x, normalisedY);
                 break;
-		}
+        }
 		return false;
 	}
 
