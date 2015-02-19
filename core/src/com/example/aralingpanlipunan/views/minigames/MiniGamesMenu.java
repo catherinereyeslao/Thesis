@@ -61,7 +61,11 @@ public class MiniGamesMenu extends AppView {
     @Override
     public void dispose() {
         menuBgTexture.dispose();
-        memoryGame.dispose();
+        switch (selectedMenu) {
+            case MEMORY_GAME:
+                memoryGame.dispose();
+                break;
+        }
     }
 
     /**
@@ -83,6 +87,9 @@ public class MiniGamesMenu extends AppView {
                 memoryGame = new MemoryGame(MemoryGame.EASY);
                 memoryGame.setUp(screenWidth, screenHeight);
                 selectedMenu = MEMORY_GAME;
+                break;
+            case MEMORY_GAME:
+                memoryGame.touchDown(x, y);
                 break;
         }
     }

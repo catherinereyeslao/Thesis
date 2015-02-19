@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteException;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.widget.Toast;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class AndroidLauncher extends AndroidApplication implements AndroidInterface, OnClickListener, Runnable {
 	private static final int ALERT = 1;
 	private static final int TOAST = 2;
-	private int androidBackgroudnTask;
+	private int androidBackgroundTask;
 	private String[] alertMessage = new String[4];
 	private boolean alertButtonClicked = false;
 
@@ -88,7 +87,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 		alertMessage[1] = message;
 		alertMessage[2] = yesButton;
 		alertMessage[3] = noButton;
-		androidBackgroudnTask = ALERT;
+		androidBackgroundTask = ALERT;
 		return alertButtonClicked;
 	}
 
@@ -102,7 +101,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 		this.runOnUiThread(this);
 		alertMessage[0] = message;
 		alertMessage[1] = Integer.toString(length);
-		androidBackgroudnTask = TOAST;
+		androidBackgroundTask = TOAST;
 	}
 
 	@Override
@@ -143,7 +142,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 
 	@Override
 	public void run() {
-		switch (androidBackgroudnTask) {
+		switch (androidBackgroundTask) {
 			case ALERT:
 				if (Build.VERSION.SDK_INT < 11) {
 					// For older android version compatibility, use old alertDialog box
