@@ -11,8 +11,12 @@ import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_TWO_SCORE;
 
 public class ChapterTwo extends ChapterCore {
-    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture, direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture, map3BalloonTexture, map4BalloonTexture, question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
-    private Sound tingSound;
+    private Texture introBgTexture, introBalloonTexture, directionTexture, mapTexture,
+    				direction1BalloonTexture, direction2BalloonTexture, direction3BalloonTexture, 
+    				direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture,
+    				map3BalloonTexture, map4BalloonTexture, 
+    				question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
+    private Sound tingSound,introS, d1, d2, d31, d32, d4, d5, m1, m2, m3, m4;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
@@ -63,6 +67,17 @@ public class ChapterTwo extends ChapterCore {
         ansKey4Texture = new Texture("chapters/chapter2/answerkeys/anskey4.jpg");
 
         tingSound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/ting.mp3"));
+        introS = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-intro.amr"));
+        d1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir1.amr"));
+        d2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir2.amr"));
+        d31 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.1.amr"));
+        d32 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.2.amr"));
+        d4 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir4.amr"));
+        d5 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir5.amr"));
+        m1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa1.amr"));
+        m2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa2.amr"));
+        m3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa3.amr"));
+        m4 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa4.amr"));
 
         backgroundSprite.setTexture(introBgTexture);
         balloonSprite.setTexture(introBalloonTexture);
@@ -147,22 +162,28 @@ public class ChapterTwo extends ChapterCore {
         ansKey2Texture.dispose();
         ansKey3Texture.dispose();
         ansKey4Texture.dispose();
-        tingSound.dispose();
+        introS.dispose();
+        d1.dispose();
+        d2.dispose();
+        d31.dispose();
+        d32.dispose();
+        d4.dispose();
+        d5.dispose();
+        m1.dispose();
+        m2.dispose();
+        m3.dispose();
+        m4.dispose();
     }
 
     @Override
     public int touchDown(float x, float y) {
         super.touchDown(x, y);
+        if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         int touched;
         switch (chapterSection) {
-            case 1:
-                //TODO: Play the correct voice over here in 1 & 2
-                if (soundSprite.getBoundingRectangle().contains(x, y))
-                    tingSound.play();
-                break;
-            case 2:
-                tingSound.stop();
-                break;
+            
             case 11:
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
@@ -258,6 +279,35 @@ public class ChapterTwo extends ChapterCore {
         }
         return 100;
     }
+    
+    private void playSoundForSection() {
+        switch (chapterSection) {
+        case 0:
+            introS.stop();
+            introS.play();
+            break;
+        case 1:
+        	d1.stop();
+        	d1.play();
+        	break;
+        case 2:
+        	d2.stop();
+        	d2.play();
+        	break;
+        case 4:
+        	d4.stop();
+        	d4.play();
+        	break;
+        case 5:
+        	d5.stop();
+        	d5.play();
+        	break;
+        case 6:
+        	m1.stop();
+        	m2.play();
+        	break;
+        }
+        }
 
     /**
      * This assetManager manages asset on Demand (assetNeedUpdate = true)
@@ -272,6 +322,7 @@ public class ChapterTwo extends ChapterCore {
                 backgroundSprite.setTexture(introBgTexture);
                 balloonSprite.setTexture(introBalloonTexture);
                 balloonSprite.setAlpha(1);
+                
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);

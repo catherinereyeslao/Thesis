@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -12,9 +14,12 @@ public class ChapterFive extends ChapterCore {
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
 					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
 					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, gameBg, truckTexture, minerTexture,
+					pangingisdaBalloon1, pangingisdaBalloon2, truckTexture, minerTexture,
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
-                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture;
+                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
+                    question1Bg;
+	private Sound intro1S, intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
+					pangingisda1S, pangingisda2S;
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
 	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
@@ -34,8 +39,120 @@ public class ChapterFive extends ChapterCore {
 		startOfQuestionSection = 9;
 		lastChapterSection = 10;
         characterSpeed = getCharacterVelocityByScreen();
-		gameBg = new Texture("chapters/chapter5/backgrounds/question.jpg");
         boxTexture = new Texture("box.png");
+
+        
+        if (isTeacher) {
+        	
+			question1Bg = new Texture(
+					"chapters/chapter5/answers/answer.jpg");
+			correctAnswers = 5;
+			
+		} else {
+			question1Bg = new Texture(
+					"chapters/chapter5/backgrounds/question.jpg");
+
+            baybayinTexture = new Texture("chapters/chapter5/answers/baybayin.png");
+            baybayin = new Sprite(baybayinTexture);
+            baybayin.setSize(getAnswerWidth(baybayin), getAnswerHeight(baybayin));
+            baybayinX = (screenWidth / 2.8f) - (baybayin.getWidth() / 2);
+            baybayinY = (screenHeight / 1.45f) - (baybayin.getHeight() / 2);
+            baybayin.setPosition(baybayinX, baybayinY);
+            baybayin.setBounds(baybayinX, baybayinY, baybayin.getWidth(), baybayin.getHeight());
+
+            ibaTexture = new Texture("chapters/chapter5/answers/iba.png");
+            iba = new Sprite(ibaTexture);
+            iba.setSize(getAnswerWidth(iba), getAnswerHeight(iba));
+            ibaX = (screenWidth / 1.85f) - (iba.getWidth() / 2);
+            ibaY = baybayinY;
+            iba.setPosition(ibaX, ibaY);
+            iba.setBounds(ibaX, ibaY, iba.getWidth(), iba.getHeight());
+
+            kabukiranTexture = new Texture("chapters/chapter5/answers/kabukiran.png");
+            kabukiran = new Sprite(kabukiranTexture);
+            kabukiran.setSize(getAnswerWidth(kabukiran), getAnswerHeight(kabukiran));
+            kabukiranX = (screenWidth / 1.4f) - (kabukiran.getWidth() / 2);
+            kabukiranY = baybayinY;
+            kabukiran.setPosition(kabukiranX, kabukiranY);
+            kabukiran.setBounds(kabukiranX, kabukiranY, kabukiran.getWidth(), kabukiran.getHeight());
+
+            kabundukanTexture = new Texture("chapters/chapter5/answers/kabundukan.png");
+            kabundukan = new Sprite(kabundukanTexture);
+            kabundukan.setSize(getAnswerWidth(kabundukan), getAnswerHeight(kabundukan));
+            kabundukanX = (screenWidth / 1.15f) - (kabundukan.getWidth() / 2);
+            kabundukanY = baybayinY;
+            kabundukan.setPosition(kabundukanX, kabundukanY);
+            kabundukan.setBounds(kabundukanX, kabukiranY, kabundukan.getWidth(), kabundukan.getHeight());
+
+            lungsodTexture = new Texture("chapters/chapter5/answers/lungsod.png");
+            lungsod = new Sprite(lungsodTexture);
+            lungsod.setSize(getAnswerWidth(lungsod), getAnswerHeight(lungsod));
+            lungsodX = baybayinX;
+            lungsodY = (screenHeight / 1.65f) - (lungsod.getHeight() / 2);
+            lungsod.setPosition(lungsodX, lungsodY);
+            lungsod.setBounds(lungsodX, lungsodY, lungsod.getWidth(), lungsod.getHeight());
+
+            parkeTexture = new Texture("chapters/chapter5/answers/parke.png");
+            parke = new Sprite(parkeTexture);
+            parke.setSize(getAnswerWidth(parke), getAnswerHeight(parke));
+            parkeX = ibaX;
+            parkeY = lungsodY;
+            parke.setPosition(parkeX, parkeY);
+            parke.setBounds(parkeX, parkeY, parke.getWidth(), parke.getHeight());
+
+            backgroundSprite.setTexture(introBg);
+            balloonSprite.setTexture(introBalloon1);
+
+            boxTexture = new Texture("box.png");
+            box = new Sprite(boxTexture);
+            box.setSize(iba.getWidth(), iba.getHeight());
+            final float boxX = (screenWidth / 1.25f) - (box.getWidth() / 2);
+            final float boxY = (screenHeight / 2.15f) - (box.getHeight() / 2);
+            box.setPosition(boxX, boxY);
+            box.setBounds(boxX, boxY, box.getWidth(), box.getHeight());
+
+            box2 = new Sprite(boxTexture);
+            box2.setSize(iba.getWidth(), iba.getHeight());
+            final float box2Y = (screenHeight / 2.45f) - (box2.getHeight() / 2);
+            box2.setPosition(boxX, box2Y);
+            box2.setBounds(boxX, box2Y, box2.getWidth(), box2.getHeight());
+
+            box3 = new Sprite(boxTexture);
+            box3.setSize(iba.getWidth(), iba.getHeight());
+            final float box3Y = (screenHeight / 2.8f) - (box3.getHeight() / 2);
+            box3.setPosition(boxX, box3Y);
+            box3.setBounds(boxX, box3Y, box3.getWidth(), box3.getHeight());
+
+            box4 = new Sprite(boxTexture);
+            box4.setSize(iba.getWidth(), iba.getHeight());
+            final float box4Y = (screenHeight / 3.3f) - (box4.getHeight() / 2);
+            box4.setPosition(boxX, box4Y);
+            box4.setBounds(boxX, box4Y, box4.getWidth(), box4.getHeight());
+
+            box5 = new Sprite(boxTexture);
+            box5.setSize(iba.getWidth(), iba.getHeight());
+            final float box5Y = (screenHeight / 3.95f) - (box5.getHeight() / 2);
+            box5.setPosition(boxX, box5Y);
+            box5.setBounds(boxX, box5Y, box5.getWidth(), box5.getHeight());
+
+            nextTexture = new Texture("buttons/enter.png");
+            next = new Sprite(nextTexture);
+            next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
+            final float nextX = (screenWidth / 1.4f);
+            final float nextY = next.getHeight() / 10;
+            next.setPosition(nextX, nextY);
+            next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
+		}
+        //sounds
+        intro1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro1chap5.m4a"));
+        intro2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/intro2chap5.m4a"));
+        magsasaka1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka1.m4a"));
+        magsasaka2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/magsasaka2.m4a"));
+        mangangalakal1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal1.m4a"));
+        mangangalakal2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal2.m4a"));
+        pagmimina1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
+        pangingisda1S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda1.m4a"));
+        pangingisda2S = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter5/sounds/pangingisda2.m4a"));
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
@@ -55,114 +172,24 @@ public class ChapterFive extends ChapterCore {
 		pangingisdaBalloon1 = new Texture("chapters/chapter5/balloons/Pangingisda1.png");
 		pangingisdaBalloon2 = new Texture("chapters/chapter5/balloons/Pangingisda2.png");
 
-		truckTexture = new Texture("chapters/chapter5/characters/truck.png");
-		truck = new Sprite(truckTexture);
-		truck.setSize((truck.getWidth() * getButtonScale() * 1.3f), (truck.getHeight() * getButtonScale()) * 1.3f);
+        truckTexture = new Texture("chapters/chapter5/characters/truck.png");
+        truck = new Sprite(truckTexture);
+        truck.setSize((truck.getWidth() * getButtonScale() * 1.3f), (truck.getHeight() * getButtonScale()) * 1.3f);
 
-		minerTexture = new Texture("chapters/chapter5/characters/miner.png");
-		miner = new Sprite(minerTexture);
-		miner.setSize(miner.getWidth() * getButtonScale() * 1.3f, miner.getHeight() * getButtonScale() * 1.3f);
+        minerTexture = new Texture("chapters/chapter5/characters/miner.png");
+        miner = new Sprite(minerTexture);
+        miner.setSize(miner.getWidth() * getButtonScale() * 1.3f, miner.getHeight() * getButtonScale() * 1.3f);
 
-		farmerTexture = new Texture("chapters/chapter5/characters/farmer.png");
-		farmer = new Sprite(farmerTexture);
-		farmer.setSize(farmer.getWidth() * getButtonScale(), farmer.getHeight() * getButtonScale());
+        farmerTexture = new Texture("chapters/chapter5/characters/farmer.png");
+        farmer = new Sprite(farmerTexture);
+        farmer.setSize(farmer.getWidth() * getButtonScale(), farmer.getHeight() * getButtonScale());
 
         fisherTexture = new Texture("chapters/chapter5/characters/fisher.png");
         fisher = new Sprite(fisherTexture);
         fisher.setSize(fisher.getWidth() * getButtonScale() * 1.2f, fisher.getHeight() * getButtonScale() * 1.2f);
 
-		characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
-		characterY = (screenHeight / 3) - (truck.getHeight() / 2);
-
-        baybayinTexture = new Texture("chapters/chapter5/answers/baybayin.png");
-        baybayin = new Sprite(baybayinTexture);
-        baybayin.setSize(getAnswerWidth(baybayin), getAnswerHeight(baybayin));
-        baybayinX = (screenWidth / 2.8f) - (baybayin.getWidth() / 2);
-        baybayinY = (screenHeight / 1.45f) - (baybayin.getHeight() / 2);
-        baybayin.setPosition(baybayinX, baybayinY);
-        baybayin.setBounds(baybayinX, baybayinY, baybayin.getWidth(), baybayin.getHeight());
-
-        ibaTexture = new Texture("chapters/chapter5/answers/iba.png");
-        iba = new Sprite(ibaTexture);
-        iba.setSize(getAnswerWidth(iba), getAnswerHeight(iba));
-        ibaX = (screenWidth / 1.85f) - (iba.getWidth() / 2);
-        ibaY = baybayinY;
-        iba.setPosition(ibaX, ibaY);
-        iba.setBounds(ibaX, ibaY, iba.getWidth(), iba.getHeight());
-
-        kabukiranTexture = new Texture("chapters/chapter5/answers/kabukiran.png");
-        kabukiran = new Sprite(kabukiranTexture);
-        kabukiran.setSize(getAnswerWidth(kabukiran), getAnswerHeight(kabukiran));
-        kabukiranX = (screenWidth / 1.4f) - (kabukiran.getWidth() / 2);
-        kabukiranY = baybayinY;
-        kabukiran.setPosition(kabukiranX, kabukiranY);
-        kabukiran.setBounds(kabukiranX, kabukiranY, kabukiran.getWidth(), kabukiran.getHeight());
-
-        kabundukanTexture = new Texture("chapters/chapter5/answers/kabundukan.png");
-        kabundukan = new Sprite(kabundukanTexture);
-        kabundukan.setSize(getAnswerWidth(kabundukan), getAnswerHeight(kabundukan));
-        kabundukanX = (screenWidth / 1.15f) - (kabundukan.getWidth() / 2);
-        kabundukanY = baybayinY;
-        kabundukan.setPosition(kabundukanX, kabundukanY);
-        kabundukan.setBounds(kabundukanX, kabukiranY, kabundukan.getWidth(), kabundukan.getHeight());
-
-        lungsodTexture = new Texture("chapters/chapter5/answers/lungsod.png");
-        lungsod = new Sprite(lungsodTexture);
-        lungsod.setSize(getAnswerWidth(lungsod), getAnswerHeight(lungsod));
-        lungsodX = baybayinX;
-        lungsodY = (screenHeight / 1.65f) - (lungsod.getHeight() / 2);
-        lungsod.setPosition(lungsodX, lungsodY);
-        lungsod.setBounds(lungsodX, lungsodY, lungsod.getWidth(), lungsod.getHeight());
-
-        parkeTexture = new Texture("chapters/chapter5/answers/parke.png");
-        parke = new Sprite(parkeTexture);
-        parke.setSize(getAnswerWidth(parke), getAnswerHeight(parke));
-        parkeX = ibaX;
-        parkeY = lungsodY;
-        parke.setPosition(parkeX, parkeY);
-        parke.setBounds(parkeX, parkeY, parke.getWidth(), parke.getHeight());
-
-        box = new Sprite(boxTexture);
-        box.setSize(iba.getWidth(), iba.getHeight());
-        final float boxX = (screenWidth / 1.25f) - (box.getWidth() / 2);
-        final float boxY = (screenHeight / 2.15f) - (box.getHeight() / 2);
-        box.setPosition(boxX, boxY);
-        box.setBounds(boxX, boxY, box.getWidth(), box.getHeight());
-
-        box2 = new Sprite(boxTexture);
-        box2.setSize(iba.getWidth(), iba.getHeight());
-        final float box2Y = (screenHeight / 2.45f) - (box2.getHeight() / 2);
-        box2.setPosition(boxX, box2Y);
-        box2.setBounds(boxX, box2Y, box2.getWidth(), box2.getHeight());
-
-        box3 = new Sprite(boxTexture);
-        box3.setSize(iba.getWidth(), iba.getHeight());
-        final float box3Y = (screenHeight / 2.8f) - (box3.getHeight() / 2);
-        box3.setPosition(boxX, box3Y);
-        box3.setBounds(boxX, box3Y, box3.getWidth(), box3.getHeight());
-
-        box4 = new Sprite(boxTexture);
-        box4.setSize(iba.getWidth(), iba.getHeight());
-        final float box4Y = (screenHeight / 3.3f) - (box4.getHeight() / 2);
-        box4.setPosition(boxX, box4Y);
-        box4.setBounds(boxX, box4Y, box4.getWidth(), box4.getHeight());
-
-        box5 = new Sprite(boxTexture);
-        box5.setSize(iba.getWidth(), iba.getHeight());
-        final float box5Y = (screenHeight / 3.95f) - (box5.getHeight() / 2);
-        box5.setPosition(boxX, box5Y);
-        box5.setBounds(boxX, box5Y, box5.getWidth(), box5.getHeight());
-
-        nextTexture = new Texture("buttons/enter.png");
-        next = new Sprite(nextTexture);
-        next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
-        final float nextX = (screenWidth / 1.4f);
-        final float nextY = next.getHeight() / 10;
-        next.setPosition(nextX, nextY);
-        next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
-
-		backgroundSprite.setTexture(introBg);
-		balloonSprite.setTexture(introBalloon1);
+        characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
+        characterY = (screenHeight / 3) - (truck.getHeight() / 2);
 	}
 
 	@Override
@@ -193,19 +220,20 @@ public class ChapterFive extends ChapterCore {
                 fisher.draw(batch);
                 break;
             case 9:
-                baybayin.draw(batch);
-                iba.draw(batch);
-                kabukiran.draw(batch);
-                kabundukan.draw(batch);
-                lungsod.draw(batch);
-                parke.draw(batch);
-
-                box.draw(batch);
-                box2.draw(batch);
-                box3.draw(batch);
-                box4.draw(batch);
-                box5.draw(batch);
-                next.draw(batch);
+                if (!isTeacher) {
+                    box.draw(batch);
+                    box2.draw(batch);
+                    box3.draw(batch);
+                    box4.draw(batch);
+                    box5.draw(batch);
+                    next.draw(batch);
+                    baybayin.draw(batch);
+                    iba.draw(batch);
+                    kabukiran.draw(batch);
+                    kabundukan.draw(batch);
+                    lungsod.draw(batch);
+                    parke.draw(batch);
+                }
                 break;
             case 10:
                 question.drawMultiLine(batch, tanong, questionX, questionY);
@@ -226,33 +254,46 @@ public class ChapterFive extends ChapterCore {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
+			mangangalakal1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon1);
+			intro2S.stop();
+			mangangalakal2S.stop();
 			break;
 		case 3:
 			backgroundSprite.setTexture(mangangalakalBg);
 			balloonSprite.setTexture(mangangalakalBalloon2);
+			mangangalakal1S.stop();
+			pagmimina1S.stop();
 			break;
 		case 4:
 			backgroundSprite.setTexture(pagmiminaBg);
 			balloonSprite.setTexture(pagmiminaBalloon);
 			characterX = miner.getWidth() * -1.15f;
 			characterY = 0;
+			mangangalakal2S.stop();
+			magsasaka1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(pagsasakaBg);
 			balloonSprite.setTexture(pagsasakaBalloon1);
 			characterX = farmer.getWidth() * -1.15f;
 			characterY = (screenHeight / 2) - (farmer.getHeight());
+			pagmimina1S.stop();
+			magsasaka2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(pagsasakaBalloon2);
+			magsasaka1S.stop();
+			pangingisda1S.stop();
 			break;
 		case 7:
 			backgroundSprite.setTexture(pangingisdaBg);
@@ -260,19 +301,36 @@ public class ChapterFive extends ChapterCore {
             characterX = (screenWidth / 2) - (fisher.getWidth() / 2);
             characterY = (screenHeight / 4) - (fisher.getHeight() / 2);
             fisher.setPosition(characterX, characterY);
+            magsasaka2S.stop();
+            pangingisda2S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(pangingisdaBalloon2);
+			pangingisda1S.stop();
 			break;
 		//game
 		case 9:
+
             baybayin.setPosition(baybayinX, baybayinY);
             iba.setPosition(ibaX, ibaY);
             kabukiran.setPosition(kabukiranX, kabukiranY);
             kabundukan.setPosition(kabundukanX, kabundukanY);
             lungsod.setPosition(lungsodX, lungsodY);
             parke.setPosition(parkeX, parkeY);
-			backgroundSprite.setTexture(gameBg);
+			backgroundSprite.setTexture(questionBg);
+
+            if (isTeacher) {
+                backgroundSprite.setTexture(question1Bg);
+            } else {
+                baybayin.setPosition(baybayinX, baybayinY);
+                iba.setPosition(ibaX, ibaY);
+                kabukiran.setPosition(kabukiranX, kabukiranY);
+                kabundukan.setPosition(kabundukanX, kabundukanY);
+                lungsod.setPosition(lungsodX, lungsodY);
+                parke.setPosition(parkeX, parkeY);
+                backgroundSprite.setTexture(question1Bg);
+            }
+
 			break;
         case 10:
             displayQuizResult(DatabaseSetup.CHAPTER_FIVE_SCORE, 3);
@@ -283,9 +341,13 @@ public class ChapterFive extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(5, 3, x, y);
 
+        if(!isTeacher){
         if (next.getBoundingRectangle().contains(x, y)) {
             // If next button is clicked, check the position of answers and count
             // correct answers, then proceed to score page
@@ -361,12 +423,77 @@ public class ChapterFive extends ChapterCore {
             }
             touchedAnswer = null;
         }
+        }
         return super.touchDown(x, y);
     }
+
+	private void playSoundForSection() {
+		// TODO Auto-generated method stub
+	    	 switch (chapterSection) {
+	         case 0:
+	             intro1S.stop();
+	             intro1S.play();
+	             break;
+	         case 1:
+	        	
+	        	 intro2S.stop();
+	        	 intro2S.play();
+	        	 break;
+	         case 2:
+	        	 mangangalakal1S.stop();
+	        	 mangangalakal1S.play();
+	        	 break;
+	         case 3:
+	        	 mangangalakal2S.stop();
+	        	 mangangalakal2S.play();
+	        	 break;
+	         case 4:
+	        	 pagmimina1S.stop();
+	        	 pagmimina1S.play();
+	        	 break;
+	         case 5:
+	        	 magsasaka1S.stop();
+	        	 magsasaka1S.play();
+	        	 break;
+	         case 6:
+	        	 magsasaka2S.stop();
+	        	 magsasaka2S.play();
+	        	 break;
+	         case 7:
+	        	 pangingisda1S.stop();
+	        	 pangingisda1S.play();
+	        	 break;
+	         case 8:
+	        	 pangingisda2S.stop();
+	        	 pangingisda2S.play();
+	        	 break;
+	         
+	    	 }
+		
+	}
 
 	@Override
 	public void dispose(){
 		super.dispose();
+		intro1S.stop();
+		intro2S.stop();
+		mangangalakal1S.stop();
+		mangangalakal2S.stop();
+		pagmimina1S.stop();
+		magsasaka1S.stop();
+		magsasaka2S.stop();
+		pangingisda1S.stop();
+		pangingisda2S.stop();
+		intro1S.dispose();
+		intro2S.dispose();
+		mangangalakal1S.dispose();
+		mangangalakal2S.dispose();
+		pagmimina1S.dispose();
+		magsasaka1S.dispose();
+		magsasaka2S.dispose();
+		pangingisda1S.dispose();
+		pangingisda2S.dispose();
+		
 		introBg.dispose();
 		mangangalakalBg.dispose();
 		pagmiminaBg.dispose();
@@ -381,19 +508,21 @@ public class ChapterFive extends ChapterCore {
 		pagsasakaBalloon2.dispose();
 		pangingisdaBalloon1.dispose();
 		pangingisdaBalloon2.dispose();
-		gameBg.dispose();
-		truckTexture.dispose();
-		minerTexture.dispose();
-        farmerTexture.dispose();
-        fisherTexture.dispose();
-        baybayinTexture.dispose();
-        ibaTexture.dispose();
-        kabukiranTexture.dispose();
-        kabundukanTexture.dispose();
-        lungsodTexture.dispose();
-        parkeTexture.dispose();
-        boxTexture.dispose();
-        nextTexture.dispose();
+		questionBg.dispose();
+        if (!isTeacher) {
+            boxTexture.dispose();
+            nextTexture.dispose();
+            truckTexture.dispose();
+            minerTexture.dispose();
+            farmerTexture.dispose();
+            fisherTexture.dispose();
+            baybayinTexture.dispose();
+            ibaTexture.dispose();
+            kabukiranTexture.dispose();
+            kabundukanTexture.dispose();
+            lungsodTexture.dispose();
+            parkeTexture.dispose();
+        }
 	}
 
 	/**
