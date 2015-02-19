@@ -100,8 +100,6 @@ public class MiniGamesMenu extends AppView {
             case MINI_GAME_MENU:
                 if (memory.getBoundingRectangle().contains(x, y)) {
                     selectedMenu = MEMORY_MENU;
-                } else if (fourPics.getBoundingRectangle().contains(x, y)) {
-                    //TODO: Place logic here to open fourpics game
                 }
                 break;
             case MEMORY_MENU:
@@ -109,7 +107,7 @@ public class MiniGamesMenu extends AppView {
                     memoryGame = new MemoryGame(MemoryGame.EASY);
                 } else if (medMemory.getBoundingRectangle().contains(x, y)) {
                     memoryGame = new MemoryGame(MemoryGame.MEDIUM);
-                } else if (medMemory.getBoundingRectangle().contains(x, y)) {
+                } else if (hardMemory.getBoundingRectangle().contains(x, y)) {
                     memoryGame = new MemoryGame(MemoryGame.HARD);
                 }
 
