@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
+import com.example.aralingpanlipunan.Trivia;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
@@ -33,6 +34,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
     private Help help;
+    private Trivia trivia;
     private boolean backHelp;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
@@ -112,7 +114,13 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionX = (screenW / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
         questionY = (screenH - (screenH / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
 
-        introBalloonTexture.dispose();
+        // Set up the trivia if not viewed yet & display it after a random seconds (see javadoc for how many seconds)
+        if (!Trivia.isDone()) {
+            trivia = new Trivia();
+            trivia.setUp(screenWidth, screenHeight);
+            trivia.setBoySize(girl.getWidth(), girl.getHeight());
+        }
+
         assetNeedUpdate = true;
     }
 
@@ -123,8 +131,10 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         startQuizTexture.dispose();
         backToChapterTexture.dispose();
         questionBg.dispose();
+        if (trivia != null)
+            trivia.dispose(); // Trivia may have been disposed after being displayed
         if (nextTexture != null)
-            nextTexture.dispose();
+            nextTexture.dispose(); // Only exists for some chapters in student view
     }
 
     /**
@@ -135,6 +145,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @return int
      */
     public int keyDown(int keycode) {
+        // If trivia is being displayed and user pressed back button
+        if (!Trivia.isDone() && keycode == 4 && trivia.isDisplayed()) {
+            trivia.setDone();
+            trivia.dispose();
+            trivia = null;
+            return 0;
+        }
+
         if (viewingHelp) {
             if (!backHelp) {
                 backHelp = true;
@@ -169,19 +187,27 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 girl.setX(girl.getX() + 5);
             } else if (chapterSection < startOfQuestionSection) {
                 lectureStarted = true;
-                animationCounter += Gdx.graphics.getDeltaTime();
+                // Only animate girl & display balloon if trivia is not displayed
+                if (trivia == null || !trivia.isDisplayed()) {
+                    animationCounter += Gdx.graphics.getDeltaTime();
+                    balloonSprite.draw(batch);
+                }
                 girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
-                balloonSprite.draw(batch);
             }
+
             if (chapterSection < startOfQuestionSection) {
                 girl.draw(batch);
                 helpSprite.draw(batch);
                 soundSprite.draw(batch);
             }
+
             if (chapterSection == startOfQuestionSection - 1) {
                 startQuiz.draw(batch);
                 backToChapters.draw(batch);
             }
+
+            if (trivia != null)
+                trivia.display(batch);
         }
     }
 
@@ -191,7 +217,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         if (viewingHelp) {
             help.touchDown(x, y);
         } else {
+            // If trivia is displayed and user touched anywhere on screen
+            if (!Trivia.isDone() && trivia.isDisplayed()) {
+                trivia.setDone();
+                trivia.dispose();
+                trivia = null;
+            }
 
+            // If user is viewing chapter lecture
             if (chapterSection == startOfQuestionSection - 1) {
                 if (startQuiz.getBoundingRectangle().contains(x, y)) {
                     chapterSection++;
@@ -201,11 +234,13 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                     return 500;
             }
 
+            // If user touches the next button, which exists only in student view in chapter quiz
             if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
                 chapterSection++;
                 assetNeedUpdate = true;
             }
 
+            // If user touched the question mark icon, open help
             if (helpSprite.getBoundingRectangle().contains(x, y)) {
                 help = new Help();
                 help.setUp(screenWidth, screenHeight);

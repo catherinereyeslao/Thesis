@@ -11,41 +11,42 @@ import com.example.aralingpanlipunan.views.AppView;
 import java.util.Random;
 
 /**
- * Displays a random trivia.
+ * Displays a random trivia in the Chapter lecture at a random time (5 minutes max)
  */
 public class Trivia extends AppView {
     private Texture triviaTexture, blackBgTexture;
     private TextureAtlas boyAtlas;
     private Animation boyAnimation;
     private Sprite boy, triviaBalloon, blackBg;
-    private float randomAppearanceTime, runTime;
-    private boolean displayed, done;
+    private static float runTime, randomAppearanceTime = 0;
+    private static boolean done;
+    private boolean displayed;
 
     @Override
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+        done = false;
 
-        Random rand = new Random();
-        randomAppearanceTime = rand.nextFloat() + rand.nextInt(36);
+        if (randomAppearanceTime == 0) {
+            Random rand = new Random();
+            randomAppearanceTime = rand.nextFloat() + rand.nextInt(300);
+        }
 
         blackBgTexture = new Texture("backgrounds/black-bg.jpg");
         blackBg = new Sprite(blackBgTexture);
         blackBg.setSize(screenWidth, screenHeight);
-        blackBg.setAlpha(1);
+        blackBg.setAlpha(0.5f);
 
         boyAtlas = new TextureAtlas("characters/boy/boy.atlas");
         boyAnimation = new Animation(0.25f, boyAtlas.getRegions());
         boy = new Sprite(boyAnimation.getKeyFrames()[0]);
-        boy.setSize(boy.getWidth() * getButtonScale(), boy.getHeight() * getButtonScale());
-        boy.setPosition(screenW / 4, screenH / 10);
 
         triviaTexture = new Texture(randomTrivia());
         triviaBalloon = new Sprite(triviaTexture);
-        triviaBalloon.setSize(triviaBalloon.getWidth() * getButtonScale(), triviaBalloon.getHeight() * getButtonScale());
-        triviaBalloon.setPosition(boy.getX() + boy.getWidth() / 2, boy.getY() + boy.getHeight() / 1.7f);
+        triviaBalloon.setSize(triviaBalloon.getWidth() * getButtonScale() * 1.2f, triviaBalloon.getHeight() * getButtonScale());
 
-        Gdx.app.log("Trivia", "Trivia will appear in " + randomAppearanceTime + " seconds");
+        setBoySize(boy.getWidth() * getButtonScale(), boy.getHeight() * getButtonScale());
     }
 
     @Override
@@ -81,8 +82,22 @@ public class Trivia extends AppView {
      * Determine whether trivia has been seen or not
      * @return true if trivia has been seen and closed by user
      */
-    public boolean isDone() {
+    public static boolean isDone() {
         return done;
+    }
+
+    /**
+     * Modify the size of the boy character
+     * This can be used in {@link com.example.aralingpanlipunan.views.chapters.ChapterCore}
+     * to set the size of the boy same as the size of the girl
+     * Also adjusts the position of the balloon relative to the new position of boy
+     * @param boyWidth The new width of the boy character sprite
+     * @param boyHeight The new height of the boy character sprite
+     */
+    public void setBoySize(float boyWidth, float boyHeight) {
+        boy.setSize(boyWidth, boyHeight);
+        boy.setPosition(screenWidth / 3.1f, 0);
+        triviaBalloon.setPosition((boy.getX() + boy.getWidth()) / 1.3f, (boy.getY() + boy.getHeight()) / 1.75f);
     }
 
     /**
