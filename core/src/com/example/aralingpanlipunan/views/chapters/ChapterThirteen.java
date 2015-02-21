@@ -37,7 +37,7 @@ public class ChapterThirteen extends ChapterCore {
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 25;
-		lastChapterSection = 27;
+		lastChapterSection = 28;
 		assetNeedUpdate = true;
 		
 		//sounds
@@ -335,6 +335,7 @@ public class ChapterThirteen extends ChapterCore {
 		case 24:
 			balloonSprite.setTexture(aquinoBalloon3);
 			aquino2S.stop();
+			break;
         case 25: // Start of game
         	aquino3S.stop();
             backgroundSprite.setTexture(question1Bg);
