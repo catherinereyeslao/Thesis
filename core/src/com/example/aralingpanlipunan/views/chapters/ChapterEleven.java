@@ -40,7 +40,7 @@ public class ChapterEleven extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 31;
+		startOfQuestionSection = 29;
 		lastChapterSection = 33;
 		assetNeedUpdate = true;
 
@@ -410,7 +410,7 @@ public class ChapterEleven extends ChapterCore {
 			santa1S.stop();
 			break;
 		case 29: // Start of game section
-			//santa2S.stop();
+			santa2S.stop();
 			if (!isTeacher) {
 				correctAnswers = 0;
 				ans1Correct = ans2Correct = false;

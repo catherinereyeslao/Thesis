@@ -123,9 +123,9 @@ public class ChapterEight extends ChapterCore {
 		habi1Texture = new Texture("chapters/chapter8/characters/habi1.png");
 		habi2Texture = new Texture("chapters/chapter8/characters/habi2.png");
 		painter1Texture = new Texture(
-				"chapters/chapter8/characters/painter1.png");
+				"chapters/chapter8/characters/Painter1.png");
 		painter2Texture = new Texture(
-				"chapters/chapter8/characters/painter2.png");
+				"chapters/chapter8/characters/Painter2.png");
 
 		character = new Sprite(habi2Texture);
 		character.setSize((character.getWidth() * getButtonScale() * 1.75f),

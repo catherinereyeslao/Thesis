@@ -36,8 +36,8 @@ public class ChapterThirteen extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 35;
-		lastChapterSection = 29;
+		startOfQuestionSection = 25;
+		lastChapterSection = 27;
 		assetNeedUpdate = true;
 		
 		//sounds
