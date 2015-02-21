@@ -10,21 +10,23 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 
 public class ChapterFourteen extends ChapterCore {
 
-	private Texture introBg, lupaBg1, lupaBg2, lupaBg3, tubigBg1, tubigBg2, tubigBg3,
-			introBalloon1, introBalloon2, bukalBalloon1, bukalBalloon2,
-			bulkanBalloon1, bulkanBalloon2, bundokBalloon1, bundokBalloon2,
-			burolBalloon1, burolBalloon2, burolBalloon3, dagatBalloon1,
-			dagatBalloon2, ilogBalloon1, ilogBalloon2, ilogBalloon3,
-			kapataganBalloon1, kapataganBalloon2, karagatanBalloon1,
-			karagatanBalloon2, lambakBalloon1, lambakBalloon2, lawaBalloon1,
-			lawaBalloon2, talampasBalloon1, talampasBalloon2, talonBalloon1,
-			talonBalloon2, question1Bg, question2Bg, question3Bg, ansMarkerTexture;
-	private Music intro1S, intro2S, bukal1S, bukal2S, bulkan1S, bulkan2S, bundok1S, bundok2S,
-				  burol1S, burol2S, burol3S, dagat1S, dagat2S, ilog1S, ilo2S, ilog3S, patag1S, 
-				  patag2S, patag3S, karagatan1S, karagatan2S, lambak1S, lambak2S, lawa1S, lawa2S,
-				  talampas1S, talampas2S, talon1S, talon2S;
-    private Sprite ans1A, ans1B, ans2A, ans2B;
-    private boolean ans1Correct, ans2Correct;
+	private Texture introBg, lupaBg1, lupaBg2, lupaBg3, tubigBg1, tubigBg2,
+			tubigBg3, introBalloon1, introBalloon2, bukalBalloon1,
+			bukalBalloon2, bulkanBalloon1, bulkanBalloon2, bundokBalloon1,
+			bundokBalloon2, burolBalloon1, burolBalloon2, burolBalloon3,
+			dagatBalloon1, dagatBalloon2, ilogBalloon1, ilogBalloon2,
+			ilogBalloon3, kapataganBalloon1, kapataganBalloon2,
+			karagatanBalloon1, karagatanBalloon2, lambakBalloon1,
+			lambakBalloon2, lawaBalloon1, lawaBalloon2, talampasBalloon1,
+			talampasBalloon2, talonBalloon1, talonBalloon2, question1Bg,
+			question2Bg, question3Bg, ansMarkerTexture;
+	private Music intro1S, intro2S, bukal1S, bukal2S, bulkan1S, bulkan2S,
+			bundok1S, bundok2S, burol1S, burol2S, burol3S, dagat1S, dagat2S,
+			ilog1S, ilog2S, ilog3S, patag1S, patag2S, karagatan1S, karagatan2S,
+			lambak1S, lambak2S, lawa1S, lawa2S, talampas1S, talampas2S,
+			talon1S, talon2S;
+	private Sprite ans1A, ans1B, ans2A, ans2B;
+	private boolean ans1Correct, ans2Correct;
 
 	public ChapterFourteen(AndroidInterface androidInterface, boolean isTeacher) {
 		super(androidInterface, isTeacher);
@@ -39,37 +41,65 @@ public class ChapterFourteen extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 28;
 		lastChapterSection = 31;
-		
-		//sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/intro1chap14.m4a"));
-		intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/intro2chap14.m4a"));
-		bukal1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bukal1.m4a"));
-		bukal2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bukal2.m4a"));
-		bulkan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bulkan1.m4a"));
-		bulkan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bulkan2.m4a"));
-		bundok1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bundok1.m4a"));
-		bundok2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/bundok2.m4a"));
-		burol1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/burol1.m4a"));
-		burol2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/burol2.m4a"));
-		burol3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/burol3.m4a"));
-		dagat1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/dagat1.m4a"));
-		dagat2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/dagat2.m4a"));
-		ilog1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/ilog1.m4a"));
-		ilo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/ilo2.m4a"));
-		ilog3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/ilog3.m4a"));
-		patag1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/kapatagan1.m4a"));
-		patag2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/kapatagan2.m4a"));
-		patag3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/kapatagan3.m4a"));
-		karagatan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/karagatan1.m4a"));
-		karagatan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/karagatan2.m4a"));
-		lambak1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/lambak1.m4a"));
-		lambak2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/lambak2.m4a"));
-		lawa1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/lawa1.m4a"));
-		lawa2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/lawa2.m4a"));
-		talampas1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/talampas1.m4a"));
-		talampas2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/talampas2.m4a"));
-		talon1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/talon1.m4a"));
-		talon2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter14/sounds/talon2.m4a"));
+
+		// sounds
+		intro1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/intro1chap14.m4a"));
+		intro2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/intro2chap14.m4a"));
+		bukal1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bukal1.m4a"));
+		bukal2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bukal2.m4a"));
+		bulkan1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bulkan1.m4a"));
+		bulkan2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bulkan2.m4a"));
+		bundok1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bundok1.m4a"));
+		bundok2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/bundok2.m4a"));
+		burol1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/burol1.m4a"));
+		burol2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/burol2.m4a"));
+		burol3S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/burol3.m4a"));
+		dagat1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/dagat1.m4a"));
+		dagat2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/dagat2.m4a"));
+		ilog1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/ilog1.m4a"));
+		ilog2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/ilog2.m4a"));
+		ilog3S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/ilog3.m4a"));
+		patag1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/kapatagan1.m4a"));
+		patag2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/kapatagan2.m4a"));
+
+		karagatan1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/karagatan1.m4a"));
+		karagatan2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/karagatan2.m4a"));
+		lambak1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/lambak1.m4a"));
+		lambak2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/lambak2.m4a"));
+		lawa1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/lawa1.m4a"));
+		lawa2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/lawa2.m4a"));
+		talampas1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/talampas1.m4a"));
+		talampas2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/talampas2.m4a"));
+		talon1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/talon1.m4a"));
+		talon2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter14/sounds/talon2.m4a"));
 
 		// backgrounds
 
@@ -99,20 +129,21 @@ public class ChapterFourteen extends ChapterCore {
 			question3Bg = new Texture(
 					"chapters/chapter14/backgrounds/question3.jpg");
 
-            ansMarkerTexture = new Texture("box.png");
-            ans1A = new Sprite(ansMarkerTexture);
-            ans1A.setSize((ans1A.getWidth() * getButtonScale()) / 1.1f, (ans1A.getHeight() * getButtonScale()) / 3.397f);
+			ansMarkerTexture = new Texture("box.png");
+			ans1A = new Sprite(ansMarkerTexture);
+			ans1A.setSize((ans1A.getWidth() * getButtonScale()) / 1.1f,
+					(ans1A.getHeight() * getButtonScale()) / 3.397f);
 
-            ans1B = new Sprite(ansMarkerTexture);
-            ans1B.setSize(ans1A.getWidth(), ans1A.getHeight());
+			ans1B = new Sprite(ansMarkerTexture);
+			ans1B.setSize(ans1A.getWidth(), ans1A.getHeight());
 
-            ans2A = new Sprite(ansMarkerTexture);
-            ans2A.setSize(ans1A.getWidth(), ans1A.getHeight());
+			ans2A = new Sprite(ansMarkerTexture);
+			ans2A.setSize(ans1A.getWidth(), ans1A.getHeight());
 
-            ans2B = new Sprite(ansMarkerTexture);
-            ans2B.setSize(ans1A.getWidth(), ans1A.getHeight());
+			ans2B = new Sprite(ansMarkerTexture);
+			ans2B.setSize(ans1A.getWidth(), ans1A.getHeight());
 
-            loadNextButton();
+			loadNextButton();
 		}
 
 		// balloons
@@ -159,19 +190,20 @@ public class ChapterFourteen extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
-            ans1A.draw(batch);
-            ans1B.draw(batch);
-            ans2A.draw(batch);
-            ans2B.draw(batch);
-            next.draw(batch);
-        }
+		if (!isTeacher && chapterSection >= startOfQuestionSection
+				&& chapterSection < lastChapterSection) {
+			ans1A.draw(batch);
+			ans1B.draw(batch);
+			ans2A.draw(batch);
+			ans2B.draw(batch);
+			next.draw(batch);
+		}
 
-        drawQuizResult(batch);
+		drawQuizResult(batch);
 	}
 
 	private void assetManager() {
-        float ansXPos, row1, row2, row3, row4;
+		float ansXPos, row1, row2, row3, row4;
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
@@ -277,7 +309,7 @@ public class ChapterFourteen extends ChapterCore {
 			backgroundSprite.setTexture(tubigBg2);
 			balloonSprite.setTexture(ilogBalloon1);
 			dagat2S.stop();
-			ilo2S.stop();
+			ilog2S.stop();
 			break;
 		case 20:
 			balloonSprite.setTexture(ilogBalloon2);
@@ -286,7 +318,7 @@ public class ChapterFourteen extends ChapterCore {
 			break;
 		case 21:
 			balloonSprite.setTexture(ilogBalloon3);
-			ilo2S.stop();
+			ilog2S.stop();
 			talon1S.stop();
 			break;
 		case 22:
@@ -319,378 +351,401 @@ public class ChapterFourteen extends ChapterCore {
 			balloonSprite.setTexture(bukalBalloon2);
 			bukal1S.stop();
 			break;
-        case 28: // Start of game
-        	bukal2S.stop();
-            backgroundSprite.setTexture(question1Bg);
-            if (!isTeacher) {
-                ans1Correct = ans2Correct = false;
-                ansXPos = screenWidth / 1.615f;
-                row1 = screenHeight / 1.69f;
-                row2 = screenHeight / 1.88f;
-                row3 = screenHeight / 2.9f;
-                row4 = screenHeight / 3.27f;
+		case 28: // Start of game
+			bukal2S.stop();
+			backgroundSprite.setTexture(question1Bg);
+			if (!isTeacher) {
+				ans1Correct = ans2Correct = false;
+				ansXPos = screenWidth / 1.615f;
+				row1 = screenHeight / 1.69f;
+				row2 = screenHeight / 1.88f;
+				row3 = screenHeight / 2.9f;
+				row4 = screenHeight / 3.27f;
 
-                ans1A.setPosition(ansXPos, row1);
-                ans1A.setBounds(ansXPos, row1, ans1A.getWidth(), ans1A.getHeight());
-                ans1A.setAlpha(0);
+				ans1A.setPosition(ansXPos, row1);
+				ans1A.setBounds(ansXPos, row1, ans1A.getWidth(),
+						ans1A.getHeight());
+				ans1A.setAlpha(0);
 
-                ans1B.setPosition(ansXPos, row2);
-                ans1B.setBounds(ansXPos, row2, ans1B.getWidth(), ans1B.getHeight());
-                ans1B.setAlpha(0);
+				ans1B.setPosition(ansXPos, row2);
+				ans1B.setBounds(ansXPos, row2, ans1B.getWidth(),
+						ans1B.getHeight());
+				ans1B.setAlpha(0);
 
-                ans2A.setPosition(ansXPos, row3);
-                ans2A.setBounds(ansXPos, row3, ans2A.getWidth(), ans2A.getHeight());
-                ans2A.setAlpha(0);
+				ans2A.setPosition(ansXPos, row3);
+				ans2A.setBounds(ansXPos, row3, ans2A.getWidth(),
+						ans2A.getHeight());
+				ans2A.setAlpha(0);
 
-                ans2B.setPosition(ansXPos, row4);
-                ans2B.setBounds(ansXPos, row4, ans2B.getWidth(), ans2B.getHeight());
-                ans2B.setAlpha(0);
-            }
-            break;
-        case 29:
-            backgroundSprite.setTexture(question2Bg);
-            if (!isTeacher) {
-                if (ans1Correct) correctAnswers++;
-                if (ans2Correct) correctAnswers++;
-                ans1Correct = ans2Correct = false;
+				ans2B.setPosition(ansXPos, row4);
+				ans2B.setBounds(ansXPos, row4, ans2B.getWidth(),
+						ans2B.getHeight());
+				ans2B.setAlpha(0);
+			}
+			break;
+		case 29:
+			backgroundSprite.setTexture(question2Bg);
+			if (!isTeacher) {
+				if (ans1Correct)
+					correctAnswers++;
+				if (ans2Correct)
+					correctAnswers++;
+				ans1Correct = ans2Correct = false;
 
-                ansXPos = screenWidth / 1.5f;
-                row1 = screenHeight / 1.5f;
-                row2 = screenHeight / 1.62f;
-                row3 = screenHeight / 2.82f;
-                row4 = screenHeight / 3.25f;
+				ansXPos = screenWidth / 1.5f;
+				row1 = screenHeight / 1.5f;
+				row2 = screenHeight / 1.62f;
+				row3 = screenHeight / 2.82f;
+				row4 = screenHeight / 3.25f;
 
-                ans1A.setPosition(ansXPos, row1);
-                ans1A.setBounds(ansXPos, row1, ans1A.getWidth(), ans1A.getHeight());
-                ans1A.setAlpha(0);
+				ans1A.setPosition(ansXPos, row1);
+				ans1A.setBounds(ansXPos, row1, ans1A.getWidth(),
+						ans1A.getHeight());
+				ans1A.setAlpha(0);
 
-                ans1B.setPosition(ansXPos, row2);
-                ans1B.setBounds(ansXPos, row2, ans1B.getWidth(), ans1B.getHeight());
-                ans1B.setAlpha(0);
+				ans1B.setPosition(ansXPos, row2);
+				ans1B.setBounds(ansXPos, row2, ans1B.getWidth(),
+						ans1B.getHeight());
+				ans1B.setAlpha(0);
 
-                ans2A.setPosition(ansXPos, row3);
-                ans2A.setBounds(ansXPos, row3, ans2A.getWidth(), ans2A.getHeight());
-                ans2A.setAlpha(0);
+				ans2A.setPosition(ansXPos, row3);
+				ans2A.setBounds(ansXPos, row3, ans2A.getWidth(),
+						ans2A.getHeight());
+				ans2A.setAlpha(0);
 
-                ans2B.setPosition(ansXPos, row4);
-                ans2B.setBounds(ansXPos, row4, ans2B.getWidth(), ans2B.getHeight());
-                ans2B.setAlpha(0);
-            }
-            break;
-        case 30:
-            backgroundSprite.setTexture(question3Bg);
-            if (!isTeacher) {
-                if (ans1Correct) correctAnswers++;
-                if (ans2Correct) correctAnswers++;
-                ans1Correct = ans2Correct = false;
+				ans2B.setPosition(ansXPos, row4);
+				ans2B.setBounds(ansXPos, row4, ans2B.getWidth(),
+						ans2B.getHeight());
+				ans2B.setAlpha(0);
+			}
+			break;
+		case 30:
+			backgroundSprite.setTexture(question3Bg);
+			if (!isTeacher) {
+				if (ans1Correct)
+					correctAnswers++;
+				if (ans2Correct)
+					correctAnswers++;
+				ans1Correct = ans2Correct = false;
 
-                ansXPos = screenWidth / 1.46f;
-                row1 = screenHeight / 1.5f;
-                row2 = screenHeight / 1.62f;
-                row3 = screenHeight / 2.905f;
-                row4 = screenHeight / 3.357f;
+				ansXPos = screenWidth / 1.46f;
+				row1 = screenHeight / 1.5f;
+				row2 = screenHeight / 1.62f;
+				row3 = screenHeight / 2.905f;
+				row4 = screenHeight / 3.357f;
 
-                ans1A.setPosition(ansXPos, row1);
-                ans1A.setBounds(ansXPos, row1, ans1A.getWidth(), ans1A.getHeight());
-                ans1A.setAlpha(0);
+				ans1A.setPosition(ansXPos, row1);
+				ans1A.setBounds(ansXPos, row1, ans1A.getWidth(),
+						ans1A.getHeight());
+				ans1A.setAlpha(0);
 
-                ans1B.setPosition(ansXPos, row2);
-                ans1B.setBounds(ansXPos, row2, ans1B.getWidth(), ans1B.getHeight());
-                ans1B.setAlpha(0);
+				ans1B.setPosition(ansXPos, row2);
+				ans1B.setBounds(ansXPos, row2, ans1B.getWidth(),
+						ans1B.getHeight());
+				ans1B.setAlpha(0);
 
-                ans2A.setPosition(ansXPos, row3);
-                ans2A.setBounds(ansXPos, row3, ans2A.getWidth(), ans2A.getHeight());
-                ans2A.setAlpha(0);
+				ans2A.setPosition(ansXPos, row3);
+				ans2A.setBounds(ansXPos, row3, ans2A.getWidth(),
+						ans2A.getHeight());
+				ans2A.setAlpha(0);
 
-                ans2B.setPosition(ansXPos, row4);
-                ans2B.setBounds(ansXPos, row4, ans2B.getWidth(), ans2B.getHeight());
-                ans2B.setAlpha(0);
-            }
-            break;
-        case 31:
-            if (isTeacher) {
-                correctAnswers = 6;
-            } else {
-                if (ans1Correct) correctAnswers++;
-                if (ans2Correct) correctAnswers++;
-            }
+				ans2B.setPosition(ansXPos, row4);
+				ans2B.setBounds(ansXPos, row4, ans2B.getWidth(),
+						ans2B.getHeight());
+				ans2B.setAlpha(0);
+			}
+			break;
+		case 31:
+			if (isTeacher) {
+				correctAnswers = 6;
+			} else {
+				if (ans1Correct)
+					correctAnswers++;
+				if (ans2Correct)
+					correctAnswers++;
+			}
 
-            displayQuizResult(CHAPTER_FOURTEEN_SCORE, 3);
-            break;
+			displayQuizResult(CHAPTER_FOURTEEN_SCORE, 3);
+			break;
 		}
-        assetNeedUpdate = false;
+		assetNeedUpdate = false;
 	}
 
-    @Override
-    public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
-        switch (chapterSection) {
-            case 28:
-                if (!isTeacher) {
-                    if (ans1A.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(1);
-                        ans1B.setAlpha(0);
-                        ans1Correct = true;
-                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(0);
-                        ans1B.setAlpha(1);
-                        ans1Correct = false;
-                    }
+	@Override
+	public int touchDown(float x, float y) {
+		if (soundSprite.getBoundingRectangle().contains(x, y)) {
+			playSoundForSection();
+		}
+		switch (chapterSection) {
+		case 28:
+			if (!isTeacher) {
+				if (ans1A.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(1);
+					ans1B.setAlpha(0);
+					ans1Correct = true;
+				} else if (ans1B.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(0);
+					ans1B.setAlpha(1);
+					ans1Correct = false;
+				}
 
-                    if (ans2A.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(1);
-                        ans2B.setAlpha(0);
-                        ans2Correct = false;
-                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(0);
-                        ans2B.setAlpha(1);
-                        ans2Correct = true;
-                    }
-                }
-                break;
-            case 29:
-                if (!isTeacher) {
-                    if (ans1A.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(1);
-                        ans1B.setAlpha(0);
-                        ans1Correct = true;
-                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(0);
-                        ans1B.setAlpha(1);
-                        ans1Correct = false;
-                    }
+				if (ans2A.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(1);
+					ans2B.setAlpha(0);
+					ans2Correct = false;
+				} else if (ans2B.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(0);
+					ans2B.setAlpha(1);
+					ans2Correct = true;
+				}
+			}
+			break;
+		case 29:
+			if (!isTeacher) {
+				if (ans1A.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(1);
+					ans1B.setAlpha(0);
+					ans1Correct = true;
+				} else if (ans1B.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(0);
+					ans1B.setAlpha(1);
+					ans1Correct = false;
+				}
 
-                    if (ans2A.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(1);
-                        ans2B.setAlpha(0);
-                        ans2Correct = false;
-                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(0);
-                        ans2B.setAlpha(1);
-                        ans2Correct = true;
-                    }
-                }
-                break;
-            case 30:
-                if (!isTeacher) {
-                    if (ans1A.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(1);
-                        ans1B.setAlpha(0);
-                        ans1Correct = true;
-                    } else if (ans1B.getBoundingRectangle().contains(x, y)) {
-                        ans1A.setAlpha(0);
-                        ans1B.setAlpha(1);
-                        ans1Correct = false;
-                    }
+				if (ans2A.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(1);
+					ans2B.setAlpha(0);
+					ans2Correct = false;
+				} else if (ans2B.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(0);
+					ans2B.setAlpha(1);
+					ans2Correct = true;
+				}
+			}
+			break;
+		case 30:
+			if (!isTeacher) {
+				if (ans1A.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(1);
+					ans1B.setAlpha(0);
+					ans1Correct = true;
+				} else if (ans1B.getBoundingRectangle().contains(x, y)) {
+					ans1A.setAlpha(0);
+					ans1B.setAlpha(1);
+					ans1Correct = false;
+				}
 
-                    if (ans2A.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(1);
-                        ans2B.setAlpha(0);
-                        ans2Correct = false;
-                    } else if (ans2B.getBoundingRectangle().contains(x, y)) {
-                        ans2A.setAlpha(0);
-                        ans2B.setAlpha(1);
-                        ans2Correct = true;
-                    }
-                }
-                break;
-            case 31:
-                return displayLastSectionButtons(14, 3, x, y);
-        }
-        return super.touchDown(x, y);
-    }
+				if (ans2A.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(1);
+					ans2B.setAlpha(0);
+					ans2Correct = false;
+				} else if (ans2B.getBoundingRectangle().contains(x, y)) {
+					ans2A.setAlpha(0);
+					ans2B.setAlpha(1);
+					ans2Correct = true;
+				}
+			}
+			break;
+		case 31:
+			return displayLastSectionButtons(14, 3, x, y);
+		}
+		return super.touchDown(x, y);
+	}
 
-    private void playSoundForSection() {
+	private void playSoundForSection() {
 		// TODO Auto-generated method stub
-    	switch (chapterSection) {
-        case 0:
-        	intro1S.stop();
-        	intro1S.play();
-        	break;
-        case 1:
-        	intro2S.stop();
-        	intro2S.play();
-        	break;
-        case 2:
-        	bukal1S.stop();
-        	bukal1S.play();
-        	break;
-        case 3:
-        	bukal2S.stop();
-        	bukal2S.play();
-        	break;
-        case 4:
-        	bulkan1S.stop();
-        	bulkan1S.play();
-        	break;
-        case 5:
-        	bulkan2S.stop();
-        	bulkan2S.play();
-        	break;
-        case 6:
-        	bundok1S.stop();
-        	bundok1S.play();
-        	break;
-        case 7:
-        	bundok2S.stop();
-        	bundok2S.play();
-        	break;
-        case 8:
-        	burol1S.stop();
-        	burol1S.play();
-        	break;
-        case 9:
-        	burol2S.stop();
-        	burol2S.play();
-        	break;
-        case 10:
-        	burol3S.stop();
-        	burol3S.play();
-        	break;
-        case 11:
-        	dagat1S.stop();
-        	dagat1S.play();
-        	break;
-        case 12:
-        	dagat2S.stop();
-        	dagat2S.play();
-        	break;
-        case 13:
-        	ilog1S.stop();
-        	ilog1S.play();
-        	break;
-        case 14:
-        	ilo2S.stop();
-        	ilo2S.play();
-        	break;
-        case 15:
-        	ilog3S.stop();
-        	ilog3S.play();
-        	break;
-        case 16:
-        	patag1S.stop();
-        	patag1S.play();
-        	break;
-        case 17:
-        	patag2S.stop();
-        	patag2S.play();
-        	break;
-        case 18:
-        	patag3S.stop();
-        	patag3S.play();
-        	break;
-        case 19:
-        	karagatan1S.stop();
-        	karagatan1S.play();
-        	break;
-        case 20:
-        	karagatan2S.stop();
-        	karagatan2S.play();
-        	break;
-        case 21:
-        	lambak1S.stop();
-        	lambak1S.play();
-        	break;
-        case 22:
-        	lambak2S.stop();
-        	lambak2S.play();
-        	break;
-        case 23:
-        	lawa1S.stop();
-        	lawa1S.play();
-        	break;
-        case 24:
-        	lawa2S.stop();
-        	lawa2S.play();
-        	break;
-        case 25:
-        	talampas1S.stop();
-        	talampas1S.play();
-        	break;
-        case 26:
-        	talampas2S.stop();
-        	talampas2S.play();
-        	break;
-        case 27:
-        	talon1S.stop();
-        	talon1S.play();
-        	break;
-        case 28:
-        	talon2S.stop();
-        	talon2S.play();
-        	break;
-        	
-            
-            
-    	}
-		
+		switch (chapterSection) {
+		case 0:
+			intro1S.stop();
+			intro1S.play();
+			break;
+		case 1:
+			intro2S.stop();
+			intro2S.play();
+			break;
+		case 2:
+			patag1S.stop();
+			patag1S.play();
+			break;
+
+		case 3:
+			patag2S.stop();
+			patag2S.play();
+			break;
+
+		case 4:
+			bundok1S.stop();
+			bundok1S.play();
+			break;
+
+		case 5:
+			bundok2S.stop();
+			bundok2S.play();
+			break;
+		case 6:
+			burol1S.stop();
+			burol1S.play();
+			break;
+		case 7:
+			burol2S.stop();
+			burol2S.play();
+			break;
+		case 8:
+			burol3S.stop();
+			burol3S.play();
+			break;
+		case 9:
+			talampas1S.stop();
+			talampas1S.play();
+			break;
+		case 10:
+			talampas2S.stop();
+			talampas2S.play();
+			break;
+		case 11:
+			lambak1S.stop();
+			lambak1S.play();
+			break;
+
+		case 12:
+			lambak2S.stop();
+			lambak2S.play();
+			break;
+
+		case 13:
+			bulkan1S.stop();
+			bulkan1S.play();
+			break;
+
+		case 14:
+			bulkan2S.stop();
+			bulkan2S.play();
+			break;
+
+		case 15:
+			karagatan1S.stop();
+			karagatan1S.play();
+			break;
+
+		case 16:
+			karagatan2S.stop();
+			karagatan2S.play();
+			break;
+		case 17:
+			dagat1S.stop();
+			dagat1S.play();
+			break;
+
+		case 18:
+			dagat2S.stop();
+			dagat2S.play();
+			break;
+
+		case 19:
+			ilog1S.stop();
+			ilog1S.play();
+			break;
+
+		case 20:
+			ilog2S.stop();
+			ilog2S.play();
+			break;
+		case 21:
+			ilog3S.stop();
+			ilog3S.play();
+			break;
+		case 22:
+			talon1S.stop();
+			talon1S.play();
+			break;
+		case 27:
+			talon2S.stop();
+			talon2S.play();
+			break;
+		case 23:
+			lawa1S.stop();
+			lawa1S.play();
+			break;
+		case 24:
+			lawa2S.stop();
+			lawa2S.play();
+			break;
+		case 25:
+			bukal1S.stop();
+			bukal1S.play();
+			break;
+		case 26:
+			bukal2S.stop();
+			bukal2S.play();
+			break;
+
+		}
+
 	}
 
 	@Override
 	public void dispose() {
-        super.dispose();
-        intro1S.stop();
-        intro2S.stop();
-        bukal1S.stop();
-        bukal2S.stop();
-        bulkan1S.stop();
-        bulkan2S.stop();
-        bundok1S.stop();
-        bundok2S.stop();
-        burol1S.stop();
-        burol2S.stop();
-        burol3S.stop();
-        dagat1S.stop();
-        dagat2S.stop();
-        ilog1S.stop();
-        ilo2S.stop();
-        ilog3S.stop();
-        patag1S.stop();
-        patag2S.stop();
-        patag3S.stop();
-        karagatan1S.stop();
-        karagatan2S.stop();
-        lambak1S.stop();
-        lambak2S.stop();
-        lawa1S.stop();
-        lawa2S.stop();
-        talampas1S.stop();
-        talampas2S.stop();
-        talon1S.stop();
-        talon2S.stop();
-        
-        intro1S.dispose();
-        intro2S.dispose();
-        bukal1S.dispose();
-        bukal2S.dispose();
-        bulkan1S.dispose();
-        bulkan2S.dispose();
-        bundok1S.dispose();
-        bundok2S.dispose();
-        burol1S.dispose();
-        burol2S.dispose();
-        burol3S.dispose();
-        dagat1S.dispose();
-        dagat2S.dispose();
-        ilog1S.dispose();
-        ilo2S.dispose();
-        ilog3S.dispose();
-        patag1S.dispose();
-        patag2S.dispose();
-        patag3S.dispose();
-        karagatan1S.dispose();
-        karagatan2S.dispose();
-        lambak1S.dispose();
-        lambak2S.dispose();
-        lawa1S.dispose();
-        lawa2S.dispose();
-        talampas1S.dispose();
-        talampas2S.dispose();
-        talon1S.dispose();
-        talon2S.dispose();
-        
+		super.dispose();
+		intro1S.stop();
+		intro2S.stop();
+		bukal1S.stop();
+		bukal2S.stop();
+		bulkan1S.stop();
+		bulkan2S.stop();
+		bundok1S.stop();
+		bundok2S.stop();
+		burol1S.stop();
+		burol2S.stop();
+		burol3S.stop();
+		dagat1S.stop();
+		dagat2S.stop();
+		ilog1S.stop();
+		ilog2S.stop();
+		ilog3S.stop();
+		patag1S.stop();
+		patag2S.stop();
+
+		karagatan1S.stop();
+		karagatan2S.stop();
+		lambak1S.stop();
+		lambak2S.stop();
+		lawa1S.stop();
+		lawa2S.stop();
+		talampas1S.stop();
+		talampas2S.stop();
+		talon1S.stop();
+		talon2S.stop();
+
+		intro1S.dispose();
+		intro2S.dispose();
+		bukal1S.dispose();
+		bukal2S.dispose();
+		bulkan1S.dispose();
+		bulkan2S.dispose();
+		bundok1S.dispose();
+		bundok2S.dispose();
+		burol1S.dispose();
+		burol2S.dispose();
+		burol3S.dispose();
+		dagat1S.dispose();
+		dagat2S.dispose();
+		ilog1S.dispose();
+		ilog2S.dispose();
+		ilog3S.dispose();
+		patag1S.dispose();
+		patag2S.dispose();
+
+		karagatan1S.dispose();
+		karagatan2S.dispose();
+		lambak1S.dispose();
+		lambak2S.dispose();
+		lawa1S.dispose();
+		lawa2S.dispose();
+		talampas1S.dispose();
+		talampas2S.dispose();
+		talon1S.dispose();
+		talon2S.dispose();
+
 		introBg.dispose();
 		lupaBg1.dispose();
 		lupaBg2.dispose();
@@ -698,9 +753,9 @@ public class ChapterFourteen extends ChapterCore {
 		tubigBg1.dispose();
 		tubigBg2.dispose();
 		tubigBg3.dispose();
-        question1Bg.dispose();
-        question2Bg.dispose();
-        question3Bg.dispose();
+		question1Bg.dispose();
+		question2Bg.dispose();
+		question3Bg.dispose();
 
 		// balloons
 		introBalloon1.dispose();
@@ -731,6 +786,7 @@ public class ChapterFourteen extends ChapterCore {
 		talampasBalloon2.dispose();
 		talonBalloon1.dispose();
 		talonBalloon2.dispose();
-        if (!isTeacher) ansMarkerTexture.dispose();
+		if (!isTeacher)
+			ansMarkerTexture.dispose();
 	}
 }
