@@ -203,59 +203,61 @@ public class ChapterEight extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-		switch (chapterSection) {
-		case 2:
-			drawHabi(batch);
-			break;
-		case 3:
-			drawHabi(batch);
-			break;
-		case 4:
-			drawHabi(batch);
-			break;
-		case 5:
-			drawHabi(batch);
-			break;
-		case 6:
-			drawPainter(batch);
-			break;
-		case 7:
-			drawPainter(batch);
-			break;
-		case 8:
-			drawPainter(batch);
-			break;
-		case 9:
-			drawDancer(batch);
-			break;
-		case 10:
-			drawDancer(batch);
-			break;
-		case 11:
-			drawDancer(batch);
-			break;
-		case 12:
-			drawReader(batch);
-			break;
-		case 13:
-			drawReader(batch);
-			break;
-		case 14:
-			drawReader(batch);
-			break;
-		case 15:
-			box.draw(batch);
-			box2.draw(batch);
-			box3.draw(batch);
-			box4.draw(batch);
-			next.draw(batch);
-			break;
-		case 16:
-			question.drawMultiLine(batch, tanong, questionX, questionY);
-			startQuiz.draw(batch);
-			backToChapters.draw(batch);
-			break;
-		}
+        if (!viewingHelp) {
+            switch (chapterSection) {
+                case 2:
+                    drawHabi(batch);
+                    break;
+                case 3:
+                    drawHabi(batch);
+                    break;
+                case 4:
+                    drawHabi(batch);
+                    break;
+                case 5:
+                    drawHabi(batch);
+                    break;
+                case 6:
+                    drawPainter(batch);
+                    break;
+                case 7:
+                    drawPainter(batch);
+                    break;
+                case 8:
+                    drawPainter(batch);
+                    break;
+                case 9:
+                    drawDancer(batch);
+                    break;
+                case 10:
+                    drawDancer(batch);
+                    break;
+                case 11:
+                    drawDancer(batch);
+                    break;
+                case 12:
+                    drawReader(batch);
+                    break;
+                case 13:
+                    drawReader(batch);
+                    break;
+                case 14:
+                    drawReader(batch);
+                    break;
+                case 15:
+                    box.draw(batch);
+                    box2.draw(batch);
+                    box3.draw(batch);
+                    box4.draw(batch);
+                    next.draw(batch);
+                    break;
+                case 16:
+                    question.drawMultiLine(batch, tanong, questionX, questionY);
+                    startQuiz.draw(batch);
+                    backToChapters.draw(batch);
+                    break;
+            }
+        }
 	}
 
 	private void drawReader(Batch batch) {
