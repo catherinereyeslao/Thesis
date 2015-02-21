@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,6 +19,9 @@ public class ChapterFifteen extends ChapterCore {
 			pangangailanganBalloon4, tulongPangangailanganBalloon1,
 			tulongPangangailanganBalloon2, tulongPangangailanganBalloon3,
 			question1Bg, question2Bg, question3Bg, ansMarkerTexture;
+	private Music intro1S, intro2S, epekto1S, epekto2S, epekto3S, gawain1S, gawain2S, 
+				  gawain3S, gawain4S, kailangan1S, kailangan2S, kailangan3S, kailangan4S, 
+				  katulong1S, katulong2S, katulong3S;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct;
 
@@ -33,6 +38,24 @@ public class ChapterFifteen extends ChapterCore {
 		
 		startOfQuestionSection = 16;
 		lastChapterSection = 19;
+		
+		//sounds
+		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/intro1chap15.m4a"));
+		intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/intro2chap15.m4a"));
+		epekto1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/epekto1.m4a"));
+		epekto2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/epekto2.m4a"));
+		epekto3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/epekto3.m4a"));
+		gawain1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/gawain1.m4a"));
+		gawain2S  = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/gawain2.m4a"));
+		gawain3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/gawain3.m4a"));
+		gawain4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/gawain4.m4a"));
+		kailangan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan1.m4a"));
+		kailangan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan2.m4a"));
+		kailangan3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan3.m4a"));
+		kailangan4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan4.m4a"));
+		katulong1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulong1.m4a"));
+		katulong2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulomh2.m4a"));
+		katulong3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulong1.m4a"));
 
 		// backgrounds
 		introBg = new Texture(
@@ -132,58 +155,89 @@ public class ChapterFifteen extends ChapterCore {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
+			epekto1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(epektoTulunganBg);
 			balloonSprite.setTexture(epektoTulunganBalloon1);
+			intro2S.stop();
+			epekto2S.stop();
 			break;
 		case 3:
 			balloonSprite.setTexture(epektoTulunganBalloon2);
+			epekto1S.stop();
+			epekto3S.stop();
 			break;
 		case 4:
 			balloonSprite.setTexture(epektoTulunganBalloon3);
+			epekto2S.stop();
+			gawain1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(gawainTulunganBg);
 			balloonSprite.setTexture(gawainTulunganBalloon1);
+			epekto3S.stop();
+			gawain2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(gawainTulunganBalloon2);
+			gawain1S.stop();
+			gawain3S.stop();
 			break;
 		case 7:
 			balloonSprite.setTexture(gawainTulunganBalloon3);
+			gawain2S.stop();
+			gawain4S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(gawainTulunganBalloon4);
+			gawain3S.stop();
+			kailangan1S.stop();
 			break;
 		case 9:
 			backgroundSprite.setTexture(pangangailanganNatinBg);
 			balloonSprite.setTexture(pangangailanganBalloon1);
+			gawain4S.stop();
+			kailangan2S.stop();
 			break;
 		case 10:
 			balloonSprite.setTexture(pangangailanganBalloon2);
+			kailangan1S.stop();
+			kailangan3S.stop();
 			break;
 		case 11:
 			balloonSprite.setTexture(pangangailanganBalloon3);
+			kailangan2S.stop();
+			kailangan4S.stop();
 			break;
 		case 12:
 			balloonSprite.setTexture(pangangailanganBalloon4);
+			kailangan3S.stop();
+			katulong1S.stop();
 			break;
 		case 13:
 			backgroundSprite.setTexture(tulongPangangailanganBg);
 			balloonSprite.setTexture(tulongPangangailanganBalloon1);
+			kailangan4S.stop();
+			katulong2S.stop();
 			break;
 		case 14:
 			balloonSprite.setTexture(tulongPangangailanganBalloon2);
+			katulong1S.stop();
+			katulong3S.stop();
 			break;
 		case 15:
 			balloonSprite.setTexture(tulongPangangailanganBalloon3);
+			katulong2S.stop();
 			break;
         case 16: // Start of game
+        	katulong3S.stop();
             backgroundSprite.setTexture(question1Bg);
             if (!isTeacher) {
                 ans1Correct = ans2Correct = ans3Correct = ans4Correct = false;
@@ -250,6 +304,9 @@ public class ChapterFifteen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         switch (chapterSection) {
             case 16:
                 if (!isTeacher) {
@@ -366,8 +423,113 @@ public class ChapterFifteen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    @Override
+    private void playSoundForSection() {
+		// TODO Auto-generated method stub
+    	switch (chapterSection) {
+    	case 0:
+    		intro1S.stop();
+    		intro1S.play();
+    		break;
+    	case 1:
+    		intro2S.stop();
+    		intro2S.play();
+    		break;
+    	case 2:
+    		epekto1S.stop();
+    		epekto1S.play();
+    		break;
+    	case 3:
+    		epekto2S.stop();
+    		epekto2S.play();
+    		break;
+    	case 4:
+    		epekto3S.stop();
+    		epekto3S.play();
+    		break;
+    	case 5:
+    		gawain1S.stop();
+    		gawain1S.play();
+    		break;
+    	case 6:
+    		gawain2S.stop();
+    		gawain2S.play();
+    		break;
+    	case 7:
+    		gawain3S.stop();
+    		gawain3S.play();
+    		break;
+    	case 8:
+    		gawain4S.stop();
+    		gawain4S.play();
+    		break;
+    	case 9:
+    		kailangan1S.stop();
+    		kailangan1S.play();
+    		break;
+    	case 10:
+    		kailangan2S.stop();
+    		kailangan2S.play();
+    		break;
+    	case 11:
+    		kailangan3S.stop();
+    		kailangan3S.play();
+    		break;
+    	case 12:
+    		kailangan4S.stop();
+    		kailangan4S.play();
+    		break;
+    	case 13:
+    		katulong1S.stop();
+    		katulong1S.play();
+    		break;
+    	case 14:
+    		katulong2S.stop();
+    		katulong2S.play();
+    		break;
+    	case 15:
+    		katulong3S.stop();
+    		katulong3S.play();
+    		break;
+    	
+    	}
+		
+	}
+	@Override
 	public void dispose() {
+		intro1S.stop();
+		intro2S.stop();
+		epekto1S.stop();
+		epekto2S.stop();
+		epekto3S.stop();
+		gawain1S.stop();
+		gawain2S.stop();
+		gawain3S.stop();
+		gawain4S.stop();
+		kailangan1S.stop();
+		kailangan2S.stop();
+		kailangan3S.stop();
+		kailangan4S.stop();
+		katulong1S.stop();
+		katulong2S.stop();
+		katulong3S.stop();
+		
+		intro1S.dispose();
+		intro2S.dispose();
+		epekto1S.dispose();
+		epekto2S.dispose();
+		epekto3S.dispose();
+		gawain1S.dispose();
+		gawain2S.dispose();
+		gawain3S.dispose();
+		gawain4S.dispose();
+		kailangan1S.dispose();
+		kailangan2S.dispose();
+		kailangan3S.dispose();
+		kailangan4S.dispose();
+		katulong1S.dispose();
+		katulong2S.dispose();
+		katulong3S.dispose();
+		
 		introBg.dispose();
 		epektoTulunganBg.dispose();
 		gawainTulunganBg.dispose();
