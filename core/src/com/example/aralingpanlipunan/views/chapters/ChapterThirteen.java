@@ -240,7 +240,7 @@ public class ChapterThirteen extends ChapterCore {
 		case 6:
 			balloonSprite.setTexture(simboloBalloon2);
 			simbolo1S.stop();
-			bonifacio1S.stop();
+			simbolo3S.stop();
 			break;
 		case 7: 
 			balloonSprite.setTexture(simboloBalloon3);
@@ -717,11 +717,165 @@ public class ChapterThirteen extends ChapterCore {
 
     private void playSoundForSection() {
 		// TODO Auto-generated method stub
-		
+    	switch (chapterSection) {
+        case 0:
+            intro1S.stop();
+            intro1S.play();
+            break;
+        case 1:
+        	intro2S.stop();
+        	intro2S.play();
+        	break;
+        case 2:
+        	bonifacio1S.stop();
+        	bonifacio1S.play();
+        	break;
+        case 3:
+        	bonifacio2S.stop();
+        	bonifacio2S.play();
+        	break;
+        case 4:
+        	bonifacio3S.stop();
+        	bonifacio3S.play();
+        	break;
+        case 5:
+        	watawat1S.stop();
+        	watawat1S.play();
+        	break;
+        case 6:
+        	watawat2S.stop();
+        	watawat2S.play();
+        	break;
+        case 7:
+        	watawat3S.stop();
+        	watawat3S.play();
+        	break;
+        case 8:
+        	aguinaldo1S.stop();
+        	aguinaldo1S.play();
+        	break;
+        case 9:
+        	aguinaldo2S.stop();
+        	aguinaldo2S.play();
+        	break;
+        case 10:
+        	aguinaldo3S.stop();
+        	aguinaldo3S.play();
+        	break;
+        case 11:
+        	rizal1S.stop();
+        	rizal1S.play();
+        	break;
+        case 12:
+        	rizal2S.stop();
+        	rizal2S.play();
+        	break;
+        case 13:
+        	rizal3S.stop();
+        	rizal3S.play();
+        	break;
+        case 14:
+        	rizal4S.stop();
+        	rizal4S.play();
+        	break;
+        case 15:
+        	lapu1S.stop();
+        	lapu1S.play();
+        	break;
+        case 16:
+        	lapu2S.stop();
+        	lapu2S.play();
+        	break;
+        case 17:
+        	lapu3S.stop();
+        	lapu3S.play();
+        	break;
+        case 18:
+        	lapu4S.stop();
+        	lapu4S.play();
+        	break;
+        case 19:
+        	simbolo1S.stop();
+        	simbolo1S.play();
+        	break;
+        case 20:
+        	simbolo2S.stop();
+        	simbolo2S.play();
+        	break;
+        case 21:
+        	simbolo3S.stop();
+        	simbolo3S.play();
+        	break;
+        case 22:
+        	aquino1S.stop();
+        	aquino1S.play();
+        	break;
+        case 23:
+        	aquino2S.stop();
+        	aquino2S.play();
+        	break;
+        case 24:
+        	aquino3S.stop();
+        	aquino3S.play();
+        	break;
+    	}
+    	
 	}
 
 	@Override
 	public void dispose() {
+		intro1S.stop();
+		intro2S.stop();
+		bonifacio1S.stop();
+		bonifacio2S.stop();
+		bonifacio3S.stop();
+		watawat1S.stop();
+		watawat2S.stop();
+		watawat3S.stop();
+		aguinaldo1S.stop();
+		aguinaldo2S.stop();
+		aguinaldo3S.stop();
+		rizal1S.stop();
+		rizal2S.stop();
+		rizal3S.stop();
+		rizal4S.stop();
+		lapu1S.stop();
+		lapu2S.stop();
+		lapu3S.stop();
+		lapu4S.stop();
+		simbolo1S.stop();
+		simbolo2S.stop();
+		simbolo3S.stop();
+		aquino1S.stop();
+		aquino2S.stop();
+		aquino3S.stop();
+		intro1S.dispose();
+		intro2S.dispose();
+		bonifacio1S.dispose();
+		bonifacio2S.dispose();
+		bonifacio3S.dispose();
+		watawat1S.dispose();
+		watawat2S.dispose();
+		watawat3S.dispose();
+		aguinaldo1S.dispose();
+		aguinaldo2S.dispose();
+		aguinaldo3S.dispose();
+		rizal1S.dispose();
+		rizal2S.dispose();
+		rizal3S.dispose();
+		rizal4S.dispose();
+		lapu1S.dispose();
+		lapu2S.dispose();
+		lapu3S.dispose();
+		lapu4S.dispose();
+		simbolo1S.dispose();
+		simbolo2S.dispose();
+		simbolo3S.dispose();
+		aquino1S.dispose();
+		aquino2S.dispose();
+		aquino3S.dispose();
+
+		
 		introBg.dispose();
 		bonifacioBg.dispose();
 		watawatBg.dispose();
