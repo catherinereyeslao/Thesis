@@ -557,7 +557,6 @@ public class ChapterNine extends ChapterCore {
             intro1S.play();
             break;
         case 1:
-       	
        	 intro2S.stop();
        	 intro2S.play();
        	 break;
