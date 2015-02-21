@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -17,6 +19,9 @@ public class ChapterNine extends ChapterCore {
 			sulodBalloon1, sulodBalloon2, sulodBalloon3, sulodBalloon4, 
 			tboliBalloon1, tboliBalloon2, tboliBalloon3, tboliBalloon4, question1Bg,
             question2Bg, question3Bg, ansMarkerTexture;
+	private Music intro1S, intro2S, ati1S, ati2S, ati3S, blaan1S, blaan2S, blaan3S, blaan4S,
+				  bontoc1S, bontoc2S, bontoc3S, ifugao1S, ifugao2S, ifugao3S, sulod1S, sulod2S, sulod3S, sulod4S,
+				  tboli1S, tboli2S, tboli3S, tboli4S;
     private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5, ansMarker6, ansMarker7, ansMarker8;
     private boolean ansMarkerTouched, ansMarker6Touched, ansMarker7Touched;
 
@@ -34,7 +39,32 @@ public class ChapterNine extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 24;
         lastChapterSection = 27;
-		
+
+        //sounds
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/intro1chap9.m4a"));
+        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/intro2chap9.m4a"));
+        ati1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ati1.m4a"));
+        ati2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ati2.m4a"));
+        ati3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ati3.m4a"));
+        blaan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/blaan1.m4a"));
+        blaan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/blaan2.m4a"));
+        blaan3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/blaan3.m4a"));
+        blaan4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/blaan4.m4a"));
+        bontoc1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/bontoc1.m4a"));
+        bontoc2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/bontoc2.m4a"));
+        bontoc3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/bontoc3.m4a"));
+        ifugao1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ifugao1.m4a"));
+        ifugao2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ifugao2.m4a"));
+        ifugao3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/ifugao3.m4a"));
+        sulod1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/sulod1.m4a"));
+        sulod2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/sulod2.m4a"));
+        sulod3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/sulod3.m4a"));
+        sulod4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/sulod4.m4a"));
+		tboli1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/tboli1.m4a"));
+		tboli2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/tboli2.m4a"));
+		tboli3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/tboli3.m4a"));
+		tboli4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/tboli4.m4a"));
+		  
 		//backgrounds
 		introBg = new Texture("chapters/chapter9/backgrounds/IntroForChapter9.png");
 		blaanBg = new Texture("chapters/chapter9/backgrounds/Blaan.png");
@@ -178,85 +208,132 @@ public class ChapterNine extends ChapterCore {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
 			
 		case 1:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
+			ati1S.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(itaBg);
 			balloonSprite.setTexture(atiBalloon1);
+			intro2S.stop();
+			ati2S.stop();
 			break;
 		case 3:
 			balloonSprite.setTexture(atiBalloon2);
+			ati1S.stop();
+			ati3S.stop();
 			break;
 		case 4:
 			balloonSprite.setTexture(atiBalloon3);
+			ati2S.stop();
+			blaan1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(blaanBg);
 			balloonSprite.setTexture(blaanBalloon1);
+			ati3S.stop();
+			blaan2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(blaanBalloon2);
+			blaan1S.stop();
+			blaan3S.stop();
 			break;
 		case 7:
 			balloonSprite.setTexture(blaanBalloon3);
+			blaan2S.stop();
+			blaan4S.stop();
 			break;
 		case 8:
 			balloonSprite.setTexture(blaanBalloon4);
+			blaan3S.stop();
+			bontoc1S.stop();
 			break;
 		case 9:
 			backgroundSprite.setTexture(bontocBg);
 			balloonSprite.setTexture(bontocBalloon1);
+			blaan4S.stop();
+			bontoc2S.stop();
 			break;
 		case 10:
 			balloonSprite.setTexture(bontocBalloon2);
+			bontoc1S.stop();
+			bontoc3S.stop();
 			break;
 		case 11:
 			balloonSprite.setTexture(bontocBalloon3);
+			bontoc2S.stop();
+			ifugao1S.stop();
 			break;
 		case 12:
 			backgroundSprite.setTexture(ifugaoBg);
 			balloonSprite.setTexture(ifugaoBalloon1);
+			bontoc3S.stop();
+			ifugao2S.stop();
 			break;
 		case 13:
 			balloonSprite.setTexture(ifugaoBalloon2);
+			ifugao1S.stop();
+			ifugao3S.stop();
 			break;
 		case 14:
 			balloonSprite.setTexture(ifugaoBalloon3);
+			ifugao2S.stop();
+			sulod1S.stop();
 			break;
 		case 15:
 			backgroundSprite.setTexture(sulodBg);
 			balloonSprite.setTexture(sulodBalloon1);
+			ifugao3S.stop();
+			sulod2S.stop();
 			break;
 		case 16:
 			balloonSprite.setTexture(sulodBalloon2);
+			sulod1S.stop();
+			sulod2S.stop();
 			break;
 		case 17:
 			balloonSprite.setTexture(sulodBalloon2);
+			sulod2S.stop();
+			sulod3S.stop();
 			break;
 		case 18:
 			balloonSprite.setTexture(sulodBalloon3);
+			sulod2S.stop();
+			sulod4S.stop();
 			break;
 		case 19:
 			balloonSprite.setTexture(sulodBalloon4);
+			sulod3S.stop();
+			tboli1S.stop();
 			break;
 		case 20:
 			backgroundSprite.setTexture(tboliBg);
 			balloonSprite.setTexture(tboliBalloon1);
+			sulod4S.stop();
+			tboli2S.stop();
 			break;
 		case 21:
 			balloonSprite.setTexture(tboliBalloon2);
+			tboli1S.stop();
+			tboli3S.stop();
 			break;
 		case 22:
 			balloonSprite.setTexture(tboliBalloon3);
+			tboli2S.stop();
+			tboli4S.stop();
 			break;
 		case 23:
 			balloonSprite.setTexture(tboliBalloon4);
+			tboli3S.stop();
 			break;
         case 24: // Start of question
+        	tboli4S.stop();
             if (!isTeacher) {
                 ansMarkerX = (screenWidth / 1.5f) - (ansMarker.getWidth() / 2);
                 ansMarkerY = (screenHeight / 1.43f) - (ansMarker.getHeight() / 2);
@@ -405,6 +482,9 @@ public class ChapterNine extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         if (chapterSection >= lastChapterSection)
             return displayLastSectionButtons(9, 3, x, y);
 
@@ -469,8 +549,154 @@ public class ChapterNine extends ChapterCore {
         return super.touchDown(x, y);
     }
 
+	private void playSoundForSection() {
+		// TODO Auto-generated method stub
+		switch (chapterSection) {
+        case 0:
+            intro1S.stop();
+            intro1S.play();
+            break;
+        case 1:
+       	
+       	 intro2S.stop();
+       	 intro2S.play();
+       	 break;
+        case 2:
+       	ati1S.stop();
+       	ati1S.play();
+       	break;
+        case 3:
+        ati2S.stop();
+        ati2S.play();
+        break;
+        case 4:
+        ati3S.stop();
+        ati3S.play();
+        break;
+        case 5:
+        blaan1S.stop();
+        blaan1S.play();
+        break;
+        case 6:
+        blaan2S.stop();
+        blaan2S.play();
+        break;
+        case 7:
+        blaan3S.stop();
+        blaan3S.play();
+        break;
+        case 8:
+        blaan4S.stop();
+        blaan4S.play();
+        break;
+        case 9:
+        bontoc1S.stop();
+        bontoc1S.play();
+        break;
+        case 10:
+        bontoc2S.stop();
+        bontoc2S.play();
+        break;
+        case 11:
+        bontoc3S.stop();
+        bontoc3S.play();
+        break;
+        case 12:
+        ifugao1S.stop();
+        ifugao1S.play();
+        break;
+        case 13:
+        ifugao2S.stop();
+        ifugao2S.play();
+        break;
+        case 14:
+        ifugao3S.stop();
+        ifugao3S.play();
+        break;
+        case 15:
+        sulod1S.stop();
+        sulod1S.play();
+        break;
+        case 16:
+        sulod2S.stop();
+        sulod2S.play();
+        break;
+        case 17:
+        sulod3S.stop();
+        sulod3S.play();
+        break;
+        case 18:
+        sulod4S.stop();
+        sulod4S.play();
+        break;
+        case 19:
+		tboli1S.stop();
+		tboli1S.play();
+		break;
+        case 20:
+		tboli2S.stop();
+		tboli2S.play();
+		break;
+        case 21:
+		tboli3S.stop();
+		tboli3S.play();
+		break;
+        case 22:
+		tboli4S.stop();
+		tboli4S.play();
+		}
+		
+	}
+
 	@Override
 	public void dispose() {
+		//sounds
+		intro1S.stop();
+        intro2S.stop();
+        ati1S.stop();
+        ati2S.stop();
+        ati3S.stop();
+        blaan1S.stop();
+        blaan2S.stop();
+        blaan3S.stop();
+        blaan4S.stop();
+        bontoc1S.stop();
+        bontoc2S.stop();
+        bontoc3S.stop();
+        ifugao1S.stop();
+        ifugao2S.stop();
+        ifugao3S.stop();
+        sulod1S.stop();
+        sulod2S.stop();
+        sulod3S.stop();
+        sulod4S.stop();
+		tboli1S.stop();
+		tboli2S.stop();
+		tboli3S.stop();
+		tboli4S.stop();
+		intro1S.dispose();
+        intro2S.dispose();
+        ati1S.dispose();
+        ati2S.dispose();
+        ati3S.dispose();
+        blaan1S.dispose();
+        blaan2S.dispose();
+        blaan3S.dispose();
+        blaan4S.dispose();
+        bontoc1S.dispose();
+        bontoc2S.dispose();
+        bontoc3S.dispose();
+        ifugao1S.dispose();
+        ifugao2S.dispose();
+        ifugao3S.dispose();
+        sulod1S.dispose();
+        sulod2S.dispose();
+        sulod3S.dispose();
+        sulod4S.dispose();
+		tboli1S.dispose();
+		tboli2S.dispose();
+		tboli3S.dispose();
+		tboli4S.dispose();
 		//backgrounds
         introBg.dispose();
         blaanBg.dispose();

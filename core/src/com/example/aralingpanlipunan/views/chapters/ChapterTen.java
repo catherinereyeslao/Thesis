@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,6 +18,8 @@ public class ChapterTen extends ChapterCore {
 			pagtanggapBalloon2, pagtanggapBalloon3, undasBalloon1,
 			undasBalloon2, undasBalloon3, undasBalloon4, undasBalloon5,
             question1Texture, question2Texture, markerTexture;
+	private Music intro1S, bagongTaon1S, bagongTaon2S, bagongTaon3S, salo1S, salo2S, salo3S, galang1S, galang2S,
+				  galang3S, galang4S, tanggap1S, tanggap2S, tanggap3S, undas1S, undas2S, undas3S, undas4S, undas5S;
     private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5, ansMarker6, ansMarker7, ansMarker8, ansMarker9, ansMarker10, ansMarker11, ansMarker12;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct = false;
 
@@ -33,6 +37,27 @@ public class ChapterTen extends ChapterCore {
 
 		startOfQuestionSection = 19;
 		lastChapterSection = 21;
+		
+		//sounds
+		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/introcha10.m4a"));
+		bagongTaon1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon1.m4a"));
+		bagongTaon2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon2.m4a"));
+		bagongTaon3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon3.m4a"));
+		salo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang1.m4a"));
+		salo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang2.m4a"));
+		salo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang3.m4a"));
+		galang1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/paggalang1.m4a"));
+		galang2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/paggalang2.m4a"));
+		galang3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/paggalang3.m4a"));
+		galang4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/paggalang4.m4a"));
+		tanggap1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagtanggap1.m4a"));
+		tanggap2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagtanggap2.m4a"));
+		tanggap3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagtanggap3.m4a"));
+		undas1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/undas1.m4a"));
+		undas2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/undas2.m4a"));
+		undas3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/undas3.m4a"));
+		undas4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/undas4.m4a"));
+		undas5S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/undas5.m4a"));
 		// background
 		introBg = new Texture(
 				"chapters/chapter10/backgrounds/IntroForChapter10.png");
@@ -161,6 +186,9 @@ public class ChapterTen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+            playSoundForSection();
+        }
         if (!isTeacher && (chapterSection == 19 || chapterSection == 20)) {
             // Detect answer in question 1
             if (ansMarker.getBoundingRectangle().contains(x, y)) {
@@ -263,73 +291,193 @@ public class ChapterTen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
+	private void playSoundForSection() {
+		// TODO Auto-generated method stub
+		switch (chapterSection) {
+        case 0:
+            intro1S.stop();
+            intro1S.play();
+            break;
+        case 1:
+        	bagongTaon1S.stop();
+        	bagongTaon1S.play();
+        	break;
+        case 2:
+        	bagongTaon2S.stop();
+        	bagongTaon2S.play();
+        	break;
+        case 3:
+        	bagongTaon3S.stop();
+           	bagongTaon3S.play();
+           	break;
+        case 4:
+        	salo1S.stop();
+        	salo1S.play();
+        	break;
+        case 5:
+        	salo2S.stop();
+        	salo2S.play();
+        	break;
+        case 6:
+        	salo3S.stop();
+        	salo3S.play();
+        	break;
+        case 7:
+        	galang1S.stop();
+        	galang1S.play();
+        	break;
+        case 8:
+        	galang2S.stop();
+        	galang2S.play();
+        	break;
+        case 9:
+        	galang3S.stop();
+        	galang3S.play();
+        	break;
+        case 10:       	
+        	galang4S.stop();
+        	galang4S.play();
+        	break;
+        case 11:
+        	tanggap1S.stop();
+        	tanggap1S.play();
+        	break;
+        case 12:
+        	tanggap2S.stop();
+        	tanggap2S.play();
+        	break;
+        case 13:
+        	tanggap3S.stop();
+        	tanggap3S.play();
+        	break;
+        case 14:
+        	undas1S.stop();
+        	undas1S.play();
+        	break;
+        case 15:
+        	undas2S.stop();
+        	undas2S.play();
+        	break;
+        case 16:
+        	undas3S.stop();
+        	undas3S.play();
+        	break;
+        case 17:
+        	undas4S.stop();
+        	undas4S.play();
+        	break;
+        case 18:
+        	undas5S.stop();
+        	undas5S.play();
+        	break;
+		}
+		
+	}
+
 	private void assetManager() {
         float ansMarkerX, ansMarker2X, ansMarkerY, ansMarker3Y, ansMarker5Y, ansMarker7Y, ansMarker9Y, ansMarker11Y;
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
 			balloonSprite.setTexture(introBalloon1);
+			bagongTaon1S.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(bagongTaonBg);
 			balloonSprite.setTexture(bagongTaonBalloon1);
+			intro1S.stop();
+			bagongTaon2S.stop();
 			break;
 		case 2:
 			balloonSprite.setTexture(bagongTaonBalloon2);
+			bagongTaon1S.stop();
+			bagongTaon3S.stop();
 			break;
 		case 3:
 			balloonSprite.setTexture(bagongTaonBalloon3);
+			bagongTaon2S.stop();
+			galang1S.stop();
 			break;
 		case 4:
 			backgroundSprite.setTexture(paggalangBg);
 			balloonSprite.setTexture(paggalangBalloon1);
+			bagongTaon3S.stop();
+			galang2S.stop();
 			break;
 		case 5:
 			balloonSprite.setTexture(paggalangBalloon2);
+			galang1S.stop();
+			galang3S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(paggalangBalloon3);
+			galang2S.stop();
+			galang4S.stop();
 			break;
 		case 7:
 			balloonSprite.setTexture(paggalangBalloon4);
+			galang3S.stop();
+			salo1S.stop();
 			break;
 		case 8:
 			backgroundSprite.setTexture(salosaloBg);
 			balloonSprite.setTexture(salosaloBalloon1);
+			galang4S.stop();
+			salo2S.stop();
 			break;
 		case 9:
 			balloonSprite.setTexture(salosaloBalloon2);
+			salo1S.stop();
+			salo3S.stop();
 			break;
 		case 10:
 			balloonSprite.setTexture(salosaloBalloon3);
+			salo2S.stop();
+			tanggap1S.stop();
 			break;
 		case 11:
 			backgroundSprite.setTexture(bisitaBg);
 			balloonSprite.setTexture(pagtanggapBalloon1);
+			salo3S.stop();
+			tanggap2S.stop();
 			break;
 		case 12:
 			balloonSprite.setTexture(pagtanggapBalloon2);
+			tanggap1S.stop();
+			tanggap3S.stop();
 			break;
 		case 13:
 			balloonSprite.setTexture(pagtanggapBalloon3);
+			tanggap2S.stop();
+			undas1S.stop();
 			break;
 		case 14:
 			backgroundSprite.setTexture(undasBg);
 			balloonSprite.setTexture(undasBalloon1);
+			tanggap3S.stop();
+			undas2S.stop();
 			break;
 		case 15:
 			balloonSprite.setTexture(undasBalloon2);
+			undas1S.stop();
+			undas3S.stop();
 			break;
 		case 16:
 			balloonSprite.setTexture(undasBalloon3);
+			undas2S.stop();
+			undas4S.stop();
 			break;
 		case 17:
 			balloonSprite.setTexture(undasBalloon4);
+			undas3S.stop();
+			undas5S.stop();
 			break;
 		case 18:
 			balloonSprite.setTexture(undasBalloon5);
+			undas4S.stop();
             break;
         case 19: // Start of game
+        	undas5S.stop();
             backgroundSprite.setTexture(question1Texture);
             ans1Correct = ans2Correct = ans3Correct = false;
 
@@ -458,6 +606,45 @@ public class ChapterTen extends ChapterCore {
 
 	@Override
 	public void dispose() {
+		intro1S.stop();
+		bagongTaon1S.stop();
+		bagongTaon2S.stop();
+		bagongTaon3S.stop();
+		salo1S.stop();
+		salo2S.stop();
+		salo3S.stop();
+		galang1S.stop();
+		galang2S.stop();
+		galang3S.stop();
+		galang4S.stop();
+		tanggap1S.stop();
+		tanggap2S.stop();
+		tanggap3S.stop();
+		undas1S.stop();
+		undas2S.stop();
+		undas3S.stop();
+		undas4S.stop();
+		undas5S.stop();
+		
+		intro1S.dispose();
+		bagongTaon1S.dispose();
+		bagongTaon2S.dispose();
+		bagongTaon3S.dispose();
+		salo1S.dispose();
+		salo2S.dispose();
+		salo3S.dispose();
+		galang1S.dispose();
+		galang2S.dispose();
+		galang3S.dispose();
+		galang4S.dispose();
+		tanggap1S.dispose();
+		tanggap2S.dispose();
+		tanggap3S.dispose();
+		undas1S.dispose();
+		undas2S.dispose();
+		undas3S.dispose();
+		undas4S.dispose();
+		undas5S.dispose();
 		introBg.dispose();
 		bagongTaonBg.dispose();
 		paggalangBg.dispose();
