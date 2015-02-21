@@ -352,7 +352,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             }
             else if (backToChapters.getBoundingRectangle().contains(x, y))
                 return 500;
-        } else {
+        } else if (!this.getClass().getName().equals(ChapterNineteen.class.getName())) {
             if (startQuiz.getBoundingRectangle().contains(x, y)) {
                 return currentChapNum + 501;
             }
@@ -405,7 +405,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected void drawQuizResult(Batch batch) {
         if (chapterSection == lastChapterSection) {
             question.drawMultiLine(batch, tanong, questionX, questionY);
-            if (!this.getClass().getName().equals(ChapterEighteen.class.getName()))
+            if (!this.getClass().getName().equals(ChapterNineteen.class.getName()))
                 startQuiz.draw(batch);
             backToChapters.draw(batch);
         }
