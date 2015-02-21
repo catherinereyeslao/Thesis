@@ -57,7 +57,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         Texture introBalloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
         helpTexture = new Texture("buttons/help.png");
         soundTexture = new Texture("buttons/sound.png");
-        startQuizTexture = new Texture("buttons/menu/start.png");
+        startQuizTexture = new Texture("buttons/quiz.png");
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");

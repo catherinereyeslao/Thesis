@@ -27,8 +27,8 @@ public class Help extends AppView {
         helpSection = HELP_MENU;
 
         helpBgTexture = new Texture("help/help-bg.png");
-        chapterTexture1 = new Texture("help/chapter-help1.png");
-        chapterTexture2 = new Texture("help/chapter-help2.png");
+        chapterTexture1 = new Texture("help/chapter-help1.jpg");
+        chapterTexture2 = new Texture("help/chapter-help2.jpg");
         creditTexture = new Texture("help/credit-help.png");
         mainMenuTexture1 = new Texture("help/main-menu-help1.png");
         mainMenuTexture2 = new Texture("help/main-menu-help2.png");

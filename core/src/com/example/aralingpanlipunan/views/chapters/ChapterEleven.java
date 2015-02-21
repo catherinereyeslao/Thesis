@@ -786,7 +786,7 @@ public class ChapterEleven extends ChapterCore {
 	}
 
 	private void playSoundForSection() {
-		// TODO Auto-generated method stub
+		// TODO Fix this fucked up shit
 		switch (chapterSection) {
 		case 0:
 			intro1S.stop();

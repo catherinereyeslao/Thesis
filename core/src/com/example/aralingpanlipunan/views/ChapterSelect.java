@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * This displays the view for chapter selection. This is a sub view for Student & Teacher View
  */
-public class ChapterSelect extends AppView implements Disposable, AppFragment {
+public class ChapterSelect extends AppView {
     public static final int TEACHER = 1;
     public static final int STUDENT = 0;
     private int userType = STUDENT;
@@ -23,7 +23,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
     private String loggedInUserName;
     private ArrayList<Sprite> buttonSprites;
     private ArrayList<Integer> chapterScores;
-    private Texture chap1Texture, chap2Texture, chap3Texture, chap4Texture,chap5Texture, chap6Texture,chap7Texture, chap8Texture,chap9Texture, chap10Texture,chap11Texture, chap12Texture,chap13Texture, chap14Texture,chap15Texture, chap16Texture,chap17Texture, chap18Texture, background;
+    private Texture chap1Texture, chap2Texture, chap3Texture, chap4Texture,chap5Texture, chap6Texture,chap7Texture, chap8Texture,chap9Texture, chap10Texture,chap11Texture, chap12Texture,chap13Texture, chap14Texture,chap15Texture, chap16Texture,chap17Texture, chap18Texture, chap19Texture, background;
     private AndroidInterface android;
 
     /**
@@ -70,6 +70,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap16Texture = new Texture("buttons/chapters/b6-1.png");
         chap17Texture = new Texture("buttons/chapters/b6-2.png");
         chap18Texture = new Texture("buttons/chapters/b6-3.png");
+        chap19Texture = new Texture("buttons/chapters/b1-19.png");
 
         buttonSprites = new ArrayList<Sprite>();
 
@@ -206,6 +207,14 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         final float chap18X = (screenW / 1.8f) + (screenW * 2);
         chap18.setBounds(chap18X, chap3Y, chap18.getWidth(), chap18.getHeight());
         buttonSprites.add(chap18);
+
+        Sprite chap19 = new Sprite(chap19Texture);
+        chap19.setSize(chap19.getWidth() * getButtonScale(), chap19.getHeight() * getButtonScale());
+        if (chapterScores.get(17) == 0) chap19.setAlpha(0.5f);
+        final float chap19X = ((screenW / 2) - (chap19.getWidth() / 2)) + (screenW * 3);
+        final float chap19Y = (screenH / 2) - (chap19.getHeight() / 2);
+        chap19.setBounds(chap19X, chap19Y, chap19.getWidth(), chap19.getHeight());
+        buttonSprites.add(chap19);
     }
 
     @Override
@@ -240,6 +249,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
         chap16Texture.dispose();
         chap17Texture.dispose();
         chap18Texture.dispose();
+        chap19Texture.dispose();
     }
 
     /**
@@ -260,6 +270,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
                 // Do nothing, loop will probably look for chapterScores(-1) at first which doesn't exist
             }
         }
+
         return 0;
     }
 
@@ -287,7 +298,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
      * there are no more buttons to move
      */
     private void moveLeft() {
-        if (!isMovingRight && !isMovingLeft && chapterSection > -2) {
+        if (!isMovingRight && !isMovingLeft && chapterSection > -3) {
             chapterSection--;
             isMovingLeft = true;
         }
@@ -298,7 +309,7 @@ public class ChapterSelect extends AppView implements Disposable, AppFragment {
      * user slides the screen horizontally
      */
     private void buttonMovementManager() {
-        final float scrollSpeed = 60;
+        final float scrollSpeed = 50;
         float movementCursorLimit;
         if (isMovingLeft) {
             movementCursorLimit = screenWidth * chapterSection;
