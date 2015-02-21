@@ -608,11 +608,13 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
             case 14:
                 if (chapterFourteen.keyDown(keycode) == 1) {
                 	chapterFourteen.dispose();
+                    backPressed = true;
                 }
                 break;
             case 15:
                 if (chapterFifteen.keyDown(keycode) == 1) {
                 	chapterFifteen.dispose();
+                    backPressed = true;
                 }
                 break;
             case 16:

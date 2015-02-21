@@ -13,6 +13,7 @@ import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
+import com.example.aralingpanlipunan.views.Help;
 
 import java.security.InvalidParameterException;
 
@@ -24,13 +25,15 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected String loggedInStudent;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
-    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, isTeacher = false;
+    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, viewingHelp, isTeacher;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture, nextTexture;
     protected BitmapFont question;
     protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
+    private Help help;
+    private boolean backHelp;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
         this.android = androidInterface;
@@ -125,13 +128,30 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     /**
-     * If android's back key is pressed, return 1 to Student class
+     * If android's back key is pressed, return 1 to Student/UserType class
      * to give a signal to go back to Chapter Select
      *
      * @param keycode the keycode of the pressed button
      * @return int
      */
     public int keyDown(int keycode) {
+        if (viewingHelp) {
+            if (!backHelp) {
+                backHelp = true;
+                return 0;
+            }
+
+            if (help.keyDown(keycode)) {
+                help.dispose();
+                help = null;
+                viewingHelp = false;
+                backHelp = false;
+                return 0;
+            }
+            backHelp = false;
+            return 0;
+        }
+        backHelp = false;
         return keycode == 4 ? 1 : 0;
     }
 
@@ -141,40 +161,58 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param batch Batch
      */
     protected void  renderSharedAssets(Batch batch) {
-        backgroundSprite.draw(batch);
-        if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
-            girl.setX(girl.getX() + 5);
-        } else if (chapterSection < startOfQuestionSection) {
-            lectureStarted = true;
-            animationCounter += Gdx.graphics.getDeltaTime();
-            girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
-            balloonSprite.draw(batch);
-        }
-        if (chapterSection < startOfQuestionSection) {
-            girl.draw(batch);
-            helpSprite.draw(batch);
-            soundSprite.draw(batch);
-        }
-        if (chapterSection == startOfQuestionSection - 1) {
-            startQuiz.draw(batch);
-            backToChapters.draw(batch);
+        if (viewingHelp) {
+            help.display(batch);
+        } else {
+            backgroundSprite.draw(batch);
+            if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
+                girl.setX(girl.getX() + 5);
+            } else if (chapterSection < startOfQuestionSection) {
+                lectureStarted = true;
+                animationCounter += Gdx.graphics.getDeltaTime();
+                girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
+                balloonSprite.draw(batch);
+            }
+            if (chapterSection < startOfQuestionSection) {
+                girl.draw(batch);
+                helpSprite.draw(batch);
+                soundSprite.draw(batch);
+            }
+            if (chapterSection == startOfQuestionSection - 1) {
+                startQuiz.draw(batch);
+                backToChapters.draw(batch);
+            }
         }
     }
 
     public int touchDown(float x, float y) {
         touchX = x;
-        if (chapterSection == startOfQuestionSection-1) {
-            if (startQuiz.getBoundingRectangle().contains(x, y)) {
+
+        if (viewingHelp) {
+            help.touchDown(x, y);
+        } else {
+
+            if (chapterSection == startOfQuestionSection - 1) {
+                if (startQuiz.getBoundingRectangle().contains(x, y)) {
+                    chapterSection++;
+                    assetNeedUpdate = true;
+                }
+                if (backToChapters.getBoundingRectangle().contains(x, y))
+                    return 500;
+            }
+
+            if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
                 chapterSection++;
                 assetNeedUpdate = true;
             }
-            if (backToChapters.getBoundingRectangle().contains(x, y))
-                return 500;
+
+            if (helpSprite.getBoundingRectangle().contains(x, y)) {
+                help = new Help();
+                help.setUp(screenWidth, screenHeight);
+                viewingHelp = true;
+            }
         }
-        if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
-            chapterSection++;
-            assetNeedUpdate = true;
-        }
+
         return 100;
     }
 
