@@ -40,8 +40,8 @@ public class ChapterEleven extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 30;
-		lastChapterSection = 34;
+		startOfQuestionSection = 31;
+		lastChapterSection = 33;
 		assetNeedUpdate = true;
 
 		// sound
@@ -100,9 +100,9 @@ public class ChapterEleven extends ChapterCore {
 		pista2S = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter11/sounds/pista2.m4a"));
 		santa1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/santa1.m4a"));
+				.internal("chapters/chapter11/sounds/santacruzan1.m4a"));
 		santa2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/santa2.m4a"));
+				.internal("chapters/chapter11/sounds/santacruzan2.m4a"));
 
 		// background
 		introBg = new Texture(
@@ -410,7 +410,7 @@ public class ChapterEleven extends ChapterCore {
 			santa1S.stop();
 			break;
 		case 29: // Start of game section
-			santa2S.stop();
+			//santa2S.stop();
 			if (!isTeacher) {
 				correctAnswers = 0;
 				ans1Correct = ans2Correct = false;
@@ -911,6 +911,7 @@ public class ChapterEleven extends ChapterCore {
 	@Override
 	public void dispose() {
 			intro1S.stop();
+			
 	        kalayaan1S.stop();
 	        kalayaan2S.stop();
 	        kalayaan3S.stop();
@@ -983,7 +984,7 @@ public class ChapterEleven extends ChapterCore {
 		
 		//balloons
 		introBalloon1.dispose();
-		introBalloon2.dispose();
+		
 		kalayaanBalloon1.dispose();
 		kalayaanBalloon2.dispose();
 		kalayaanBalloon3.dispose();
