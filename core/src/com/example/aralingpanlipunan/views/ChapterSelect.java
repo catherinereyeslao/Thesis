@@ -39,7 +39,7 @@ public class ChapterSelect extends AppView {
             case STUDENT:
                 loggedInUserName = userName;
                 userType = STUDENT;
-                android = new DummyAndroidInterface();
+                android = androidInterface;
                 break;
         }
     }

@@ -74,9 +74,6 @@ public class ChapterThree extends ChapterCore {
 		a5S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alintuntunin5.amr"));
 		a5S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin51.amr"));
 		a5S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));
-		
-		
-
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon);
 	}
@@ -139,7 +136,6 @@ public class ChapterThree extends ChapterCore {
 				backgroundSprite.setTexture(alituntunin2Bg);
 				balloonSprite.setTexture(a2B2);
 				a2S1.stop();
-				
 				break;
 			case 6:
 				backgroundSprite.setTexture(alituntunin3Bg);
