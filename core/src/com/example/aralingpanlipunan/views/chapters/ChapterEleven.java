@@ -11,7 +11,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterEleven extends ChapterCore {
 	private Texture introBg, kalayaanBg, amaBg, guroBg, inaBg, pusoBg,
 			mahalNaArawBg, paskoBg, pistaBg, santacruzanBg, introBalloon1,
-			introBalloon2, kalayaanBalloon1, kalayaanBalloon2,
+			kalayaanBalloon1, kalayaanBalloon2, valentinesChar1, valentinesChar2,
 			kalayaanBalloon3, kalayaanBalloon4, amaBalloon1, amaBalloon2,
 			amaBalloon3, amaBalloon4, guroBalloon1, guroBalloon2, guroBalloon3,
 			guroBalloon4, guroBalloon5, inaBalloon1, inaBalloon2, inaBalloon3,
@@ -26,7 +26,8 @@ public class ChapterEleven extends ChapterCore {
 			mahalNaAraw3S, pasko1S, pasko2S, pasko3S, pista1S, pista2S,
 			santa1S, santa2S;
 	private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5,
-			ansMarker6, ansMarker7, ansMarker8;
+			ansMarker6, ansMarker7, ansMarker8, extraCharacterSprite;
+    private short valentineElapsed = 0;
 	private boolean ans1Correct, ans2Correct;
 
 	public ChapterEleven(AndroidInterface androidInterface, String studentName) {
@@ -149,6 +150,12 @@ public class ChapterEleven extends ChapterCore {
 			question5Bg = new Texture(
 					"chapters/chapter11/backgrounds/question5.jpg");
 
+            valentinesChar1 = new Texture("chapters/chapter11/characters/valentines1.png");
+            valentinesChar2 = new Texture("chapters/chapter11/characters/valentines2.png");
+            extraCharacterSprite = new Sprite(valentinesChar1);
+            extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
+            extraCharacterSprite.setPosition(screenWidth / 1.4f, 0);
+
 			ansMarkerTexture = new Texture("box.png");
 			ansMarker = new Sprite(ansMarkerTexture);
 			ansMarker.setSize(
@@ -232,6 +239,14 @@ public class ChapterEleven extends ChapterCore {
 		if (assetNeedUpdate)
 			assetManager();
 		renderSharedAssets(batch);
+
+        if (chapterSection == 17 || chapterSection == 18) {
+            if (valentineElapsed < 160)
+                valentineElapsed++;
+            else if (!extraCharacterSprite.getTexture().equals(valentinesChar2))
+                extraCharacterSprite.setTexture(valentinesChar2);
+            extraCharacterSprite.draw(batch);
+        }
 
 		if (!isTeacher && chapterSection >= startOfQuestionSection
 				&& chapterSection < lastChapterSection) {
@@ -786,7 +801,6 @@ public class ChapterEleven extends ChapterCore {
 	}
 
 	private void playSoundForSection() {
-		// TODO Fix this fucked up shit
 		switch (chapterSection) {
 		case 0:
 			intro1S.stop();
@@ -1013,6 +1027,8 @@ public class ChapterEleven extends ChapterCore {
 		pistaBalloon2.dispose();
 		santacruzanBalloon1.dispose();
 		santacruzanBalloon2.dispose();
+        valentinesChar1.dispose();
+        valentinesChar2.dispose();
         if (!isTeacher)
             ansMarkerTexture.dispose();
 	}
