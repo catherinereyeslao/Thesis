@@ -2,7 +2,9 @@ package com.example.aralingpanlipunan.views.minigames;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
 import java.lang.IllegalArgumentException;
 import java.util.ArrayList;
@@ -18,9 +20,11 @@ public class MemoryGame extends AppView {
     public static final byte HARD = 2;
     private byte difficulty;
     private byte touchedIcon1, touchedIcon2;
-    private Texture backgroundTexture, questionTexture, iconTexture1, iconTexture2, iconTexture3, iconTexture4, iconTexture5, iconTexture6, iconTexture7, iconTexture8;
-    private Sprite questionIcon1, questionIcon2, questionIcon3, questionIcon4, questionIcon5, questionIcon6, questionIcon7, questionIcon8, questionIcon9, questionIcon10, questionIcon11, questionIcon12, questionIcon13, questionIcon14, questionIcon15, questionIcon16, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15, icon16;
+    private Texture backgroundTexture, questionTexture, iconTexture1, iconTexture2, iconTexture3, iconTexture4, iconTexture5, iconTexture6, iconTexture7, iconTexture8, blackBgTexture;
+    private Sprite questionIcon1, questionIcon2, questionIcon3, questionIcon4, questionIcon5, questionIcon6, questionIcon7, questionIcon8, questionIcon9, questionIcon10, questionIcon11, questionIcon12, questionIcon13, questionIcon14, questionIcon15, questionIcon16, icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10, icon11, icon12, icon13, icon14, icon15, icon16, blackBg;
+    private BitmapFont font;
     private ArrayList<Sprite> clearedIcons;
+    private boolean completed;
 
     /**
      * Creates a new Memory game
@@ -38,8 +42,18 @@ public class MemoryGame extends AppView {
         screenHeight = screenH;
         touchedIcon1 = touchedIcon2 = 0;
 
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        font = new BitmapFont(screenSizeUtil.fontAsset(screenWidth));
+        font.setScale(2);
+
         backgroundTexture = new Texture("minigames/background.png");
         questionTexture = new Texture("minigames/memory/question.png");
+        blackBgTexture = new Texture("backgrounds/black-bg.jpg");
+
+        blackBg = new Sprite(blackBgTexture);
+        blackBg.setSize(screenWidth, screenHeight);
+        blackBg.setPosition(0, 0);
+        blackBg.setAlpha(0.5f);
 
         switch (difficulty) {
             case EASY:
@@ -96,6 +110,16 @@ public class MemoryGame extends AppView {
             questionIcon15.draw(batch);
             questionIcon16.draw(batch);
         }
+
+        if (completed) {
+            blackBg.draw(batch);
+            font.draw(
+                    batch,
+                    "CONGRATULATIONS!",
+                    (screenWidth / 2) - (font.getBounds("CONGRATULATIONS!").width / 2),
+                    screenHeight / 2
+            );
+        }
     }
 
     @Override
@@ -105,6 +129,7 @@ public class MemoryGame extends AppView {
         iconTexture1.dispose();
         iconTexture2.dispose();
         iconTexture3.dispose();
+        blackBgTexture.dispose();
         if (difficulty == MEDIUM || difficulty == HARD) {
             iconTexture4.dispose();
             iconTexture5.dispose();
@@ -457,7 +482,6 @@ public class MemoryGame extends AppView {
         icon6 = new Sprite(iconTexture3);
         icon6.setSize(icon1.getWidth(), icon1.getHeight());
         icon6.setPosition(positions.get(5)[0], positions.get(5)[1]);
-
 
         icon7 = new Sprite(iconTexture4);
         icon7.setSize(icon1.getWidth(), icon1.getHeight());
@@ -895,5 +919,44 @@ public class MemoryGame extends AppView {
         }
 
         touchedIcon1 = touchedIcon2 = 0;
+
+        switch (difficulty) {
+            case EASY:
+                completed = isEasyCompleted();
+                break;
+            case MEDIUM:
+                completed = isMediumCompleted();
+                break;
+            case HARD:
+                completed = isHardCompleted();
+                break;
+        }
+    }
+
+    /**
+     * Determines if the Easy level memory game is completed by
+     * checking if all 6 icons are cleared
+     * @return boolean
+     */
+    private boolean isEasyCompleted() {
+        return (clearedIcons.contains(questionIcon1) && clearedIcons.contains(questionIcon3) && clearedIcons.contains(questionIcon5));
+    }
+
+    /**
+     * Determines if the Medium level memory game is completed by
+     * checking if all 12 icons are cleared
+     * @return boolean
+     */
+    private boolean isMediumCompleted() {
+        return (isEasyCompleted() && clearedIcons.contains(questionIcon7) && clearedIcons.contains(questionIcon9) && clearedIcons.contains(questionIcon11));
+    }
+
+    /**
+     * Determines if the Hard level memory game is completed by
+     * checking if all 16 icons are cleared
+     * @return boolean
+     */
+    private boolean isHardCompleted() {
+        return (isEasyCompleted() && isMediumCompleted() && clearedIcons.contains(questionIcon13) && clearedIcons.contains(questionIcon15));
     }
 }

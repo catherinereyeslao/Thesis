@@ -14,10 +14,10 @@ public class ChapterSeven extends ChapterCore {
 			introBalloon2, erectusBalloon1, erectusBalloon2, erectusBalloon3,
 			habilisBalloon1, habilisBalloon2, sapiensBalloon1, sapiensBalloon2,
 			sapiensBalloon3, question1Bg, question2Bg, selectedAnsTexture,
-			nextTexture;
+			nextTexture, erectusTexture, habilisTexture, sapiensTexture;
 	private Music intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
 			habilis2S, sapiens1S, sapiens2S, sapiens3S;
-	private Sprite ans, ans2, ans3, ans4, ans5, ans6, next;
+	private Sprite ans, ans2, ans3, ans4, ans5, ans6, next, extraCharacterSprite;
 	private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched,
 			ans5Touched, ans6Touched = false;
 
@@ -82,7 +82,6 @@ public class ChapterSeven extends ChapterCore {
 					"chapters/chapter7/backgrounds/question1bg.jpg");
 			question2Bg = new Texture(
 					"chapters/chapter7/backgrounds/question2bg.jpg");
-
 		}
 
 		// balloons
@@ -99,6 +98,14 @@ public class ChapterSeven extends ChapterCore {
 		sapiensBalloon1 = new Texture("chapters/chapter7/balloons/Sapiens1.png");
 		sapiensBalloon2 = new Texture("chapters/chapter7/balloons/Sapiens2.png");
 		sapiensBalloon3 = new Texture("chapters/chapter7/balloons/Sapiens3.png");
+
+        // characters
+        erectusTexture = new Texture("chapters/chapter7/characters/erectus.png");
+        habilisTexture = new Texture("chapters/chapter7/characters/habilis.png");
+        sapiensTexture = new Texture("chapters/chapter7/characters/sapiens.png");
+        extraCharacterSprite = new Sprite(erectusTexture);
+        extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
+        extraCharacterSprite.setPosition(screenWidth / 1.5f, screenH / 5);
 
 		selectedAnsTexture = new Texture("box.png");
 
@@ -165,6 +172,9 @@ public class ChapterSeven extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
+        if (chapterSection > 1 && chapterSection < startOfQuestionSection)
+            extraCharacterSprite.draw(batch);
+
 		switch (chapterSection) {
 		case 10:
 			ans.draw(batch);
@@ -207,6 +217,7 @@ public class ChapterSeven extends ChapterCore {
 		case 2:
 			backgroundSprite.setTexture(erectusBg);
 			balloonSprite.setTexture(erectusBalloon1);
+            extraCharacterSprite.setTexture(erectusTexture);
 			intro2S.stop();
 			erectus2S.stop();
 			break;
@@ -217,22 +228,26 @@ public class ChapterSeven extends ChapterCore {
 			break;
 		case 4:
 			balloonSprite.setTexture(erectusBalloon3);
+            extraCharacterSprite.setTexture(erectusTexture);
 			erectus2S.stop();
 			habilis1S.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(habilisBg);
+            extraCharacterSprite.setTexture(habilisTexture);
 			balloonSprite.setTexture(habilisBalloon1);
 			erectus3S.stop();
 			habilis2S.stop();
 			break;
 		case 6:
 			balloonSprite.setTexture(habilisBalloon2);
+            extraCharacterSprite.setTexture(habilisTexture);
 			habilis1S.stop();
 			sapiens1S.stop();
 			break;
 		case 7:
 			backgroundSprite.setTexture(sapiensBg);
+            extraCharacterSprite.setTexture(sapiensTexture);
 			balloonSprite.setTexture(sapiensBalloon1);
 			habilis2S.stop();
 			sapiens2S.stop();
@@ -357,7 +372,6 @@ public class ChapterSeven extends ChapterCore {
 	}
 
 	private void playSoundForSection() {
-		// TODO Auto-generated method stub
 		switch (chapterSection) {
 		case 0:
 			intro1S.stop();
