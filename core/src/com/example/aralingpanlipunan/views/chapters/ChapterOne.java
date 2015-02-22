@@ -13,7 +13,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterOne extends ChapterCore {
     private static final String LUNGSOD = "a. Lungsod";
     private static final String KABUNDUKAN = "b. Kabundukan";
-    private static final String BUKIRIN = "c. BUKIRIN";
+    private static final String BUKIRIN = "c. Bukirin";
     private static final String BAYBAYIN = "d. Baybayin";
 
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
@@ -42,7 +42,6 @@ public class ChapterOne extends ChapterCore {
         // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
-            //TODO: replace these with correct answer keys, to be provided by Charitie
             answer2Texture = new Texture("chapters/chapter1/answerkeys/answer2.jpg");
             answer3Texture = new Texture("chapters/chapter1/answerkeys/answer3.jpg");
             answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpeg");
