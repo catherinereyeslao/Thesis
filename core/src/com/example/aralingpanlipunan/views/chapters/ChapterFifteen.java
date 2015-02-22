@@ -54,7 +54,7 @@ public class ChapterFifteen extends ChapterCore {
 		kailangan3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan3.m4a"));
 		kailangan4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/kailangan4.m4a"));
 		katulong1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulong1.m4a"));
-		katulong2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulomh2.m4a"));
+		katulong2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulong2.m4a"));
 		katulong3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter15/sounds/katulong1.m4a"));
 
 		// backgrounds
