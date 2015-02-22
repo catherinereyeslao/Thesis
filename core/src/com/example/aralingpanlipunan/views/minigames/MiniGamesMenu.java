@@ -12,10 +12,12 @@ public class MiniGamesMenu extends AppView {
     private static final byte MINI_GAME_MENU = 0;
     private static final byte MEMORY_MENU = 1;
     private static final byte MEMORY_GAME = 2;
+    private static final byte FOUR_PICS = 3;
     private byte selectedMenu = MINI_GAME_MENU;
     private Texture menuBgTexture, memoryMenuBgTexture;
     private Sprite memory, fourPics, easyMemory, medMemory, hardMemory;
     private MemoryGame memoryGame;
+    private FourPics fourPicsGame;
 
     @Override
     public void setUp(int screenW, int screenH) {
@@ -32,12 +34,10 @@ public class MiniGamesMenu extends AppView {
         memory.setSize(memory.getWidth() * getButtonScale() / 1.85f, memory.getHeight() * getButtonScale() / 1.75f);
         memory.setPosition(memoryX, optionY);
         memory.setBounds(memoryX, optionY, memory.getWidth(), memory.getHeight());
-        memory.setAlpha(0);
 
         fourPics = new Sprite(menuBgTexture);
         fourPics.setSize(memory.getWidth(), memory.getHeight());
         fourPics.setBounds(fourPicX, optionY, fourPics.getWidth(), fourPics.getHeight());
-        fourPics.setAlpha(0);
 
         // Set touch listeners for Memory Game Menu
         float easyX = screenWidth / 4.69f;
@@ -66,8 +66,6 @@ public class MiniGamesMenu extends AppView {
         switch (selectedMenu) {
             case MINI_GAME_MENU:
                 batch.draw(menuBgTexture, 0, 0, screenWidth, screenHeight);
-                memory.draw(batch);
-                fourPics.draw(batch);
                 break;
             case MEMORY_MENU:
                 batch.draw(memoryMenuBgTexture, 0, 0, screenWidth, screenHeight);
@@ -75,9 +73,10 @@ public class MiniGamesMenu extends AppView {
             case MEMORY_GAME:
                 memoryGame.display(batch);
                 break;
+            case FOUR_PICS:
+                fourPicsGame.display(batch);
+                break;
         }
-        memory.draw(batch);
-        fourPics.draw(batch);
     }
 
     @Override
@@ -100,6 +99,10 @@ public class MiniGamesMenu extends AppView {
             case MINI_GAME_MENU:
                 if (memory.getBoundingRectangle().contains(x, y)) {
                     selectedMenu = MEMORY_MENU;
+                } else if (fourPics.getBoundingRectangle().contains(x, y)) {
+                    fourPicsGame = new FourPics();
+                    fourPicsGame.setUp(screenWidth, screenHeight);
+                    selectedMenu = FOUR_PICS;
                 }
                 break;
             case MEMORY_MENU:
@@ -116,6 +119,9 @@ public class MiniGamesMenu extends AppView {
                 break;
             case MEMORY_GAME:
                 memoryGame.touchDown(x, y);
+                break;
+            case FOUR_PICS:
+                fourPicsGame.touchDown();
                 break;
         }
     }
@@ -140,7 +146,29 @@ public class MiniGamesMenu extends AppView {
                     selectedMenu = MINI_GAME_MENU;
                 }
                 break;
+            case FOUR_PICS:
+                if (keycode == 4) {
+                    fourPicsGame.dispose();
+                    fourPicsGame = null;
+                    selectedMenu = MINI_GAME_MENU;
+                } else {
+                    fourPicsGame.keyDown(keycode);
+                }
+                break;
         }
         return 0;
+    }
+
+    /**
+     * Listen to keyboard typing so user can enter the correct
+     * answer in 4pics1word
+     * @param character Character typed by user
+     */
+    public void keyTyped(char character) {
+        switch (selectedMenu) {
+            case FOUR_PICS:
+                fourPicsGame.keyTyped(character);
+                break;
+        }
     }
 }
