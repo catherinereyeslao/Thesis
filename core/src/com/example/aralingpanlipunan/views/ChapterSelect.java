@@ -50,7 +50,7 @@ public class ChapterSelect extends AppView {
         screenWidth = screenW;
 
         chapterScores = android.getScoresByStudent(loggedInUserName);
-        
+
         background = new Texture("backgrounds/start-background.jpg");
         chap1Texture = new Texture("buttons/chapters/b1-1.png");
         chap2Texture = new Texture("buttons/chapters/b1-2.png");

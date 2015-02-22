@@ -310,15 +310,6 @@ public class ChapterFive extends ChapterCore {
 			break;
 		//game
 		case 9:
-
-            baybayin.setPosition(baybayinX, baybayinY);
-            iba.setPosition(ibaX, ibaY);
-            kabukiran.setPosition(kabukiranX, kabukiranY);
-            kabundukan.setPosition(kabundukanX, kabundukanY);
-            lungsod.setPosition(lungsodX, lungsodY);
-            parke.setPosition(parkeX, parkeY);
-			backgroundSprite.setTexture(questionBg);
-
             if (isTeacher) {
                 backgroundSprite.setTexture(question1Bg);
             } else {

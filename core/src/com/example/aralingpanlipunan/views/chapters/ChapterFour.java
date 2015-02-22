@@ -9,10 +9,9 @@ import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 
 public class ChapterFour extends ChapterCore {
-    private Texture introBg, libanganBg, pabahayBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg, game1Bg, game2Bg, game3Bg,
-    				intro1Balloon, intro2Balloon, kaligtasan1Balloon, kaligtasan2Balloon, libangan1Balloon, libangan2Balloon, 
-    				pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker, nextTexture,
-    				question1Bg, question2Bg, question3Bg;
+    private Texture introBg, libanganBg, pabahayBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg,
+            intro1Balloon, intro2Balloon, kaligtasan1Balloon, kaligtasan2Balloon, libangan1Balloon, libangan2Balloon, pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker, nextTexture,
+            question1Bg, question2Bg, question3Bg;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False, next;
     private Music intro1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;
     private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched =false;
@@ -186,13 +185,13 @@ public class ChapterFour extends ChapterCore {
             case 9: // Start of Game
                 correctAnswers = 0;
                 setUpGame();
-                backgroundSprite.setTexture(game1Bg);
+                backgroundSprite.setTexture(question1Bg);
                 break;
             case 10:
                 if (ans1TrueTouched) correctAnswers++;
                 if (ans2TrueTouched) correctAnswers++;
                 if (ans3FalseTouched) correctAnswers++;
-                backgroundSprite.setTexture(game2Bg);
+                backgroundSprite.setTexture(question2Bg);
                 float ans1Y = (screenHeight / 1.22f) - (ans1True.getHeight() / 2);
                 ans1True.setAlpha(0);
                 ans1True.setY(ans1Y);
@@ -246,7 +245,7 @@ public class ChapterFour extends ChapterCore {
                 ans2False.setY(ans2Y);
                 ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
 
-                backgroundSprite.setTexture(game3Bg);
+                backgroundSprite.setTexture(question3Bg);
                 break;
             case 12:
                 if (ans1TrueTouched) correctAnswers++;
@@ -263,9 +262,6 @@ public class ChapterFour extends ChapterCore {
     private void setUpGame() {
         backToChapters.setBounds(0, 0, 0, 0);
         answerMarker = new Texture("encircle.png");
-        game1Bg = new Texture("chapters/chapter4/backgrounds/game1Bg.jpg");
-        game2Bg = new Texture("chapters/chapter4/backgrounds/game2Bg.jpg");
-        game3Bg = new Texture("chapters/chapter4/backgrounds/game3Bg.jpg");
 
         ans1True = new Sprite(answerMarker);
         ans1True.setSize(ans1True.getWidth() * getButtonScale(), ans1True.getHeight() * getButtonScale());
@@ -535,17 +531,16 @@ public class ChapterFour extends ChapterCore {
         question1Bg.dispose();
         question2Bg.dispose();
         question3Bg.dispose();
-        
-        
-        
 
         // If user entered the game, dispose these loaded game assets
         if (chapterSection >= startOfQuestionSection) {
-            answerMarker.dispose();
-            nextTexture.dispose();
-            game1Bg.dispose();
-            game2Bg.dispose();
-            game3Bg.dispose();
+            if (!isTeacher) {
+                answerMarker.dispose();
+                nextTexture.dispose();
+            }
+            question1Bg.dispose();
+            question2Bg.dispose();
+            question3Bg.dispose();
         }
     }
 }

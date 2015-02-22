@@ -33,7 +33,10 @@ public class ChapterThree extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 15;
 		lastChapterSection = 16;
-		currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
+        if (isTeacher)
+            currentRecordedScore = 100;
+        else
+		    currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
 
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");
@@ -76,6 +79,7 @@ public class ChapterThree extends ChapterCore {
 		a5S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon);
+        setUpGame();
 	}
 
 	@Override
@@ -192,7 +196,6 @@ public class ChapterThree extends ChapterCore {
 				correctAnswers = 0;
 				backgroundSprite.setTexture(gameBg);
 				backToChapters.setBounds(0, 0, 0, 0);
-				setUpGame();
 				a5S3.stop();
 				break;
 			case 16:
@@ -295,7 +298,7 @@ public class ChapterThree extends ChapterCore {
 		if (chapterSection == lastChapterSection) {
 			return displayLastSectionButtons(3, 6, x, y);
 		}
-		if (chapterSection == 15) {
+		if (!isTeacher && chapterSection == 15) {
 			if (ans1.getBoundingRectangle().contains(x, y)) {
 				ans1Touched = !ans1Touched;
 				ans1.setAlpha(ans1Touched ? 0.8f : 0);
@@ -344,7 +347,6 @@ public class ChapterThree extends ChapterCore {
 	}
 
 	private void playSoundForSection() {
-		// TODO Auto-generated method stub
 		switch (chapterSection) {
         case 0:
             introS.stop();
