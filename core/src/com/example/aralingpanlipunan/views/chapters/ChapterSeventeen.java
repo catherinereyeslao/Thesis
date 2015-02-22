@@ -29,8 +29,8 @@ public class ChapterSeventeen extends ChapterCore {
         lastChapterSection = 17;
         
         //sounds
-        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro1chap174.m4a"));
-        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro2chap174.m4a"));
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro1chap17.m4a"));
+        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro2chap17.m4a"));
         bagyo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo1.m4a"));
         bagyo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo2.m4a"));
         bagyo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo3.m4a"));
