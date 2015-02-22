@@ -196,7 +196,7 @@ public class ChapterNine extends ChapterCore {
         }
 
         if (chapterSection == lastChapterSection) {
-            question.drawMultiLine(batch, tanong, questionX, questionY);
+            if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
             startQuiz.draw(batch);
             backToChapters.draw(batch);
         }
@@ -229,6 +229,7 @@ public class ChapterNine extends ChapterCore {
 			ati3S.stop();
 			break;
 		case 4:
+            backgroundSprite.setTexture(itaBg);
 			balloonSprite.setTexture(atiBalloon3);
 			ati2S.stop();
 			blaan1S.stop();
@@ -250,6 +251,7 @@ public class ChapterNine extends ChapterCore {
 			blaan4S.stop();
 			break;
 		case 8:
+            backgroundSprite.setTexture(blaanBg);
 			balloonSprite.setTexture(blaanBalloon4);
 			blaan3S.stop();
 			bontoc1S.stop();
@@ -266,6 +268,7 @@ public class ChapterNine extends ChapterCore {
 			bontoc3S.stop();
 			break;
 		case 11:
+            backgroundSprite.setTexture(bontocBg);
 			balloonSprite.setTexture(bontocBalloon3);
 			bontoc2S.stop();
 			ifugao1S.stop();
@@ -282,6 +285,7 @@ public class ChapterNine extends ChapterCore {
 			ifugao3S.stop();
 			break;
 		case 14:
+            backgroundSprite.setTexture(ifugaoBg);
 			balloonSprite.setTexture(ifugaoBalloon3);
 			ifugao2S.stop();
 			sulod1S.stop();
@@ -308,6 +312,7 @@ public class ChapterNine extends ChapterCore {
 			sulod4S.stop();
 			break;
 		case 19:
+            backgroundSprite.setTexture(sulodBg);
 			balloonSprite.setTexture(sulodBalloon4);
 			sulod3S.stop();
 			tboli1S.stop();
@@ -329,6 +334,7 @@ public class ChapterNine extends ChapterCore {
 			tboli4S.stop();
 			break;
 		case 23:
+            backgroundSprite.setTexture(tboliBg);
 			balloonSprite.setTexture(tboliBalloon4);
 			tboli3S.stop();
 			break;

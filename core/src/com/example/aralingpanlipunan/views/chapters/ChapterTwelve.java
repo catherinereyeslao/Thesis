@@ -196,6 +196,7 @@ public class ChapterTwelve extends ChapterCore {
                 break;
             case 5:
                 backgroundSprite.setTexture(musikaTexture);
+                backgroundSprite.setTexture(musikaTexture);
                 balloonSprite.setTexture(musika4Balloon);
                 musika3S.stop();
                 pinta1S.stop();
@@ -256,6 +257,7 @@ public class ChapterTwelve extends ChapterCore {
                 sayaw3S.stop();
                 break;
             case 16:
+                backgroundSprite.setTexture(sayawTexture);
                 balloonSprite.setTexture(sayaw3Balloon);
                 sayaw2S.stop();
                 break;

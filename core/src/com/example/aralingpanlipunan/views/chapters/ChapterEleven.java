@@ -150,12 +150,6 @@ public class ChapterEleven extends ChapterCore {
 			question5Bg = new Texture(
 					"chapters/chapter11/backgrounds/question5.jpg");
 
-            valentinesChar1 = new Texture("chapters/chapter11/characters/valentines1.png");
-            valentinesChar2 = new Texture("chapters/chapter11/characters/valentines2.png");
-            extraCharacterSprite = new Sprite(valentinesChar1);
-            extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
-            extraCharacterSprite.setPosition(screenWidth / 1.4f, 0);
-
 			ansMarkerTexture = new Texture("box.png");
 			ansMarker = new Sprite(ansMarkerTexture);
 			ansMarker.setSize(
@@ -185,6 +179,12 @@ public class ChapterEleven extends ChapterCore {
 
 			loadNextButton();
 		}
+
+        valentinesChar1 = new Texture("chapters/chapter11/characters/valentines1.png");
+        valentinesChar2 = new Texture("chapters/chapter11/characters/valentines2.png");
+        extraCharacterSprite = new Sprite(valentinesChar1);
+        extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
+        extraCharacterSprite.setPosition(screenWidth / 1.4f, 0);
 
 		// balloons
 		introBalloon1 = new Texture("chapters/chapter11/balloons/Intro.png");
@@ -293,6 +293,7 @@ public class ChapterEleven extends ChapterCore {
 			kalayaan4S.stop();
 			break;
 		case 4:
+            backgroundSprite.setTexture(kalayaanBg);
 			balloonSprite.setTexture(kalayaanBalloon4);
 			kalayaan3S.stop();
 			ama1S.stop();
@@ -314,6 +315,7 @@ public class ChapterEleven extends ChapterCore {
 			ama4S.stop();
 			break;
 		case 8:
+            backgroundSprite.setTexture(amaBg);
 			balloonSprite.setTexture(amaBalloon4);
 			ama3S.stop();
 			guro1S.stop();
@@ -340,6 +342,7 @@ public class ChapterEleven extends ChapterCore {
 			guro5S.stop();
 			break;
 		case 13:
+            backgroundSprite.setTexture(guroBg);
 			balloonSprite.setTexture(guroBalloon5);
 			guro4S.stop();
 			ina1S.stop();
@@ -356,6 +359,7 @@ public class ChapterEleven extends ChapterCore {
 			ina3S.stop();
 			break;
 		case 16:
+            backgroundSprite.setTexture(inaBg);
 			balloonSprite.setTexture(inaBalloon3);
 			ina2S.stop();
 			puso1S.stop();
@@ -367,6 +371,7 @@ public class ChapterEleven extends ChapterCore {
 			puso2S.stop();
 			break;
 		case 18:
+            backgroundSprite.setTexture(pusoBg);
 			balloonSprite.setTexture(pusoBalloon2);
 			puso1S.stop();
 			mahalNaAraw1S.stop();
@@ -383,6 +388,7 @@ public class ChapterEleven extends ChapterCore {
 			mahalNaAraw3S.stop();
 			break;
 		case 21:
+            backgroundSprite.setTexture(mahalNaArawBg);
 			balloonSprite.setTexture(mahalNaArawBalloon3);
 			mahalNaAraw2S.stop();
 			pasko1S.stop();
@@ -399,6 +405,7 @@ public class ChapterEleven extends ChapterCore {
 			pasko3S.stop();
 			break;
 		case 24:
+            backgroundSprite.setTexture(paskoBg);
 			balloonSprite.setTexture(paskoBalloon3);
 			pasko2S.stop();
 			pista1S.stop();
@@ -410,6 +417,7 @@ public class ChapterEleven extends ChapterCore {
 			pista2S.stop();
 			break;
 		case 26:
+            backgroundSprite.setTexture(pistaBg);
 			balloonSprite.setTexture(pistaBalloon2);
 			pista1S.stop();
 			santa1S.stop();
@@ -421,6 +429,7 @@ public class ChapterEleven extends ChapterCore {
 			santa2S.stop();
 			break;
 		case 28:
+            backgroundSprite.setTexture(santacruzanBg);
 			balloonSprite.setTexture(santacruzanBalloon2);
 			santa1S.stop();
 			break;

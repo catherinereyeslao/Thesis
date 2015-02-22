@@ -175,6 +175,7 @@ public class ChapterFifteen extends ChapterCore {
 			epekto3S.stop();
 			break;
 		case 4:
+            backgroundSprite.setTexture(epektoTulunganBg);
 			balloonSprite.setTexture(epektoTulunganBalloon3);
 			epekto2S.stop();
 			gawain1S.stop();
@@ -196,6 +197,7 @@ public class ChapterFifteen extends ChapterCore {
 			gawain4S.stop();
 			break;
 		case 8:
+            backgroundSprite.setTexture(gawainTulunganBg);
 			balloonSprite.setTexture(gawainTulunganBalloon4);
 			gawain3S.stop();
 			kailangan1S.stop();
@@ -217,6 +219,7 @@ public class ChapterFifteen extends ChapterCore {
 			kailangan4S.stop();
 			break;
 		case 12:
+            backgroundSprite.setTexture(pangangailanganNatinBg);
 			balloonSprite.setTexture(pangangailanganBalloon4);
 			kailangan3S.stop();
 			katulong1S.stop();
@@ -233,6 +236,7 @@ public class ChapterFifteen extends ChapterCore {
 			katulong3S.stop();
 			break;
 		case 15:
+            backgroundSprite.setTexture(tulongPangangailanganBg);
 			balloonSprite.setTexture(tulongPangangailanganBalloon3);
 			katulong2S.stop();
 			break;

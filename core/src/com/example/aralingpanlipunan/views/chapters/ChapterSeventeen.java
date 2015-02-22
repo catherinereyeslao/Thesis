@@ -449,6 +449,7 @@ public class ChapterSeventeen extends ChapterCore {
                 bagyo4S.stop();
                 break;
             case 13:
+                backgroundSprite.setTexture(typhoonFxBg);
                 balloonSprite.setTexture(typhoonFx4Balloon);
                 bagyo3S.stop();
                 break;

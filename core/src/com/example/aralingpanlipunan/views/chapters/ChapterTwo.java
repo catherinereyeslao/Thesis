@@ -391,6 +391,7 @@ public class ChapterTwo extends ChapterCore {
                 d5.stop();
                 break;
             case 6:
+                balloonSprite.setAlpha(1);
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setTexture(direction5BalloonTexture);
                 d4.stop();
@@ -419,6 +420,7 @@ public class ChapterTwo extends ChapterCore {
                 m4.stop();
                 break;
             case 11:
+                backgroundSprite.setTexture(mapTexture);
                 balloonSprite.setTexture(map4BalloonTexture);
                 m3.stop();
                 break;
@@ -484,7 +486,6 @@ public class ChapterTwo extends ChapterCore {
                     startQuiz.setTexture(retakeTexture);
                 } else {
                     startQuiz.setTexture(nextChapTexture);
-                    backToChapters.setTexture(exitTexture);
                 }
                 startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
                 backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());

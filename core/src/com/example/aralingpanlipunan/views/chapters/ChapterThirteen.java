@@ -227,6 +227,7 @@ public class ChapterThirteen extends ChapterCore {
 			watawat3S.stop();
 			break;
 		case 4:
+            backgroundSprite.setTexture(watawatBg);
 			balloonSprite.setTexture(watawatBalloon3);
 			watawat2S.stop();
 			simbolo1S.stop();
@@ -242,7 +243,8 @@ public class ChapterThirteen extends ChapterCore {
 			simbolo1S.stop();
 			simbolo3S.stop();
 			break;
-		case 7: 
+		case 7:
+            backgroundSprite.setTexture(simboloBg);
 			balloonSprite.setTexture(simboloBalloon3);
 			simbolo2S.stop();
 			bonifacio1S.stop();
@@ -259,6 +261,7 @@ public class ChapterThirteen extends ChapterCore {
 			bonifacio3S.stop();
 			break;
 		case 10:
+            backgroundSprite.setTexture(bonifacioBg);
 			balloonSprite.setTexture(bonifacioBalloon3);
 			bonifacio2S.stop();
 			aguinaldo1S.stop();
@@ -275,6 +278,7 @@ public class ChapterThirteen extends ChapterCore {
 			aguinaldo2S.stop();
 			break;
 		case 13:
+            backgroundSprite.setTexture(aguinaldoBg);
 			balloonSprite.setTexture(aguinaldoBalloon3);
 			aguinaldo2S.stop();
 			rizal1S.stop();
@@ -296,6 +300,7 @@ public class ChapterThirteen extends ChapterCore {
 			rizal4S.stop();
 			break;
 		case 17:
+            backgroundSprite.setTexture(rizalBg);
 			balloonSprite.setTexture(rizalBalloon4);
 			rizal3S.stop();
 			lapu1S.stop();
@@ -317,6 +322,7 @@ public class ChapterThirteen extends ChapterCore {
 			lapu4S.stop();
 			break;
 		case 21:
+            backgroundSprite.setTexture(lapuBg);
 			balloonSprite.setTexture(lapuBalloon4);
 			lapu3S.stop();
 			aquino1S.stop();
@@ -333,6 +339,7 @@ public class ChapterThirteen extends ChapterCore {
 			aquino3S.stop();
 			break;
 		case 24:
+            backgroundSprite.setTexture(aquinoBg);
 			balloonSprite.setTexture(aquinoBalloon3);
 			aquino2S.stop();
 			break;

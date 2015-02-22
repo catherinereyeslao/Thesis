@@ -14,7 +14,7 @@ public class ChapterSeven extends ChapterCore {
 			introBalloon2, erectusBalloon1, erectusBalloon2, erectusBalloon3,
 			habilisBalloon1, habilisBalloon2, sapiensBalloon1, sapiensBalloon2,
 			sapiensBalloon3, question1Bg, question2Bg, selectedAnsTexture,
-			nextTexture, erectusTexture, habilisTexture, sapiensTexture;
+			erectusTexture, habilisTexture, sapiensTexture;
 	private Music intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
 			habilis2S, sapiens1S, sapiens2S, sapiens3S;
 	private Sprite ans, ans2, ans3, ans4, ans5, ans6, next, extraCharacterSprite;
@@ -66,10 +66,6 @@ public class ChapterSeven extends ChapterCore {
 				"chapters/chapter7/backgrounds/ChapterSevenBackgroundHabilis.png");
 		sapiensBg = new Texture(
 				"chapters/chapter7/backgrounds/ChapterSevenBackgroundSapiens.png");
-		question1Bg = new Texture(
-				"chapters/chapter7/backgrounds/question1bg.jpg");
-		question2Bg = new Texture(
-				"chapters/chapter7/backgrounds/question2bg.jpg");
 		if (isTeacher) {
 			question1Bg = new Texture(
 					"chapters/chapter7/answerkeys/answer1.jpg");
@@ -82,6 +78,52 @@ public class ChapterSeven extends ChapterCore {
 					"chapters/chapter7/backgrounds/question1bg.jpg");
 			question2Bg = new Texture(
 					"chapters/chapter7/backgrounds/question2bg.jpg");
+
+            selectedAnsTexture = new Texture("box.png");
+
+            ans = new Sprite(selectedAnsTexture);
+            ans.setSize((ans.getWidth() * getButtonScale()) * 2,
+                    (ans.getHeight() * getButtonScale()) / 3.32f);
+            final float ansX = (screenWidth / 3.2f);
+            final float ansY = screenHeight / 1.5f;
+            ans.setPosition(ansX, ansY);
+            ans.setBounds(ansX, ansY, ans.getWidth(), ans.getHeight());
+            ans.setAlpha(0);
+
+            ans2 = new Sprite(selectedAnsTexture);
+            ans2.setSize(ans.getWidth(), ans.getHeight());
+            final float ans2Y = screenHeight / 1.65f;
+            ans2.setPosition(ansX, ans2Y);
+            ans2.setBounds(ansX, ans2Y, ans2.getWidth(), ans2.getHeight());
+            ans2.setAlpha(0);
+
+            ans3 = new Sprite(selectedAnsTexture);
+            ans3.setSize(ans.getWidth() * 1.08f, ans.getHeight());
+            final float ans3Y = screenHeight / 2f;
+            ans3.setPosition(ansX, ans3Y);
+            ans3.setBounds(ansX, ans3Y, ans3.getWidth(), ans3.getHeight());
+            ans3.setAlpha(0);
+
+            ans4 = new Sprite(selectedAnsTexture);
+            ans4.setSize(ans.getWidth() * 1.18f, ans.getHeight());
+            final float ans4Y = screenHeight / 2.24f;
+            ans4.setPosition(ansX, ans4Y);
+            ans4.setBounds(ansX, ans4Y, ans4.getWidth(), ans4.getHeight());
+            ans4.setAlpha(0);
+
+            ans5 = new Sprite(selectedAnsTexture);
+            ans5.setSize(ans.getWidth() * 1.35f, ans.getHeight());
+            final float ans5Y = screenHeight / 2.93f;
+            ans5.setPosition(ansX, ans5Y);
+            ans5.setBounds(ansX, ans5Y, ans5.getWidth(), ans5.getHeight());
+            ans5.setAlpha(0);
+
+            ans6 = new Sprite(selectedAnsTexture);
+            ans6.setSize(ans.getWidth() * 1.24f, ans.getHeight() * 2);
+            final float ans6Y = screenHeight / 4.19f;
+            ans6.setPosition(ansX, ans6Y);
+            ans6.setBounds(ansX, ans6Y, ans6.getWidth(), ans6.getHeight());
+            ans6.setAlpha(0);
 		}
 
 		// balloons
@@ -107,60 +149,7 @@ public class ChapterSeven extends ChapterCore {
         extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
         extraCharacterSprite.setPosition(screenWidth / 1.5f, screenH / 5);
 
-		selectedAnsTexture = new Texture("box.png");
-
-		ans = new Sprite(selectedAnsTexture);
-		ans.setSize((ans.getWidth() * getButtonScale()) * 2,
-				(ans.getHeight() * getButtonScale()) / 3.32f);
-		final float ansX = (screenWidth / 3.2f);
-		final float ansY = screenHeight / 1.5f;
-		ans.setPosition(ansX, ansY);
-		ans.setBounds(ansX, ansY, ans.getWidth(), ans.getHeight());
-		ans.setAlpha(0);
-
-		ans2 = new Sprite(selectedAnsTexture);
-		ans2.setSize(ans.getWidth(), ans.getHeight());
-		final float ans2Y = screenHeight / 1.65f;
-		ans2.setPosition(ansX, ans2Y);
-		ans2.setBounds(ansX, ans2Y, ans2.getWidth(), ans2.getHeight());
-		ans2.setAlpha(0);
-
-		ans3 = new Sprite(selectedAnsTexture);
-		ans3.setSize(ans.getWidth() * 1.08f, ans.getHeight());
-		final float ans3Y = screenHeight / 2f;
-		ans3.setPosition(ansX, ans3Y);
-		ans3.setBounds(ansX, ans3Y, ans3.getWidth(), ans3.getHeight());
-		ans3.setAlpha(0);
-
-		ans4 = new Sprite(selectedAnsTexture);
-		ans4.setSize(ans.getWidth() * 1.18f, ans.getHeight());
-		final float ans4Y = screenHeight / 2.24f;
-		ans4.setPosition(ansX, ans4Y);
-		ans4.setBounds(ansX, ans4Y, ans4.getWidth(), ans4.getHeight());
-		ans4.setAlpha(0);
-
-		ans5 = new Sprite(selectedAnsTexture);
-		ans5.setSize(ans.getWidth() * 1.35f, ans.getHeight());
-		final float ans5Y = screenHeight / 2.93f;
-		ans5.setPosition(ansX, ans5Y);
-		ans5.setBounds(ansX, ans5Y, ans5.getWidth(), ans5.getHeight());
-		ans5.setAlpha(0);
-
-		ans6 = new Sprite(selectedAnsTexture);
-		ans6.setSize(ans.getWidth() * 1.24f, ans.getHeight() * 2);
-		final float ans6Y = screenHeight / 4.19f;
-		ans6.setPosition(ansX, ans6Y);
-		ans6.setBounds(ansX, ans6Y, ans6.getWidth(), ans6.getHeight());
-		ans6.setAlpha(0);
-
-		nextTexture = new Texture("buttons/enter.png");
-		next = new Sprite(nextTexture);
-		next.setSize(next.getWidth() * getButtonScale(), next.getHeight()
-				* getButtonScale());
-		final float nextX = (screenWidth / 1.4f);
-		final float nextY = next.getHeight() / 10;
-		next.setPosition(nextX, nextY);
-		next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
+		loadNextButton();
 
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
@@ -177,23 +166,27 @@ public class ChapterSeven extends ChapterCore {
 
 		switch (chapterSection) {
 		case 10:
-			ans.draw(batch);
-			ans2.draw(batch);
-			ans3.draw(batch);
-			ans4.draw(batch);
-			ans5.draw(batch);
-			ans6.draw(batch);
-			next.draw(batch);
+            if (!isTeacher) {
+                ans.draw(batch);
+                ans2.draw(batch);
+                ans3.draw(batch);
+                ans4.draw(batch);
+                ans5.draw(batch);
+                ans6.draw(batch);
+                next.draw(batch);
+            }
 			break;
 		case 11:
-			ans.draw(batch);
-			ans2.draw(batch);
-			ans3.draw(batch);
-			ans4.draw(batch);
-			next.draw(batch);
+            if (!isTeacher) {
+                ans.draw(batch);
+                ans2.draw(batch);
+                ans3.draw(batch);
+                ans4.draw(batch);
+                next.draw(batch);
+            }
 			break;
 		case 12:
-			question.drawMultiLine(batch, tanong, questionX, questionY);
+			if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
 			startQuiz.draw(batch);
 			backToChapters.draw(batch);
 			break;
@@ -227,6 +220,7 @@ public class ChapterSeven extends ChapterCore {
 			erectus3S.stop();
 			break;
 		case 4:
+            backgroundSprite.setTexture(erectusBg);
 			balloonSprite.setTexture(erectusBalloon3);
             extraCharacterSprite.setTexture(erectusTexture);
 			erectus2S.stop();
@@ -240,6 +234,7 @@ public class ChapterSeven extends ChapterCore {
 			habilis2S.stop();
 			break;
 		case 6:
+            backgroundSprite.setTexture(habilisBg);
 			balloonSprite.setTexture(habilisBalloon2);
             extraCharacterSprite.setTexture(habilisTexture);
 			habilis1S.stop();
@@ -258,6 +253,7 @@ public class ChapterSeven extends ChapterCore {
 			sapiens3S.stop();
 			break;
 		case 9:
+            backgroundSprite.setTexture(sapiensBg);
 			balloonSprite.setTexture(sapiensBalloon3);
 			sapiens2S.stop();
 			break;
@@ -265,57 +261,63 @@ public class ChapterSeven extends ChapterCore {
 			backgroundSprite.setTexture(question1Bg);
 			break;
 		case 11:
-			// Count correct answers from the first 3 questions, then hide all
-			// box markers
-			if (ansTouched)
-				correctAnswers++;
-			if (ans3Touched)
-				correctAnswers++;
-			if (ans6Touched)
-				correctAnswers++;
-			ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
-			ans.setAlpha(0);
-			ans2.setAlpha(0);
-			ans3.setAlpha(0);
-			ans4.setAlpha(0);
-			ans5.setAlpha(0);
-			ans6.setAlpha(0);
+            if (!isTeacher) {
+                // Count correct answers from the first 3 questions, then hide all
+                // box markers
+                if (ansTouched)
+                    correctAnswers++;
+                if (ans3Touched)
+                    correctAnswers++;
+                if (ans6Touched)
+                    correctAnswers++;
+                ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
+                ans.setAlpha(0);
+                ans2.setAlpha(0);
+                ans3.setAlpha(0);
+                ans4.setAlpha(0);
+                ans5.setAlpha(0);
+                ans6.setAlpha(0);
 
-			// Reposition box markers
-			final float ansY = screenHeight / 1.375f;
-			ans.setY(ansY);
-			ans.setBounds(ans.getX(), ansY, ans.getWidth(), ans.getHeight());
+                // Reposition box markers
+                final float ansY = screenHeight / 1.375f;
+                ans.setY(ansY);
+                ans.setBounds(ans.getX(), ansY, ans.getWidth(), ans.getHeight());
 
-			final float ans2Y = screenHeight / 1.5f;
-			ans2.setSize(ans.getWidth(), ans2.getHeight());
-			ans2.setY(ans2Y);
-			ans2.setBounds(ans2.getX(), ans2Y, ans2.getWidth(),
-					ans2.getHeight());
+                final float ans2Y = screenHeight / 1.5f;
+                ans2.setSize(ans.getWidth(), ans2.getHeight());
+                ans2.setY(ans2Y);
+                ans2.setBounds(ans2.getX(), ans2Y, ans2.getWidth(),
+                        ans2.getHeight());
 
-			final float ans3Y = screenHeight / 1.75f;
-			ans3.setSize(ans3.getWidth() * 1.2f, ans3.getHeight());
-			ans3.setY(ans3Y);
-			ans3.setBounds(ans3.getX(), ans3Y, ans3.getWidth(),
-					ans3.getHeight());
+                final float ans3Y = screenHeight / 1.75f;
+                ans3.setSize(ans3.getWidth() * 1.2f, ans3.getHeight());
+                ans3.setY(ans3Y);
+                ans3.setBounds(ans3.getX(), ans3Y, ans3.getWidth(),
+                        ans3.getHeight());
 
-			final float ans4Y = screenHeight / 1.99f;
-			ans4.setSize(ans.getWidth(), ans4.getHeight());
-			ans4.setY(ans4Y);
-			ans4.setBounds(ans4.getX(), ans4Y, ans4.getWidth(),
-					ans4.getHeight());
+                final float ans4Y = screenHeight / 1.99f;
+                ans4.setSize(ans.getWidth(), ans4.getHeight());
+                ans4.setY(ans4Y);
+                ans4.setBounds(ans4.getX(), ans4Y, ans4.getWidth(),
+                        ans4.getHeight());
+            }
 
 			backgroundSprite.setTexture(question2Bg);
 			break;
 		case 12:
-			if (ansTouched)
-				correctAnswers++;
-			if (ans3Touched)
-				correctAnswers++;
-			ansTouched = ans2Touched = ans3Touched = ans4Touched = false;
-			ans.setAlpha(0);
-			ans2.setAlpha(0);
-			ans3.setAlpha(0);
-			ans4.setAlpha(0);
+            if (!isTeacher) {
+                if (ansTouched)
+                    correctAnswers++;
+                if (ans3Touched)
+                    correctAnswers++;
+                ansTouched = ans2Touched = ans3Touched = ans4Touched = false;
+                ans.setAlpha(0);
+                ans2.setAlpha(0);
+                ans3.setAlpha(0);
+                ans4.setAlpha(0);
+            } else {
+                correctAnswers = 6;
+            }
 
 			displayQuizResult(DatabaseSetup.CHAPTER_SEVEN_SCORE, 3);
 			break;
@@ -331,7 +333,7 @@ public class ChapterSeven extends ChapterCore {
 		if (chapterSection == lastChapterSection)
 			return displayLastSectionButtons(7, 3, x, y);
 
-		if (chapterSection >= startOfQuestionSection) {
+		if (!isTeacher && chapterSection >= startOfQuestionSection) {
 			if (next.getBoundingRectangle().contains(x, y)) {
 				chapterSection++;
 				assetNeedUpdate = true;
@@ -420,6 +422,7 @@ public class ChapterSeven extends ChapterCore {
 
 	@Override
 	public void dispose() {
+        super.dispose();
 		intro1S.stop();
 		intro2S.stop();
 		erectus1S.stop();
@@ -457,8 +460,7 @@ public class ChapterSeven extends ChapterCore {
 		sapiensBalloon3.dispose();
 		question1Bg.dispose();
 		question2Bg.dispose();
-		selectedAnsTexture.dispose();
-		nextTexture.dispose();
+		if (!isTeacher) selectedAnsTexture.dispose();
 	}
 
 }

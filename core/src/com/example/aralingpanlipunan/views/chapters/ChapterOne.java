@@ -11,9 +11,9 @@ import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_ONE_SCORE;
 
 public class ChapterOne extends ChapterCore {
-    private static final String LUNGSOD = "a. Lungsod";
-    private static final String KABUNDUKAN = "b. Kabundukan";
-    private static final String BUKIRIN = "c. Bukirin";
+    private static final String KABUNDUKAN = "a. Kabundukan";
+    private static final String BUKIRIN = "b. Kabukiran";
+    private static final String LUNGSOD = "c. Lungsod";
     private static final String BAYBAYIN = "d. Baybayin";
 
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
@@ -161,7 +161,6 @@ public class ChapterOne extends ChapterCore {
         lungsod2sound.dispose();
         bukid1sound.dispose();
         bukid2sound.dispose();
-        exitTexture.dispose();
         nextChapTexture.dispose();
         baybayin1sound.dispose();
         baybayin2sound.dispose();
@@ -231,12 +230,12 @@ public class ChapterOne extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 else if (ans2.getBoundingRectangle().contains(x, y)) {
+                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
                 else if (ans3.getBoundingRectangle().contains(x, y)) {
                     chapterSection++;
-                    correctAnswers++;
                     assetNeedUpdate = true;
                 }
                 else if (ans4.getBoundingRectangle().contains(x, y)) {
@@ -246,8 +245,8 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 11:
                 if (ans1.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
                     correctAnswers++;
+                    chapterSection++;
                     assetNeedUpdate = true;
                 }
                 else if (ans2.getBoundingRectangle().contains(x, y)) {
@@ -269,11 +268,11 @@ public class ChapterOne extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
                 else if (ans3.getBoundingRectangle().contains(x, y)) {
+                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
@@ -435,7 +434,6 @@ public class ChapterOne extends ChapterCore {
                     startQuiz.setTexture(retakeTexture);
                 else {
                     startQuiz.setTexture(nextChapTexture);
-                    backToChapters.setTexture(exitTexture);
                 }
                 startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
                 backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
@@ -456,10 +454,10 @@ public class ChapterOne extends ChapterCore {
             renderSharedAssets(batch);
         } else if (chapterSection >= startOfQuestionSection && chapterSection < 13 && !isTeacher) {
             question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
-            answer1.draw(batch, LUNGSOD, answerX, answerY);
+            answer1.draw(batch, KABUNDUKAN, answerX, answerY);
             answer2.draw(batch, BUKIRIN, answer2X, answer2Y);
-            answer3.draw(batch, BAYBAYIN, answer3X, answer3Y);
-            answer4.draw(batch, KABUNDUKAN, answer4X, answer4Y);
+            answer3.draw(batch, LUNGSOD, answer3X, answer3Y);
+            answer4.draw(batch, BAYBAYIN, answer4X, answer4Y);
             imageQuestion.draw(batch);
         } else if (chapterSection == 13) {
             if (!isTeacher)

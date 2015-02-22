@@ -47,7 +47,10 @@ public class ChapterThree extends ChapterCore {
 		alituntunin4Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin4.png");
 		alituntunin5Bg = new Texture("chapters/chapter3/backgrounds/Alituntunin5.png");
 		answerMarker = new Texture("mark.png");
-		gameBg = new Texture("chapters/chapter3/backgrounds/gameBg.jpg");
+        if (isTeacher)
+            gameBg = new Texture("chapters/chapter3/answerkeys/answer.jpg");
+        else
+		    gameBg = new Texture("chapters/chapter3/backgrounds/gameBg.jpg");
 		a1B1 = new Texture("chapters/chapter3/balloons/Alituntunin1.png");
 		a1B2 = new Texture("chapters/chapter3/balloons/Alituntunin1.1.png");
 		a1B3 = new Texture("chapters/chapter3/balloons/Alituntunin1.2.png");
@@ -86,7 +89,7 @@ public class ChapterThree extends ChapterCore {
 	public void display(Batch batch){
 		if (assetNeedUpdate) assetManager();
 		renderSharedAssets(batch);
-		if (chapterSection == 15) {
+		if (!isTeacher && chapterSection == 15) {
 			ans1.draw(batch);
 			ans2.draw(batch);
 			ans3.draw(batch);
@@ -99,7 +102,7 @@ public class ChapterThree extends ChapterCore {
 			submit.draw(batch);
 		}
 		if (chapterSection == 16) {
-			question.drawMultiLine(batch, tanong, questionX, questionY);
+            if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
 			backToChapters.draw(batch);
 			startQuiz.draw(batch);
 		}
@@ -188,9 +191,9 @@ public class ChapterThree extends ChapterCore {
 				a5S3.stop();
 				break;
 			case 14:
+                backgroundSprite.setTexture(alituntunin5Bg);
 				balloonSprite.setTexture(a5B3);
 				a5S2.stop();
-				
 				break;
 			case 15: // Start of game
 				correctAnswers = 0;
@@ -199,16 +202,20 @@ public class ChapterThree extends ChapterCore {
 				a5S3.stop();
 				break;
 			case 16:
-				if (ans1Touched) correctAnswers--;
-				if (ans2Touched) correctAnswers++;
-				if (ans3Touched) correctAnswers++;
-				if (ans4Touched) correctAnswers--;
-				if (ans5Touched) correctAnswers++;
-				if (ans6Touched) correctAnswers--;
-				if (ans7Touched) correctAnswers++;
-				if (ans8Touched) correctAnswers++;
-				if (ans9Touched) correctAnswers++;
-				if (correctAnswers < 0) correctAnswers = 0; // Make sure score is not negative
+				if (isTeacher) {
+                    correctAnswers = 6;
+                } else {
+                    if (ans1Touched) correctAnswers--;
+                    if (ans2Touched) correctAnswers++;
+                    if (ans3Touched) correctAnswers++;
+                    if (ans4Touched) correctAnswers--;
+                    if (ans5Touched) correctAnswers++;
+                    if (ans6Touched) correctAnswers--;
+                    if (ans7Touched) correctAnswers++;
+                    if (ans8Touched) correctAnswers++;
+                    if (ans9Touched) correctAnswers++;
+                    if (correctAnswers < 0) correctAnswers = 0; // Make sure score is not negative
+                }
 				displayQuizResult(DatabaseSetup.CHAPTER_THREE_SCORE, 5);
 				break;
 		}
@@ -409,8 +416,6 @@ public class ChapterThree extends ChapterCore {
     		a5S3.play();
     		break;
 		}
-        	
-		
 	}
 
 	@Override

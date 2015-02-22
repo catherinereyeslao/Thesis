@@ -233,6 +233,7 @@ public class ChapterFourteen extends ChapterCore {
 			bundok2S.stop();
 			break;
 		case 5:
+            backgroundSprite.setTexture(lupaBg1);
 			balloonSprite.setTexture(bundokBalloon2);
 			bundok1S.stop();
 			burol1S.stop();
@@ -259,6 +260,7 @@ public class ChapterFourteen extends ChapterCore {
 			talampas2S.stop();
 			break;
 		case 10:
+            backgroundSprite.setTexture(lupaBg2);
 			balloonSprite.setTexture(talampasBalloon2);
 			talampas1S.stop();
 			lambak1S.stop();
@@ -280,6 +282,7 @@ public class ChapterFourteen extends ChapterCore {
 			bulkan2S.stop();
 			break;
 		case 14:
+            backgroundSprite.setTexture(lupaBg3);
 			balloonSprite.setTexture(bulkanBalloon2);
 			bulkan1S.stop();
 			karagatan1S.stop();
@@ -301,6 +304,7 @@ public class ChapterFourteen extends ChapterCore {
 			dagat2S.stop();
 			break;
 		case 18:
+            backgroundSprite.setTexture(tubigBg1);
 			balloonSprite.setTexture(dagatBalloon2);
 			dagat1S.stop();
 			ilog1S.stop();
@@ -327,6 +331,7 @@ public class ChapterFourteen extends ChapterCore {
 			talon2S.stop();
 			break;
 		case 23:
+            backgroundSprite.setTexture(tubigBg2);
 			balloonSprite.setTexture(talonBalloon2);
 			talon1S.stop();
 			lawa1S.stop();
@@ -348,6 +353,7 @@ public class ChapterFourteen extends ChapterCore {
 			bukal2S.stop();
 			break;
 		case 27:
+            backgroundSprite.setTexture(tubigBg3);
 			balloonSprite.setTexture(bukalBalloon2);
 			bukal1S.stop();
 			break;

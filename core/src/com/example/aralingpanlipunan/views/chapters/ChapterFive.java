@@ -43,14 +43,10 @@ public class ChapterFive extends ChapterCore {
 
         
         if (isTeacher) {
-        	
-			question1Bg = new Texture(
-					"chapters/chapter5/answers/answer.jpg");
-			correctAnswers = 5;
-			
+			question1Bg = new Texture("chapters/chapter5/answers/answer.jpg");
+
 		} else {
-			question1Bg = new Texture(
-					"chapters/chapter5/backgrounds/question.jpg");
+			question1Bg = new Texture("chapters/chapter5/backgrounds/question.jpg");
 
             baybayinTexture = new Texture("chapters/chapter5/answers/baybayin.png");
             baybayin = new Sprite(baybayinTexture);
@@ -236,7 +232,7 @@ public class ChapterFive extends ChapterCore {
                 }
                 break;
             case 10:
-                question.drawMultiLine(batch, tanong, questionX, questionY);
+                if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
                 startQuiz.draw(batch);
                 backToChapters.draw(batch);
                 break;
@@ -291,6 +287,7 @@ public class ChapterFive extends ChapterCore {
 			magsasaka2S.stop();
 			break;
 		case 6:
+            backgroundSprite.setTexture(pagsasakaBg);
 			balloonSprite.setTexture(pagsasakaBalloon2);
 			magsasaka1S.stop();
 			pangingisda1S.stop();
@@ -305,6 +302,7 @@ public class ChapterFive extends ChapterCore {
             pangingisda2S.stop();
 			break;
 		case 8:
+            backgroundSprite.setTexture(pangingisdaBg);
 			balloonSprite.setTexture(pangingisdaBalloon2);
 			pangingisda1S.stop();
 			break;
@@ -325,6 +323,7 @@ public class ChapterFive extends ChapterCore {
 
 			break;
         case 10:
+            if (isTeacher) correctAnswers = 5;
             displayQuizResult(DatabaseSetup.CHAPTER_FIVE_SCORE, 3);
             break;
 		}

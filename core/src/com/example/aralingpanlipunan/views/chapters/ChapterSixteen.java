@@ -421,6 +421,7 @@ public class ChapterSixteen extends ChapterCore {
 			serbisyo4S.stop();
 			break;
 		case 11:
+            backgroundSprite.setTexture(serviceBg);
 			balloonSprite.setTexture(service4);
 			serbisyo3S.stop();
 			break;

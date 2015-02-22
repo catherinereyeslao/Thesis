@@ -178,7 +178,7 @@ public class ChapterTen extends ChapterCore {
         }
 
         if (chapterSection == lastChapterSection) {
-            question.drawMultiLine(batch, tanong, questionX, questionY);
+            if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
             startQuiz.draw(batch);
             backToChapters.draw(batch);
         }
@@ -394,6 +394,7 @@ public class ChapterTen extends ChapterCore {
 			bagongTaon3S.stop();
 			break;
 		case 3:
+            backgroundSprite.setTexture(bagongTaonBg);
 			balloonSprite.setTexture(bagongTaonBalloon3);
 			bagongTaon2S.stop();
 			galang1S.stop();
@@ -415,6 +416,7 @@ public class ChapterTen extends ChapterCore {
 			galang4S.stop();
 			break;
 		case 7:
+            backgroundSprite.setTexture(paggalangBg);
 			balloonSprite.setTexture(paggalangBalloon4);
 			galang3S.stop();
 			salo1S.stop();
@@ -431,6 +433,7 @@ public class ChapterTen extends ChapterCore {
 			salo3S.stop();
 			break;
 		case 10:
+            backgroundSprite.setTexture(salosaloBg);
 			balloonSprite.setTexture(salosaloBalloon3);
 			salo2S.stop();
 			tanggap1S.stop();
@@ -447,6 +450,7 @@ public class ChapterTen extends ChapterCore {
 			tanggap3S.stop();
 			break;
 		case 13:
+            backgroundSprite.setTexture(bisitaBg);
 			balloonSprite.setTexture(pagtanggapBalloon3);
 			tanggap2S.stop();
 			undas1S.stop();
@@ -473,6 +477,7 @@ public class ChapterTen extends ChapterCore {
 			undas5S.stop();
 			break;
 		case 18:
+            backgroundSprite.setTexture(undasBg);
 			balloonSprite.setTexture(undasBalloon5);
 			undas4S.stop();
             break;

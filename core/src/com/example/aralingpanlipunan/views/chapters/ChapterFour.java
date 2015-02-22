@@ -10,9 +10,9 @@ import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 
 public class ChapterFour extends ChapterCore {
     private Texture introBg, libanganBg, pabahayBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg,
-            intro1Balloon, intro2Balloon, kaligtasan1Balloon, kaligtasan2Balloon, libangan1Balloon, libangan2Balloon, pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker, nextTexture,
+            intro1Balloon, intro2Balloon, kaligtasan1Balloon, kaligtasan2Balloon, libangan1Balloon, libangan2Balloon, pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker,
             question1Bg, question2Bg, question3Bg;
-    private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False, next;
+    private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False;
     private Music intro1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;
     private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched =false;
 
@@ -73,6 +73,7 @@ public class ChapterFour extends ChapterCore {
 					"chapters/chapter4/backgrounds/question2.jpg");
 			question3Bg = new Texture(
 					"chapters/chapter4/backgrounds/question3.jpg");
+            setUpGame();
 		}
 
         assetNeedUpdate = true;
@@ -84,36 +85,44 @@ public class ChapterFour extends ChapterCore {
         renderSharedAssets(batch);
         switch (chapterSection) {
             case 9:
-                ans1True.draw(batch);
-                ans1False.draw(batch);
-                ans2True.draw(batch);
-                ans2False.draw(batch);
-                ans3True.draw(batch);
-                ans3False.draw(batch);
-                next.draw(batch);
+                if (!isTeacher) {
+                    ans1True.draw(batch);
+                    ans1False.draw(batch);
+                    ans2True.draw(batch);
+                    ans2False.draw(batch);
+                    ans3True.draw(batch);
+                    ans3False.draw(batch);
+                    next.draw(batch);
+                    backToChapters.draw(batch);
+                }
                 break;
             case 10:
-                ans1True.draw(batch);
-                ans1False.draw(batch);
-                ans2True.draw(batch);
-                ans2False.draw(batch);
-                ans3True.draw(batch);
-                ans3False.draw(batch);
-                ans4True.draw(batch);
-                ans4False.draw(batch);
-                ans5True.draw(batch);
-                ans5False.draw(batch);
-                next.draw(batch);
+                if (!isTeacher) {
+                    ans1True.draw(batch);
+                    ans1False.draw(batch);
+                    ans2True.draw(batch);
+                    ans2False.draw(batch);
+                    ans3True.draw(batch);
+                    ans3False.draw(batch);
+                    ans4True.draw(batch);
+                    ans4False.draw(batch);
+                    ans5True.draw(batch);
+                    ans5False.draw(batch);
+                    next.draw(batch);
+                }
                 break;
             case 11:
-                ans1True.draw(batch);
-                ans1False.draw(batch);
-                ans2True.draw(batch);
-                ans2False.draw(batch);
-                next.draw(batch);
+                if (!isTeacher) {
+                    ans1True.draw(batch);
+                    ans1False.draw(batch);
+                    ans2True.draw(batch);
+                    ans2False.draw(batch);
+                    next.draw(batch);
+                }
                 break;
             case 12:
-                question.drawMultiLine(batch, tanong, questionX, questionY);
+                if (!isTeacher)
+                    question.drawMultiLine(batch, tanong, questionX, questionY);
                 startQuiz.draw(batch);
                 backToChapters.draw(batch);
                 break;
@@ -121,6 +130,7 @@ public class ChapterFour extends ChapterCore {
     }
 
     private void assetManager() {
+        float ans1Y, ans2Y, ans3Y;
         switch (chapterSection) {
             case 0:
                 backgroundSprite.setTexture(introBg);
@@ -184,72 +194,79 @@ public class ChapterFour extends ChapterCore {
                 break;
             case 9: // Start of Game
                 correctAnswers = 0;
-                setUpGame();
                 backgroundSprite.setTexture(question1Bg);
                 break;
             case 10:
-                if (ans1TrueTouched) correctAnswers++;
-                if (ans2TrueTouched) correctAnswers++;
-                if (ans3FalseTouched) correctAnswers++;
                 backgroundSprite.setTexture(question2Bg);
-                float ans1Y = (screenHeight / 1.22f) - (ans1True.getHeight() / 2);
-                ans1True.setAlpha(0);
-                ans1True.setY(ans1Y);
-                ans1True.setBounds(ans1True.getX(), ans1Y, ans1True.getWidth(), ans1True.getHeight());
+                if (!isTeacher) {
+                    if (ans1TrueTouched) correctAnswers++;
+                    if (ans2TrueTouched) correctAnswers++;
+                    if (ans3FalseTouched) correctAnswers++;
 
-                ans1False.setAlpha(0);
-                ans1False.setY(ans1Y);
-                ans1False.setBounds(ans1False.getX(), ans1Y, ans1False.getWidth(), ans1False.getHeight());
+                    ans1Y = (screenHeight / 1.22f) - (ans1True.getHeight() / 2);
+                    ans1True.setAlpha(0);
+                    ans1True.setY(ans1Y);
+                    ans1True.setBounds(ans1True.getX(), ans1Y, ans1True.getWidth(), ans1True.getHeight());
 
-                float ans2Y = (screenHeight / 1.44f) - (ans2True.getHeight() / 2);
-                ans2True.setAlpha(0);
-                ans2True.setY(ans2Y);
-                ans2True.setBounds(ans2True.getX(), ans2Y, ans2True.getWidth(), ans2True.getHeight());
+                    ans1False.setAlpha(0);
+                    ans1False.setY(ans1Y);
+                    ans1False.setBounds(ans1False.getX(), ans1Y, ans1False.getWidth(), ans1False.getHeight());
 
-                ans2False.setAlpha(0);
-                ans2False.setY(ans2Y);
-                ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
+                    ans2Y = (screenHeight / 1.44f) - (ans2True.getHeight() / 2);
+                    ans2True.setAlpha(0);
+                    ans2True.setY(ans2Y);
+                    ans2True.setBounds(ans2True.getX(), ans2Y, ans2True.getWidth(), ans2True.getHeight());
 
-                float ans3Y = (screenHeight / 1.75f) - (ans3True.getHeight() / 2);
-                ans3True.setAlpha(0);
-                ans3True.setY(ans3Y);
-                ans3True.setBounds(ans3True.getX(), ans3Y, ans3True.getWidth(), ans3True.getHeight());
+                    ans2False.setAlpha(0);
+                    ans2False.setY(ans2Y);
+                    ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
 
-                ans3False.setAlpha(0);
-                ans3False.setY(ans3Y);
-                ans3False.setBounds(ans3False.getX(), ans3Y, ans3False.getWidth(), ans3False.getHeight());
+                    ans3Y = (screenHeight / 1.75f) - (ans3True.getHeight() / 2);
+                    ans3True.setAlpha(0);
+                    ans3True.setY(ans3Y);
+                    ans3True.setBounds(ans3True.getX(), ans3Y, ans3True.getWidth(), ans3True.getHeight());
+
+                    ans3False.setAlpha(0);
+                    ans3False.setY(ans3Y);
+                    ans3False.setBounds(ans3False.getX(), ans3Y, ans3False.getWidth(), ans3False.getHeight());
+                }
                 break;
             case 11:
-                if (ans1TrueTouched) correctAnswers++;
-                if (ans2TrueTouched) correctAnswers++;
-                if (ans3TrueTouched) correctAnswers++;
-                if (ans4TrueTouched) correctAnswers++;
-                if (ans5TrueTouched) correctAnswers++;
-
-                ans1TrueTouched = ans1FalseTouched = ans2TrueTouched = ans2FalseTouched = false;
-                ans1Y = (screenHeight / 1.28f) - (ans1True.getHeight() / 2);
-                ans1True.setAlpha(0);
-                ans1True.setY(ans1Y);
-                ans1True.setBounds(ans1True.getX(), ans1Y, ans1True.getWidth(), ans1True.getHeight());
-
-                ans1False.setAlpha(0);
-                ans1False.setY(ans1Y);
-                ans1False.setBounds(ans1False.getX(), ans1Y, ans1False.getWidth(), ans1False.getHeight());
-
-                ans2Y = (screenHeight / 1.49f) - (ans2True.getHeight() / 2);
-                ans2True.setAlpha(0);
-                ans2True.setY(ans2Y);
-                ans2True.setBounds(ans2True.getX(), ans2Y, ans2True.getWidth(), ans2True.getHeight());
-
-                ans2False.setAlpha(0);
-                ans2False.setY(ans2Y);
-                ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
-
                 backgroundSprite.setTexture(question3Bg);
+                if (!isTeacher) {
+                    if (ans1TrueTouched) correctAnswers++;
+                    if (ans2TrueTouched) correctAnswers++;
+                    if (ans3TrueTouched) correctAnswers++;
+                    if (ans4TrueTouched) correctAnswers++;
+                    if (ans5TrueTouched) correctAnswers++;
+
+                    ans1TrueTouched = ans1FalseTouched = ans2TrueTouched = ans2FalseTouched = false;
+                    ans1Y = (screenHeight / 1.28f) - (ans1True.getHeight() / 2);
+                    ans1True.setAlpha(0);
+                    ans1True.setY(ans1Y);
+                    ans1True.setBounds(ans1True.getX(), ans1Y, ans1True.getWidth(), ans1True.getHeight());
+
+                    ans1False.setAlpha(0);
+                    ans1False.setY(ans1Y);
+                    ans1False.setBounds(ans1False.getX(), ans1Y, ans1False.getWidth(), ans1False.getHeight());
+
+                    ans2Y = (screenHeight / 1.49f) - (ans2True.getHeight() / 2);
+                    ans2True.setAlpha(0);
+                    ans2True.setY(ans2Y);
+                    ans2True.setBounds(ans2True.getX(), ans2Y, ans2True.getWidth(), ans2True.getHeight());
+
+                    ans2False.setAlpha(0);
+                    ans2False.setY(ans2Y);
+                    ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
+                }
                 break;
             case 12:
-                if (ans1TrueTouched) correctAnswers++;
-                if (ans2TrueTouched) correctAnswers++;
+                if (isTeacher) {
+                    correctAnswers = 10;
+                } else {
+                    if (ans1TrueTouched) correctAnswers++;
+                    if (ans2TrueTouched) correctAnswers++;
+                }
                 displayQuizResult(DatabaseSetup.CHAPTER_FOUR_SCORE, 5);
                 break;
         }
@@ -330,13 +347,7 @@ public class ChapterFour extends ChapterCore {
         ans5False.setPosition(ans1FalseX, ans5TrueY);
         ans5False.setBounds(ans1FalseX, ans5TrueY, ans5False.getWidth(), ans5False.getHeight());
 
-        nextTexture = new Texture("buttons/enter.png");
-        next = new Sprite(nextTexture);
-        next.setSize(next.getWidth() * getButtonScale(), next.getHeight() * getButtonScale());
-        final float nextX = (screenWidth / 1.4f);
-        final float nextY = next.getHeight() / 10;
-        next.setPosition(nextX, nextY);
-        next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
+        loadNextButton();
     }
 
     @Override
@@ -346,152 +357,139 @@ public class ChapterFour extends ChapterCore {
              playSoundForSection();
          }
         if (chapterSection >= startOfQuestionSection) {
-        	if(!isTeacher){
-            if (next.getBoundingRectangle().contains(x, y)) {
-                chapterSection++;
-                assetNeedUpdate = true;
+        	if(!isTeacher) {
+                if (ans1True.getBoundingRectangle().contains(x, y)) {
+                    ans1TrueTouched = !ans1TrueTouched;
+                    if (ans1TrueTouched) {
+                        ans1True.setAlpha(1);
+                        ans1False.setAlpha(0);
+                        ans1FalseTouched = false;
+                    } else
+                        ans1True.setAlpha(0);
+                }
+                if (ans1False.getBoundingRectangle().contains(x, y)) {
+                    ans1FalseTouched = !ans1FalseTouched;
+                    if (ans1FalseTouched) {
+                        ans1False.setAlpha(1);
+                        ans1True.setAlpha(0);
+                        ans1TrueTouched = false;
+                    } else
+                        ans1False.setAlpha(0);
+                }
+                if (ans2True.getBoundingRectangle().contains(x, y)) {
+                    ans2TrueTouched = !ans2TrueTouched;
+                    if (ans2TrueTouched) {
+                        ans2True.setAlpha(1);
+                        ans2False.setAlpha(0);
+                        ans2FalseTouched = false;
+                    } else
+                        ans2True.setAlpha(0);
+                }
+                if (ans2False.getBoundingRectangle().contains(x, y)) {
+                    ans2FalseTouched = !ans2FalseTouched;
+                    if (ans2FalseTouched) {
+                        ans2False.setAlpha(1);
+                        ans2True.setAlpha(0);
+                        ans2TrueTouched = false;
+                    } else
+                        ans2False.setAlpha(0);
+                }
+                if (ans3True.getBoundingRectangle().contains(x, y) && chapterSection < 12) {
+                    ans3TrueTouched = !ans3TrueTouched;
+                    if (ans3TrueTouched) {
+                        ans3True.setAlpha(1);
+                        ans3False.setAlpha(0);
+                        ans3FalseTouched = false;
+                    } else
+                        ans3True.setAlpha(0);
+                }
+                if (ans3False.getBoundingRectangle().contains(x, y) && chapterSection < 12) {
+                    ans3FalseTouched = !ans3FalseTouched;
+                    if (ans3FalseTouched) {
+                        ans3False.setAlpha(1);
+                        ans3True.setAlpha(0);
+                        ans3TrueTouched = false;
+                    } else
+                        ans3False.setAlpha(0);
+                }
+                if (ans4True.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
+                    ans4TrueTouched = !ans4TrueTouched;
+                    if (ans4TrueTouched) {
+                        ans4True.setAlpha(1);
+                        ans4False.setAlpha(0);
+                        ans4FalseTouched = false;
+                    } else
+                        ans4True.setAlpha(0);
+                }
+                if (ans4False.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
+                    ans4FalseTouched = !ans4FalseTouched;
+                    if (ans4FalseTouched) {
+                        ans4False.setAlpha(1);
+                        ans4True.setAlpha(0);
+                        ans4TrueTouched = false;
+                    } else
+                        ans4False.setAlpha(0);
+                }
+                if (ans5True.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
+                    ans5TrueTouched = !ans5TrueTouched;
+                    if (ans5TrueTouched) {
+                        ans5True.setAlpha(1);
+                        ans5False.setAlpha(0);
+                        ans5FalseTouched = false;
+                    } else
+                        ans5True.setAlpha(0);
+                }
+                if (ans5False.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
+                    ans5FalseTouched = !ans5FalseTouched;
+                    if (ans5FalseTouched) {
+                        ans5False.setAlpha(1);
+                        ans5True.setAlpha(0);
+                        ans5TrueTouched = false;
+                    } else
+                        ans5False.setAlpha(0);
+                }
             }
-            if (ans1True.getBoundingRectangle().contains(x, y)) {
-                ans1TrueTouched = !ans1TrueTouched;
-                if (ans1TrueTouched) {
-                    ans1True.setAlpha(1);
-                    ans1False.setAlpha(0);
-                    ans1FalseTouched = false;
-                } else
-                    ans1True.setAlpha(0);
-            }
-            if (ans1False.getBoundingRectangle().contains(x, y)) {
-                ans1FalseTouched = !ans1FalseTouched;
-                if (ans1FalseTouched) {
-                    ans1False.setAlpha(1);
-                    ans1True.setAlpha(0);
-                    ans1TrueTouched = false;
-                } else
-                    ans1False.setAlpha(0);
-            }
-            if (ans2True.getBoundingRectangle().contains(x, y)) {
-                ans2TrueTouched = !ans2TrueTouched;
-                if (ans2TrueTouched) {
-                    ans2True.setAlpha(1);
-                    ans2False.setAlpha(0);
-                    ans2FalseTouched = false;
-                } else
-                    ans2True.setAlpha(0);
-            }
-            if (ans2False.getBoundingRectangle().contains(x, y)) {
-                ans2FalseTouched = !ans2FalseTouched;
-                if (ans2FalseTouched) {
-                    ans2False.setAlpha(1);
-                    ans2True.setAlpha(0);
-                    ans2TrueTouched = false;
-                } else
-                    ans2False.setAlpha(0);
-            }
-            if (ans3True.getBoundingRectangle().contains(x, y) && chapterSection < 12) {
-                ans3TrueTouched = !ans3TrueTouched;
-                if (ans3TrueTouched) {
-                    ans3True.setAlpha(1);
-                    ans3False.setAlpha(0);
-                    ans3FalseTouched = false;
-                } else
-                    ans3True.setAlpha(0);
-            }
-            if (ans3False.getBoundingRectangle().contains(x, y) && chapterSection < 12) {
-                ans3FalseTouched = !ans3FalseTouched;
-                if (ans3FalseTouched) {
-                    ans3False.setAlpha(1);
-                    ans3True.setAlpha(0);
-                    ans3TrueTouched = false;
-                } else
-                    ans3False.setAlpha(0);
-            }
-            if (ans4True.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
-                ans4TrueTouched = !ans4TrueTouched;
-                if (ans4TrueTouched) {
-                    ans4True.setAlpha(1);
-                    ans4False.setAlpha(0);
-                    ans4FalseTouched = false;
-                } else
-                    ans4True.setAlpha(0);
-            }
-            if (ans4False.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
-                ans4FalseTouched = !ans4FalseTouched;
-                if (ans4FalseTouched) {
-                    ans4False.setAlpha(1);
-                    ans4True.setAlpha(0);
-                    ans4TrueTouched = false;
-                } else
-                    ans4False.setAlpha(0);
-            }
-            if (ans5True.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
-                ans5TrueTouched = !ans5TrueTouched;
-                if (ans5TrueTouched) {
-                    ans5True.setAlpha(1);
-                    ans5False.setAlpha(0);
-                    ans5FalseTouched = false;
-                } else
-                    ans5True.setAlpha(0);
-            }
-            if (ans5False.getBoundingRectangle().contains(x, y) && chapterSection == 10) {
-                ans5FalseTouched = !ans5FalseTouched;
-                if (ans5FalseTouched) {
-                    ans5False.setAlpha(1);
-                    ans5True.setAlpha(0);
-                    ans5TrueTouched = false;
-                } else
-                    ans5False.setAlpha(0);
-            }
-            
         }
+        if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(4, 5, x,y);
-        }
         return super.touchDown(x, y);
     }
 
     private void playSoundForSection() {
-		// TODO Auto-generated method stub
     	 switch (chapterSection) {
          case 0:
              intro1S.stop();
              intro1S.play();
              break;
          case 1:
-             
              intro2S.stop();
              intro2S.play();
              break;
          case 2:
-        	 
         	 kaligtasan1S.stop();
         	 kaligtasan1S.play();
         	 break;
          case 3:
-        	 
         	 kaligtasan2S.stop();
              kaligtasan2S.play();
              break;
          case 4:
-        	
         	 libangan1S.stop();
         	 libangan1S.play();
              break;
          case 5:
-        	 
         	 libangan2S.stop();
         	 libangan2S.play();
              break;
          case 6:
-        	 
         	 pagaaral1S.stop();
         	 pagaaral1S.play();
              break;
          case 7:
-        	 
         	 pagaaral2S.stop();
         	 pagaaral2S.play();
              break;
          case 8:
-        	 
         	 pagkain.stop();
         	 pagkain.play();
              break;
@@ -536,7 +534,6 @@ public class ChapterFour extends ChapterCore {
         if (chapterSection >= startOfQuestionSection) {
             if (!isTeacher) {
                 answerMarker.dispose();
-                nextTexture.dispose();
             }
             question1Bg.dispose();
             question2Bg.dispose();

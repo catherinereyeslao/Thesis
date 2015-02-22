@@ -29,13 +29,13 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, viewingHelp, isTeacher;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    protected Texture questionBg, retakeTexture, exitTexture, nextChapTexture, nextTexture;
+    protected Texture questionBg, retakeTexture, nextChapTexture, nextTexture;
     protected BitmapFont question;
     protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
     private Help help;
     private Trivia trivia;
-    private boolean backHelp;
+    private boolean backHelp, passedQuestionSection;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName) {
         this.android = androidInterface;
@@ -61,7 +61,6 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         backToChapterTexture = new Texture("buttons/back-to-chapters.png");
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
-        exitTexture = new Texture("buttons/exit.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
 
         backgroundSprite = new Sprite(introBalloonTexture);
@@ -229,6 +228,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 if (startQuiz.getBoundingRectangle().contains(x, y)) {
                     chapterSection++;
                     assetNeedUpdate = true;
+                    passedQuestionSection = true;
                 }
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 500;
@@ -272,7 +272,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 }
             }
         } else if (!isDragging) {
-            if (chapterSection > startOfQuestionSection && slide <= screenWidth * -0.20f) {
+            if ((!passedQuestionSection || chapterSection > startOfQuestionSection) && chapterSection > 0 && slide <= screenWidth * -0.20f) {
                 chapterSection--;
                 isDragging = true;
                 assetNeedUpdate = true;
@@ -324,7 +324,6 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             startQuiz.setTexture(retakeTexture);
         } else {
             startQuiz.setTexture(nextChapTexture);
-            backToChapters.setTexture(exitTexture);
         }
         startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
         backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
@@ -357,7 +356,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 return currentChapNum + 501;
             }
             if (backToChapters.getBoundingRectangle().contains(x, y)) {
-                android.exit();
+                return 500;
             }
         }
         return 100;
@@ -404,7 +403,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      */
     protected void drawQuizResult(Batch batch) {
         if (chapterSection == lastChapterSection) {
-            question.drawMultiLine(batch, tanong, questionX, questionY);
+            if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
             if (!this.getClass().getName().equals(ChapterNineteen.class.getName()))
                 startQuiz.draw(batch);
             backToChapters.draw(batch);
