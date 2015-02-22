@@ -152,6 +152,15 @@ public class ChapterOne extends ChapterCore {
         lungsod2sound.stop();
         bukid1sound.stop();
         bukid2sound.stop();
+        baybayin1sound.dispose();
+        baybayin2sound.dispose();
+        baybayin3sound.dispose();
+        intro1sound.dispose();
+        intro2sound.dispose();
+        lungsod1sound.dispose();
+        lungsod2sound.dispose();
+        bukid1sound.dispose();
+        bukid2sound.dispose();
         exitTexture.dispose();
         nextChapTexture.dispose();
         baybayin1sound.dispose();
@@ -340,37 +349,44 @@ public class ChapterOne extends ChapterCore {
                     backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro2balloonTexture);
                 intro1sound.stop();
+                baybayin1sound.stop();
                 break;
             case 2:
                 backgroundSprite.setTexture(baybayinBg);
                 balloonSprite.setTexture(baybayin1Texture);
                 intro2sound.stop();
+                baybayin2sound.stop();
                 break;
             case 3:
                 balloonSprite.setTexture(baybayin2Texture);
                 baybayin1sound.stop();
+                baybayin3sound.stop();
                 break;
             case 4:
                 if (backgroundSprite.getTexture() != baybayinBg)
                     backgroundSprite.setTexture(baybayinBg);
                 balloonSprite.setTexture(baybayin3Texture);
                 baybayin2sound.stop();
+                bukid1sound.stop();
                 break;
             case 5:
                 backgroundSprite.setTexture(kabukirinBg);
                 balloonSprite.setTexture(bukid1Texture);
                 baybayin3sound.stop();
+                bukid2sound.stop();
                 break;
             case 6:
                 if (backgroundSprite.getTexture() != kabukirinBg)
                     backgroundSprite.setTexture(kabukirinBg);
                 balloonSprite.setTexture(bukid2Texture);
                 bukid1sound.stop();
+                lungsod1sound.stop();
                 break;
             case 7:
                 backgroundSprite.setTexture(lungsodBg);
                 balloonSprite.setTexture(lungsod1Texture);
                 bukid2sound.stop();
+                lungsod2sound.stop();
                 break;
             case 8:
                 backgroundSprite.setTexture(lungsodBg);
@@ -378,6 +394,7 @@ public class ChapterOne extends ChapterCore {
                 lungsod1sound.stop();
                 break;
             case 9: // Start of game
+            	lungsod1sound.stop();
                 if (isTeacher) {
                     backgroundSprite.setTexture(answer1Texture);
                 } else {
