@@ -307,38 +307,43 @@ public class ChapterTwo extends ChapterCore {
             introS.play();
             break;
         case 1:
+        	break;
+        case 2:
         	d1.stop();
         	d1.play();
         	break;
-        case 2:
+        case 3:
         	d2.stop();
         	d2.play();
         	break;
-        case 3:
+        case 4:
         	d32.stop();
         	d32.play();
         	break;
-        case 4:
+        case 5:
         	d4.stop();
         	d4.play();
         	break;
-        case 5:
+        case 6:
         	d5.stop();
         	d5.play();
         	break;
-        case 6:
+        case 7:
         	m1.stop();
         	m1.play();
         	break;
-        case 7:
+        case 8:
+        	
+        	break;
+        case 9:
         	m2.stop();
         	m2.play();
         	break;
-        case 8:
+        case 10:
         	m3.stop();
         	m3.play();
         	break;
-        case 9:
+        case 11:
         	m4.stop();
         	m4.play();
         	break;
@@ -358,18 +363,16 @@ public class ChapterTwo extends ChapterCore {
                 backgroundSprite.setTexture(introBgTexture);
                 balloonSprite.setTexture(introBalloonTexture);
                 balloonSprite.setAlpha(1);
-                d1.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setAlpha(0);
                 introS.stop();
-                d1.stop();
                 break;
             case 2:
                 balloonSprite.setTexture(direction1BalloonTexture);
                 balloonSprite.setAlpha(1);
-                introS.stop();
+                
                 d2.stop();
                 break;
             case 3:
@@ -384,7 +387,7 @@ public class ChapterTwo extends ChapterCore {
                 break;
             case 5:
                 balloonSprite.setTexture(direction4BalloonTexture);
-                d4.stop();
+                d32.stop();
                 d5.stop();
                 break;
             case 6:
@@ -398,7 +401,7 @@ public class ChapterTwo extends ChapterCore {
                 balloonSprite.setAlpha(0);
                 balloonSprite.setTexture(map1BalloonTexture);
                 d5.stop();
-                m2.stop();
+               
                 break;
             case 8:
                 balloonSprite.setAlpha(1);
@@ -407,7 +410,7 @@ public class ChapterTwo extends ChapterCore {
                 break;
             case 9:
                 balloonSprite.setTexture(map2BalloonTexture);
-                m1.stop();
+              
                 m3.stop();
                 break;
             case 10:

@@ -44,7 +44,7 @@ public class ChapterOne extends ChapterCore {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
             answer2Texture = new Texture("chapters/chapter1/answerkeys/answer2.jpg");
             answer3Texture = new Texture("chapters/chapter1/answerkeys/answer3.jpg");
-            answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpeg");
+            answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpg");
             correctAnswers = 4;
             currentRecordedScore = 5;
         } else
