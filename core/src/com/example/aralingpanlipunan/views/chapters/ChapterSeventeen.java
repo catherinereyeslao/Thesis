@@ -1,5 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,6 +11,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterSeventeen extends ChapterCore {
     private Texture introBg, typhoonFxBg, fxToLivelihoodBg, weatherTypesBg, question1Bg, question2Bg, question3Bg, typhoonFx1Balloon, typhoonFx2Balloon, typhoonFx3Balloon, typhoonFx4Balloon, weatherFx1Balloon, weatherFx2Balloon, weatherFx3Balloon, weatherFx4Balloon, intro1Balloon, intro2Balloon, weatherType1Balloon, weatherType2Balloon, weatherType3Balloon, weatherType4Balloon, ansMarkerTexture;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False;
+    private Music intro1S, intro2S, bagyo1S, bagyo2S, bagyo3S, bagyo4S, panahon1S, panahon2S, panahon3S, panahon4S, uri1S, uri2S, uri3S, uri4S;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct;
 
     public ChapterSeventeen(AndroidInterface androidInterface, String studentName) {
@@ -24,6 +27,22 @@ public class ChapterSeventeen extends ChapterCore {
         super.setUp(screenW, screenH);
         startOfQuestionSection = 14;
         lastChapterSection = 17;
+        
+        //sounds
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro1chap17.m4a"));
+        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/intro2chap17.m4a"));
+        bagyo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo1.m4a"));
+        bagyo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo2.m4a"));
+        bagyo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo3.m4a"));
+        bagyo4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/bagyo4.m4a"));
+        panahon1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/panahon1.m4a"));
+        panahon2S  = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/panahon2.m4a"));
+        panahon3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/panahon3.m4a"));
+        panahon4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/panahon4.m4a"));
+        uri1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/uri1.m4a"));
+        uri2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/uri2.m4a"));
+        uri3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/uri3.m4a"));
+        uri4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sounds/uri4.m4a"));
 
         // backgrounds
         introBg = new Texture("chapters/chapter17/backgrounds/intro.png");
@@ -118,6 +137,34 @@ public class ChapterSeventeen extends ChapterCore {
     @Override
     public void dispose() {
         super.dispose();
+        intro1S.stop();
+        intro2S.stop();
+        bagyo1S.stop();
+        bagyo2S.stop();
+        bagyo3S.stop();
+        bagyo4S.stop();
+        panahon1S.stop();
+        panahon2S .stop();
+        panahon3S.stop();
+        panahon4S.stop();
+        uri1S.stop();
+        uri2S.stop();
+        uri3S.stop();
+        uri4S.stop();
+        intro1S.dispose();
+        intro2S.dispose();
+        bagyo1S.dispose();
+        bagyo2S.dispose();
+        bagyo3S.dispose();
+        bagyo4S.dispose();
+        panahon1S.dispose();
+        panahon2S.dispose();
+        panahon3S.dispose();
+        panahon4S.dispose();
+        uri1S.dispose();
+        uri2S.dispose();
+        uri3S.dispose();
+        uri4S.dispose();
         introBg.dispose();
         typhoonFxBg.dispose();
         fxToLivelihoodBg.dispose();
@@ -144,6 +191,9 @@ public class ChapterSeventeen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
+    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
+			playSoundForSection();
+		}
         switch (chapterSection) {
             case 14:
                 if (!isTeacher) {
@@ -260,59 +310,150 @@ public class ChapterSeventeen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    private void assetManager() {
+    private void playSoundForSection() {
+		// TODO Auto-generated method stub
+    	switch (chapterSection) {
+		case 0:
+			intro1S.stop();
+			intro1S.play();
+			break;
+		case 1:
+			intro2S.stop();
+			intro2S.play();
+			break;
+		case 2:
+			bagyo1S.stop();
+			bagyo1S.play();
+			break;
+		case 3:
+			bagyo2S.stop();
+			bagyo2S.play();
+			break;
+		case 4:
+			bagyo3S.stop();
+			bagyo3S.play();
+			break;
+		case 5:
+			bagyo4S.stop();
+			bagyo4S.play();
+			break;
+		case 6:
+			panahon1S.stop();
+			panahon1S.play();
+			break;
+		case 7:
+			panahon2S.stop();
+			panahon2S.play();
+			break;
+		case 8:
+			panahon3S.stop();
+			panahon3S.play();
+			break;
+		case 9:
+			panahon4S.stop();
+			panahon4S.play();
+			break;
+		case 10:
+			uri1S.stop();
+			uri1S.play();
+			break;
+		case 11:
+			uri2S.stop();
+			uri2S.play();
+			break;
+		case 12:
+			uri3S.stop();
+			uri3S.play();
+			break;
+		case 13:
+			uri4S.stop();
+			uri4S.play();
+			break;
+			
+    	}
+		
+	}
+
+	private void assetManager() {
         float row1, row2, row3, row4, row5, leftCol, rightCol;
         switch (chapterSection) {
             case 0:
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro1Balloon);
+                intro2S.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(introBg);
                 balloonSprite.setTexture(intro2Balloon);
+                intro1S.stop();
+                uri1S.stop();
                 break;
             case 2:
                 backgroundSprite.setTexture(weatherTypesBg);
                 balloonSprite.setTexture(weatherType1Balloon);
+                intro2S.stop();
+                uri2S.stop();
                 break;
             case 3:
                 balloonSprite.setTexture(weatherType2Balloon);
+                uri1S.stop();
+                uri3S.stop();
                 break;
             case 4:
                 balloonSprite.setTexture(weatherType3Balloon);
+                uri2S.stop();
+                uri4S.stop();
                 break;
             case 5:
                 backgroundSprite.setTexture(weatherTypesBg);
                 balloonSprite.setTexture(weatherType4Balloon);
+                uri3S.stop();
+                panahon1S.stop();
                 break;
             case 6:
                 backgroundSprite.setTexture(fxToLivelihoodBg);
                 balloonSprite.setTexture(weatherFx1Balloon);
+                uri4S.stop();
+                panahon2S.stop();
                 break;
             case 7:
                 balloonSprite.setTexture(weatherFx2Balloon);
+                panahon1S.stop();
+                panahon3S.stop();
                 break;
             case 8:
                 balloonSprite.setTexture(weatherFx3Balloon);
+                panahon2S.stop();
+                panahon4S.stop();
                 break;
             case 9:
                 backgroundSprite.setTexture(fxToLivelihoodBg);
                 balloonSprite.setTexture(weatherFx4Balloon);
+                panahon3S.stop();
+                bagyo1S.stop();
                 break;
             case 10:
                 backgroundSprite.setTexture(typhoonFxBg);
                 balloonSprite.setTexture(typhoonFx1Balloon);
+                panahon4S.stop();
+                bagyo2S.stop();
                 break;
             case 11:
                 balloonSprite.setTexture(typhoonFx2Balloon);
+                bagyo1S.stop();
+                bagyo3S.stop();
                 break;
             case 12:
                 balloonSprite.setTexture(typhoonFx3Balloon);
+                bagyo2S.stop();
+                bagyo4S.stop();
                 break;
             case 13:
                 balloonSprite.setTexture(typhoonFx4Balloon);
+                bagyo3S.stop();
                 break;
             case 14: // Start of game
+            	bagyo4S.stop();
                 backgroundSprite.setTexture(question1Bg);
                 if (!isTeacher) {
                     ans1Correct = ans2Correct = ans3Correct = ans4Correct = ans5Correct = false;

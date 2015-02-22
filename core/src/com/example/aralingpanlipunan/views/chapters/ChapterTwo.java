@@ -1,7 +1,7 @@
 package com.example.aralingpanlipunan.views.chapters;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,7 +16,7 @@ public class ChapterTwo extends ChapterCore {
     				direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture,
     				map3BalloonTexture, map4BalloonTexture, 
     				question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
-    private Sound tingSound,introS, d1, d2, d31, d32, d4, d5, m1, m2, m3, m4;
+    private Music introS, d1, d2, d32, d4, d5, m1, m2, m3, m4;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
@@ -66,18 +66,18 @@ public class ChapterTwo extends ChapterCore {
         ansKey3Texture = new Texture("chapters/chapter2/answerkeys/anskey3.jpg");
         ansKey4Texture = new Texture("chapters/chapter2/answerkeys/anskey4.jpg");
 
-        tingSound = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/ting.mp3"));
-        introS = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-intro.amr"));
-        d1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir1.amr"));
-        d2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir2.amr"));
-        d31 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.1.amr"));
-        d32 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.2.amr"));
-        d4 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir4.amr"));
-        d5 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-dir5.amr"));
-        m1 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa1.amr"));
-        m2 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa2.amr"));
-        m3 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa3.amr"));
-        m4 = Gdx.audio.newSound(Gdx.files.internal("chapters/chapter2/sounds/b-mapa4.amr"));
+       
+        introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-intro.amr"));
+        d1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir1.amr"));
+        d2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir2.amr"));
+       
+        d32 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.2.amr"));
+        d4 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir4.amr"));
+        d5 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir5.amr"));
+        m1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa1.amr"));
+        m2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa2.amr"));
+        m3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa3.amr"));
+        m4 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa4.amr"));
 
         backgroundSprite.setTexture(introBgTexture);
         balloonSprite.setTexture(introBalloonTexture);
@@ -145,6 +145,26 @@ public class ChapterTwo extends ChapterCore {
     @Override
     public void dispose() {
         super.dispose();
+        introS.stop();
+        d1.stop();
+        d2.stop();
+        d32.stop();
+        d4.stop();
+        d5.stop();
+        m1.stop();
+        m2.stop();
+        m3.stop();
+        m4.stop();
+        introS.dispose();
+        d1.dispose();
+        d2.dispose();
+        d32.dispose();
+        d4.dispose();
+        d5.dispose();
+        m1.dispose();
+        m2.dispose();
+        m3.dispose();
+        m4.dispose();
         introBgTexture.dispose();
         introBalloonTexture.dispose();
         directionTexture.dispose();
@@ -165,7 +185,7 @@ public class ChapterTwo extends ChapterCore {
         introS.dispose();
         d1.dispose();
         d2.dispose();
-        d31.dispose();
+       
         d32.dispose();
         d4.dispose();
         d5.dispose();
@@ -294,6 +314,10 @@ public class ChapterTwo extends ChapterCore {
         	d2.stop();
         	d2.play();
         	break;
+        case 3:
+        	d32.stop();
+        	d32.play();
+        	break;
         case 4:
         	d4.stop();
         	d4.play();
@@ -304,7 +328,19 @@ public class ChapterTwo extends ChapterCore {
         	break;
         case 6:
         	m1.stop();
+        	m1.play();
+        	break;
+        case 7:
+        	m2.stop();
         	m2.play();
+        	break;
+        case 8:
+        	m3.stop();
+        	m3.play();
+        	break;
+        case 9:
+        	m4.stop();
+        	m4.play();
         	break;
         }
         }
@@ -322,47 +358,69 @@ public class ChapterTwo extends ChapterCore {
                 backgroundSprite.setTexture(introBgTexture);
                 balloonSprite.setTexture(introBalloonTexture);
                 balloonSprite.setAlpha(1);
-                
+                d1.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setAlpha(0);
+                introS.stop();
+                d1.stop();
                 break;
             case 2:
                 balloonSprite.setTexture(direction1BalloonTexture);
                 balloonSprite.setAlpha(1);
+                introS.stop();
+                d2.stop();
                 break;
             case 3:
                 balloonSprite.setTexture(direction2BalloonTexture);
+                d1.stop();
+                d32.stop();
                 break;
             case 4:
                 balloonSprite.setTexture(direction3BalloonTexture);
+                d2.stop();
+                d4.stop();
                 break;
             case 5:
                 balloonSprite.setTexture(direction4BalloonTexture);
+                d4.stop();
+                d5.stop();
                 break;
             case 6:
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setTexture(direction5BalloonTexture);
+                d4.stop();
+                m1.stop();
                 break;
             case 7:
                 backgroundSprite.setTexture(mapTexture);
                 balloonSprite.setAlpha(0);
                 balloonSprite.setTexture(map1BalloonTexture);
+                d5.stop();
+                m2.stop();
                 break;
             case 8:
                 balloonSprite.setAlpha(1);
+                m1.stop();
+                m2.stop();
                 break;
             case 9:
                 balloonSprite.setTexture(map2BalloonTexture);
+                m1.stop();
+                m3.stop();
                 break;
             case 10:
                 balloonSprite.setTexture(map3BalloonTexture);
+                m2.stop();
+                m4.stop();
                 break;
             case 11:
                 balloonSprite.setTexture(map4BalloonTexture);
+                m3.stop();
                 break;
             case 12: // This is now the game/question area, hide girl & balloon
+            	m4.stop();
                 question.setScale(getQuestionFontScale());
                 questionX = (screenWidth / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
                 questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
