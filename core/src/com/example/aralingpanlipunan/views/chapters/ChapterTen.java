@@ -39,10 +39,10 @@ public class ChapterTen extends ChapterCore {
 		lastChapterSection = 21;
 		
 		//sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/introcha10.m4a"));
-		bagongTaon1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon1.m4a"));
-		bagongTaon2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon2.m4a"));
-		bagongTaon3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongTaon3.m4a"));
+		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/introchap10.m4a"));
+		bagongTaon1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongtaon1.m4a"));
+		bagongTaon2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongtaon2.m4a"));
+		bagongTaon3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/bagongtaon3.m4a"));
 		salo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang1.m4a"));
 		salo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang2.m4a"));
 		salo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/pagdiriwang3.m4a"));
