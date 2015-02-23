@@ -226,11 +226,11 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 10:
                 if (ans1.getBoundingRectangle().contains(x, y)) {
+                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
                 else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
@@ -245,7 +245,6 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 11:
                 if (ans1.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
@@ -254,6 +253,7 @@ public class ChapterOne extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 else if (ans3.getBoundingRectangle().contains(x, y)) {
+                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
@@ -268,11 +268,11 @@ public class ChapterOne extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 else if (ans2.getBoundingRectangle().contains(x, y)) {
+                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
                 else if (ans3.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
@@ -393,10 +393,12 @@ public class ChapterOne extends ChapterCore {
                 lungsod1sound.stop();
                 break;
             case 9: // Start of game
+                question.setScale(getQuestionFontScale());
             	lungsod1sound.stop();
                 if (isTeacher) {
                     backgroundSprite.setTexture(answer1Texture);
                 } else {
+                    imageQuestion.setTexture(baybayinBg);
                     imageQuestion.setAlpha(1);
                     backgroundSprite.setTexture(questionBg);
                 }
