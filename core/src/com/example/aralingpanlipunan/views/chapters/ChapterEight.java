@@ -42,7 +42,7 @@ public class ChapterEight extends ChapterCore {
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 15;
-		lastChapterSection = 21;
+		lastChapterSection = 16;
 
 		// sounds
 		intro1S = Gdx.audio.newMusic(Gdx.files
@@ -247,9 +247,7 @@ public class ChapterEight extends ChapterCore {
                     }
                     break;
                 case 16:
-                    if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
-                    startQuiz.draw(batch);
-                    backToChapters.draw(batch);
+                    drawQuizResult(batch);
                     break;
             }
         }

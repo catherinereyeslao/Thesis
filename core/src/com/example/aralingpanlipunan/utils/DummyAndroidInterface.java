@@ -30,7 +30,7 @@ public class DummyAndroidInterface implements AndroidInterface {
     public ArrayList<Integer> getScoresByStudent(String studName) {
         ArrayList<Integer> array = new ArrayList<Integer>(17);
         for (int c = 0; c < 18; c++) {
-            array.add(5);
+            array.add(100);
         }
         return array;
     }

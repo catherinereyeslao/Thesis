@@ -355,9 +355,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             if (startQuiz.getBoundingRectangle().contains(x, y)) {
                 return currentChapNum + 501;
             }
-            if (backToChapters.getBoundingRectangle().contains(x, y)) {
-                return 500;
-            }
+        }
+        if (backToChapters.getBoundingRectangle().contains(x, y)) {
+            return 500;
         }
         return 100;
     }
