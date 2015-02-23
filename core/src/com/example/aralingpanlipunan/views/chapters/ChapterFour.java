@@ -74,6 +74,7 @@ public class ChapterFour extends ChapterCore {
 			question3Bg = new Texture(
 					"chapters/chapter4/backgrounds/question3.jpg");
             setUpGame();
+            loadNextButton();
 		}
 
         assetNeedUpdate = true;
@@ -83,6 +84,10 @@ public class ChapterFour extends ChapterCore {
     public void display(Batch batch) {
         if (assetNeedUpdate) assetManager();
         renderSharedAssets(batch);
+
+        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
+            next.draw(batch);
+        }
         switch (chapterSection) {
             case 9:
                 if (!isTeacher) {
@@ -92,8 +97,6 @@ public class ChapterFour extends ChapterCore {
                     ans2False.draw(batch);
                     ans3True.draw(batch);
                     ans3False.draw(batch);
-                    next.draw(batch);
-                    backToChapters.draw(batch);
                 }
                 break;
             case 10:
@@ -108,7 +111,6 @@ public class ChapterFour extends ChapterCore {
                     ans4False.draw(batch);
                     ans5True.draw(batch);
                     ans5False.draw(batch);
-                    next.draw(batch);
                 }
                 break;
             case 11:
@@ -117,7 +119,6 @@ public class ChapterFour extends ChapterCore {
                     ans1False.draw(batch);
                     ans2True.draw(batch);
                     ans2False.draw(batch);
-                    next.draw(batch);
                 }
                 break;
             case 12:
@@ -277,7 +278,6 @@ public class ChapterFour extends ChapterCore {
      * Sets up the assets for the game/quiz
      */
     private void setUpGame() {
-        backToChapters.setBounds(0, 0, 0, 0);
         answerMarker = new Texture("encircle.png");
 
         ans1True = new Sprite(answerMarker);
@@ -352,7 +352,6 @@ public class ChapterFour extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	 super.touchDown(x, y);
          if (soundSprite.getBoundingRectangle().contains(x, y)) {
              playSoundForSection();
          }

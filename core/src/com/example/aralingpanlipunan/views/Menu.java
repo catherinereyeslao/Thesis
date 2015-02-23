@@ -48,10 +48,9 @@ public class Menu extends AppView implements Disposable, AppFragment {
 
     @Override
     public void display(Batch batch) {
-        // If app is freshly started, display splash for 5 secs before going to main menu
+        // If app is freshly started, display splash for 3.5 secs before going to main menu
         if (freshlyStarted) {
-            //TODO: set the timer higher when not in dev mode
-            if (splashTimer > 1) {
+            if (splashTimer > 3.5f) {
                 freshlyStarted = false;
                 splashScreen.dispose();
             }

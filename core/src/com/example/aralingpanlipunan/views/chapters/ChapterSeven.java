@@ -17,7 +17,7 @@ public class ChapterSeven extends ChapterCore {
 			erectusTexture, habilisTexture, sapiensTexture;
 	private Music intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
 			habilis2S, sapiens1S, sapiens2S, sapiens3S;
-	private Sprite ans, ans2, ans3, ans4, ans5, ans6, next, extraCharacterSprite;
+	private Sprite ans, ans2, ans3, ans4, ans5, ans6, extraCharacterSprite;
 	private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched,
 			ans5Touched, ans6Touched = false;
 
@@ -258,7 +258,16 @@ public class ChapterSeven extends ChapterCore {
 			sapiens2S.stop();
 			break;
 		case 10:
-			backgroundSprite.setTexture(question1Bg);
+            backgroundSprite.setTexture(question1Bg);
+            if (!isTeacher) {
+                ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
+                ans.setAlpha(0);
+                ans2.setAlpha(0);
+                ans3.setAlpha(0);
+                ans4.setAlpha(0);
+                ans5.setAlpha(0);
+                ans6.setAlpha(0);
+            }
 			break;
 		case 11:
             if (!isTeacher) {
@@ -334,10 +343,6 @@ public class ChapterSeven extends ChapterCore {
 			return displayLastSectionButtons(7, 3, x, y);
 
 		if (!isTeacher && chapterSection >= startOfQuestionSection) {
-			if (next.getBoundingRectangle().contains(x, y)) {
-				chapterSection++;
-				assetNeedUpdate = true;
-			}
 			if (ans.getBoundingRectangle().contains(x, y)) {
 				ansTouched = !ansTouched;
 				ans.setAlpha(ansTouched ? 1 : 0);

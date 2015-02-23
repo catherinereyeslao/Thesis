@@ -217,7 +217,7 @@ public class ChapterTwo extends ChapterCore {
                 break;
             case 13:
                 touched = answerTouchListener(x, y);
-                if (touched == 3) {
+                if (touched == 1) {
                     correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
@@ -228,7 +228,7 @@ public class ChapterTwo extends ChapterCore {
                 break;
             case 14:
                 touched = answerTouchListener(x, y);
-                if (touched == 1) {
+                if (touched == 3) {
                     correctAnswers++;
                     chapterSection++;
                     assetNeedUpdate = true;
@@ -473,7 +473,7 @@ public class ChapterTwo extends ChapterCore {
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG MINDANAO?";
                 break;
             case 20:
-                tanong = correctAnswers > 2 ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
+                tanong = correctAnswers >= 4 ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
                 answer1.setColor(1, 1, 1, 0);
                 answer2.setColor(1, 1, 1, 0);
                 answer3.setColor(1, 1, 1, 0);
@@ -482,7 +482,7 @@ public class ChapterTwo extends ChapterCore {
                         screenHeight / 4.2f
                 );
                 // If student fails the test
-                if (correctAnswers < 2) {
+                if (correctAnswers < 4) {
                     startQuiz.setTexture(retakeTexture);
                 } else {
                     startQuiz.setTexture(nextChapTexture);
