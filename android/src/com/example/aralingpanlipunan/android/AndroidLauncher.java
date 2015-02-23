@@ -13,6 +13,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.example.aralingpanlipunan.Main;
 import com.example.aralingpanlipunan.android.database.StudentData;
+import com.example.aralingpanlipunan.views.StudentProfile;
 
 import java.util.ArrayList;
 
@@ -109,6 +110,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 		switch (i) {
 			case DialogInterface.BUTTON_POSITIVE:
 				alertButtonClicked = true;
+                StudentProfile.setAlertYesTouched(true);
 				break;
 			case DialogInterface.BUTTON_NEGATIVE:
 				dialogInterface.cancel();

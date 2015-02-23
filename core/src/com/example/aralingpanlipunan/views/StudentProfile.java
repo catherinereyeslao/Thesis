@@ -15,8 +15,9 @@ public class StudentProfile extends AppView implements AppFragment, Disposable {
     private Sprite balloon, enter;
     private BitmapFont text;
     private ScreenSizeUtil screenSizeUtil;
-    private String typedName = "";
     private AndroidInterface android;
+    private static String typedName = "";
+    private static boolean alertYesTouched = false;
 
     public StudentProfile(AndroidInterface androidInterface) {
         android = androidInterface;
@@ -60,6 +61,22 @@ public class StudentProfile extends AppView implements AppFragment, Disposable {
         enter.draw(batch);
     }
 
+    public static void setAlertYesTouched(boolean alert) {
+        alertYesTouched = alert;
+    }
+
+    public static boolean isAlertYesTouched() {
+        return alertYesTouched;
+    }
+
+    public static String getTypedName() {
+        return typedName;
+    }
+
+    public static void clearTypedName() {
+        typedName = "";
+    }
+
     @Override
     public void dispose() {
         background.dispose();
@@ -86,16 +103,12 @@ public class StudentProfile extends AppView implements AppFragment, Disposable {
                 return typedName;
             }
             else {
-                boolean register = android.showAlertDialog(
+                android.showAlertDialog(
                         "Register as new user?",
                         "The name you entered doesn't exist yet, Would you like to register as a new user?",
                         "Register",
                         "Back"
                 );
-                if (register) {
-                    android.registerNewStudent(typedName);
-                    return typedName;
-                }
             }
         }
         return null;

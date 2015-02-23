@@ -7,6 +7,8 @@ import com.example.aralingpanlipunan.android.AndroidInterface;
  * This is called when selecting "Student" from the Menu.
  */
 public class Student extends UserType {
+    private boolean registeringNewStudent = false;
+
     public Student(AndroidInterface androidInterface) {
         super(androidInterface);
     }
@@ -31,6 +33,24 @@ public class Student extends UserType {
                 renderChapter(selectedChapter, batch);
                 break;
         }
+
+        if (!registeringNewStudent && StudentProfile.isAlertYesTouched() && StudentProfile.getTypedName().length() > 1)
+            registerAndLoginStudent();
+    }
+
+    /**
+     * If the "yes" in alert box is student registration is touched,
+     * register the student then log in
+     */
+    private void registerAndLoginStudent() {
+        android.registerNewStudent(StudentProfile.getTypedName());
+        studentProfile.dispose();
+        chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, StudentProfile.getTypedName(), android);
+        chapterSelect.setUp(screenWidth, screenHeight);
+        registeringNewStudent = true;
+        StudentProfile.setAlertYesTouched(false);
+        StudentProfile.clearTypedName();
+        triage = CHAPTER_SELECT;
     }
 
     @Override

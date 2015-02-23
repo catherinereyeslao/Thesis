@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 /**
  * If we're running on desktop, this is a dummy android interface so we can simulate
- * and return what a real android device would do.
+ * and return what a real android device would do. Teachers also are always able to
+ * access all chapters, so they have a perfect score in all chapters declared in
+ * {@link #getScoresByStudent(String)}
  */
 public class DummyAndroidInterface implements AndroidInterface {
     @Override
