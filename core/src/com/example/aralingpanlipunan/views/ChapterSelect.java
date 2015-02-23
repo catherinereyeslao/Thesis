@@ -3,8 +3,6 @@ package com.example.aralingpanlipunan.views;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Disposable;
-import com.example.aralingpanlipunan.AppFragment;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 
@@ -40,7 +38,7 @@ public class ChapterSelect extends AppView {
             case STUDENT:
                 loggedInUserName = userName;
                 userType = STUDENT;
-                android = new DummyAndroidInterface();
+                android = androidInterface;
                 break;
         }
     }
@@ -52,10 +50,9 @@ public class ChapterSelect extends AppView {
 
         chapterScores = android.getScoresByStudent(loggedInUserName);
 
-        //passingscores
+        //passing scores declared here, which is used to determine whether a button is enabled or not
         passingScores = new int[19];
-        
-        passingScores [0] = 3;
+        passingScores [0] = 2;
         passingScores [1] = 4;
         passingScores [2] = 3;
         passingScores [3] = 5;
@@ -74,9 +71,7 @@ public class ChapterSelect extends AppView {
         passingScores [16] = 5;
         passingScores [17] = 5;
         passingScores [18] = 15;
-        
-        
-        
+
         background = new Texture("backgrounds/start-background.jpg");
         chap1Texture = new Texture("buttons/chapters/b1-1.png");
         chap2Texture = new Texture("buttons/chapters/b1-2.png");
@@ -109,7 +104,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap2 = new Sprite(chap2Texture);
         chap2.setSize(chap2.getWidth() * getButtonScale(), chap2.getHeight() * getButtonScale());
-        if (chapterScores.get(0) >= 4) chap2.setAlpha(0.5f);
+        if (chapterScores.get(0) < passingScores[0] && userType == STUDENT) chap2.setAlpha(0.5f);
         final float chap2X = (screenW / 3) - (chap2.getWidth() / 2);
         final float chap2Y = screenH / 2;
         chap2.setBounds(chap2X, chap2Y, chap2.getWidth(), chap2.getHeight());
@@ -117,7 +112,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap3 = new Sprite(chap3Texture);
         chap3.setSize(chap3.getWidth() * getButtonScale(), chap3.getHeight() * getButtonScale());
-        if (chapterScores.get(1) >= 3) chap3.setAlpha(0.5f);
+        if (chapterScores.get(1) < passingScores[1] && userType == STUDENT) chap3.setAlpha(0.5f);
         final float chap3X = (screenW / 3) - (chap3.getWidth() / 2);
         final float chap3Y = screenH / 4;
         chap3.setBounds(chap3X, chap3Y, chap3.getWidth(), chap3.getHeight());
@@ -125,28 +120,28 @@ public class ChapterSelect extends AppView {
 
         Sprite chap4 = new Sprite(chap4Texture);
         chap4.setSize(chap4.getWidth() * getButtonScale(), chap4.getHeight() * getButtonScale());
-        if (chapterScores.get(2) >= 5) chap4.setAlpha(0.5f);
+        if (chapterScores.get(2) < passingScores[2] && userType == STUDENT) chap4.setAlpha(0.5f);
         final float chap4X = (screenW / 1.8f);
         chap4.setBounds(chap4X, chap1Y, chap4.getWidth(), chap4.getHeight());
         buttonSprites.add(chap4);
 
         Sprite chap5 = new Sprite(chap5Texture);
         chap5.setSize(chap5.getWidth() * getButtonScale(), chap5.getHeight() * getButtonScale());
-        if (chapterScores.get(3) >= 3) chap5.setAlpha(0.5f);
+        if (chapterScores.get(3) < passingScores[3] && userType == STUDENT) chap5.setAlpha(0.5f);
         final float chap5X = (screenW / 1.8f);
         chap5.setBounds(chap5X, chap2Y, chap5.getWidth(), chap5.getHeight());
         buttonSprites.add(chap5);
 
         Sprite chap6 = new Sprite(chap6Texture);
         chap6.setSize(chap6.getWidth() * getButtonScale(), chap6.getHeight() * getButtonScale());
-        if (chapterScores.get(4) >= 3) chap6.setAlpha(0.5f);
+        if (chapterScores.get(4) < passingScores[4] && userType == STUDENT) chap6.setAlpha(0.5f);
         final float chap6X = (screenW / 1.8f);
         chap6.setBounds(chap6X, chap3Y, chap6.getWidth(), chap6.getHeight());
         buttonSprites.add(chap6);
 
         Sprite chap7 = new Sprite(chap7Texture);
         chap7.setSize(chap7.getWidth() * getButtonScale(), chap7.getHeight() * getButtonScale());
-        if (chapterScores.get(5) >= 3) chap7.setAlpha(0.5f);
+        if (chapterScores.get(5) < passingScores[5] && userType == STUDENT) chap7.setAlpha(0.5f);
         final float chap7X = ((screenW / 3) - (chap7.getWidth() / 2) + screenW);
         final float chap7Y = screenH - (screenH / 4);
         chap7.setBounds(chap7X, chap7Y, chap7.getWidth(), chap7.getHeight());
@@ -154,7 +149,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap8 = new Sprite(chap8Texture);
         chap8.setSize(chap8.getWidth() * getButtonScale(), chap8.getHeight() * getButtonScale());
-        if (chapterScores.get(6) >= 2) chap8.setAlpha(0.5f);
+        if (chapterScores.get(6) < passingScores[6] && userType == STUDENT) chap8.setAlpha(0.5f);
         final float chap8X = ((screenW / 3) - (chap8.getWidth() / 2) + screenW);
         final float chap8Y = screenH / 2;
         chap8.setBounds(chap8X, chap8Y, chap8.getWidth(), chap8.getHeight());
@@ -162,7 +157,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap9 = new Sprite(chap9Texture);
         chap9.setSize(chap9.getWidth() * getButtonScale(), chap9.getHeight() * getButtonScale());
-        if (chapterScores.get(7) >= 3) chap9.setAlpha(0.5f);
+        if (chapterScores.get(7) < passingScores[7] && userType == STUDENT) chap9.setAlpha(0.5f);
         final float chap9X = ((screenW / 3) - (chap9.getWidth() / 2)) + screenW;
         final float chap9Y = screenH / 4;
         chap9.setBounds(chap9X, chap9Y, chap9.getWidth(), chap9.getHeight());
@@ -170,28 +165,28 @@ public class ChapterSelect extends AppView {
 
         Sprite chap10 = new Sprite(chap10Texture);
         chap10.setSize(chap10.getWidth() * getButtonScale(), chap10.getHeight() * getButtonScale());
-        if (chapterScores.get(8) >= 3) chap10.setAlpha(0.5f);
+        if (chapterScores.get(8) < passingScores[8] && userType == STUDENT) chap10.setAlpha(0.5f);
         final float chap10X = (screenW / 1.8f) + screenW;
         chap10.setBounds(chap10X, chap1Y, chap10.getWidth(), chap10.getHeight());
         buttonSprites.add(chap10);
 
         Sprite chap11 = new Sprite(chap11Texture);
         chap11.setSize(chap11.getWidth() * getButtonScale(), chap11.getHeight() * getButtonScale());
-        if (chapterScores.get(9) >= 5) chap11.setAlpha(0.5f);
+        if (chapterScores.get(9) < passingScores[9] && userType == STUDENT) chap11.setAlpha(0.5f);
         final float chap11X = (screenW / 1.8f) + screenW;
         chap11.setBounds(chap11X, chap2Y, chap11.getWidth(), chap11.getHeight());
         buttonSprites.add(chap11);
 
         Sprite chap12 = new Sprite(chap12Texture);
         chap12.setSize(chap12.getWidth() * getButtonScale(), chap12.getHeight() * getButtonScale());
-        if (chapterScores.get(10) >= 4) chap12.setAlpha(0.5f);
+        if (chapterScores.get(10) < passingScores[10] && userType == STUDENT) chap12.setAlpha(0.5f);
         final float chap12X = (screenW / 1.8f) + screenW;
         chap12.setBounds(chap12X, chap3Y, chap12.getWidth(), chap12.getHeight());
         buttonSprites.add(chap12);
 
         Sprite chap13 = new Sprite(chap13Texture);
         chap13.setSize(chap13.getWidth() * getButtonScale(), chap13.getHeight() * getButtonScale());
-        if (chapterScores.get(11)>= 3) chap13.setAlpha(0.5f);
+        if (chapterScores.get(11) < passingScores[11] && userType == STUDENT) chap13.setAlpha(0.5f);
         final float chap13X = ((screenW / 3) - (chap13.getWidth() / 2) + (screenW * 2));
         final float chap13Y = screenH - (screenH / 4);
         chap13.setBounds(chap13X, chap13Y, chap13.getWidth(), chap13.getHeight());
@@ -199,7 +194,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap14 = new Sprite(chap14Texture);
         chap14.setSize(chap14.getWidth() * getButtonScale(), chap14.getHeight() * getButtonScale());
-        if (chapterScores.get(12) == 0) chap14.setAlpha(0.5f);
+        if (chapterScores.get(12) < passingScores[12] && userType == STUDENT) chap14.setAlpha(0.5f);
         final float chap14X = ((screenW / 3) - (chap14.getWidth() / 2) + (screenW * 2));
         final float chap14Y = screenH / 2;
         chap14.setBounds(chap14X, chap14Y, chap14.getWidth(), chap14.getHeight());
@@ -207,7 +202,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap15 = new Sprite(chap15Texture);
         chap15.setSize(chap15.getWidth() * getButtonScale(), chap15.getHeight() * getButtonScale());
-        if (chapterScores.get(13) >= 3) chap15.setAlpha(0.5f);
+        if (chapterScores.get(13) < passingScores[13] && userType == STUDENT) chap15.setAlpha(0.5f);
         final float chap15X = ((screenW / 3) - (chap15.getWidth() / 2)) + (screenW * 2);
         final float chap15Y = screenH / 4;
         chap15.setBounds(chap15X, chap15Y, chap15.getWidth(), chap15.getHeight());
@@ -215,28 +210,28 @@ public class ChapterSelect extends AppView {
 
         Sprite chap16 = new Sprite(chap16Texture);
         chap16.setSize(chap16.getWidth() * getButtonScale(), chap16.getHeight() * getButtonScale());
-        if (chapterScores.get(14) >= 5) chap16.setAlpha(0.5f);
+        if (chapterScores.get(14) < passingScores[14] && userType == STUDENT) chap16.setAlpha(0.5f);
         final float chap16X = (screenW / 1.8f) + (screenW * 2);
         chap16.setBounds(chap16X, chap1Y, chap16.getWidth(), chap16.getHeight());
         buttonSprites.add(chap16);
 
         Sprite chap17 = new Sprite(chap17Texture);
         chap17.setSize(chap17.getWidth() * getButtonScale(), chap17.getHeight() * getButtonScale());
-        if (chapterScores.get(15) == 0) chap17.setAlpha(0.5f);
+        if (chapterScores.get(15) < passingScores[15] && userType == STUDENT) chap17.setAlpha(0.5f);
         final float chap17X = (screenW / 1.8f) + (screenW * 2);
         chap17.setBounds(chap17X, chap2Y, chap17.getWidth(), chap17.getHeight());
         buttonSprites.add(chap17);
 
         Sprite chap18 = new Sprite(chap18Texture);
         chap18.setSize(chap18.getWidth() * getButtonScale(), chap18.getHeight() * getButtonScale());
-        if (chapterScores.get(16) == 0) chap18.setAlpha(0.5f);
+        if (chapterScores.get(16) < passingScores[16] && userType == STUDENT) chap18.setAlpha(0.5f);
         final float chap18X = (screenW / 1.8f) + (screenW * 2);
         chap18.setBounds(chap18X, chap3Y, chap18.getWidth(), chap18.getHeight());
         buttonSprites.add(chap18);
 
         Sprite chap19 = new Sprite(chap19Texture);
         chap19.setSize(chap19.getWidth() * getButtonScale(), chap19.getHeight() * getButtonScale());
-        if (chapterScores.get(17) == 15) chap19.setAlpha(0.5f);
+        if (chapterScores.get(17) < passingScores[17] && userType == STUDENT) chap19.setAlpha(0.5f);
         final float chap19X = ((screenW / 2) - (chap19.getWidth() / 2)) + (screenW * 3);
         final float chap19Y = (screenH / 2) - (chap19.getHeight() / 2);
         chap19.setBounds(chap19X, chap19Y, chap19.getWidth(), chap19.getHeight());
@@ -290,7 +285,7 @@ public class ChapterSelect extends AppView {
 
         for (int c = 0; c < 19; c++) {
             try {
-                if ((c == 0 || chapterScores.get(c - 1) >= passingScores[c]) && buttonSprites.get(c).getBoundingRectangle().contains(x, y))
+                if ((c == 0 || chapterScores.get(c - 1) >= passingScores[c - 1]) && buttonSprites.get(c).getBoundingRectangle().contains(x, y))
                     return c + 1;
             } catch (IndexOutOfBoundsException e) {
                 // Do nothing, loop will probably look for chapterScores(-1) at first which doesn't exist
