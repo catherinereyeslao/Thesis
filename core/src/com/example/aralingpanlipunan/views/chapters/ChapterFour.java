@@ -85,7 +85,7 @@ public class ChapterFour extends ChapterCore {
         if (assetNeedUpdate) assetManager();
         renderSharedAssets(batch);
 
-        if (chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
+        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
             next.draw(batch);
         }
         switch (chapterSection) {

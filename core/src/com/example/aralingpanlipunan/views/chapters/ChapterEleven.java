@@ -42,7 +42,7 @@ public class ChapterEleven extends ChapterCore {
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 29;
-		lastChapterSection = 33;
+		lastChapterSection = 34;
 		assetNeedUpdate = true;
 
 		// sound
@@ -750,23 +750,23 @@ public class ChapterEleven extends ChapterCore {
 				ansMarker2.setAlpha(0);
 				ansMarker3.setAlpha(0);
 				ansMarker4.setAlpha(0);
-				// answer a is correct only for chapSection 33 / question 5
-				ans1Correct = chapterSection == 33;
+				// answer a is correct only for chapSection 31 / question 5
+				ans1Correct = chapterSection == 31;
 			} else if (ansMarker2.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(1);
 				ansMarker3.setAlpha(0);
 				ansMarker4.setAlpha(0);
-				// answer b is correct only for chapSection 31 / question 1
-				ans1Correct = chapterSection == 31;
+				// answer b is correct only for chapSection 29 / question 1
+				ans1Correct = chapterSection == 29 || chapterSection == 31;
 			} else if (ansMarker3.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(0);
 				ansMarker3.setAlpha(1);
 				ansMarker4.setAlpha(0);
-				// answer c is correct only for chapSection 32 & 34 / question 3
+				// answer c is correct only for chapSection 30 & 32 / question 3
 				// & 7
-				ans1Correct = chapterSection == 32 || chapterSection == 34;
+				ans1Correct = chapterSection == 30 || chapterSection == 32 || chapterSection == 33;
 			} else if (ansMarker4.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(0);
@@ -775,19 +775,19 @@ public class ChapterEleven extends ChapterCore {
 				ans1Correct = false; // This is never a correct answer
 			}
 
-			if (chapterSection != 35) {
+			if (chapterSection != 33) {
 				if (ansMarker5.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(1);
 					ansMarker6.setAlpha(0);
 					ansMarker7.setAlpha(0);
 					ansMarker8.setAlpha(0);
-					ans2Correct = chapterSection == 31 || chapterSection == 34;
+					ans2Correct = chapterSection == 29 || chapterSection == 32;
 				} else if (ansMarker6.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(0);
 					ansMarker6.setAlpha(1);
 					ansMarker7.setAlpha(0);
 					ansMarker8.setAlpha(0);
-					ans2Correct = chapterSection == 32 || chapterSection == 33;
+					ans2Correct = chapterSection == 30 || chapterSection == 31;
 				} else if (ansMarker7.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(0);
 					ansMarker6.setAlpha(0);

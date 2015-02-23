@@ -688,10 +688,10 @@ public class ChapterNineteen extends ChapterCore {
                         ans3Correct = false;
                     }
                     break;
-                case 11:
-                    return displayLastSectionButtons(19, 15, x, y);
             }
         }
+        if (chapterSection == lastChapterSection)
+            return displayLastSectionButtons(19, 15, x, y);
         return super.touchDown(x, y);
     }
 

@@ -258,14 +258,16 @@ public class ChapterSeven extends ChapterCore {
 			sapiens2S.stop();
 			break;
 		case 10:
-            ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
-            ans.setAlpha(0);
-            ans2.setAlpha(0);
-            ans3.setAlpha(0);
-            ans4.setAlpha(0);
-            ans5.setAlpha(0);
-            ans6.setAlpha(0);
-			backgroundSprite.setTexture(question1Bg);
+            backgroundSprite.setTexture(question1Bg);
+            if (!isTeacher) {
+                ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
+                ans.setAlpha(0);
+                ans2.setAlpha(0);
+                ans3.setAlpha(0);
+                ans4.setAlpha(0);
+                ans5.setAlpha(0);
+                ans6.setAlpha(0);
+            }
 			break;
 		case 11:
             if (!isTeacher) {
