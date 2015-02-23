@@ -229,7 +229,7 @@ public class ChapterSelect extends AppView {
 
         Sprite chap18 = new Sprite(chap18Texture);
         chap18.setSize(chap18.getWidth() * getButtonScale(), chap18.getHeight() * getButtonScale());
-        if (chapterScores.get(16) >= 5) chap18.setAlpha(0.5f);
+        if (chapterScores.get(16) == 0) chap18.setAlpha(0.5f);
         final float chap18X = (screenW / 1.8f) + (screenW * 2);
         chap18.setBounds(chap18X, chap3Y, chap18.getWidth(), chap18.getHeight());
         buttonSprites.add(chap18);
