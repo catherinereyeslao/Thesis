@@ -32,8 +32,8 @@ public class ChapterFourteen extends ChapterCore {
 		super(androidInterface, isTeacher);
 	}
 
-	public ChapterFourteen(AndroidInterface androidInterface, String studentName) {
-		super(androidInterface, studentName);
+	public ChapterFourteen(AndroidInterface androidInterface, String studentName, String password) {
+		super(androidInterface, studentName, password);
 	}
 
 	@Override

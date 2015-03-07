@@ -21,8 +21,8 @@ public class ChapterSeven extends ChapterCore {
 	private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched,
 			ans5Touched, ans6Touched = false;
 
-	public ChapterSeven(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterSeven(AndroidInterface androidInterface, String studentName, String password) {
+        super(androidInterface, studentName, password);
 	}
 
 	public ChapterSeven(AndroidInterface androidInterface, boolean isTeacher) {

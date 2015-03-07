@@ -25,8 +25,8 @@ public class ChapterTwo extends ChapterCore {
     private String ans3Char = "c. Timog";
     private String ans4Char = "d. Kanluran";
 
-    public ChapterTwo(AndroidInterface androidInterface, String studName) {
-        super(androidInterface, studName);
+    public ChapterTwo(AndroidInterface androidInterface, String studName, String password) {
+        super(androidInterface, studName, password);
     }
 
     public ChapterTwo(AndroidInterface androidInterface, boolean isTeacher) {
@@ -38,7 +38,7 @@ public class ChapterTwo extends ChapterCore {
         super.setUp(screenW, screenH);
 
         if (!isTeacher)
-            currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(1); // Get Chapter 2 score
+            currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(1); // Get Chapter 2 score
         else
             currentRecordedScore = correctAnswers = 10; // If teacher, no need to count score, they are always perfect!
 

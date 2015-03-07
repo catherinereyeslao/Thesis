@@ -26,8 +26,8 @@ public class ChapterNine extends ChapterCore {
     private boolean ansMarkerTouched, ansMarker6Touched, ansMarker7Touched;
 
 
-	public ChapterNine(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterNine(AndroidInterface androidInterface, String studName, String password) {
+		super(androidInterface, studName, password);
 	}
 
     public ChapterNine(AndroidInterface androidInterface, boolean isTeacher) {
@@ -170,7 +170,7 @@ public class ChapterNine extends ChapterCore {
 
             loadNextButton();
 
-            currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(8); // Get Chapter9 score from db
+            currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(8); // Get Chapter9 score from db
         }
 		
 		backgroundSprite.setTexture(introBg);

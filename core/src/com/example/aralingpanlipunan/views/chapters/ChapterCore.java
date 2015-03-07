@@ -15,6 +15,7 @@ import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
 import com.example.aralingpanlipunan.views.Help;
+import com.example.aralingpanlipunan.views.StudentProfile;
 
 import java.security.InvalidParameterException;
 
@@ -23,7 +24,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected TextureAtlas girlAtlas;
     protected Animation girlAnimation;
     protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz, next;
-    protected String loggedInStudent;
+    protected String loggedInStudent, studentPassword;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
     protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, viewingHelp, isTeacher;
@@ -37,9 +38,10 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     private Trivia trivia;
     private boolean backHelp, passedQuestionSection;
 
-    public ChapterCore(AndroidInterface androidInterface, String studentName) {
+    public ChapterCore(AndroidInterface androidInterface, String studentName, String password) {
         this.android = androidInterface;
         this.loggedInStudent = studentName;
+        this.studentPassword = password;
     }
 
     public ChapterCore(AndroidInterface androidInterface, boolean isTeacher) {
@@ -62,6 +64,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
+
+        if (loggedInStudent == null)
+            loggedInStudent = StudentProfile.getTypedName();
+        if (studentPassword == null)
+            studentPassword = StudentProfile.getTypedPassword();
 
         backgroundSprite = new Sprite(introBalloonTexture);
         backgroundSprite.setSize(screenW, screenH);
@@ -299,7 +306,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected void saveProgress(String chapter) {
         if (correctAnswers > currentRecordedScore) {
             try {
-                android.setStudentScore(loggedInStudent, chapter, correctAnswers);
+                android.setStudentScore(loggedInStudent, studentPassword, chapter, correctAnswers);
                 android.showToast("Your progress has been saved", 1);
             } catch (SQLiteException e) {
                 android.showToast("Failed to save data", 1);

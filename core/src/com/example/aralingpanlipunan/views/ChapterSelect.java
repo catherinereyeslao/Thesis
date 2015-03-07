@@ -18,7 +18,7 @@ public class ChapterSelect extends AppView {
     private int chapterSection, upTimer = 0;
     private float touchX, movementCursor = 0;
     private boolean isMovingRight, isMovingLeft = false;
-    private String loggedInUserName;
+    private String loggedInUserName, studentPassword;
     private ArrayList<Sprite> buttonSprites;
     private ArrayList<Integer> chapterScores;
     private Texture chap1Texture, chap2Texture, chap3Texture, chap4Texture,chap5Texture, chap6Texture,chap7Texture, chap8Texture,chap9Texture, chap10Texture,chap11Texture, chap12Texture,chap13Texture, chap14Texture,chap15Texture, chap16Texture,chap17Texture, chap18Texture, chap19Texture, background;
@@ -29,7 +29,7 @@ public class ChapterSelect extends AppView {
      * Specify the user type, either STUDENT or TEACHER.
      * @param user type of user viewing this chapter
      */
-    public ChapterSelect(int user, String userName, AndroidInterface androidInterface) {
+    public ChapterSelect(int user, String userName, String password, AndroidInterface androidInterface) {
         switch (user) {
             case TEACHER:
                 userType = TEACHER;
@@ -37,6 +37,7 @@ public class ChapterSelect extends AppView {
                 break;
             case STUDENT:
                 loggedInUserName = userName;
+                studentPassword = password;
                 userType = STUDENT;
                 android = androidInterface;
                 break;
@@ -48,7 +49,12 @@ public class ChapterSelect extends AppView {
         screenHeight = screenH;
         screenWidth = screenW;
 
-        chapterScores = android.getScoresByStudent(loggedInUserName);
+        if (loggedInUserName == null)
+            loggedInUserName = StudentProfile.getTypedName();
+        if (studentPassword == null)
+            studentPassword = StudentProfile.getTypedPassword();
+
+        chapterScores = android.getScoresByStudent(loggedInUserName, studentPassword);
 
         //passing scores declared here, which is used to determine whether a button is enabled or not
         passingScores = new int[19];

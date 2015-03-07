@@ -28,8 +28,8 @@ public class ChapterFifteen extends ChapterCore {
 	public ChapterFifteen(AndroidInterface androidInterface, boolean isTeacher) {
 		super(androidInterface, isTeacher);
 	}
-	public ChapterFifteen(AndroidInterface androidInterface, String studentName) {
-		super(androidInterface, studentName);
+	public ChapterFifteen(AndroidInterface androidInterface, String studentName, String password) {
+		super(androidInterface, studentName, password);
 	}
 
 	@Override

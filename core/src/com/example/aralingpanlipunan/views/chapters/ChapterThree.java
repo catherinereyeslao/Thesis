@@ -19,8 +19,8 @@ public class ChapterThree extends ChapterCore {
 	private Music introS, a1S1, a1S2, a1S3, a2S1, a2S2, a3S1, a3S2, a3S3, a4S1, a4S2, a4S3, a5S1, a5S2, a5S3;
 	boolean ans1Touched, ans2Touched, ans3Touched, ans4Touched, ans5Touched, ans6Touched, ans7Touched, ans8Touched, ans9Touched = false;
 
-	public ChapterThree(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterThree(AndroidInterface androidInterface, String studName, String password) {
+		super(androidInterface, studName, password);
 	}
 
     public ChapterThree(AndroidInterface androidInterface, boolean isTeacher) {
@@ -36,7 +36,7 @@ public class ChapterThree extends ChapterCore {
         if (isTeacher)
             currentRecordedScore = 100;
         else
-		    currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(2); // Get Chapter 3 current score
+		    currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(2); // Get Chapter 3 current score
 
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");

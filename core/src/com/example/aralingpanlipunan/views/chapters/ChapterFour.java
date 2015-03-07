@@ -16,8 +16,8 @@ public class ChapterFour extends ChapterCore {
     private Music intro1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;
     private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched =false;
 
-    public ChapterFour(AndroidInterface androidInterface, String studentName) {
-        super(androidInterface, studentName);
+    public ChapterFour(AndroidInterface androidInterface, String studentName, String password) {
+        super(androidInterface, studentName, password);
     }
 
     public ChapterFour(AndroidInterface androidInterface, boolean isTeacher) {

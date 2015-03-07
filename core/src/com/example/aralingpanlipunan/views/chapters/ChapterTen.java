@@ -23,8 +23,8 @@ public class ChapterTen extends ChapterCore {
     private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5, ansMarker6, ansMarker7, ansMarker8, ansMarker9, ansMarker10, ansMarker11, ansMarker12;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct = false;
 
-	public ChapterTen(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterTen(AndroidInterface androidInterface, String studName, String password) {
+		super(androidInterface, studName, password);
 	}
 
     public ChapterTen(AndroidInterface androidInterface, boolean isTeacher) {

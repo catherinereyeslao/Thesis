@@ -45,20 +45,20 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 	}
 
 	@Override
-	public boolean studentExists(String studentName) {
+	public boolean studentExists(String studentName, String password) {
 		StudentData studentData = new StudentData(this);
 		studentData.open();
-		boolean exists = studentData.studentExists(studentName);
+		boolean exists = studentData.studentExists(studentName, password);
 		studentData.close();
 		return exists;
 	}
 
 	@Override
-	public boolean registerNewStudent(String studentName) {
+	public boolean registerNewStudent(String studentName, String password) {
 		StudentData studentData = new StudentData(this);
 		studentData.open();
 		try {
-			studentData.registerStudent(studentName);
+			studentData.registerStudent(studentName, password);
 		} catch (SQLiteException e) {
 			return false;
 		}
@@ -67,11 +67,11 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 	}
 
 	@Override
-	public ArrayList<Integer> getScoresByStudent(String studentName) {
+	public ArrayList<Integer> getScoresByStudent(String studentName, String password) {
 		StudentData studentData = new StudentData(this);
 		studentData.open();
 		try {
-			return studentData.getScoresByStudent(studentName);
+			return studentData.getScoresByStudent(studentName, password);
 		} catch (SQLiteException e) {
 			e.printStackTrace();
 			return null;
@@ -83,12 +83,12 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 	@Override
 	public boolean showAlertDialog(String title, String message, String yesButton, String noButton) {
 		// Run the AlertDialog in the UI thread since it cannot run from the GL thread (game view)
-		this.runOnUiThread(this);
-		alertMessage[0] = title;
-		alertMessage[1] = message;
-		alertMessage[2] = yesButton;
-		alertMessage[3] = noButton;
-		androidBackgroundTask = ALERT;
+        alertMessage[0] = title;
+        alertMessage[1] = message;
+        alertMessage[2] = yesButton;
+        alertMessage[3] = noButton;
+        androidBackgroundTask = ALERT;
+        this.runOnUiThread(this);
 		return alertButtonClicked;
 	}
 
@@ -99,10 +99,10 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 
 	@Override
 	public void showToast(String message, int length) {
-		this.runOnUiThread(this);
-		alertMessage[0] = message;
-		alertMessage[1] = Integer.toString(length);
-		androidBackgroundTask = TOAST;
+        alertMessage[0] = message;
+        alertMessage[1] = Integer.toString(length);
+        androidBackgroundTask = TOAST;
+        this.runOnUiThread(this);
 	}
 
 	@Override
@@ -120,11 +120,11 @@ public class AndroidLauncher extends AndroidApplication implements AndroidInterf
 	}
 
 	@Override
-	public void setStudentScore(String studName, String chapter, int studScore) {
+	public void setStudentScore(String studName, String password, String chapter, int studScore) {
 		StudentData studentData = new StudentData(this);
 		studentData.open();
 		try {
-			studentData.setStudentScore(studName, chapter, studScore);
+			studentData.setStudentScore(studName, password, chapter, studScore);
 		} catch (SQLiteException e) {
 			e.printStackTrace();
 		} finally {
