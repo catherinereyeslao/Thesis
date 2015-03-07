@@ -207,9 +207,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 soundSprite.draw(batch);
             }
 
-            if (chapterSection == startOfQuestionSection - 1) {
+            if (chapterSection < startOfQuestionSection) {
                 startQuiz.draw(batch);
-                backToChapters.draw(batch);
+
+                if (chapterSection == startOfQuestionSection - 1)
+                    backToChapters.draw(batch);
             }
 
             if (trivia != null)
@@ -231,9 +233,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             }
 
             // If user is viewing chapter lecture
-            if (chapterSection == startOfQuestionSection - 1) {
+            if (chapterSection < startOfQuestionSection) {
                 if (startQuiz.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
+                    chapterSection = startOfQuestionSection;
                     assetNeedUpdate = true;
                     passedQuestionSection = true;
                 }

@@ -301,6 +301,11 @@ public class ChapterSelect extends AppView {
         return 0;
     }
 
+    /**
+     * Listens to screen swipe. Moves button left or right if swiped screen
+     * 20% of screen size.
+     * @param x dragged x coordinate
+     */
     public void touchDragged(int x) {
         float slide = touchX - x;
         if (slide >= screenWidth * 0.20f)
