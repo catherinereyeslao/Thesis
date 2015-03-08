@@ -29,10 +29,10 @@ public abstract class AppView implements AppFragment, Disposable {
                 return 0.7f;
             case ScreenSizeUtil.XXHDPI:
                 exitScaledY = 1.4f;
-                return 0.9f;
+                return 1.2f;
             default:
                 exitScaledY = 1.4f;
-                return 0.9f;
+                return 1.2f;
         }
     }
 }
