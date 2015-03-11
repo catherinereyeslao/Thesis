@@ -38,7 +38,7 @@ public class ChapterNine extends ChapterCore {
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 24;
-        lastChapterSection = 27;
+        lastChapterSection = 26;
 
         //sounds
         intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter9/sounds/intro1chap9.m4a"));
@@ -296,49 +296,48 @@ public class ChapterNine extends ChapterCore {
 			ifugao3S.stop();
 			sulod2S.stop();
 			break;
-		case 16:
+		/*case 16:
 			balloonSprite.setTexture(sulodBalloon2);
 			sulod1S.stop();
 			sulod2S.stop();
-			break;
-		case 17:
+			break;*/
+		case 16:
 			balloonSprite.setTexture(sulodBalloon2);
-			sulod2S.stop();
+			sulod1S.stop();
 			sulod3S.stop();
 			break;
-		case 18:
+		case 17:
 			balloonSprite.setTexture(sulodBalloon3);
 			sulod2S.stop();
 			sulod4S.stop();
 			break;
-		case 19:
-            backgroundSprite.setTexture(sulodBg);
+		case 18:
 			balloonSprite.setTexture(sulodBalloon4);
 			sulod3S.stop();
 			tboli1S.stop();
 			break;
-		case 20:
+		case 19:
 			backgroundSprite.setTexture(tboliBg);
 			balloonSprite.setTexture(tboliBalloon1);
 			sulod4S.stop();
 			tboli2S.stop();
 			break;
-		case 21:
+		case 20:
 			balloonSprite.setTexture(tboliBalloon2);
 			tboli1S.stop();
 			tboli3S.stop();
 			break;
-		case 22:
+		case 21:
 			balloonSprite.setTexture(tboliBalloon3);
 			tboli2S.stop();
 			tboli4S.stop();
 			break;
-		case 23:
+		case 22:
             backgroundSprite.setTexture(tboliBg);
 			balloonSprite.setTexture(tboliBalloon4);
 			tboli3S.stop();
 			break;
-        case 24: // Start of question
+        case 23: // Start of question
         	tboli4S.stop();
             if (!isTeacher) {
                 ansMarkerX = (screenWidth / 1.5f) - (ansMarker.getWidth() / 2);
@@ -377,7 +376,7 @@ public class ChapterNine extends ChapterCore {
 
             backgroundSprite.setTexture(question1Bg);
             break;
-        case 25:
+        case 24:
             if (!isTeacher) {
                 if (ansMarkerTouched)
                     correctAnswers++;
@@ -428,7 +427,7 @@ public class ChapterNine extends ChapterCore {
 
             backgroundSprite.setTexture(question2Bg);
             break;
-        case 26:
+        case 25:
             if (!isTeacher) {
                 if (ansMarkerTouched)
                     correctAnswers++;
@@ -479,7 +478,7 @@ public class ChapterNine extends ChapterCore {
 
             backgroundSprite.setTexture(question3Bg);
             break;
-        case 27:
+        case 26:
             displayQuizResult(CHAPTER_NINE_SCORE, 3);
             break;
 		}

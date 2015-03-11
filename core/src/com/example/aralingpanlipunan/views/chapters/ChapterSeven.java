@@ -258,6 +258,7 @@ public class ChapterSeven extends ChapterCore {
 			sapiens2S.stop();
 			break;
 		case 10:
+			sapiens3S.stop();
             backgroundSprite.setTexture(question1Bg);
             if (!isTeacher) {
                 ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;

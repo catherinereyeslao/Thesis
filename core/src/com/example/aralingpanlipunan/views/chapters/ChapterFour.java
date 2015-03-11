@@ -194,6 +194,7 @@ public class ChapterFour extends ChapterCore {
                 //pagkain.stop();
                 break;
             case 9: // Start of Game
+            	pagkain.stop();
                 correctAnswers = 0;
                 backgroundSprite.setTexture(question1Bg);
                 break;
