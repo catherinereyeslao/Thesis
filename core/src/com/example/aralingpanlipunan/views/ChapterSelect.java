@@ -91,7 +91,7 @@ public class ChapterSelect extends AppView {
         passingScores [18] = 15;
 
         background = new Texture("backgrounds/start-background.jpg");
-        chap1Texture = new Texture("buttons/chapters/b1-1.png");
+       /* chap1Texture = new Texture("buttons/chapters/b1-1.png");
         chap2Texture = new Texture("buttons/chapters/b1-2.png");
         chap3Texture = new Texture("buttons/chapters/b1-3.png");
         chap4Texture = new Texture("buttons/chapters/b2-1.png");
@@ -109,9 +109,9 @@ public class ChapterSelect extends AppView {
         chap16Texture = new Texture("buttons/chapters/b6-1.png");
         chap17Texture = new Texture("buttons/chapters/b6-2.png");
         chap18Texture = new Texture("buttons/chapters/b6-3.png");
-        chap19Texture = new Texture("buttons/chapters/b1-19.png");
+        chap19Texture = new Texture("buttons/chapters/b1-19.png");*/
         
-        /*chap1Texture = new Texture("buttons/chapter2/a1btn.png");
+        chap1Texture = new Texture("buttons/chapter2/a1btn.png");
         chap2Texture = new Texture("buttons/chapter2/a2btn.png");
         chap3Texture = new Texture("buttons/chapter2/a3btn.png");
         chap4Texture = new Texture("buttons/chapter2/a4btn.png");
@@ -129,7 +129,7 @@ public class ChapterSelect extends AppView {
         chap16Texture = new Texture("buttons/chapter2/a16btn.png");
         chap17Texture = new Texture("buttons/chapter2/a17btn.png");
         chap18Texture = new Texture("buttons/chapter2/a18btn.png");
-        chap19Texture = new Texture("buttons/chapter2/a19btn.png");*/
+        chap19Texture = new Texture("buttons/chapter2/a19btn.png");
 
         buttonSprites = new ArrayList<Sprite>();
 
