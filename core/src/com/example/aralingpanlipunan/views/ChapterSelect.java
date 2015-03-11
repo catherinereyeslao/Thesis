@@ -50,13 +50,7 @@ public class ChapterSelect extends AppView {
     @Override
     public void setUp(int screenW, int screenH) {
         screenHeight = screenH;
-
-        
-        if (loggedInUserName == null)
-            loggedInUserName = StudentProfile.getTypedName();
-        if (studentPassword == null)
-            studentPassword = StudentProfile.getTypedPassword();
-
+        screenWidth = screenW;
 
         if (userType != TEACHER) {
             if (loggedInUserName == null)
