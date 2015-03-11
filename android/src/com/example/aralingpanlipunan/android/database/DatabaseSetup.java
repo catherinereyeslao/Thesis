@@ -9,12 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseSetup extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SocialStudiesDb";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // STUDENT FIELDS
     public static final String STUDENT_TABLE = "StudentTable";
     public static final String STUDENT_ID = "_id";
     public static final String STUDENT_NAME = "student_name";
+    public static final String STUDENT_PASSWORD = "student_password";
     public static final String CHAPTER_ONE_SCORE = "chap_one_score";
     public static final String CHAPTER_TWO_SCORE = "chap_two_score";
     public static final String CHAPTER_THREE_SCORE = "chap_three_score";
@@ -44,7 +45,8 @@ public class DatabaseSetup extends SQLiteOpenHelper {
         // Create table structure for Student
         db.execSQL("CREATE TABLE " + STUDENT_TABLE + " (" +
             STUDENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            STUDENT_NAME + " TEXT UNIQUE NOT NULL, " +
+            STUDENT_NAME + " TEXT NOT NULL, " +
+            STUDENT_PASSWORD + " TEXT NOT NULL DEFAULT '', " +
             CHAPTER_ONE_SCORE + " INTEGER, " +
             CHAPTER_TWO_SCORE + " INTEGER, " +
             CHAPTER_THREE_SCORE + " INTEGER, " +

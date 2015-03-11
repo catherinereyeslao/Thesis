@@ -25,8 +25,8 @@ public class ChapterSeventeen extends ChapterCore {
 			ans5Correct;
 
 	public ChapterSeventeen(AndroidInterface androidInterface,
-			String studentName) {
-		super(androidInterface, studentName);
+			String studentName, String password) {
+		super(androidInterface, studentName, password);
 	}
 
 	public ChapterSeventeen(AndroidInterface androidInterface, boolean isTeacher) {

@@ -30,8 +30,8 @@ public class ChapterEleven extends ChapterCore {
     private short valentineElapsed = 0;
 	private boolean ans1Correct, ans2Correct;
 
-	public ChapterEleven(AndroidInterface androidInterface, String studentName) {
-		super(androidInterface, studentName);
+	public ChapterEleven(AndroidInterface androidInterface, String studentName, String password) {
+		super(androidInterface, studentName, password);
 	}
 
 	public ChapterEleven(AndroidInterface androidInterface, boolean isTeacher) {

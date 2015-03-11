@@ -12,8 +12,8 @@ public class ChapterSix extends ChapterCore {
     private Sprite ans1, ans2;
     private float ans1X, ans1Y, ans2Y;
 
-    public ChapterSix(AndroidInterface androidInterface, String studentName) {
-        super(androidInterface, studentName);
+    public ChapterSix(AndroidInterface androidInterface, String studentName, String password) {
+        super(androidInterface, studentName, password);
     }
 
     public ChapterSix(AndroidInterface androidInterface, boolean isTeacher) {

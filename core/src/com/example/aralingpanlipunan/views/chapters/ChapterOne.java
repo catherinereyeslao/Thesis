@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
+
 import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_ONE_SCORE;
 
 public class ChapterOne extends ChapterCore {
@@ -23,8 +24,8 @@ public class ChapterOne extends ChapterCore {
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
     private boolean questionStarted = false;
 
-    public ChapterOne(AndroidInterface androidInterface, String studentName) {
-        super(androidInterface, studentName);
+    public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
+        super(androidInterface, studentName, password);
     }
 
     public ChapterOne(AndroidInterface android, boolean isTeacher) {
@@ -47,9 +48,9 @@ public class ChapterOne extends ChapterCore {
             answer4Texture = new Texture("chapters/chapter1/answerkeys/answer4.jpg");
             correctAnswers = 4;
             currentRecordedScore = 5;
-        } else
-            currentRecordedScore = android.getScoresByStudent(loggedInStudent).get(0); // Get Chapter1 score from db
-
+        } else {
+            currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(0);
+        }
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         baybayin1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
         baybayin2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));

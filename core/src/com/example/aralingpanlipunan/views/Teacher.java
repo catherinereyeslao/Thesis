@@ -11,7 +11,7 @@ public class Teacher extends UserType {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-        chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, "Teacher", null);
+        chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, "Teacher", null, android);
         chapterSelect.setUp(screenW, screenH);
     }
 
@@ -48,7 +48,7 @@ public class Teacher extends UserType {
                     openChapter(selectedChapter);
                 } else if (score != 100) {
                     disposeChapter(selectedChapter);
-                    chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, null, android);
+                    chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, null, null, android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
                 }

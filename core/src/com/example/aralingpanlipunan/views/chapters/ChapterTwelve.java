@@ -15,8 +15,8 @@ public class ChapterTwelve extends ChapterCore {
     			  panitikan5S, panitikan6S, pinta1S, pinta2S, sayaw1S, sayaw2S, sayaw3S;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct, ans6Correct, ans7Correct;
 
-    public ChapterTwelve(AndroidInterface androidInterface, String studentName) {
-        super(androidInterface, studentName);
+    public ChapterTwelve(AndroidInterface androidInterface, String studentName, String password) {
+        super(androidInterface, studentName, password);
     }
 
     public ChapterTwelve(AndroidInterface androidInterface, boolean isTeacher) {

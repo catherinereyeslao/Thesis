@@ -43,13 +43,13 @@ public class Student extends UserType {
      * register the student then log in
      */
     private void registerAndLoginStudent() {
-        android.registerNewStudent(StudentProfile.getTypedName());
+        android.registerNewStudent(StudentProfile.getTypedName(), StudentProfile.getTypedPassword());
         studentProfile.dispose();
-        chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, StudentProfile.getTypedName(), android);
+        studentProfile = null;
+        chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, StudentProfile.getTypedName(), StudentProfile.getTypedPassword(), android);
         chapterSelect.setUp(screenWidth, screenHeight);
         registeringNewStudent = true;
         StudentProfile.setAlertYesTouched(false);
-        StudentProfile.clearTypedName();
         triage = CHAPTER_SELECT;
     }
 
@@ -74,7 +74,7 @@ public class Student extends UserType {
                 loggedInStudentName = studentProfile.touchDown(x, y);
                 if (loggedInStudentName != null) {
                     studentProfile.dispose();
-                    chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
+                    chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, StudentProfile.getTypedPassword(), android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
                 }
@@ -92,7 +92,7 @@ public class Student extends UserType {
                     openChapter(selectedChapter);
                 } else if (score != 100) {
                     disposeChapter(selectedChapter);
-                    chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
+                    chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, StudentProfile.getTypedName(), StudentProfile.getTypedPassword(), android);
                     chapterSelect.setUp(screenWidth, screenHeight);
                     triage = CHAPTER_SELECT;
                 }

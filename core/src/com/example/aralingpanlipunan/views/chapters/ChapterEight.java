@@ -30,8 +30,8 @@ public class ChapterEight extends ChapterCore {
 			renderedDancer = false;
 	private float characterX, characterY, animationCounter;
 
-	public ChapterEight(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterEight(AndroidInterface androidInterface, String studName, String password) {
+		super(androidInterface, studName, password);
 	}
 
 	public ChapterEight(AndroidInterface androidInterface, boolean isTeacher) {

@@ -362,7 +362,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterOne = new ChapterOne(android, true);
                 else
-                    chapterOne = new ChapterOne(android, loggedInStudentName);
+                    chapterOne = new ChapterOne(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterOne.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -370,7 +370,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterTwo = new ChapterTwo(android, true);
                 else
-                    chapterTwo = new ChapterTwo(android, loggedInStudentName);
+                    chapterTwo = new ChapterTwo(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterTwo.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -378,7 +378,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterThree = new ChapterThree(android, true);
                 else
-                    chapterThree = new ChapterThree(android, loggedInStudentName);
+                    chapterThree = new ChapterThree(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterThree.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -386,7 +386,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterFour = new ChapterFour(android, true);
                 else
-                    chapterFour = new ChapterFour(android, loggedInStudentName);
+                    chapterFour = new ChapterFour(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterFour.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -394,7 +394,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterFive = new ChapterFive(android, true);
                 else
-                    chapterFive = new ChapterFive(android, loggedInStudentName);
+                    chapterFive = new ChapterFive(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterFive.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -402,7 +402,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterSix = new ChapterSix(android, true);
                 else
-                    chapterSix = new ChapterSix(android, loggedInStudentName);
+                    chapterSix = new ChapterSix(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterSix.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -410,7 +410,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterSeven = new ChapterSeven(android, true);
                 else
-                    chapterSeven = new ChapterSeven(android, loggedInStudentName);
+                    chapterSeven = new ChapterSeven(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterSeven.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -418,7 +418,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterEight = new ChapterEight(android, true);
                 else
-                    chapterEight = new ChapterEight(android, loggedInStudentName);
+                    chapterEight = new ChapterEight(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterEight.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -426,7 +426,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterNine = new ChapterNine(android, true);
                 else
-                    chapterNine = new ChapterNine(android, loggedInStudentName);
+                    chapterNine = new ChapterNine(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterNine.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -434,7 +434,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterTen = new ChapterTen(android, true);
                 else
-                    chapterTen = new ChapterTen(android, loggedInStudentName);
+                    chapterTen = new ChapterTen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterTen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -442,7 +442,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterEleven = new ChapterEleven(android, true);
                 else
-                    chapterEleven = new ChapterEleven(android, loggedInStudentName);
+                    chapterEleven = new ChapterEleven(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterEleven.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -450,7 +450,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterTwelve = new ChapterTwelve(android, true);
                 else
-                    chapterTwelve = new ChapterTwelve(android, loggedInStudentName);
+                    chapterTwelve = new ChapterTwelve(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterTwelve.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -458,7 +458,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterThirteen = new ChapterThirteen(android, true);
                 else
-                    chapterThirteen = new ChapterThirteen(android, loggedInStudentName);
+                    chapterThirteen = new ChapterThirteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterThirteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -467,7 +467,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterFourteen = new ChapterFourteen(android, true);
                 else
-                    chapterFourteen = new ChapterFourteen(android, loggedInStudentName);
+                    chapterFourteen = new ChapterFourteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterFourteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -475,7 +475,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterFifteen= new ChapterFifteen(android, true);
                 else
-                    chapterFifteen= new ChapterFifteen(android, loggedInStudentName);
+                    chapterFifteen= new ChapterFifteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterFifteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -483,7 +483,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterSixteen= new ChapterSixteen(android, true);
                 else
-                    chapterSixteen= new ChapterSixteen(android, loggedInStudentName);
+                    chapterSixteen= new ChapterSixteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterSixteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -491,7 +491,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterSeventeen= new ChapterSeventeen(android, true);
                 else
-                    chapterSeventeen= new ChapterSeventeen(android, loggedInStudentName);
+                    chapterSeventeen= new ChapterSeventeen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterSeventeen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -499,7 +499,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterEighteen= new ChapterEighteen(android, true);
                 else
-                    chapterEighteen= new ChapterEighteen(android, loggedInStudentName);
+                    chapterEighteen= new ChapterEighteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterEighteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -507,7 +507,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
                 if (isTeacher)
                     chapterNineteen= new ChapterNineteen(android, true);
                 else
-                    chapterNineteen= new ChapterNineteen(android, loggedInStudentName);
+                    chapterNineteen= new ChapterNineteen(android, loggedInStudentName, StudentProfile.getTypedPassword());
                 chapterNineteen.setUp(screenWidth, screenHeight);
                 triage = CHAPTER_VIEW;
                 break;
@@ -660,9 +660,9 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
         }
         if (backPressed) {
             if (isTeacher)
-                chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, loggedInStudentName, android);
+                chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, loggedInStudentName, StudentProfile.getTypedPassword(), android);
             else
-                chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, android);
+                chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, StudentProfile.getTypedPassword(), android);
             chapterSelect.setUp(screenWidth, screenHeight);
             triage = CHAPTER_SELECT;
             return 0;

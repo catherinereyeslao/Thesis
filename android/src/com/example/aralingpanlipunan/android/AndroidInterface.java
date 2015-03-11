@@ -14,23 +14,26 @@ public interface AndroidInterface {
     /**
      * Check the database if a given student name is registered
      * @param studentName name of the student to search
+     * @param password password of the student to search
      * @return boolean
      */
-    public boolean studentExists(String studentName);
+    public boolean studentExists(String studentName, String password);
 
     /**
      * Register a new Student in the database
      * @param studentName name of the student to register
+     * @param password password of the newly registered student
      * @return boolean to indicate success or failure
      */
-    public boolean registerNewStudent(String studentName);
+    public boolean registerNewStudent(String studentName, String password);
 
     /**
      * Retrieve the record of a student
      * @param studName name of student
+     * @param password password of the student
      * @return ArrayList of scores for each 19 chapters
      */
-    public ArrayList<Integer> getScoresByStudent(String studName);
+    public ArrayList<Integer> getScoresByStudent(String studName, String password);
 
     /**
      * Displays an Alert dialog with yes / no buttons
@@ -52,10 +55,11 @@ public interface AndroidInterface {
     /**
      * Update a student's chapter score
      * @param studName Name of the student to update the score
+     * @param password Password of the student to update the score
      * @param chapter Chapter number to update
      * @param studScore The new score
      */
-    public void setStudentScore(String studName, String chapter, int studScore);
+    public void setStudentScore(String studName, String password, String chapter, int studScore);
 
     /**
      * Opens a new Android Video Activity

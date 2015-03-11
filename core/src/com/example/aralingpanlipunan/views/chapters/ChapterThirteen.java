@@ -25,8 +25,8 @@ public class ChapterThirteen extends ChapterCore {
     private Sprite ans1A, ans1B, ans1C, ans1D, ans1E, ans2A, ans2B, ans2C, ans2D, ans2E;
     private boolean ans1Correct, ans2Correct;
 
-	public ChapterThirteen(AndroidInterface androidInterface, String studentName) {
-		super(androidInterface, studentName);
+	public ChapterThirteen(AndroidInterface androidInterface, String studentName, String password) {
+		super(androidInterface, studentName, password);
 	}
 
 	public ChapterThirteen(AndroidInterface androidInterface, boolean isTeacher) {

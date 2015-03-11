@@ -25,8 +25,8 @@ public class ChapterFive extends ChapterCore {
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
 
 	
-	public ChapterFive(AndroidInterface androidInterface, String studName) {
-		super(androidInterface, studName);
+	public ChapterFive(AndroidInterface androidInterface, String studName, String password) {
+		super(androidInterface, studName, password);
 	}
 
     public ChapterFive(AndroidInterface androidInterface, boolean isTeacher) {
