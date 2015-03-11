@@ -660,7 +660,7 @@ abstract class UserType extends AppView implements AppFragment, Disposable {
         }
         if (backPressed) {
             if (isTeacher)
-                chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, loggedInStudentName, StudentProfile.getTypedPassword(), android);
+                chapterSelect = new ChapterSelect(ChapterSelect.TEACHER, null, null, android);
             else
                 chapterSelect = new ChapterSelect(ChapterSelect.STUDENT, loggedInStudentName, StudentProfile.getTypedPassword(), android);
             chapterSelect.setUp(screenWidth, screenHeight);

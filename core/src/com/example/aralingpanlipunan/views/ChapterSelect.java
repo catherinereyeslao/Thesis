@@ -26,8 +26,11 @@ public class ChapterSelect extends AppView {
     private int [] passingScores;
 
     /**
-     * Specify the user type, either STUDENT or TEACHER.
-     * @param user type of user viewing this chapter
+     * The chapter select screen.
+     * @param user Select either {@link #TEACHER} or {@link #STUDENT}
+     * @param userName username of student. Null if teacher
+     * @param password password of student. Null if teacher
+     * @param androidInterface {@link com.example.aralingpanlipunan.android.AndroidInterface}
      */
     public ChapterSelect(int user, String userName, String password, AndroidInterface androidInterface) {
         switch (user) {
@@ -47,12 +50,21 @@ public class ChapterSelect extends AppView {
     @Override
     public void setUp(int screenW, int screenH) {
         screenHeight = screenH;
-        screenWidth = screenW;
+
         
         if (loggedInUserName == null)
             loggedInUserName = StudentProfile.getTypedName();
         if (studentPassword == null)
             studentPassword = StudentProfile.getTypedPassword();
+
+
+        if (userType != TEACHER) {
+            if (loggedInUserName == null)
+                loggedInUserName = StudentProfile.getTypedName();
+            if (studentPassword == null)
+                studentPassword = StudentProfile.getTypedPassword();
+        }
+
 
         chapterScores = android.getScoresByStudent(loggedInUserName, studentPassword);
 
