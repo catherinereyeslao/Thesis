@@ -65,10 +65,12 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
 
-        if (loggedInStudent == null)
-            loggedInStudent = StudentProfile.getTypedName();
-        if (studentPassword == null)
-            studentPassword = StudentProfile.getTypedPassword();
+        if (!isTeacher) {
+            if (loggedInStudent == null)
+                loggedInStudent = StudentProfile.getTypedName();
+            if (studentPassword == null)
+                studentPassword = StudentProfile.getTypedPassword();
+        }
 
         backgroundSprite = new Sprite(introBalloonTexture);
         backgroundSprite.setSize(screenW, screenH);
