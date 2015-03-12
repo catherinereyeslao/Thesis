@@ -307,11 +307,7 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 					android.exit();
 					break;
 			}
-		} else if (triage == STUDENT) {
-			student.touchUp();
-		} else if (triage == TEACHER) {
-            teacher.touchUp();
-        }
+		}
 		return false;
 	}
 
