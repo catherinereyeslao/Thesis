@@ -28,13 +28,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected String loggedInStudent, studentPassword;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
-    protected boolean assetNeedUpdate, lectureStarted, isDragging, questionIsDraggable, viewingHelp, isTeacher;
+    protected boolean assetNeedUpdate, lectureStarted, viewingHelp, isTeacher;
     protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg, retakeTexture, nextChapTexture, nextTexture;
     protected BitmapFont question;
     protected int currentRecordedScore = 0;
-    private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture;
+    private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture, rightArrowTexture, leftArrowTexture;
+    private Sprite nextSlide, prevSlide;
     private Help help;
     private Trivia trivia;
     private boolean backHelp, passedQuestionSection;
@@ -57,6 +58,14 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+
+        if (!isTeacher) {
+            if (loggedInStudent == null)
+                loggedInStudent = StudentProfile.getTypedName();
+            if (studentPassword == null)
+                studentPassword = StudentProfile.getTypedPassword();
+        }
+
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         Texture introBalloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
         helpTexture = new Texture("buttons/help.png");
@@ -66,14 +75,30 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
+<<<<<<< HEAD
         
+=======
+        rightArrowTexture = new Texture("help/next.png");
+        leftArrowTexture = new Texture("help/prev.png");
 
-        if (!isTeacher) {
-            if (loggedInStudent == null)
-                loggedInStudent = StudentProfile.getTypedName();
-            if (studentPassword == null)
-                studentPassword = StudentProfile.getTypedPassword();
-        }
+        nextSlide = new Sprite(rightArrowTexture);
+        nextSlide.setSize(nextSlide.getWidth() * getButtonScale() / 2, nextSlide.getHeight() * getButtonScale() / 2);
+        nextSlide.setBounds(
+                (screenWidth - nextSlide.getWidth()) - (nextSlide.getWidth() / 10),
+                (screenHeight / 1.7f) - (nextSlide.getHeight() / 2),
+                nextSlide.getWidth(),
+                nextSlide.getHeight()
+        );
+>>>>>>> 3446ac4ee97e0eb9ef48ec0dd1ebbd426d453a81
+
+        prevSlide = new Sprite(leftArrowTexture);
+        prevSlide.setSize(nextSlide.getWidth(), nextSlide.getHeight());
+        prevSlide.setBounds(
+                prevSlide.getWidth() / 10,
+                (screenHeight / 1.7f) - (prevSlide.getHeight() / 2),
+                prevSlide.getWidth(),
+                prevSlide.getHeight()
+        );
 
         backgroundSprite = new Sprite(introBalloonTexture);
         backgroundSprite.setSize(screenW, screenH);
@@ -137,6 +162,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
 
     @Override
     public void dispose() {
+        rightArrowTexture.dispose();
+        leftArrowTexture.dispose();
         helpTexture.dispose();
         soundTexture.dispose();
         startQuizTexture.dispose();
@@ -189,7 +216,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * Put this in the chapter's draw method to put the animating girl and balloon
      * @param batch Batch
      */
-    protected void  renderSharedAssets(Batch batch) {
+    protected void renderSharedAssets(Batch batch) {
         if (viewingHelp) {
             help.display(batch);
         } else {
@@ -210,6 +237,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 girl.draw(batch);
                 helpSprite.draw(batch);
                 soundSprite.draw(batch);
+            }
+
+            if (isTeacher || !passedQuestionSection) {
+                nextSlide.draw(batch);
+                prevSlide.draw(batch);
             }
 
             if (chapterSection < startOfQuestionSection) {
@@ -235,7 +267,10 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 trivia.setDone();
                 trivia.dispose();
                 trivia = null;
+                return 100;
             }
+
+            chapterLectureNavigator(x, y);
 
             // If user is viewing chapter lecture
             if (chapterSection < startOfQuestionSection) {
@@ -266,43 +301,28 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     }
 
     /**
-     * Detects touch drag event so we'll move to next balloon
-     * @param x The x coordinate of the finger's current position
+     * Set the listener for left & right arrows
+     * @param x X coordinate of touched screen
+     * @param y Y coordinate of touched screen
      */
-    public void touchDragged(int x) {
-        float slide = touchX - x;
-        if (!isTeacher) {
-            if ((chapterSection < startOfQuestionSection || questionIsDraggable) && lectureStarted && !isDragging) {
-                if (((chapterSection > 0 && chapterSection < startOfQuestionSection) || (questionIsDraggable && chapterSection > startOfQuestionSection)) && slide <= screenWidth * -0.20f) {
-                    chapterSection--;
-                    isDragging = true;
-                    assetNeedUpdate = true;
-                } else if ((questionIsDraggable || chapterSection < startOfQuestionSection - 1) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
-                    if (chapterSection != startOfQuestionSection - 1) {
-                        chapterSection++;
-                        isDragging = true;
-                        assetNeedUpdate = true;
-                    }
-                }
-            }
-        } else if (!isDragging) {
-            if ((!passedQuestionSection || chapterSection > startOfQuestionSection) && chapterSection > 0 && slide <= screenWidth * -0.20f) {
+    private void chapterLectureNavigator(float x, float y) {
+        if (isTeacher && passedQuestionSection) {
+            if (chapterSection > startOfQuestionSection && prevSlide.getBoundingRectangle().contains(x, y)) {
                 chapterSection--;
-                isDragging = true;
                 assetNeedUpdate = true;
-            } else if ((chapterSection < lastChapterSection) && slide >= screenWidth * 0.20f && chapterSection < lastChapterSection) {
-                if (chapterSection != startOfQuestionSection - 1) {
-                    chapterSection++;
-                    isDragging = true;
-                    assetNeedUpdate = true;
-                }
+            } else if (chapterSection < lastChapterSection && nextSlide.getBoundingRectangle().contains(x, y)) {
+                chapterSection++;
+                assetNeedUpdate = true;
+            }
+        } else if (!passedQuestionSection && lectureStarted) {
+            if (chapterSection < startOfQuestionSection - 1 && nextSlide.getBoundingRectangle().contains(x, y)) {
+                chapterSection++;
+                assetNeedUpdate = true;
+            } else if (chapterSection > 0 && prevSlide.getBoundingRectangle().contains(x, y)) {
+                chapterSection--;
+                assetNeedUpdate = true;
             }
         }
-    }
-
-    public void touchUp() {
-        touchX = 0;
-        isDragging = false;
     }
 
     /**

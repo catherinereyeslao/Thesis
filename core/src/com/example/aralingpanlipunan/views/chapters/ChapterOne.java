@@ -461,10 +461,8 @@ public class ChapterOne extends ChapterCore {
      */
     private void chapter1Display(Batch batch) {
         backgroundSprite.draw(batch);
-
-        if (chapterSection < startOfQuestionSection) {
-            renderSharedAssets(batch);
-        } else if (chapterSection >= startOfQuestionSection && chapterSection < 13 && !isTeacher) {
+        renderSharedAssets(batch);
+        if (chapterSection >= startOfQuestionSection && chapterSection < 13 && !isTeacher) {
             question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
             answer1.draw(batch, KABUNDUKAN, answerX, answerY);
             answer2.draw(batch, BUKIRIN, answer2X, answer2Y);
