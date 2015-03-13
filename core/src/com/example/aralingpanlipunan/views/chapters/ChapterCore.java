@@ -75,9 +75,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
-<<<<<<< HEAD
-        
-=======
+
         rightArrowTexture = new Texture("help/next.png");
         leftArrowTexture = new Texture("help/prev.png");
 
@@ -89,7 +87,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 nextSlide.getWidth(),
                 nextSlide.getHeight()
         );
->>>>>>> 3446ac4ee97e0eb9ef48ec0dd1ebbd426d453a81
+
 
         prevSlide = new Sprite(leftArrowTexture);
         prevSlide.setSize(nextSlide.getWidth(), nextSlide.getHeight());
