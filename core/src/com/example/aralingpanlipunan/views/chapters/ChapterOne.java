@@ -23,8 +23,6 @@ public class ChapterOne extends ChapterCore {
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
     private boolean questionStarted = false;
-    private ChapterCore cc;
-    
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -41,6 +39,8 @@ public class ChapterOne extends ChapterCore {
         screenHeight = screenH;
         startOfQuestionSection = 9;
         lastChapterSection = 13;
+
+        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
 
         // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
@@ -153,6 +153,8 @@ public class ChapterOne extends ChapterCore {
     @Override
     public void dispose() {
         super.dispose();
+        bgMusic.stop();
+        baybayinBgS.stop();
         baybayin1sound.stop();
         baybayin2sound.stop();
         baybayin3sound.stop();
@@ -190,6 +192,8 @@ public class ChapterOne extends ChapterCore {
         lungsodBg.dispose();
         backToChapterTexture.dispose();
         startQuizTexture.dispose();
+        bgMusic.dispose();
+        baybayinBgS.dispose();
     }
 
     /**
