@@ -18,11 +18,13 @@ public class ChapterOne extends ChapterCore {
     private static final String BAYBAYIN = "d. Baybayin";
 
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
-    private Music baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
+    private Music bgMusic, baybayinBgS, baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
     private boolean questionStarted = false;
+    private ChapterCore cc;
+    
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -52,6 +54,9 @@ public class ChapterOne extends ChapterCore {
             currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(0);
         }
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        baybayinBgS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayinBg.mp3"));
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
+        
         baybayin1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
         baybayin2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));
         baybayin3sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin3.mp3"));
@@ -70,6 +75,8 @@ public class ChapterOne extends ChapterCore {
         startQuizTexture = new Texture("buttons/menu/start.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
 
+        
+        
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
         balloonSprite.setTexture(intro1balloonTexture);
@@ -133,6 +140,8 @@ public class ChapterOne extends ChapterCore {
         bukid2Texture = new Texture("chapters/chapter1/balloons/bukid2.png");
         lungsod1Texture = new Texture("chapters/chapter1/balloons/lungsod1.png");
         lungsod2Texture = new Texture("chapters/chapter1/balloons/lungsod2.png");
+        
+        
     }
 
     @Override

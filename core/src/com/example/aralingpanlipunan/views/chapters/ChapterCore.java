@@ -2,6 +2,7 @@ package com.example.aralingpanlipunan.views.chapters;
 
 import android.database.sqlite.SQLiteException;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -37,6 +38,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     private Help help;
     private Trivia trivia;
     private boolean backHelp, passedQuestionSection;
+   
 
     public ChapterCore(AndroidInterface androidInterface, String studentName, String password) {
         this.android = androidInterface;
@@ -64,6 +66,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
+        
 
         if (!isTeacher) {
             if (loggedInStudent == null)
@@ -79,9 +82,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
         girlAnimation = new Animation(0.25f, girlAtlas.getRegions());
         girl = new Sprite(girlAnimation.getKeyFrames()[0]);
-        girl.setSize(girl.getWidth() * getButtonScale() * 1.3f, girl.getHeight() * getButtonScale() * 1.3f);
-        final float girlX = (screenW / 4) * -1;
-        final float girlY = (screenH / 2.8f) - (girl.getHeight() / 2);
+        girl.setSize(girl.getWidth() * getButtonScale() * 1.1f, girl.getHeight() * getButtonScale() * 1.1f);
+        final float girlX = (screenW / 6) * -1;
+        final float girlY = (screenH / 2.4f) - (girl.getHeight() / 2);
         girl.setPosition(girlX, girlY);
         girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
 
@@ -198,7 +201,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 // Only animate girl & display balloon if trivia is not displayed
                 if (trivia == null || !trivia.isDisplayed()) {
                     animationCounter += Gdx.graphics.getDeltaTime();
-                    balloonSprite.draw(batch);
+                    //balloonSprite.draw(batch);
                 }
                 girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
             }

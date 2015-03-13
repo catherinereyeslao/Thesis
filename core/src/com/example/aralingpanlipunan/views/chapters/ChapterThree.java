@@ -11,12 +11,12 @@ import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterThree extends ChapterCore {
 
-	private Texture introBg, introBalloon, alituntunin1Bg, alituntunin2Bg, alituntunin3Bg, alituntunin4Bg,
+	private Texture titleBg, introBg, introBalloon, alituntunin1Bg, alituntunin2Bg, alituntunin3Bg, alituntunin4Bg,
 					alituntunin5Bg, gameBg,
 					a1B1, a1B2, a1B3, a2B1, a2B2, a3B1, a3B2, a3B3, a4B1, a4B2, a4B3, a5B1, a5B2, a5B3, 
 					answerMarker, submitTexture;
 	private Sprite  ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, submit;
-	private Music introS, a1S1, a1S2, a1S3, a2S1, a2S2, a3S1, a3S2, a3S3, a4S1, a4S2, a4S3, a5S1, a5S2, a5S3;
+	private Music bgMusic, introS, a1s, a2s, a3s, a4s, a5s;/*a1S1, a1S2, a1S3, a2S1, a2S2, a3S1, a3S2, a3S3, a4S1, a4S2, a4S3, a5S1, a5S2, a5S3;*/
 	boolean ans1Touched, ans2Touched, ans3Touched, ans4Touched, ans5Touched, ans6Touched, ans7Touched, ans8Touched, ans9Touched = false;
 
 	public ChapterThree(AndroidInterface androidInterface, String studName, String password) {
@@ -31,13 +31,15 @@ public class ChapterThree extends ChapterCore {
 	public void setUp(int screenW, int screenH){
 
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 15;
-		lastChapterSection = 16;
+		startOfQuestionSection = 7;
+		lastChapterSection = 8;
         if (isTeacher)
             currentRecordedScore = 100;
         else
 		    currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(2); // Get Chapter 3 current score
 
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
+        titleBg = new Texture("titlepages/chapter3.png");
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");
 		introBalloon = new Texture("chapters/chapter3/balloons/Intro.png");
@@ -51,7 +53,7 @@ public class ChapterThree extends ChapterCore {
             gameBg = new Texture("chapters/chapter3/answerkeys/answer.jpg");
         else
 		    gameBg = new Texture("chapters/chapter3/backgrounds/gameBg.jpg");
-		a1B1 = new Texture("chapters/chapter3/balloons/Alituntunin1.png");
+		/*a1B1 = new Texture("chapters/chapter3/balloons/Alituntunin1.png");
 		a1B2 = new Texture("chapters/chapter3/balloons/Alituntunin1.1.png");
 		a1B3 = new Texture("chapters/chapter3/balloons/Alituntunin1.2.png");
 		a2B1 = new Texture("chapters/chapter3/balloons/Alituntunin2.png");
@@ -64,9 +66,14 @@ public class ChapterThree extends ChapterCore {
 		a4B3 = new Texture("chapters/chapter3/balloons/Alituntunin4.2.png");
 		a5B1 = new Texture("chapters/chapter3/balloons/Alituntunin5.png");
 		a5B2 = new Texture("chapters/chapter3/balloons/Alituntunin5.1.png");
-		a5B3 = new Texture("chapters/chapter3/balloons/Alituntunin5.2.png");
+		a5B3 = new Texture("chapters/chapter3/balloons/Alituntunin5.2.png");*/
 		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/intro.amr"));
-		a1S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin1.amr"));
+		a1s = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sound2/alin1.mp3"));
+		a2s = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sound2/alin2.mp3"));
+		a3s = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sound2/alin3.mp3"));
+		a4s = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sound2/alin4.mp3"));
+		a5s = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sound2/alintuntunin5.mp3"));
+		/*a1S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin1.amr"));
 		a1S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin11.amr"));
 		a1S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin12.amr"));
 		a2S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin2.amr"));
@@ -79,7 +86,7 @@ public class ChapterThree extends ChapterCore {
 		a4S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin42.amr"));
 		a5S1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alintuntunin5.amr"));
 		a5S2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin51.amr"));
-		a5S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));
+		a5S3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter3/sounds/alin52.amr"));*/
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon);
         setUpGame();
@@ -89,7 +96,7 @@ public class ChapterThree extends ChapterCore {
 	public void display(Batch batch){
 		if (assetNeedUpdate) assetManager();
 		renderSharedAssets(batch);
-		if (!isTeacher && chapterSection == 15) {
+		if (!isTeacher && chapterSection == 7) {
 			ans1.draw(batch);
 			ans2.draw(batch);
 			ans3.draw(batch);
@@ -101,7 +108,7 @@ public class ChapterThree extends ChapterCore {
 			ans9.draw(batch);
 			submit.draw(batch);
 		}
-		if (chapterSection == 16) {
+		if (chapterSection == 8) {
             if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
 			backToChapters.draw(batch);
 			startQuiz.draw(batch);
@@ -111,97 +118,57 @@ public class ChapterThree extends ChapterCore {
 	private void assetManager(){
 		switch (chapterSection) {
 			case 0:
-				backgroundSprite.setTexture(introBg);
-				balloonSprite.setTexture(introBalloon);
+				backgroundSprite.setTexture(titleBg);
+				bgMusic.play();
 				introS.stop();
-				a1S1.stop();
 				break;
 			case 1:
-				backgroundSprite.setTexture(alituntunin1Bg);
-				balloonSprite.setTexture(a1B1);
-				introS.stop();
-				a1S2.stop();
+				backgroundSprite.setTexture(introBg);
+				bgMusic.stop();
+				introS.play();
+				a1s.stop();
 				break;
 			case 2:
-				balloonSprite.setTexture(a1B2);
-				a1S1.stop();
-				a1S3.stop();
+				backgroundSprite.setTexture(alituntunin1Bg);
+				introS.stop();
+				a1s.play();
+				a2s.stop();
 				break;
 			case 3:
-				backgroundSprite.setTexture(alituntunin1Bg);
-				balloonSprite.setTexture(a1B3);
-				a1S2.stop();
-				a2S1.stop();
+				backgroundSprite.setTexture(alituntunin2Bg);
+				a1s.stop();
+				a2s.play();
+				a3s.stop();
 				break;
 			case 4:
-				backgroundSprite.setTexture(alituntunin2Bg);
-				balloonSprite.setTexture(a2B1);
-				a1S3.stop();
-				a2S2.stop();
+				backgroundSprite.setTexture(alituntunin3Bg);
+				a2s.stop();
+				a3s.play();
+				a4s.stop();
 				break;
 			case 5:
-				backgroundSprite.setTexture(alituntunin2Bg);
-				balloonSprite.setTexture(a2B2);
-				a2S1.stop();
+				backgroundSprite.setTexture(alituntunin4Bg);
+				a3s.stop();
+				a4s.play();
+				a5s.stop();
 				break;
 			case 6:
-				backgroundSprite.setTexture(alituntunin3Bg);
-				balloonSprite.setTexture(a3B1);
-				a2S2.stop();
-				a3S2.stop();
-				break;
-			case 7:
-				balloonSprite.setTexture(a3B2);
-				a3S1.stop();
-				a3S3.stop();
-				break;
-			case 8:
-				backgroundSprite.setTexture(alituntunin3Bg);
-				balloonSprite.setTexture(a3B3);
-				a3S2.stop();
-				a4S1.stop();
-				break;
-			case 9:
-				backgroundSprite.setTexture(alituntunin4Bg);
-				balloonSprite.setTexture(a4B1);
-				a3S3.stop();
-				a4S2.stop();
-				break;
-			case 10:
-				balloonSprite.setTexture(a4B2);
-				a4S1.stop();
-				a4S3.stop();
-				break;
-				
-			case 11:
-				backgroundSprite.setTexture(alituntunin4Bg);
-				balloonSprite.setTexture(a4B3);
-				a4S2.stop();
-				a5S1.stop();
-				break;
-			case 12:
 				backgroundSprite.setTexture(alituntunin5Bg);
-				balloonSprite.setTexture(a5B1);
-				a4S3.stop();
-				a5S2.stop();
-				break;
-			case 13:
-				balloonSprite.setTexture(a5B2);
-				a5S1.stop();
-				a5S3.stop();
-				break;
-			case 14:
-                backgroundSprite.setTexture(alituntunin5Bg);
-				balloonSprite.setTexture(a5B3);
-				a5S2.stop();
-				break;
-			case 15: // Start of game
+				a4s.stop();
+				a5s.play();
+			case 7: // Start of game
+				bgMusic.stop();
+				a1s.stop();
+				a2s.stop();
+				a3s.stop();
+				a4s.stop();
+				a5s.stop();
 				correctAnswers = 0;
 				backgroundSprite.setTexture(gameBg);
 				backToChapters.setBounds(0, 0, 0, 0);
-				a5S3.stop();
+				a5s.stop();
 				break;
-			case 16:
+			case 8:
 				if (isTeacher) {
                     correctAnswers = 6;
                 } else {
@@ -305,7 +272,7 @@ public class ChapterThree extends ChapterCore {
 		if (chapterSection == lastChapterSection) {
 			return displayLastSectionButtons(3, 6, x, y);
 		}
-		if (!isTeacher && chapterSection == 15) {
+		if (!isTeacher && chapterSection == 7) {
 			if (ans1.getBoundingRectangle().contains(x, y)) {
 				ans1Touched = !ans1Touched;
 				ans1.setAlpha(ans1Touched ? 0.8f : 0);
@@ -354,88 +321,47 @@ public class ChapterThree extends ChapterCore {
 	}
 
 	private void playSoundForSection() {
-		switch (chapterSection) {
-        case 0:
-            introS.stop();
-            introS.play();
-            break;
-        case 1:
-        	a1S1.stop();
-        	a1S1.play();
-        	break;
-        case 2:
-    		a1S2.stop();
-    		a1S2.play();
-    		break;
-        case 3:
-    		a1S3.stop();
-    		a1S3.play();
-    		break;
-        case 4:
-    		a2S1.stop();
-    		a2S1.play();
-    		break;
-        case 5:
-    		a2S2.stop();
-    		a2S2.play();
-    		break;
-        case 6:
-    		a3S1.stop();
-    		a3S1.play();
-    		break;
-        case 7:
-    		a3S2.stop();
-    		a3S2.play();
-    		break;
-        case 8:
-    		a3S3.stop();
-    		a3S3.play();
-    		break;
-        case 9:
-    		a4S1.stop();
-    		a4S1.play();
-    		break;
-        case 10:
-    		a4S2.stop();
-    		a4S2.play();
-    		break;
-        case 11:
-    		a4S3.stop();
-    		a4S3.play();
-    		break;
-        case 12:
-    		a5S1.stop();
-    		a5S1.play();
-    		break;
-        case 13:
-    		a5S2.stop();
-    		a5S2.play();
-    		break;
-        case 14:
-    		a5S3.stop();
-    		a5S3.play();
-    		break;
-		}
+		/*switch (chapterSection) {
+		case 0:
+			bgMusic.stop();
+			bgMusic.play();
+			break;
+		case 1:
+			introS.stop();
+			introS.play();
+			break;
+		case 2:
+			a1s.stop();
+			a1s.play();
+			break;
+		case 3:
+			a2s.stop();
+			a2s.play();
+			break;
+		case 4:
+			a3s.stop();
+			a3s.play();
+			break;
+		case 5:
+			a4s.stop();
+			a4s.play();
+			break;
+		case 6:
+			a5s.stop();
+			a5s.play();
+		}*/
 	}
 
 	@Override
 	public void dispose(){
 		super.dispose();
 		introS.stop();
-		a1S1.stop();
-		a1S2.stop();
-		a1S3.stop();
-		a2S1.stop();
-		a2S2.stop();
-		a3S1.stop();
-		a3S2.stop();
-		a3S3.stop();
-		a4S1.stop();
-		a4S2.stop();
-		a4S3.stop();
-		a5S1.stop();
-		a5S2.stop();
-		a5S3.stop();
+		bgMusic.stop();
+		a1s.stop();
+		a2s.stop();
+		a3s.stop();
+		a4s.stop();
+		a5s.stop();
 		introBg.dispose();
 		introBalloon.dispose();
 		alituntunin1Bg.dispose();
@@ -446,34 +372,26 @@ public class ChapterThree extends ChapterCore {
 		gameBg.dispose();
 		answerMarker.dispose();
 		submitTexture.dispose();
-		a1B1.dispose();
-		a1B2.dispose();
-		a2B2.dispose();
-		a2B1.dispose();
-		a3B1.dispose();
-		a3B2.dispose();
-		a3B3.dispose();
-		a4B1.dispose();
-		a4B2.dispose();
-		a4B3.dispose();
-		a5B1.dispose();
-		a5B2.dispose();
-		a5B3.dispose();
+//		a1B1.dispose();
+//		a1B2.dispose();
+//		a2B2.dispose();
+//		a2B1.dispose();
+//		a3B1.dispose();
+//		a3B2.dispose();
+//		a3B3.dispose();
+//		a4B1.dispose();
+//		a4B2.dispose();
+//		a4B3.dispose();
+//		a5B1.dispose();
+//		a5B2.dispose();
+//		a5B3.dispose();
 		introS.dispose();
-		a1S1.dispose();
-		a1S2.dispose();
-		a1S3.dispose();
-		a2S1.dispose();
-		a2S2.dispose();
-		a3S1.dispose();
-		a3S2.dispose();
-		a3S3.dispose();
-		a4S1.dispose();
-		a4S2.dispose();
-		a4S3.dispose();
-		a5S1.dispose();
-		a5S2.dispose();
-		a5S3.dispose();
+		bgMusic.dispose();
+		a1s.dispose();
+		a2s.dispose();
+		a3s.dispose();
+		a4s.dispose();
+		a5s.dispose();
 	}
 
 	private int getAnswerSpacing() {
