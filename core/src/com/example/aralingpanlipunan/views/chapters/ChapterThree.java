@@ -31,14 +31,17 @@ public class ChapterThree extends ChapterCore {
 	public void setUp(int screenW, int screenH){
 
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 7;
-		lastChapterSection = 8;
+		startOfQuestionSection = 6;
+		lastChapterSection = 7;
         if (isTeacher)
             currentRecordedScore = 100;
         else
 		    currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(2); // Get Chapter 3 current score
 
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
+        
+        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        
+        
         titleBg = new Texture("titlepages/chapter3.png");
 		introBg = new Texture("chapters/chapter3/backgrounds/IntroForChapter3.png");
 		submitTexture = new Texture("buttons/enter.png");
@@ -96,7 +99,7 @@ public class ChapterThree extends ChapterCore {
 	public void display(Batch batch){
 		if (assetNeedUpdate) assetManager();
 		renderSharedAssets(batch);
-		if (!isTeacher && chapterSection == 7) {
+		if (!isTeacher && chapterSection == 6) {
 			ans1.draw(batch);
 			ans2.draw(batch);
 			ans3.draw(batch);
@@ -108,7 +111,7 @@ public class ChapterThree extends ChapterCore {
 			ans9.draw(batch);
 			submit.draw(batch);
 		}
-		if (chapterSection == 8) {
+		if (chapterSection == 7) {
             if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
 			backToChapters.draw(batch);
 			startQuiz.draw(batch);
@@ -118,46 +121,39 @@ public class ChapterThree extends ChapterCore {
 	private void assetManager(){
 		switch (chapterSection) {
 			case 0:
-				backgroundSprite.setTexture(titleBg);
-				bgMusic.play();
-				introS.stop();
-				break;
-			case 1:
 				backgroundSprite.setTexture(introBg);
-				bgMusic.stop();
 				introS.play();
 				a1s.stop();
 				break;
-			case 2:
+			case 1:
 				backgroundSprite.setTexture(alituntunin1Bg);
 				introS.stop();
 				a1s.play();
 				a2s.stop();
 				break;
-			case 3:
+			case 2:
 				backgroundSprite.setTexture(alituntunin2Bg);
 				a1s.stop();
 				a2s.play();
 				a3s.stop();
 				break;
-			case 4:
+			case 3:
 				backgroundSprite.setTexture(alituntunin3Bg);
 				a2s.stop();
 				a3s.play();
 				a4s.stop();
 				break;
-			case 5:
+			case 4:
 				backgroundSprite.setTexture(alituntunin4Bg);
 				a3s.stop();
 				a4s.play();
 				a5s.stop();
 				break;
-			case 6:
+			case 5:
 				backgroundSprite.setTexture(alituntunin5Bg);
 				a4s.stop();
 				a5s.play();
-			case 7: // Start of game
-				bgMusic.stop();
+			case 6: // Start of game
 				a1s.stop();
 				a2s.stop();
 				a3s.stop();
@@ -168,7 +164,7 @@ public class ChapterThree extends ChapterCore {
 				backToChapters.setBounds(0, 0, 0, 0);
 				a5s.stop();
 				break;
-			case 8:
+			case 7:
 				if (isTeacher) {
                     correctAnswers = 6;
                 } else {
@@ -272,7 +268,7 @@ public class ChapterThree extends ChapterCore {
 		if (chapterSection == lastChapterSection) {
 			return displayLastSectionButtons(3, 6, x, y);
 		}
-		if (!isTeacher && chapterSection == 7) {
+		if (!isTeacher && chapterSection == 6) {
 			if (ans1.getBoundingRectangle().contains(x, y)) {
 				ans1Touched = !ans1Touched;
 				ans1.setAlpha(ans1Touched ? 0.8f : 0);

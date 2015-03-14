@@ -29,17 +29,17 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
     protected boolean assetNeedUpdate, lectureStarted, viewingHelp, isTeacher;
-    protected float animationCounter, touchX, questionX, questionY, questionWidth = 0;
+    protected float animationCounter, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
-    protected Texture questionBg, retakeTexture, nextChapTexture, nextTexture;
+    protected Texture questionBg, retakeTexture, nextChapTexture, nextTexture, titleBgTexture;
     protected BitmapFont question;
     protected int currentRecordedScore = 0;
     private Texture helpTexture, soundTexture, startQuizTexture, backToChapterTexture, rightArrowTexture, leftArrowTexture;
     private Sprite nextSlide, prevSlide;
     private Help help;
     private Trivia trivia;
-    private boolean backHelp, passedQuestionSection;
-   
+    private boolean backHelp, passedQuestionSection, tappedChapTitle;
+   private Music bgMusic;
 
     public ChapterCore(AndroidInterface androidInterface, String studentName, String password) {
         this.android = androidInterface;
@@ -75,10 +75,12 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         questionBg = new Texture("backgrounds/question.jpg");
         retakeTexture = new Texture("buttons/retake.png");
         nextChapTexture = new Texture("buttons/next-chapter.png");
-
         rightArrowTexture = new Texture("help/next.png");
         leftArrowTexture = new Texture("help/prev.png");
-
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
+        bgMusic.play();
+        
+        
         nextSlide = new Sprite(rightArrowTexture);
         nextSlide.setSize(nextSlide.getWidth() * getButtonScale() / 2, nextSlide.getHeight() * getButtonScale() / 2);
         nextSlide.setBounds(
@@ -215,47 +217,59 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param batch Batch
      */
     protected void renderSharedAssets(Batch batch) {
-        if (viewingHelp) {
-            help.display(batch);
+        if (titleBgTexture != null && !tappedChapTitle) {
+            // Display chapter title if it exists
+            batch.draw(titleBgTexture, 0, 0, screenWidth, screenHeight);
         } else {
-            backgroundSprite.draw(batch);
-            if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
-                girl.setX(girl.getX() + 5);
-            } else if (chapterSection < startOfQuestionSection) {
-                lectureStarted = true;
-                // Only animate girl & display balloon if trivia is not displayed
-                if (trivia == null || !trivia.isDisplayed()) {
-                    animationCounter += Gdx.graphics.getDeltaTime();
-                    //balloonSprite.draw(batch);
+            if (viewingHelp) {
+                help.display(batch);
+            } else {
+                backgroundSprite.draw(batch);
+                if (girl.getX() < (screenWidth / 5) - (girl.getWidth() / 2)) {
+                    girl.setX(girl.getX() + 5);
+                } else if (chapterSection < startOfQuestionSection) {
+                    lectureStarted = true;
+                    // Only animate girl & display balloon if trivia is not displayed
+                    if (trivia == null || !trivia.isDisplayed()) {
+                        animationCounter += Gdx.graphics.getDeltaTime();
+                        //balloonSprite.draw(batch);
+                    }
+                    girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
                 }
-                girl.setRegion(girlAnimation.getKeyFrame(animationCounter, true));
+
+                if (chapterSection < startOfQuestionSection) {
+                    girl.draw(batch);
+                    helpSprite.draw(batch);
+                    soundSprite.draw(batch);
+                }
+
+                if (isTeacher || !passedQuestionSection) {
+                    nextSlide.draw(batch);
+                    prevSlide.draw(batch);
+                }
+
+                if (chapterSection < startOfQuestionSection) {
+                    startQuiz.draw(batch);
+
+                    if (chapterSection == startOfQuestionSection - 1)
+                        backToChapters.draw(batch);
+                }
+
+                if (trivia != null)
+                    trivia.display(batch);
             }
-
-            if (chapterSection < startOfQuestionSection) {
-                girl.draw(batch);
-                helpSprite.draw(batch);
-                soundSprite.draw(batch);
-            }
-
-            if (isTeacher || !passedQuestionSection) {
-                nextSlide.draw(batch);
-                prevSlide.draw(batch);
-            }
-
-            if (chapterSection < startOfQuestionSection) {
-                startQuiz.draw(batch);
-
-                if (chapterSection == startOfQuestionSection - 1)
-                    backToChapters.draw(batch);
-            }
-
-            if (trivia != null)
-                trivia.display(batch);
         }
     }
 
     public int touchDown(float x, float y) {
-        touchX = x;
+        // If chapter title is displayed and user tapped anywhere
+        if (titleBgTexture != null && !tappedChapTitle) {
+            tappedChapTitle = true;
+            titleBgTexture.dispose();
+            titleBgTexture = null;
+            bgMusic.stop();
+            bgMusic.dispose();
+        }
 
         if (viewingHelp) {
             help.touchDown(x, y);

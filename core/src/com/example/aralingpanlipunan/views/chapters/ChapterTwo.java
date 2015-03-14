@@ -37,6 +37,7 @@ public class ChapterTwo extends ChapterCore {
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
 
+        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
         if (!isTeacher)
             currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(1); // Get Chapter 2 score
         else

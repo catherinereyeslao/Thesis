@@ -27,10 +27,12 @@ public class ChapterFour extends ChapterCore {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-        startOfQuestionSection = 6;
-        lastChapterSection = 9;
+        startOfQuestionSection = 5;
+        lastChapterSection = 6;
         
-        titleBg = new Texture("titlepages/chapter4.png");
+        
+        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        
         introBg = new Texture("chapters/chapter4/backgrounds/intro.png");
         libanganBg = new Texture("chapters/chapter4/backgrounds/Libangan.png");
        // pabahayBg = new Texture("chapters/chapter4/backgrounds/Pabahay.png");
@@ -96,7 +98,7 @@ public class ChapterFour extends ChapterCore {
             next.draw(batch);
         }
         switch (chapterSection) {
-            case 6:
+            case 5:
                 if (!isTeacher) {
                     ans1True.draw(batch);
                     ans1False.draw(batch);
@@ -106,7 +108,7 @@ public class ChapterFour extends ChapterCore {
                     ans3False.draw(batch);
                 }
                 break;
-            case 7:
+            case 6:
                 if (!isTeacher) {
                     ans1True.draw(batch);
                     ans1False.draw(batch);
@@ -120,7 +122,7 @@ public class ChapterFour extends ChapterCore {
                     ans5False.draw(batch);
                 }
                 break;
-            case 8:
+            case 7:
                 if (!isTeacher) {
                     ans1True.draw(batch);
                     ans1False.draw(batch);
@@ -128,7 +130,7 @@ public class ChapterFour extends ChapterCore {
                     ans2False.draw(batch);
                 }
                 break;
-            case 9:
+            case 8:
                 if (!isTeacher)
                     question.drawMultiLine(batch, tanong, questionX, questionY);
                 startQuiz.draw(batch);
@@ -201,45 +203,39 @@ public class ChapterFour extends ChapterCore {
                 //pagkain.stop();
                 break;*/
         	case 0:
-        		backgroundSprite.setTexture(titleBg);
-        		bgMusic.play();
-        		intros.stop();
-        		break;
-        	case 1:
         		backgroundSprite.setTexture(introBg);
-        		bgMusic.stop();
         		intros.play();
         		kaligtasans.stop();
         		break;
-        	case 2:
+        	case 1:
         		backgroundSprite.setTexture(pangKalusuganBg);
         		intros.stop();
         		kaligtasans.stop();
         		libangans.stop();
         		break;
-        	case 3:
+        	case 2:
         		backgroundSprite.setTexture(libanganBg);
         		kaligtasans.stop();
         		libangans.play();
         		pagaarals.stop();
         		break;
-        	case 4:
+        	case 3:
         		backgroundSprite.setTexture(pangEdukasyonBg);
         		libangans.stop();
         		pagaarals.play();
         		pagkain.stop();
         		break;
-        	case 5:
+        	case 4:
         		backgroundSprite.setTexture(pagkainBg);
         		pagaarals.stop();
         		pagkain.play();
         		break;
-            case 6: // Start of Game
+            case 5: // Start of Game
             	pagkain.stop();
                 correctAnswers = 0;
                 backgroundSprite.setTexture(question1Bg);
                 break;
-            case 7:
+            case 6:
                 backgroundSprite.setTexture(question2Bg);
                 if (!isTeacher) {
                     if (ans1TrueTouched) correctAnswers++;
@@ -274,7 +270,7 @@ public class ChapterFour extends ChapterCore {
                     ans3False.setBounds(ans3False.getX(), ans3Y, ans3False.getWidth(), ans3False.getHeight());
                 }
                 break;
-            case 8:
+            case 7:
                 backgroundSprite.setTexture(question3Bg);
                 if (!isTeacher) {
                     if (ans1TrueTouched) correctAnswers++;
@@ -303,7 +299,7 @@ public class ChapterFour extends ChapterCore {
                     ans2False.setBounds(ans2False.getX(), ans2Y, ans2False.getWidth(), ans2False.getHeight());
                 }
                 break;
-            case 9:
+            case 8:
                 if (isTeacher) {
                     correctAnswers = 10;
                 } else {
