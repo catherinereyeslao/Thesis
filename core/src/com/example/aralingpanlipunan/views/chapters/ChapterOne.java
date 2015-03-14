@@ -185,7 +185,7 @@ public class ChapterOne extends ChapterCore {
                 playSoundForSection();
             }
 
-            if (chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection)
+            if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection)
                 Gdx.input.setOnscreenKeyboardVisible(true);
             else if (chapterSection == lastChapterSection)
                 return displayLastSectionButtons(1, 2, x, y);
@@ -195,13 +195,13 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     public int keyDown(int keycode) {
-        if (typedAnswer.length() > 0 && keycode == 67)
+        if (!isTeacher && typedAnswer.length() > 0 && keycode == 67)
             typedAnswer.setLength(typedAnswer.length() - 1);
         return super.keyDown(keycode);
     }
 
     public void keyPressed(char character) {
-        if (typedAnswer.length() < 10 && Character.isLetter(character))
+        if (!isTeacher && typedAnswer.length() < 10 && Character.isLetter(character))
             typedAnswer.append(character);
     }
 

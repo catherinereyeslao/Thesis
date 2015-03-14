@@ -238,7 +238,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                     soundSprite.draw(batch);
                 }
 
-                if (isTeacher || !passedQuestionSection) {
+                if ((isTeacher || !passedQuestionSection) && chapterSection < lastChapterSection) {
                     nextSlide.draw(batch);
                     prevSlide.draw(batch);
                 }
