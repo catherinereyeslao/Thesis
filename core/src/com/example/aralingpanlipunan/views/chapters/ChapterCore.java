@@ -24,7 +24,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected AndroidInterface android;
     protected TextureAtlas girlAtlas;
     protected Animation girlAnimation;
-    protected Sprite girl, balloonSprite, backgroundSprite, imageQuestion, helpSprite, soundSprite, backToChapters, startQuiz, next;
+    protected Sprite girl, balloonSprite, backgroundSprite, helpSprite, soundSprite, backToChapters, startQuiz, next;
     protected String loggedInStudent, studentPassword;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
@@ -243,7 +243,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                     soundSprite.draw(batch);
                 }
 
-                if (isTeacher || !passedQuestionSection) {
+                if ((isTeacher || !passedQuestionSection) && chapterSection < lastChapterSection) {
                     nextSlide.draw(batch);
                     prevSlide.draw(batch);
                 }
@@ -297,6 +297,12 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
 
             // If user touches the next button, which exists only in student view in chapter quiz
             if (!isTeacher && next != null && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection && next.getBoundingRectangle().contains(x, y)) {
+                backToChapters.setBounds(
+                        screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
+                        screenHeight / 4.2f,
+                        backToChapters.getWidth(),
+                        backToChapters.getHeight()
+                );
                 chapterSection++;
                 assetNeedUpdate = true;
             }
@@ -361,10 +367,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected void displayQuizResult(String chapterFieldToUpdate, int passingScore) {
         backgroundSprite.setTexture(questionBg);
         tanong = correctAnswers >= passingScore ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
-        backToChapters.setPosition(
-                screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
-                screenHeight / 4.2f
-        );
+
         // If student fails the test
         if (correctAnswers < passingScore) {
             startQuiz.setTexture(retakeTexture);
@@ -393,10 +396,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
                 correctAnswers = 0;
                 assetNeedUpdate = true;
                 question.setScale(getQuestionFontScale() + 0.4f);
-                tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
             }
-            else if (backToChapters.getBoundingRectangle().contains(x, y))
-                return 500;
         } else if (!this.getClass().getName().equals(ChapterNineteen.class.getName())) {
             if (startQuiz.getBoundingRectangle().contains(x, y)) {
                 return currentChapNum + 501;

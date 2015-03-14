@@ -18,8 +18,8 @@ public class ChapterFive extends ChapterCore {
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
                     kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
                     question1Bg;
-	private Music intro1S, intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
-					pangingisda1S, pangingisda2S;
+	private Music intro1S,  magsasaka, mangangalakal,pagmimina, pangingisda; /*intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
+					pangingisda1S, pangingisda2S;*/
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
 	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
@@ -41,6 +41,8 @@ public class ChapterFive extends ChapterCore {
         characterSpeed = getCharacterVelocityByScreen();
         boxTexture = new Texture("box.png");
 
+        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        
         
         if (isTeacher) {
 			question1Bg = new Texture("chapters/chapter5/answers/answer.jpg");
@@ -140,15 +142,11 @@ public class ChapterFive extends ChapterCore {
             next.setBounds(nextX, nextY, next.getWidth(), next.getHeight());
 		}
         //sounds
-        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/intro1chap5.m4a"));
-        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/intro2chap5.m4a"));
-        magsasaka1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/magsasaka1.m4a"));
-        magsasaka2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/magsasaka2.m4a"));
-        mangangalakal1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal1.m4a"));
-        mangangalakal2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/mangangalakal2.m4a"));
-        pagmimina1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
-        pangingisda1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pangingisda1.m4a"));
-        pangingisda2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pangingisda2.m4a"));
+        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/intro1chap5.mp3"));
+        magsasaka = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/magsasaka1.mp3"));
+        mangangalakal = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/mangangalakal1.mp3"));
+        pangingisda = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/pangingisada1.mp3"));
+        pagmimina = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
 		
 		//backgrounds
 		introBg = new Texture("chapters/chapter5/backgrounds/IntroForChapter5.png");
@@ -158,15 +156,15 @@ public class ChapterFive extends ChapterCore {
 		pangingisdaBg = new Texture("chapters/chapter5/backgrounds/Pangingisda.png");
 		
 		//balloons
-		introBalloon1 = new Texture("chapters/chapter5/balloons/Intro1.png");
-		introBalloon2 = new Texture("chapters/chapter5/balloons/Intro2.png");
-		mangangalakalBalloon1 = new Texture("chapters/chapter5/balloons/Mangangalakal1.png");
-		mangangalakalBalloon2 = new Texture("chapters/chapter5/balloons/Mangangalakal2.png");
-		pagmiminaBalloon = new Texture("chapters/chapter5/balloons/Pagmimina.png");
-		pagsasakaBalloon1 = new Texture("chapters/chapter5/balloons/Magsasaka1.png");
-		pagsasakaBalloon2 = new Texture("chapters/chapter5/balloons/Magsasaka2.png");
-		pangingisdaBalloon1 = new Texture("chapters/chapter5/balloons/Pangingisda1.png");
-		pangingisdaBalloon2 = new Texture("chapters/chapter5/balloons/Pangingisda2.png");
+//		introBalloon1 = new Texture("chapters/chapter5/balloons/Intro1.png");
+//		introBalloon2 = new Texture("chapters/chapter5/balloons/Intro2.png");
+//		mangangalakalBalloon1 = new Texture("chapters/chapter5/balloons/Mangangalakal1.png");
+//		mangangalakalBalloon2 = new Texture("chapters/chapter5/balloons/Mangangalakal2.png");
+//		pagmiminaBalloon = new Texture("chapters/chapter5/balloons/Pagmimina.png");
+//		pagsasakaBalloon1 = new Texture("chapters/chapter5/balloons/Magsasaka1.png");
+//		pagsasakaBalloon2 = new Texture("chapters/chapter5/balloons/Magsasaka2.png");
+//		pangingisdaBalloon1 = new Texture("chapters/chapter5/balloons/Pangingisda1.png");
+//		pangingisdaBalloon2 = new Texture("chapters/chapter5/balloons/Pangingisda2.png");
 
         truckTexture = new Texture("chapters/chapter5/characters/truck.png");
         truck = new Sprite(truckTexture);
@@ -249,65 +247,50 @@ public class ChapterFive extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon1);
-			intro2S.stop();
-			break;
-		case 1:
-			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon2);
-			intro1S.stop();
-			mangangalakal1S.stop();
+			intro1S.play();
+			mangangalakal.stop();
 			break;
 		case 2:
 			backgroundSprite.setTexture(mangangalakalBg);
-			balloonSprite.setTexture(mangangalakalBalloon1);
-			intro2S.stop();
-			mangangalakal2S.stop();
-			break;
-		case 3:
-			backgroundSprite.setTexture(mangangalakalBg);
-			balloonSprite.setTexture(mangangalakalBalloon2);
-			mangangalakal1S.stop();
-			pagmimina1S.stop();
+			intro1S.stop();
+			mangangalakal.play();
+			pagmimina.stop();
 			break;
 		case 4:
 			backgroundSprite.setTexture(pagmiminaBg);
-			balloonSprite.setTexture(pagmiminaBalloon);
+			
 			characterX = miner.getWidth() * -1.15f;
 			characterY = 0;
-			mangangalakal2S.stop();
-			magsasaka1S.stop();
+			mangangalakal.stop();
+			pagmimina.play();
+			magsasaka.stop();
 			break;
 		case 5:
 			backgroundSprite.setTexture(pagsasakaBg);
-			balloonSprite.setTexture(pagsasakaBalloon1);
 			characterX = farmer.getWidth() * -1.15f;
 			characterY = (screenHeight / 2) - (farmer.getHeight());
-			pagmimina1S.stop();
-			magsasaka2S.stop();
+			pagmimina.stop();
+			magsasaka.play();
+			pangingisda.stop();
 			break;
-		case 6:
-            backgroundSprite.setTexture(pagsasakaBg);
-			balloonSprite.setTexture(pagsasakaBalloon2);
-			magsasaka1S.stop();
-			pangingisda1S.stop();
-			break;
+		
 		case 7:
 			backgroundSprite.setTexture(pangingisdaBg);
-			balloonSprite.setTexture(pangingisdaBalloon1);
+			magsasaka.stop();
+			pangingisda.play();
             characterX = (screenWidth / 2) - (fisher.getWidth() / 2);
             characterY = (screenHeight / 4) - (fisher.getHeight() / 2);
             fisher.setPosition(characterX, characterY);
-            magsasaka2S.stop();
-            pangingisda2S.stop();
-			break;
-		case 8:
-            backgroundSprite.setTexture(pangingisdaBg);
-			balloonSprite.setTexture(pangingisdaBalloon2);
-			pangingisda1S.stop();
+           
 			break;
 		//game
 		case 9:
+			intro1S.stop();
+			mangangalakal.stop();
+			pagmimina.stop();
+			magsasaka.stop();
+			pangingisda.stop();
+			
             if (isTeacher) {
                 backgroundSprite.setTexture(question1Bg);
             } else {
@@ -319,7 +302,7 @@ public class ChapterFive extends ChapterCore {
                 parke.setPosition(parkeX, parkeY);
                 backgroundSprite.setTexture(question1Bg);
             }
-            pangingisda2S.stop();
+           
 
 			break;
         case 10:
@@ -420,7 +403,7 @@ public class ChapterFive extends ChapterCore {
 
 	private void playSoundForSection() {
 		// TODO Auto-generated method stub
-	    	 switch (chapterSection) {
+	    	/* switch (chapterSection) {
 	         case 0:
 	             intro1S.stop();
 	             intro1S.play();
@@ -459,31 +442,22 @@ public class ChapterFive extends ChapterCore {
 	        	 pangingisda2S.play();
 	        	 break;
 	         
-	    	 }
-		
+	    	 }*/
 	}
 
 	@Override
 	public void dispose(){
 		super.dispose();
 		intro1S.stop();
-		intro2S.stop();
-		mangangalakal1S.stop();
-		mangangalakal2S.stop();
-		pagmimina1S.stop();
-		magsasaka1S.stop();
-		magsasaka2S.stop();
-		pangingisda1S.stop();
-		pangingisda2S.stop();
+		magsasaka.stop();
+		pagmimina.stop();
+		pangingisda.stop();
+		mangangalakal.stop();
 		intro1S.dispose();
-		intro2S.dispose();
-		mangangalakal1S.dispose();
-		mangangalakal2S.dispose();
-		pagmimina1S.dispose();
-		magsasaka1S.dispose();
-		magsasaka2S.dispose();
-		pangingisda1S.dispose();
-		pangingisda2S.dispose();
+		magsasaka.dispose();
+		pagmimina.dispose();
+		pangingisda.dispose();
+		mangangalakal.dispose();
 		
 		introBg.dispose();
 		mangangalakalBg.dispose();

@@ -3,9 +3,7 @@ package com.example.aralingpanlipunan.views.minigames;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
+import com.example.aralingpanlipunan.utils.FourPicsOneWordUtil;
 import com.example.aralingpanlipunan.views.AppView;
 
 import java.security.InvalidParameterException;
@@ -16,50 +14,41 @@ import java.util.Collections;
  * The 4 pics 1 word game. Currently contains only 6 questions
  */
 public class FourPics extends AppView {
-    private Texture ballTexture, catTexture, dogTexture, birdTexture, treeTexture, fruitTexture, blackBgTexture;
+    private Texture bayaniTexture, hanapbuhayTexture, pagdiriwangTexture, presidenteTexture, lupaTexture, tubigTexture;
     private byte questionNum;
     private ArrayList<Texture> questionPic;
-    private BitmapFont font;
     private StringBuilder typedAnswer;
-    private Sprite blackBg;
     private boolean ansCorrect;
+    private FourPicsOneWordUtil fourPicsOneWordUtil;
 
     @Override
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
-        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+        fourPicsOneWordUtil = new FourPicsOneWordUtil();
+        fourPicsOneWordUtil.loadAssets(screenW, screenH);
 
         questionNum = 0;
         typedAnswer = new StringBuilder();
-        font = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        font.setScale(1.5f);
-        ballTexture = new Texture("minigames/fourpics/minigame1.png");
-        catTexture = new Texture("minigames/fourpics/minigame2.png");
-        dogTexture = new Texture("minigames/fourpics/minigame3.png");
-        birdTexture = new Texture("minigames/fourpics/minigame4.png");
-        treeTexture = new Texture("minigames/fourpics/minigame5.png");
-        fruitTexture = new Texture("minigames/fourpics/minigame6.png");
-        blackBgTexture = new Texture("backgrounds/black-bg.jpg");
-
-        blackBg = new Sprite(blackBgTexture);
-        blackBg.setPosition(0, 0);
-        blackBg.setSize(screenWidth, screenHeight);
-        blackBg.setAlpha(0.5f);
+        bayaniTexture = new Texture("minigames/fourpics/bayani.png");
+        hanapbuhayTexture = new Texture("minigames/fourpics/hanapbuhay.png");
+        pagdiriwangTexture = new Texture("minigames/fourpics/pagdiriwang.png");
+        presidenteTexture = new Texture("minigames/fourpics/presidente.png");
+        lupaTexture = new Texture("minigames/fourpics/yamang-lupa.png");
+        tubigTexture = new Texture("minigames/fourpics/yamang-tubig.png");
 
         questionPic = new ArrayList<Texture>(6);
-        questionPic.add(ballTexture);
-        questionPic.add(catTexture);
-        questionPic.add(dogTexture);
-        questionPic.add(birdTexture);
-        questionPic.add(treeTexture);
-        questionPic.add(fruitTexture);
+        questionPic.add(bayaniTexture);
+        questionPic.add(hanapbuhayTexture);
+        questionPic.add(pagdiriwangTexture);
+        questionPic.add(presidenteTexture);
+        questionPic.add(lupaTexture);
+        questionPic.add(tubigTexture);
         Collections.shuffle(questionPic);
     }
 
     @Override
     public void display(Batch batch) {
-        float answerFontX = (screenWidth / 2) - (font.getBounds(typedAnswer.toString()).width / 2);
         switch (questionNum) {
             case 0:
                 batch.draw(questionPic.get(0), 0, 0, screenWidth, screenHeight);
@@ -80,10 +69,8 @@ public class FourPics extends AppView {
                 batch.draw(questionPic.get(5), 0, 0, screenWidth, screenHeight);
                 break;
         }
-        font.draw(batch, typedAnswer.toString(), answerFontX, screenHeight / 3.6f);
         if (ansCorrect) {
-            blackBg.draw(batch);
-            font.draw(batch, "Correct!", (screenWidth / 2) - (font.getBounds("Correct!").width / 2), screenHeight / 2);
+            fourPicsOneWordUtil.displayCorrect(batch);
         }
     }
 
@@ -92,7 +79,7 @@ public class FourPics extends AppView {
         for (Texture pic : questionPic) {
             pic.dispose();
         }
-        font.dispose();
+        fourPicsOneWordUtil.dispose();
     }
 
     /**
@@ -122,7 +109,6 @@ public class FourPics extends AppView {
         if (keycode == 67) {
             typedAnswer.setLength(0);
         }
-        blackBgTexture.dispose();
     }
 
     /**
@@ -193,18 +179,18 @@ public class FourPics extends AppView {
      */
     private String getImageAnswer(byte questionPicIndex) {
         Texture questionPicToValidate = questionPic.get(questionPicIndex);
-        if (questionPicToValidate.equals(ballTexture))
-            return "bola";
-        else if (questionPicToValidate.equals(catTexture))
-            return "pusa";
-        else if (questionPicToValidate.equals(dogTexture))
-            return "aso";
-        else if (questionPicToValidate.equals(birdTexture))
-            return "ibon";
-        else if (questionPicToValidate.equals(treeTexture))
-            return "puno";
-        else if (questionPicToValidate.equals(fruitTexture))
-            return "prutas";
+        if (questionPicToValidate.equals(bayaniTexture))
+            return "bayani";
+        else if (questionPicToValidate.equals(hanapbuhayTexture))
+            return "hanapbuhay";
+        else if (questionPicToValidate.equals(pagdiriwangTexture))
+            return "pagdiriwang";
+        else if (questionPicToValidate.equals(presidenteTexture))
+            return "presidente";
+        else if (questionPicToValidate.equals(lupaTexture))
+            return "yamang lupa";
+        else if (questionPicToValidate.equals(tubigTexture))
+            return "yamang tubig";
         else if (questionPicIndex < 0 && questionPicIndex > 5)
             throw new InvalidParameterException("The parameter you passed is most likely invalid. Choose from within the indices declared in questionPic ArrayList");
         else

@@ -7,22 +7,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.FourPicsOneWordUtil;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_ONE_SCORE;
 
 public class ChapterOne extends ChapterCore {
-    private static final String KABUNDUKAN = "a. Kabundukan";
-    private static final String BUKIRIN = "b. Kabukiran";
-    private static final String LUNGSOD = "c. Lungsod";
-    private static final String BAYBAYIN = "d. Baybayin";
-
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, baybayin1Texture, baybayin2Texture, baybayin3Texture, bukid1Texture, bukid2Texture, lungsod1Texture, lungsod2Texture, backToChapterTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture, question1Texture, question2Texture, question3Texture, question4Texture;
     private Music bgMusic, baybayinBGs, lungsodBGs, bukidBGs, kabundukanBGs, intros, baybayins, bukids, bundoks, lungsods;/*baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;*/
-    private Sprite ans1, ans2, ans3, ans4;
-    private BitmapFont answer1, answer2, answer3, answer4;
-    private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
-    private boolean questionStarted = false;
+    private BitmapFont studentAnswer;
+    private StringBuilder typedAnswer;
+    private FourPicsOneWordUtil fourPicsOneWordUtil;
+    private float ansX, ansY;
+    private boolean ansCorrect;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -39,6 +36,8 @@ public class ChapterOne extends ChapterCore {
         screenHeight = screenH;
         startOfQuestionSection = 5;
         lastChapterSection = 9;
+        fourPicsOneWordUtil = new FourPicsOneWordUtil();
+        fourPicsOneWordUtil.loadAssets(screenWidth, screenHeight);
 
         titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
 
@@ -51,12 +50,20 @@ public class ChapterOne extends ChapterCore {
             correctAnswers = 4;
             currentRecordedScore = 5;
         } else {
+            ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
+            typedAnswer = new StringBuilder();
+            question1Texture = new Texture("chapters/chapter1/questions/baybayin.png");
+            question2Texture = new Texture("chapters/chapter1/questions/kabundukan.png");
+            question3Texture = new Texture("chapters/chapter1/questions/lungsod.png");
+            question4Texture = new Texture("chapters/chapter1/questions/kabukiran.png");
+
+            studentAnswer = new BitmapFont(screenSizeUtil.fontAsset(screenWidth));
+            studentAnswer.setColor(1, 1, 1, 1);
+            studentAnswer.setScale(getQuestionFontScale());
             currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(0);
         }
-        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
-        
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
-        
+
         /*baybayin1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
         baybayin2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));
         baybayin3sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin3.mp3"));
@@ -66,101 +73,47 @@ public class ChapterOne extends ChapterCore {
         intro2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/intro2.mp3"));
         lungsod1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/lungsod1.mp3"));
         lungsod2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/lungsod2.mp3"));*/
-        
+
         introBg = new Texture("chapters/chapter1/backgrounds/intro.png");
         baybayinBg = new Texture("chapters/chapter1/backgrounds/baybayin.png");
         kabukirinBg = new Texture("chapters/chapter1/backgrounds/kabukirin.png");
         kabundukanBg = new Texture("chapters/chapter1/backgrounds/kabundukan.png");
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
-        
-        baybayinBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayin.mp3"));
+
+        baybayinBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayinBg.mp3"));
         lungsodBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/lungsod.mp3"));
         bukidBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/bukid.mp3"));
         kabundukanBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/kabundukan.mp3"));
-        
+
         intros = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_intro1.mp3"));
         baybayins = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_baybayin1.mp3"));
         bukids = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bukid1.mp3"));
         lungsods = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_lungsod1.mp3"));
         bundoks = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bundok1.mp3"));
-        
-        backToChapterTexture = new Texture("buttons/back-to-chapters.png");
+
         startQuizTexture = new Texture("buttons/menu/start.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
 
-        
-        
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
         balloonSprite.setTexture(intro1balloonTexture);
 
-        answer1 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer1.setScale(getAnswerFontScale());
-        answer1.setColor(1, 1, 1, 1);
-        answerX = (screenW - (screenW / 6)) - (answer1.getBounds(LUNGSOD).width / 2);
-        answerY = (screenH / 1.5f) + (answer1.getBounds(LUNGSOD).height / 2);
-
-        // Set an invisible sprite to detect touch on answer fonts
-        ans1 = new Sprite(startQuizTexture);
-        ans1.setAlpha(0);
-        ans1.setSize(answer1.getBounds(LUNGSOD).width, answer1.getBounds(LUNGSOD).height);
-        ans1.setPosition(answerX, answerY - answer1.getBounds(LUNGSOD).height);
-
-        answer2 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer2.setScale(getAnswerFontScale());
-        answer2.setColor(1, 1, 1, 1);
-        answer2X = answerX;
-        answer2Y = answerY - (answer2.getBounds(BUKIRIN).height * 3);
-        // Set an invisible sprite to detect touch on answer fonts
-        ans2 = new Sprite(startQuizTexture);
-        ans2.setAlpha(0);
-        ans2.setSize(answer2.getBounds(LUNGSOD).width, answer2.getBounds(LUNGSOD).height);
-        ans2.setPosition(answer2X, answer2Y - answer2.getBounds(LUNGSOD).height);
-
-        answer3 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer3.setScale(getAnswerFontScale());
-        answer3.setColor(1, 1, 1, 1);
-        answer3X = answerX;
-        answer3Y = answer2Y - (answer3.getBounds(BAYBAYIN).height * 3);
-        // Set an invisible sprite to detect touch on answer fonts
-        ans3 = new Sprite(startQuizTexture);
-        ans3.setAlpha(0);
-        ans3.setSize(answer3.getBounds(LUNGSOD).width, answer3.getBounds(LUNGSOD).height);
-        ans3.setPosition(answer3X, answer3Y - answer3.getBounds(LUNGSOD).height);
-
-        answer4 = new BitmapFont(screenSizeUtil.fontAsset(screenW));
-        answer4.setScale(getAnswerFontScale());
-        answer4.setColor(1, 1, 1, 1);
-        answer4X = answerX;
-        answer4Y = answer3Y - (answer4.getBounds(KABUNDUKAN).height * 3);
-        // Set an invisible sprite to detect touch on answer fonts
-        ans4 = new Sprite(startQuizTexture);
-        ans4.setAlpha(0);
-        ans4.setSize(answer4.getBounds(LUNGSOD).width, answer4.getBounds(LUNGSOD).height);
-        ans4.setPosition(answer4X, answer4Y - answer4.getBounds(LUNGSOD).height);
-
-        imageQuestion = new Sprite(baybayinBg);
-        imageQuestion.setSize(screenW / 2.2f, screenH / 2.2f);
-        final float imageQuestionX = (screenW / 2) - (imageQuestion.getWidth() / 2);
-        final float imageQuestionY = (screenH / 2.2f) - (imageQuestion.getHeight()) / 2;
-        imageQuestion.setPosition(imageQuestionX, imageQuestionY);
-
         intro2balloonTexture = new Texture("chapters/chapter1/balloons/intro2.png");
-        baybayin1Texture = new Texture("chapters/chapter1/balloons/baybayin1.png");
-        baybayin2Texture = new Texture("chapters/chapter1/balloons/baybayin2.png");
-        baybayin3Texture = new Texture("chapters/chapter1/balloons/baybayin3.png");
-        bukid1Texture = new Texture("chapters/chapter1/balloons/bukid1.png");
-        bukid2Texture = new Texture("chapters/chapter1/balloons/bukid2.png");
-        lungsod1Texture = new Texture("chapters/chapter1/balloons/lungsod1.png");
-        lungsod2Texture = new Texture("chapters/chapter1/balloons/lungsod2.png");
-        
-        
+
+        loadNextButton();
     }
 
     @Override
     public void display(Batch batch) {
         if (assetNeedUpdate) assetManager();
-            chapter1Display(batch);
+        chapter1Display(batch);
+
+        if (ansCorrect) {
+            fourPicsOneWordUtil.displayCorrect(batch);
+            Gdx.input.setOnscreenKeyboardVisible(false);
+        }
+
+        drawQuizResult(batch);
     }
 
     @Override
@@ -173,12 +126,12 @@ public class ChapterOne extends ChapterCore {
         bukids.stop();
         baybayins.stop();
         bundoks.stop();
-        
+
         baybayinBGs.stop();
         bukidBGs.stop();
         lungsods.stop();
         bundoks.stop();
-        
+
         bgMusic.dispose();
         intros.dispose();
         baybayins.dispose();
@@ -186,12 +139,12 @@ public class ChapterOne extends ChapterCore {
         bukids.dispose();
         baybayins.dispose();
         bundoks.dispose();
-        
+
         baybayinBGs.dispose();
         bukidBGs.dispose();
         lungsods.dispose();
         bundoks.dispose();
-        
+
         /*baybayinBgS.stop();
         baybayin1sound.stop();
         baybayin2sound.stop();
@@ -228,10 +181,16 @@ public class ChapterOne extends ChapterCore {
         kabukirinBg.dispose();
         kabundukanBg.dispose();
         lungsodBg.dispose();
-        backToChapterTexture.dispose();
         startQuizTexture.dispose();
         bgMusic.dispose();
         baybayinBGs.dispose();
+        fourPicsOneWordUtil.dispose();
+        if (!isTeacher) {
+            question1Texture.dispose();
+            question2Texture.dispose();
+            question3Texture.dispose();
+            question4Texture.dispose();
+        }
     }
 
     /**
@@ -247,96 +206,34 @@ public class ChapterOne extends ChapterCore {
      */
     @Override
     public int touchDown(float x, float y) {
-        super.touchDown(x, y);
-        if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
+        if (ansCorrect) {
+            chapterSection++;
+            assetNeedUpdate = true;
+            ansCorrect = false;
+        } else {
+            if (soundSprite.getBoundingRectangle().contains(x, y)) {
+                playSoundForSection();
+            }
+
+
+            if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection)
+                Gdx.input.setOnscreenKeyboardVisible(true);
+            else if (chapterSection == lastChapterSection)
+            return displayLastSectionButtons(1, 2, x, y);
+        }
+        return super.touchDown(x, y);
+    }
+
+        @Override
+        public int keyDown(int keycode) {
+            if (!isTeacher && typedAnswer.length() > 0 && keycode == 67)
+                typedAnswer.setLength(typedAnswer.length() - 1);
+            return super.keyDown(keycode);
         }
 
-        switch (chapterSection) {
-            case 4:
-                if (backToChapters.getBoundingRectangle().contains(x, y))
-                    return 50;
-                break;
-            case 5: // Start of game
-                if (ans1.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans3.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (questionStarted && ans4.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                break;
-            case 6:
-                if (ans1.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans3.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans4.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                break;
-            case 7:
-                if (ans1.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans3.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans4.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                break;
-            case 8:
-                if (ans1.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans2.getBoundingRectangle().contains(x, y)) {
-                    correctAnswers++;
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans3.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                else if (ans4.getBoundingRectangle().contains(x, y)) {
-                    chapterSection++;
-                    assetNeedUpdate = true;
-                }
-                break;
-            case 9:
-                return displayLastSectionButtons(1, 2, x, y);
-        }
-        return 100;
+    public void keyPressed(char character) {
+        if (!isTeacher && typedAnswer.length() < 10 && Character.isLetter(character))
+            typedAnswer.append(character);
     }
 
     /**
@@ -392,13 +289,13 @@ public class ChapterOne extends ChapterCore {
      */
     private void assetManager() {
         switch (chapterSection) {
-            
+
             case 0:
                 if (backgroundSprite.getTexture() != introBg)
                     backgroundSprite.setTexture(introBg);
-               intros.play();
-              // baybayinBGs.stop();
-               baybayins.stop();
+                intros.play();
+                // baybayinBGs.stop();
+                baybayins.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(baybayinBg);
@@ -410,18 +307,18 @@ public class ChapterOne extends ChapterCore {
                 break;
             case 2:
                 backgroundSprite.setTexture(kabukirinBg);
-                
+
                 baybayinBGs.stop();
                 baybayins.stop();
                 bukids.play();
-               // bukidBGs.play();
+                // bukidBGs.play();
                 bundoks.stop();
                 kabundukanBGs.stop();
                 break;
             case 3:
                 if (backgroundSprite.getTexture() != kabundukanBg)
                     backgroundSprite.setTexture(kabundukanBg);
-               
+
                 bukids.stop();
                 bukidBGs.stop();
                 bundoks.play();
@@ -436,10 +333,8 @@ public class ChapterOne extends ChapterCore {
                 //lungsodBGs.play();
                 lungsods.play();
                 break;
-            
             case 5: // Start of game
-            	
-            	lungsodBGs.stop();
+                lungsodBGs.stop();
                 lungsods.stop();
                 baybayinBGs.stop();
                 baybayins.stop();
@@ -448,57 +343,85 @@ public class ChapterOne extends ChapterCore {
                 bundoks.stop();
                 kabundukanBGs.stop();
                 intros.stop();
-                
+
                 question.setScale(getQuestionFontScale());
-            	
                 if (isTeacher) {
                     backgroundSprite.setTexture(answer1Texture);
                 } else {
-                    imageQuestion.setTexture(baybayinBg);
-                    imageQuestion.setAlpha(1);
-                    backgroundSprite.setTexture(questionBg);
+                    backgroundSprite.setTexture(question1Texture);
                 }
-               
-                questionStarted = true;
                 break;
             case 6:
                 if (isTeacher)
                     backgroundSprite.setTexture(answer2Texture);
-                imageQuestion.setTexture(kabundukanBg);
+                else {
+                    if (typedAnswer.toString().toLowerCase().contentEquals("baybayin"))
+                        correctAnswers++;
+                    typedAnswer.setLength(0);
+                    backgroundSprite.setTexture(question2Texture);
+                }
                 break;
             case 7:
                 if (isTeacher)
                     backgroundSprite.setTexture(answer3Texture);
-                imageQuestion.setTexture(lungsodBg);
+                else {
+                    if (typedAnswer.toString().toLowerCase().contentEquals("kabundukan"))
+                        correctAnswers++;
+                    typedAnswer.setLength(0);
+                    backgroundSprite.setTexture(question3Texture);
+                }
                 break;
             case 8:
                 if (isTeacher)
                     backgroundSprite.setTexture(answer4Texture);
-                imageQuestion.setTexture(kabukirinBg);
-                break;
-            case 9:
-                if (isTeacher)
-                    backgroundSprite.setTexture(questionBg);
-                imageQuestion.setAlpha(0);
-                questionY = (screenHeight - (screenHeight / 9)) - ((question.getMultiLineBounds(tanong).height / 2));
-                tanong = correctAnswers >= 2 ? "CONGRATULATIONS!\n You're Passed!" : "YOU'RE FAILED!";
-                saveProgress(CHAPTER_ONE_SCORE);
-                backToChapters.setPosition(
-                        screenWidth - (screenWidth / 6) - startQuiz.getWidth() / 2,
-                        screenHeight / 4.2f
-                );
-                // If student fails the test
-                if (correctAnswers < 2)
-                    startQuiz.setTexture(retakeTexture);
                 else {
-                    startQuiz.setTexture(nextChapTexture);
+                    if (typedAnswer.toString().toLowerCase().contentEquals("lungsod"))
+                        correctAnswers++;
+                    typedAnswer.setLength(0);
+                    backgroundSprite.setTexture(question4Texture);
                 }
-                startQuiz.setPosition(backToChapters.getX(), backToChapters.getY() + startQuiz.getHeight());
-                backToChapters.setSize(startQuiz.getWidth(), startQuiz.getHeight());
                 break;
+                case 9:
+                    if (!isTeacher) {
+                        if (typedAnswer.toString().toLowerCase().contentEquals("kabukiran"))
+                            correctAnswers++;
+                        typedAnswer.setLength(0);
+                        saveProgress(CHAPTER_ONE_SCORE);
+                    }
+                    backgroundSprite.setTexture(questionBg);
+                    displayQuizResult(CHAPTER_ONE_SCORE, 2);
+                    break;
 
+                }
+                assetNeedUpdate = false;
         }
-        assetNeedUpdate = false;
+
+        /**
+         * Detect if typed answer is correct
+         */
+    private void detectCorrectAnswer() {
+        switch (chapterSection) {
+            case 9:
+                if (typedAnswer.toString().toLowerCase().contentEquals("baybayin")) {
+                    ansCorrect = true;
+                }
+                break;
+            case 10:
+                if (typedAnswer.toString().toLowerCase().contentEquals("kabundukan")) {
+                    ansCorrect = true;
+                }
+                break;
+            case 11:
+                if (typedAnswer.toString().toLowerCase().contentEquals("lungsod")) {
+                    ansCorrect = true;
+                }
+                break;
+            case 12:
+                if (typedAnswer.toString().toLowerCase().contentEquals("kabukiran")) {
+                    ansCorrect = true;
+                }
+                break;
+        }
     }
 
     /**
@@ -508,32 +431,19 @@ public class ChapterOne extends ChapterCore {
     private void chapter1Display(Batch batch) {
         backgroundSprite.draw(batch);
         renderSharedAssets(batch);
-        if (chapterSection >= startOfQuestionSection && chapterSection < 9 && !isTeacher) {
-            question.drawWrapped(batch, tanong, questionX, questionY, questionWidth);
-            answer1.draw(batch, KABUNDUKAN, answerX, answerY);
-            answer2.draw(batch, BUKIRIN, answer2X, answer2Y);
-            answer3.draw(batch, LUNGSOD, answer3X, answer3Y);
-            answer4.draw(batch, BAYBAYIN, answer4X, answer4Y);
-            imageQuestion.draw(batch);
-        } else if (chapterSection == 9) {
-            if (!isTeacher)
-                question.drawMultiLine(batch, tanong, questionX, questionY, screenWidth * 0.65f, BitmapFont.HAlignment.CENTER);
-            startQuiz.draw(batch);
-            backToChapters.draw(batch);
-        }
-    }
+    if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
+        next.draw(batch);
 
-    private float getAnswerFontScale() {
-        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
-        switch (screenSizeUtil.getScreenCategory(screenWidth)) {
-            case ScreenSizeUtil.LDPI:
-                return 1;
-            case ScreenSizeUtil.MDPI:
-                return 1.4f;
-            case ScreenSizeUtil.HDPI:
-                return 1.6f;
-            default:
-                return 1.7f;
+        if (chapterSection == 9) {
+            detectCorrectAnswer();
+            ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
+            ansY = (screenHeight / 2.9f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
+        } else if (chapterSection > 9 && chapterSection < lastChapterSection) {
+            detectCorrectAnswer();
+            ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
+            ansY = (screenHeight / 2.35f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
         }
+        studentAnswer.draw(batch, typedAnswer.toString(), ansX, ansY);
     }
+}
 }

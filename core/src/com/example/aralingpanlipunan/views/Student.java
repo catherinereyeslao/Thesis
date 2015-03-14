@@ -102,7 +102,21 @@ public class Student extends UserType {
     }
 
     public void keyTyped(char character) {
-        if (triage == STUDENT_PROFILE)
-            studentProfile.keyTyped(character);
+        switch (triage) {
+            case STUDENT_PROFILE:
+                studentProfile.keyTyped(character);
+                break;
+            case CHAPTER_VIEW:
+                setKeyPressForChapter(character);
+                break;
+        }
+    }
+
+    private void setKeyPressForChapter(char character) {
+        switch (selectedChapter) {
+            case 1:
+                chapterOne.keyPressed(character);
+                break;
+        }
     }
 }
