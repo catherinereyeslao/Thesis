@@ -9,12 +9,11 @@ import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 
 public class ChapterFour extends ChapterCore {
-    private Texture titleBg, introBg, libanganBg, pabahayBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg,
-            intro1Balloon, intro2Balloon, kaligtasan1Balloon, kaligtasan2Balloon, libangan1Balloon, libangan2Balloon, pagaaral1Balloon, pagaaral2Balloon, pagkainBalloon, answerMarker,
+    private Texture introBg, libanganBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg, answerMarker,
             question1Bg, question2Bg, question3Bg;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False;
-    private Music bgMusic, intros, kaligtasans, libangans, pagaarals, pagkain; /*1S, intro2S, kaligtasan1S, kaligtasan2S, libangan1S, libangan2S, pagaaral1S, pagaaral2S, pagkain;*/
-    private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched =false;
+    private Music bgMusic, intros, kaligtasans, libangans, pagaarals, pagkain;
+    private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched = false;
 
     public ChapterFour(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -35,7 +34,6 @@ public class ChapterFour extends ChapterCore {
         
         introBg = new Texture("chapters/chapter4/backgrounds/intro.png");
         libanganBg = new Texture("chapters/chapter4/backgrounds/Libangan.png");
-       // pabahayBg = new Texture("chapters/chapter4/backgrounds/Pabahay.png");
         pangEdukasyonBg = new Texture("chapters/chapter4/backgrounds/tulong-pang-edukasyon.png");
         pangKalusuganBg = new Texture("chapters/chapter4/backgrounds/tulong-pangkalusugan.png");
         pagkainBg = new Texture("chapters/chapter4/backgrounds/tulong-pagkain.png");
@@ -85,8 +83,6 @@ public class ChapterFour extends ChapterCore {
             setUpGame();
             loadNextButton();
 		}
-
-        assetNeedUpdate = true;
     }
 
     @Override
@@ -390,9 +386,6 @@ public class ChapterFour extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-         if (soundSprite.getBoundingRectangle().contains(x, y)) {
-             playSoundForSection();
-         }
         if (chapterSection >= startOfQuestionSection) {
         	if(!isTeacher) {
                 if (ans1True.getBoundingRectangle().contains(x, y)) {
@@ -492,48 +485,6 @@ public class ChapterFour extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    private void playSoundForSection() {
-    	 /*switch (chapterSection) {
-         case 0:
-             intro1S.stop();
-             intro1S.play();
-             break;
-         case 1:
-             intro2S.stop();
-             intro2S.play();
-             break;
-         case 2:
-        	 kaligtasan1S.stop();
-        	 kaligtasan1S.play();
-        	 break;
-         case 3:
-        	 kaligtasan2S.stop();
-             kaligtasan2S.play();
-             break;
-         case 4:
-        	 libangan1S.stop();
-        	 libangan1S.play();
-             break;
-         case 5:
-        	 libangan2S.stop();
-        	 libangan2S.play();
-             break;
-         case 6:
-        	 pagaaral1S.stop();
-        	 pagaaral1S.play();
-             break;
-         case 7:
-        	 pagaaral2S.stop();
-        	 pagaaral2S.play();
-             break;
-         case 8:
-        	 pagkain.stop();
-        	 pagkain.play();
-             break;
-    	 }*/
-		
-	}
-
 	@Override
     public void dispose() {
         super.dispose();
@@ -543,31 +494,12 @@ public class ChapterFour extends ChapterCore {
         libangans.stop();
         kaligtasans.stop();
         pagkain.stop();
-//        intro1S.stop();
-//        intro2S.stop();
-//        kaligtasan1S.stop();
-//        kaligtasan2S.stop();
-//        libangan1S.stop(); 
-//        libangan2S.stop(); 
-//        pagaaral1S.stop();
-//        pagaaral2S.stop();
         pagkain.stop();
         introBg.dispose();
         libanganBg.dispose();
-        pabahayBg.dispose();
         pagkainBg.dispose();
         pangEdukasyonBg.dispose();
         pangKalusuganBg.dispose();
-        intro1Balloon.dispose();
-        intro2Balloon.dispose();
-//        intro1S.dispose();
-//        intro2S.dispose();
-//        kaligtasan1S.dispose();
-//        kaligtasan2S.dispose();
-//        libangan1S.dispose(); 
-//        libangan2S.dispose(); 
-//        pagaaral1S.dispose();
-//        pagaaral2S.dispose();
         bgMusic.dispose();
         intros.dispose();
         pagaarals.dispose();

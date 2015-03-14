@@ -85,7 +85,7 @@ public class Student extends UserType {
                     openChapter(selectedChapter);
                 break;
             case CHAPTER_VIEW:
-                int score = chapterTouchDown(selectedChapter, x, y);
+                final int score = chapterTouchDown(selectedChapter, x, y);
                 if (score > 500) {
                     selectedChapter = score - 500;
                     disposeChapter(selectedChapter - 1);

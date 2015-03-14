@@ -156,8 +156,6 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             trivia.setUp(screenWidth, screenHeight);
             trivia.setBoySize(girl.getWidth(), girl.getHeight());
         }
-
-        assetNeedUpdate = true;
     }
 
     @Override
@@ -269,6 +267,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             titleBgTexture = null;
             bgMusic.stop();
             bgMusic.dispose();
+            assetNeedUpdate = true;
         }
 
         if (viewingHelp) {
