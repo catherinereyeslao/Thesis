@@ -139,66 +139,7 @@ public class ChapterFour extends ChapterCore {
     private void assetManager() {
         float ans1Y, ans2Y, ans3Y;
         switch (chapterSection) {
-            /*case 0:
-                backgroundSprite.setTexture(introBg);
-                balloonSprite.setTexture(intro1Balloon);
-                
-                break;
-            case 1:
-                backgroundSprite.setTexture(introBg);
-                balloonSprite.setTexture(intro2Balloon);
-                intro1S.stop();
-                kaligtasan1S.stop();
-                
-                break;
-            case 2:
-                backgroundSprite.setTexture(pangKalusuganBg);
-                balloonSprite.setTexture(kaligtasan1Balloon);
-                intro2S.stop();
-                kaligtasan2S.stop();
-                
-                break;
-            case 3:
-                backgroundSprite.setTexture(pangKalusuganBg);
-                balloonSprite.setTexture(kaligtasan2Balloon);
-                kaligtasan1S.stop();
-                libangan1S.stop();
-                
-                break;
-            case 4:
-                backgroundSprite.setTexture(libanganBg);
-                balloonSprite.setTexture(libangan1Balloon);
-                kaligtasan2S.stop();
-                libangan2S.stop();
-               
-                break;
-            case 5:
-                backgroundSprite.setTexture(libanganBg);
-                balloonSprite.setTexture(libangan2Balloon);
-                libangan1S.stop();
-                pagaaral1S.stop();
-                
-                break;
-            case 6:
-                backgroundSprite.setTexture(pangEdukasyonBg);
-                balloonSprite.setTexture(pagaaral1Balloon);
-                libangan2S.stop();
-                pagaaral2S.stop();
-               
-                break;
-            case 7:
-                backgroundSprite.setTexture(pangEdukasyonBg);
-                balloonSprite.setTexture(pagaaral2Balloon);
-                pagaaral1S.stop();
-                pagkain.stop();
-               
-                break;
-            case 8:
-                backgroundSprite.setTexture(pagkainBg);
-                balloonSprite.setTexture(pagkainBalloon);
-                pagaaral2S.stop();
-                //pagkain.stop();
-                break;*/
+            
         	case 0:
         		backgroundSprite.setTexture(introBg);
         		intros.play();

@@ -18,9 +18,7 @@ public class ChapterThirteen extends ChapterCore {
 			lapuBalloon1, lapuBalloon2, lapuBalloon3, lapuBalloon4,
 			simboloBalloon1, simboloBalloon2, simboloBalloon3, aquinoBalloon1, aquinoBalloon2,
 			aquinoBalloon3, question1Bg, question2Bg, question3Bg, ansMarkerTexture;
-	private Music intro1S, intro2S, bonifacio1S, bonifacio2S, bonifacio3S, watawat1S, watawat2S, watawat3S, 
-				  aguinaldo1S, aguinaldo2S, aguinaldo3S, rizal1S, rizal2S, rizal3S, rizal4S, lapu1S, lapu2S, lapu3S, lapu4S, 
-				  simbolo1S, simbolo2S, simbolo3S, aquino1S, aquino2S, aquino3S;
+	private Music introS, bonifacioS, watawatS, aguinaldoS, rizalS, lapuS, simboloS, aquinoS;
 				  
     private Sprite ans1A, ans1B, ans1C, ans1D, ans1E, ans2A, ans2B, ans2C, ans2D, ans2E;
     private boolean ans1Correct, ans2Correct;
@@ -41,31 +39,15 @@ public class ChapterThirteen extends ChapterCore {
 		assetNeedUpdate = true;
 		
 		//sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/intro1chap13.m4a"));
-		intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/intro2chap13.m4a"));
-		bonifacio1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/boni1.m4a"));
-		bonifacio2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/boni2.m4a"));
-		bonifacio3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/boni3.m4a"));
-		watawat1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/watawat1.m4a"));
-		watawat2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/watawat2.m4a"));
-		watawat3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/watawat3.m4a"));
-		aguinaldo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/aguinaldo1.m4a"));
-		aguinaldo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/aguinaldo2.m4a"));
-		aguinaldo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/aguinaldo3.m4a"));
-		rizal1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/rizal1.m4a"));
-		rizal2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/rizal2.m4a"));
-		rizal3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/rizal3.m4a"));
-		rizal4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/rizal4.m4a"));
-		lapu1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/lapu1.m4a"));
-		lapu2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/lapu2.m4a"));
-		lapu3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/lapu3.m4a"));
-		lapu4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/lapu4.m4a"));
-		simbolo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/simbolo1.m4a"));
-		simbolo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/simbolo2.m4a"));
-		simbolo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/simbolo3.m4a"));
-		aquino1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/ninoy1.m4a"));
-		aquino2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/ninoy2.m4a"));
-		aquino3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sounds/ninoy3.m4a"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		bonifacioS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/boni1.mp3"));
+		watawatS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/watawat1.mp3"));
+		aguinaldoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		rizalS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		lapuS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		simboloS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		aquinoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
+		
 
 		// backgrounds
 		introBg = new Texture(
@@ -130,51 +112,7 @@ public class ChapterThirteen extends ChapterCore {
             loadNextButton();
 		}
 		// balloons
-		introBalloon1 = new Texture("chapters/chapter13/balloons/Intro1.png");
-		introBalloon2 = new Texture("chapters/chapter13/balloons/Intro2.png");
-		bonifacioBalloon1 = new Texture(
-				"chapters/chapter13/balloons/Bonifacio1.png");
-		bonifacioBalloon2 = new Texture(
-				"chapters/chapter13/balloons/Bonifacio2.png");
-		bonifacioBalloon3 = new Texture(
-				"chapters/chapter13/balloons/Bonifacio3.png");
-		watawatBalloon1 = new Texture(
-				"chapters/chapter13/balloons/Watawat1.png");
-		watawatBalloon2 = new Texture(
-				"chapters/chapter13/balloons/Watawat2.png");
-		watawatBalloon2 = new Texture("chapters/chapter13/balloons/Watawat2.png");
-		watawatBalloon3 = new Texture(
-				"chapters/chapter13/balloons/Watawat3.png");
-		aguinaldoBalloon1 = new Texture(
-				"chapters/chapter13/balloons/EmilioAguinaldo1.png");
-		aguinaldoBalloon2 = new Texture(
-				"chapters/chapter13/balloons/EmilioAguinaldo2.png");
-		aguinaldoBalloon3 = new Texture(
-				"chapters/chapter13/balloons/EmilioAguinaldo3.png");
-		rizalBalloon1 = new Texture(
-				"chapters/chapter13/balloons/JoseRizal1.png");
-		rizalBalloon2 = new Texture(
-				"chapters/chapter13/balloons/JoseRizal2.png");
-		rizalBalloon3 = new Texture(
-				"chapters/chapter13/balloons/JoseRizal3.png");
-		rizalBalloon4 = new Texture(
-				"chapters/chapter13/balloons/JoseRizal4.png");
-		lapuBalloon1 = new Texture("chapters/chapter13/balloons/Lapu-Lapu1.png");
-		lapuBalloon2 = new Texture("chapters/chapter13/balloons/Lapu-Lapu2.png");
-		lapuBalloon3 = new Texture("chapters/chapter13/balloons/Lapu-Lapu3.png");
-		lapuBalloon4 = new Texture("chapters/chapter13/balloons/Lapu-Lapu4.png");
-		simboloBalloon1 = new Texture(
-				"chapters/chapter13/balloons/Simbolo1.png");
-		simboloBalloon2 = new Texture(
-				"chapters/chapter13/balloons/Simbolo2.png");
-		simboloBalloon3 = new Texture(
-				"chapters/chapter13/balloons/Simbolo3.png");
-		aquinoBalloon1 = new Texture(
-				"chapters/chapter13/balloons/NinoyAquino1.png");
-		aquinoBalloon2 = new Texture(
-				"chapters/chapter13/balloons/NinoyAquino2.png");
-		aquinoBalloon3 = new Texture(
-				"chapters/chapter13/balloons/NinoyAquino3.png");
+		
         toggleSoundVolume();
 	}
 
@@ -206,145 +144,67 @@ public class ChapterThirteen extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon1);
-			intro2S.stop();
+			introS.play();
+			watawatS.stop();
 			break;
-		case 1:
-			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon2);
-			intro1S.stop();
-			watawat1S.stop();
-			break;
+		
 		case 2:
 			backgroundSprite.setTexture(watawatBg);
-			balloonSprite.setTexture(watawatBalloon1);
-			intro2S.stop();
-			watawat2S.stop();
+			introS.stop();
+			watawatS.play();
+			simboloS.stop();
 			break;
-		case 3:
-			balloonSprite.setTexture(watawatBalloon2);
-			watawat1S.stop();
-			watawat3S.stop();
-			break;
-		case 4:
-            backgroundSprite.setTexture(watawatBg);
-			balloonSprite.setTexture(watawatBalloon3);
-			watawat2S.stop();
-			simbolo1S.stop();
-			break;
+		
 		case 5:
 			backgroundSprite.setTexture(simboloBg);
-			balloonSprite.setTexture(simboloBalloon1);
-			watawat3S.stop();
-			simbolo2S.stop();
+			watawatS.stop();
+			simboloS.play();
+			bonifacioS.stop();
 			break;
-		case 6:
-			balloonSprite.setTexture(simboloBalloon2);
-			simbolo1S.stop();
-			simbolo3S.stop();
-			break;
-		case 7:
-            backgroundSprite.setTexture(simboloBg);
-			balloonSprite.setTexture(simboloBalloon3);
-			simbolo2S.stop();
-			bonifacio1S.stop();
-			break;
+		
 		case 8:
 			backgroundSprite.setTexture(bonifacioBg);
-			balloonSprite.setTexture(bonifacioBalloon1);
-			simbolo3S.stop();
-			bonifacio2S.stop();
+			simboloS.stop();
+			bonifacioS.play();
+			aguinaldoS.stop();
 			break;
-		case 9:
-			balloonSprite.setTexture(bonifacioBalloon2);
-			bonifacio1S.stop();
-			bonifacio3S.stop();
-			break;
-		case 10:
-            backgroundSprite.setTexture(bonifacioBg);
-			balloonSprite.setTexture(bonifacioBalloon3);
-			bonifacio2S.stop();
-			aguinaldo1S.stop();
-			break;
+		
 		case 11:
 			backgroundSprite.setTexture(aguinaldoBg);
-			balloonSprite.setTexture(aguinaldoBalloon1);
-			bonifacio3S.stop();
-			aguinaldo2S.stop();
+			bonifacioS.stop();
+			aguinaldoS.play();
+			rizalS.stop();
 			break;
-		case 12:
-			balloonSprite.setTexture(aguinaldoBalloon2);
-			aguinaldo1S.stop();
-			aguinaldo2S.stop();
-			break;
-		case 13:
-            backgroundSprite.setTexture(aguinaldoBg);
-			balloonSprite.setTexture(aguinaldoBalloon3);
-			aguinaldo2S.stop();
-			rizal1S.stop();
-			break;
+		
 		case 14:
 			backgroundSprite.setTexture(rizalBg);
-			balloonSprite.setTexture(rizalBalloon1);
-			aguinaldo3S.stop();
-			rizal2S.stop();
+			aguinaldoS.stop();
+			rizalS.play();
+			lapuS.stop();
 			break;
-		case 15:
-			balloonSprite.setTexture(rizalBalloon2);
-			rizal1S.stop();
-			rizal3S.stop();
-			break;
-		case 16:
-			balloonSprite.setTexture(rizalBalloon3);
-			rizal2S.stop();
-			rizal4S.stop();
-			break;
-		case 17:
-            backgroundSprite.setTexture(rizalBg);
-			balloonSprite.setTexture(rizalBalloon4);
-			rizal3S.stop();
-			lapu1S.stop();
-			break;
+		
 		case 18:
 			backgroundSprite.setTexture(lapuBg);
-			balloonSprite.setTexture(lapuBalloon1);
-			rizal4S.stop();
-			lapu2S.stop();
+			rizalS.stop();
+			lapuS.play();
+			aquinoS.stop();
 			break;
-		case 19:
-			balloonSprite.setTexture(lapuBalloon2);
-			lapu1S.stop();
-			lapu3S.stop();
-			break;
-		case 20:
-			balloonSprite.setTexture(lapuBalloon3);
-			lapu2S.stop();
-			lapu4S.stop();
-			break;
-		case 21:
-            backgroundSprite.setTexture(lapuBg);
-			balloonSprite.setTexture(lapuBalloon4);
-			lapu3S.stop();
-			aquino1S.stop();
-			break;
+		
 		case 22:
 			backgroundSprite.setTexture(aquinoBg);
-			balloonSprite.setTexture(aquinoBalloon1);
-			lapu4S.stop();
-			aquino2S.stop();
+			lapuS.stop();
+			aquinoS.play();
 			break;
-		case 23:
-			balloonSprite.setTexture(aquinoBalloon2);
-			aquino1S.stop();
-			aquino3S.stop();
-			break;
-		case 24:
-            backgroundSprite.setTexture(aquinoBg);
-			balloonSprite.setTexture(aquinoBalloon3);
-			aquino2S.stop();
-			break;
+		
         case 25: // Start of game
-        	aquino3S.stop();
+        	introS.stop();
+        	watawatS.stop();
+        	simboloS.stop();
+        	bonifacioS.stop();
+        	aguinaldoS.stop();
+        	rizalS.stop();
+        	lapuS.stop();
+        	aquinoS.stop();
             backgroundSprite.setTexture(question1Bg);
 
             if (!isTeacher) {
@@ -722,85 +582,36 @@ public class ChapterThirteen extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bonifacio1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bonifacio2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bonifacio3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        watawat1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        watawat2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        watawat3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aguinaldo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aguinaldo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aguinaldo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        rizal1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        rizal2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        rizal3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        rizal4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lapu1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lapu2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lapu3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lapu4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        simbolo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        simbolo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        simbolo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aquino1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aquino2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        aquino3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	watawatS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	simboloS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	bonifacioS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	aguinaldoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	rizalS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	lapuS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	aquinoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
     }
 
     @Override
 	public void dispose() {
-		intro1S.stop();
-		intro2S.stop();
-		bonifacio1S.stop();
-		bonifacio2S.stop();
-		bonifacio3S.stop();
-		watawat1S.stop();
-		watawat2S.stop();
-		watawat3S.stop();
-		aguinaldo1S.stop();
-		aguinaldo2S.stop();
-		aguinaldo3S.stop();
-		rizal1S.stop();
-		rizal2S.stop();
-		rizal3S.stop();
-		rizal4S.stop();
-		lapu1S.stop();
-		lapu2S.stop();
-		lapu3S.stop();
-		lapu4S.stop();
-		simbolo1S.stop();
-		simbolo2S.stop();
-		simbolo3S.stop();
-		aquino1S.stop();
-		aquino2S.stop();
-		aquino3S.stop();
-		intro1S.dispose();
-		intro2S.dispose();
-		bonifacio1S.dispose();
-		bonifacio2S.dispose();
-		bonifacio3S.dispose();
-		watawat1S.dispose();
-		watawat2S.dispose();
-		watawat3S.dispose();
-		aguinaldo1S.dispose();
-		aguinaldo2S.dispose();
-		aguinaldo3S.dispose();
-		rizal1S.dispose();
-		rizal2S.dispose();
-		rizal3S.dispose();
-		rizal4S.dispose();
-		lapu1S.dispose();
-		lapu2S.dispose();
-		lapu3S.dispose();
-		lapu4S.dispose();
-		simbolo1S.dispose();
-		simbolo2S.dispose();
-		simbolo3S.dispose();
-		aquino1S.dispose();
-		aquino2S.dispose();
-		aquino3S.dispose();
+    	introS.stop();
+    	watawatS.stop();
+    	simboloS.stop();
+    	bonifacioS.stop();
+    	aguinaldoS.stop();
+    	rizalS.stop();
+    	lapuS.stop();
+    	aquinoS.stop();
+    	
+    	introS.dispose();
+    	watawatS.dispose();
+    	simboloS.dispose();
+    	bonifacioS.dispose();
+    	aguinaldoS.dispose();
+    	rizalS.dispose();
+    	lapuS.dispose();
+    	aquinoS.dispose();
 
 		
 		introBg.dispose();
