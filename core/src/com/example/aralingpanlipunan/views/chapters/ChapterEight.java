@@ -292,8 +292,7 @@ public class ChapterEight extends ChapterCore {
 	/**
 	 * Draw an animating character moving from left until the spotlight
 	 * 
-	 * @param batch
-	 *            Batch
+	 * @param batch Batch
 	 */
 	private void drawDancer(Batch batch) {
 		if (characterX < screenWidth / 1.785f)
