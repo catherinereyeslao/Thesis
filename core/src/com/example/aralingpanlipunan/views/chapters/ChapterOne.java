@@ -101,6 +101,7 @@ public class ChapterOne extends ChapterCore {
         intro2balloonTexture = new Texture("chapters/chapter1/balloons/intro2.png");
 
         loadNextButton();
+        toggleSoundVolume();
     }
 
     @Override
@@ -219,7 +220,22 @@ public class ChapterOne extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-        @Override
+    @Override
+    protected void toggleSoundVolume() {
+        bgMusic.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intros.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        baybayins.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lungsods.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bukids.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        baybayins.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bundoks.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        baybayinBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bukidBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lungsods.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bundoks.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
         public int keyDown(int keycode) {
             if (!isTeacher && typedAnswer.length() > 0 && keycode == 67)
                 typedAnswer.setLength(typedAnswer.length() - 1);
@@ -239,18 +255,15 @@ public class ChapterOne extends ChapterCore {
      */
     private void assetManager() {
         switch (chapterSection) {
-
             case 0:
                 if (backgroundSprite.getTexture() != introBg)
                     backgroundSprite.setTexture(introBg);
                 intros.play();
-                // baybayinBGs.stop();
                 baybayins.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(baybayinBg);
                 intros.stop();
-                //baybayinBGs.play();
                 baybayins.play();
                 bukids.stop();
                 bukidBGs.stop();
@@ -261,7 +274,6 @@ public class ChapterOne extends ChapterCore {
                 baybayinBGs.stop();
                 baybayins.stop();
                 bukids.play();
-                // bukidBGs.play();
                 bundoks.stop();
                 kabundukanBGs.stop();
                 break;
@@ -272,7 +284,6 @@ public class ChapterOne extends ChapterCore {
                 bukids.stop();
                 bukidBGs.stop();
                 bundoks.play();
-                //kabundukanBGs.play();
                 lungsodBGs.stop();
                 lungsods.stop();
                 break;
@@ -280,7 +291,6 @@ public class ChapterOne extends ChapterCore {
                 backgroundSprite.setTexture(lungsodBg);
                 bundoks.stop();
                 kabundukanBGs.stop();
-                //lungsodBGs.play();
                 lungsods.play();
                 break;
             case 5: // Start of game

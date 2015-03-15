@@ -120,8 +120,9 @@ public class Settings {
      * Set touch down listener for settings
      * @param x X coordinate of touched screen
      * @param y Y coordinate of touched screen
+     * @return Returns 1 if sound preference has been toggled
      */
-    public void touchDown(float x, float y) {
+    public int touchDown(float x, float y) {
         switch (settingsDisplay) {
             case SETTINGS_MENU:
                 if (navigation.getBoundingRectangle().contains(x, y)) {
@@ -134,6 +135,7 @@ public class Settings {
                 } else if (sounds.getBoundingRectangle().contains(x, y)) {
                     appPreferences.setSoundPreference(!appPreferences.getSoundPreference());
                     sounds.setAlpha(appPreferences.getSoundPreference() ? 1 : 0.5f);
+                    return 1;
                 }
                 break;
             case NAVIGATION1:
@@ -157,5 +159,6 @@ public class Settings {
                 settingsDisplay = SETTINGS_MENU;
                 break;
         }
+        return 0;
     }
 }

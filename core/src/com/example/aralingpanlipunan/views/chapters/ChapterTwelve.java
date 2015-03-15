@@ -35,6 +35,8 @@ public class ChapterTwelve extends ChapterCore {
         pintaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/pinta2.mp3"));
         sayawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/sayaw3.mp3"));
 
+
+
         // backgrounds
         introTexture = new Texture("chapters/chapter12/backgrounds/intro.png");
         pagPintaTexture = new Texture("chapters/chapter8/backgrounds/Background sa Pagpinta.png");
@@ -42,7 +44,24 @@ public class ChapterTwelve extends ChapterCore {
         panitikanTexture = new Texture("chapters/chapter8/backgrounds/Background sa Panitikan.png");
         musikaTexture = new Texture("chapters/chapter12/backgrounds/Musika.jpg");
 
-       
+        // balloons
+        intro1Balloon = new Texture("chapters/chapter12/balloons/intro1.png");
+        intro2Balloon = new Texture("chapters/chapter12/balloons/intro2.png");
+        musika1Balloon = new Texture("chapters/chapter12/balloons/musika1.png");
+        musika2Balloon = new Texture("chapters/chapter12/balloons/musika2.png");
+        musika3Balloon = new Texture("chapters/chapter12/balloons/musika3.png");
+        musika4Balloon = new Texture("chapters/chapter12/balloons/musika4.png");
+        pagpinta1Balloon = new Texture("chapters/chapter12/balloons/pagpinta1.png");
+        pagpinta2Balloon = new Texture("chapters/chapter12/balloons/pagpinta2.png");
+        panitikan1Balloon = new Texture("chapters/chapter12/balloons/panitikan1.png");
+        panitikan2Balloon = new Texture("chapters/chapter12/balloons/panitikan2.png");
+        panitikan3Balloon = new Texture("chapters/chapter12/balloons/panitikan3.png");
+        panitikan4Balloon = new Texture("chapters/chapter12/balloons/panitikan4.png");
+        panitikan5Balloon = new Texture("chapters/chapter12/balloons/panitikan5.png");
+        panitikan6Balloon = new Texture("chapters/chapter12/balloons/panitikan6.png");
+        sayaw1Balloon = new Texture("chapters/chapter12/balloons/sayaw1.png");
+        sayaw2Balloon = new Texture("chapters/chapter12/balloons/sayaw2.png");
+        sayaw3Balloon = new Texture("chapters/chapter12/balloons/sayaw3.png");
 
         if (isTeacher) {
             question1Texture = new Texture("chapters/chapter12/answerkeys/answer1.jpg");
@@ -102,7 +121,7 @@ public class ChapterTwelve extends ChapterCore {
             ans4D.setSize(ans1A.getWidth(), ans1A.getHeight());
             loadNextButton();
         }
-//        assetNeedUpdate = true;
+        toggleSoundVolume();
     }
 
     @Override
@@ -137,38 +156,37 @@ public class ChapterTwelve extends ChapterCore {
     private void assetManager() {
         float leftCol, rightCol, row1, row2, row3, row4, row5, row6, row7, row8;
         switch (chapterSection) {
-            case 0:
-                backgroundSprite.setTexture(introTexture);
-                introS.play();
-                musikaS.stop();
-                break;
-            case 1:
-                backgroundSprite.setTexture(musikaTexture);
-                introS.stop();
-                musikaS.play();
-                pintaS.stop();
-                break;
-            
-            case 2:
-                backgroundSprite.setTexture(pagPintaTexture);
-               musikaS.stop();
-               pintaS.play();
-               panitikanS.stop();
-                break;
-           
-            case 3:
-                backgroundSprite.setTexture(panitikanTexture);
-                pintaS.stop();
-                panitikanS.play();
-                sayawS.stop();
-                break;
+        case 0:
+            backgroundSprite.setTexture(introTexture);
+            introS.play();
+            musikaS.stop();
+            break;
+        case 1:
+            backgroundSprite.setTexture(musikaTexture);
+            introS.stop();
+            musikaS.play();
+            pintaS.stop();
+            break;
+        
+        case 2:
+            backgroundSprite.setTexture(pagPintaTexture);
+           musikaS.stop();
+           pintaS.play();
+           panitikanS.stop();
+            break;
        
-            case 4:
-                backgroundSprite.setTexture(sayawTexture);
-                panitikanS.stop();
-                sayawS.play();
-                break;
-       
+        case 3:
+            backgroundSprite.setTexture(panitikanTexture);
+            pintaS.stop();
+            panitikanS.play();
+            sayawS.stop();
+            break;
+   
+        case 4:
+            backgroundSprite.setTexture(sayawTexture);
+            panitikanS.stop();
+            sayawS.play();
+            break;
             case 5: // Start of game/quiz
             	introS.stop();
             	musikaS.stop();
@@ -347,7 +365,6 @@ public class ChapterTwelve extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-
         if (!isTeacher) {
             switch (chapterSection) {
                 case 5:
@@ -542,20 +559,23 @@ public class ChapterTwelve extends ChapterCore {
         return super.touchDown(x, y);
     }
 
+    @Override
+    protected void toggleSoundVolume() {
+       
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	musikaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	pintaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	panitikanS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	sayawS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
 
-	@Override
+    @Override
     public void dispose() {
-		
-		introS.stop();
+    	introS.stop();
     	musikaS.stop();
     	pintaS.stop();
     	panitikanS.stop();
     	sayawS.stop();
-    	introS.dispose();
-    	musikaS.dispose();
-    	pintaS.dispose();
-    	panitikanS.dispose();
-    	sayawS.dispose();
 		
         introTexture.dispose();
         pagPintaTexture.dispose();

@@ -82,6 +82,7 @@ public class ChapterFour extends ChapterCore {
 					"chapters/chapter4/backgrounds/question3.jpg");
             setUpGame();
             loadNextButton();
+            toggleSoundVolume();
 		}
     }
 
@@ -485,7 +486,23 @@ public class ChapterFour extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    /**
+     * Toggles volumes of all music in the chapter. This is where you should
+     * set the volume to mute or max depending on how the user set their sounds
+     * in the settings menu
+     */
+    @Override
+    protected void toggleSoundVolume() {
+        bgMusic.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intros.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pagaarals.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        libangans.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kaligtasans.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pagkain.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pagkain.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
     public void dispose() {
         super.dispose();
         bgMusic.stop();

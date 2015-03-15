@@ -124,6 +124,8 @@ public class ChapterSeven extends ChapterCore {
             ans6.setPosition(ansX, ans6Y);
             ans6.setBounds(ansX, ans6Y, ans6.getWidth(), ans6.getHeight());
             ans6.setAlpha(0);
+
+            toggleSoundVolume();
 		}
 
 		// balloons
@@ -376,7 +378,21 @@ public class ChapterSeven extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        erectus1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        erectus2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        erectus3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        habilis1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        habilis2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sapiens1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sapiens2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sapiens3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
         super.dispose();
 		intro1S.stop();

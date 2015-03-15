@@ -211,6 +211,11 @@ public class ChapterSix extends ChapterCore {
     }
 
     @Override
+    protected void toggleSoundVolume() {
+        // This is blank. No sounds to mute in chapter six
+    }
+
+    @Override
     public void dispose() {
         super.dispose();
         question1Bg.dispose();

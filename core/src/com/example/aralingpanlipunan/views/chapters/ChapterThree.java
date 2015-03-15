@@ -61,6 +61,7 @@ public class ChapterThree extends ChapterCore {
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon);
         setUpGame();
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -280,7 +281,17 @@ public class ChapterThree extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        a1s.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        a2s.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        a3s.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        a4s.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        a5s.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose(){
 		super.dispose();
 		introS.stop();

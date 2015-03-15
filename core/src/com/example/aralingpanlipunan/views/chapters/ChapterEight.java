@@ -184,6 +184,7 @@ public class ChapterEight extends ChapterCore {
 				(reader.getHeight() * getButtonScale()) * 1.3f);
 
         loadNextButton();
+        toggleSoundVolume();
 
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
@@ -465,7 +466,26 @@ public class ChapterEight extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.stop();
+        intro2S.stop();
+        paghahabi1S.stop();
+        paghahabi2S.stop();
+        paghahabi3S.stop();
+        paghahabi4S.stop();
+        pagpinta1S.stop();
+        pagpinta2S.stop();
+        pagpinta3S.stop();
+        panitikan1S.stop();
+        panitikan2S.stop();
+        panitikan3S.stop();
+        pagsayaw1S.stop();
+        pagsayaw2S.stop();
+        pagsayaw3S.stop();
+    }
+
+    @Override
 	public void dispose() {
 		//sounds
 		intro1S.stop();

@@ -175,6 +175,8 @@ public class ChapterNine extends ChapterCore {
 		
 		backgroundSprite.setTexture(introBg);
 		balloonSprite.setTexture(introBalloon1);
+
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -551,7 +553,34 @@ public class ChapterNine extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ati1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ati2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ati3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        blaan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        blaan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        blaan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        blaan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bontoc1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bontoc2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bontoc3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ifugao1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ifugao2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ifugao3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sulod1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sulod2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sulod3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sulod4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tboli1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tboli2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tboli3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tboli4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
 		//sounds
 		intro1S.stop();

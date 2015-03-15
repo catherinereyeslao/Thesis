@@ -125,7 +125,7 @@ public class ChapterFifteen extends ChapterCore {
 		tulongPangangailanganBalloon1 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan1.png");
 		tulongPangangailanganBalloon2 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan2.png");
 		tulongPangangailanganBalloon3 = new Texture("chapters/chapter15/balloons/TaongKatulongSaPangangailangan3.png");
-		
+		toggleSoundVolume();
 	}
 
 	@Override
@@ -424,7 +424,27 @@ public class ChapterFifteen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        epekto1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        epekto2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        epekto3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        gawain1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        gawain2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        gawain3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        gawain4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kailangan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kailangan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kailangan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kailangan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        katulong1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        katulong2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        katulong3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
 		intro1S.stop();
 		intro2S.stop();
