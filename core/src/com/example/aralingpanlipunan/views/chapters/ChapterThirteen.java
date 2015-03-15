@@ -34,8 +34,8 @@ public class ChapterThirteen extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 25;
-		lastChapterSection = 28;
+		startOfQuestionSection = 8;
+		lastChapterSection = 11;
 		assetNeedUpdate = true;
 		
 		//sounds
@@ -148,55 +148,55 @@ public class ChapterThirteen extends ChapterCore {
 			watawatS.stop();
 			break;
 		
-		case 2:
+		case 1:
 			backgroundSprite.setTexture(watawatBg);
 			introS.stop();
 			watawatS.play();
 			simboloS.stop();
 			break;
 		
-		case 5:
+		case 2:
 			backgroundSprite.setTexture(simboloBg);
 			watawatS.stop();
 			simboloS.play();
 			bonifacioS.stop();
 			break;
 		
-		case 8:
+		case 3:
 			backgroundSprite.setTexture(bonifacioBg);
 			simboloS.stop();
 			bonifacioS.play();
 			aguinaldoS.stop();
 			break;
 		
-		case 11:
+		case 4:
 			backgroundSprite.setTexture(aguinaldoBg);
 			bonifacioS.stop();
 			aguinaldoS.play();
 			rizalS.stop();
 			break;
 		
-		case 14:
+		case 5:
 			backgroundSprite.setTexture(rizalBg);
 			aguinaldoS.stop();
 			rizalS.play();
 			lapuS.stop();
 			break;
 		
-		case 18:
+		case 6:
 			backgroundSprite.setTexture(lapuBg);
 			rizalS.stop();
 			lapuS.play();
 			aquinoS.stop();
 			break;
 		
-		case 22:
+		case 7:
 			backgroundSprite.setTexture(aquinoBg);
 			lapuS.stop();
 			aquinoS.play();
 			break;
 		
-        case 25: // Start of game
+        case 8: // Start of game
         	introS.stop();
         	watawatS.stop();
         	simboloS.stop();
@@ -243,7 +243,7 @@ public class ChapterThirteen extends ChapterCore {
                 ans2E.setAlpha(0);
             }
             break;
-        case 26:
+        case 9:
             backgroundSprite.setTexture(question2Bg);
 
             if (!isTeacher) {
@@ -304,7 +304,7 @@ public class ChapterThirteen extends ChapterCore {
                 ans2E.setAlpha(0);
             }
             break;
-        case 27:
+        case 10:
             backgroundSprite.setTexture(question3Bg);
 
             if (!isTeacher) {
@@ -366,7 +366,7 @@ public class ChapterThirteen extends ChapterCore {
                 ans2E.setAlpha(0);
             }
             break;
-        case 28:
+        case 11:
             backgroundSprite.setTexture(questionBg);
             if (ans1Correct) correctAnswers++;
             if (ans2Correct) correctAnswers++;
@@ -380,7 +380,7 @@ public class ChapterThirteen extends ChapterCore {
     @Override
     public int touchDown(float x, float y) {
         switch (chapterSection) {
-            case 25:
+            case 8:
                 if (!isTeacher) {
                     if (ans1A.getBoundingRectangle().contains(x, y)) {
                         ans1A.setAlpha(1);
@@ -420,7 +420,7 @@ public class ChapterThirteen extends ChapterCore {
                     }
                 }
                 break;
-            case 26:
+            case 9:
                 if (!isTeacher) {
                     if (ans1A.getBoundingRectangle().contains(x, y)) {
                         ans1A.setAlpha(1);
@@ -497,7 +497,7 @@ public class ChapterThirteen extends ChapterCore {
                     }
                 }
                 break;
-            case 27:
+            case 10:
                 if (!isTeacher) {
                     if (ans1A.getBoundingRectangle().contains(x, y)) {
                         ans1A.setAlpha(1);
@@ -574,7 +574,7 @@ public class ChapterThirteen extends ChapterCore {
                     }
                 }
                 break;
-            case 28:
+            case 11:
                 return displayLastSectionButtons(13, 3, x, y);
         }
         return super.touchDown(x, y);
