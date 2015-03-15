@@ -16,7 +16,7 @@ public class ChapterTwo extends ChapterCore {
     				direction4BalloonTexture, direction5BalloonTexture, map1BalloonTexture, map2BalloonTexture,
     				map3BalloonTexture, map4BalloonTexture, 
     				question1Bg, ansKey1Texture, ansKey2Texture, ansKey3Texture, ansKey4Texture;
-    private Music introS, d1, d2, d32, d4, d5, m1, m2, m3, m4;
+    private Music introS, d,m;
     private Sprite ans1, ans2, ans3, ans4;
     private BitmapFont answer1, answer2, answer3, answer4;
     private float answerX, answerY, answer2X, answer2Y, answer3X, answer3Y, answer4X, answer4Y;
@@ -37,14 +37,14 @@ public class ChapterTwo extends ChapterCore {
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
 
-        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        titleBgTexture = new Texture("titlepages/chapter2.png");
         if (!isTeacher)
             currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(1); // Get Chapter 2 score
         else
             currentRecordedScore = correctAnswers = 10; // If teacher, no need to count score, they are always perfect!
 
-        startOfQuestionSection = 12;
-        lastChapterSection = isTeacher ? 17 : 20; // If teacher, last section is 16, 20 if student
+        startOfQuestionSection = 3;
+        lastChapterSection = isTeacher ? 9 : 11; // If teacher, last section is 16, 20 if student
         tanong = "SAANG DAKO NG PILIPINAS MATAGTAGPUAN ANG SULU?";
 
         ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
@@ -69,17 +69,8 @@ public class ChapterTwo extends ChapterCore {
 
        
         introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-intro.amr"));
-        d1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir1.amr"));
-        d2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir2.amr"));
-       
-        d32 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir3.2.amr"));
-        d4 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir4.amr"));
-        d5 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-dir5.amr"));
-        m1 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa1.amr"));
-        m2 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa2.amr"));
-        m3 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa3.amr"));
-        m4 = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-mapa4.amr"));
-
+        d = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sound2/g-dir.mp3"));
+        m= Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sound2/g-mapa1.mp3"));
         backgroundSprite.setTexture(introBgTexture);
         balloonSprite.setTexture(introBalloonTexture);
 
@@ -148,25 +139,11 @@ public class ChapterTwo extends ChapterCore {
     public void dispose() {
         super.dispose();
         introS.stop();
-        d1.stop();
-        d2.stop();
-        d32.stop();
-        d4.stop();
-        d5.stop();
-        m1.stop();
-        m2.stop();
-        m3.stop();
-        m4.stop();
+        d.stop();
+        m.stop();
         introS.dispose();
-        d1.dispose();
-        d2.dispose();
-        d32.dispose();
-        d4.dispose();
-        d5.dispose();
-        m1.dispose();
-        m2.dispose();
-        m3.dispose();
-        m4.dispose();
+        d.dispose();
+        m.dispose();
         introBgTexture.dispose();
         introBalloonTexture.dispose();
         directionTexture.dispose();
@@ -185,16 +162,7 @@ public class ChapterTwo extends ChapterCore {
         ansKey3Texture.dispose();
         ansKey4Texture.dispose();
         introS.dispose();
-        d1.dispose();
-        d2.dispose();
        
-        d32.dispose();
-        d4.dispose();
-        d5.dispose();
-        m1.dispose();
-        m2.dispose();
-        m3.dispose();
-        m4.dispose();
     }
 
     @Override
@@ -203,7 +171,7 @@ public class ChapterTwo extends ChapterCore {
         int touched;
         switch (chapterSection) {
             
-            case 11:
+            case 3:
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
                 break;
@@ -214,7 +182,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 13:
+            case 4:
                 touched = answerTouchListener(x, y);
                 if (touched == 1) {
                     correctAnswers++;
@@ -225,7 +193,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 14:
+            case 5:
                 touched = answerTouchListener(x, y);
                 if (touched == 3) {
                     correctAnswers++;
@@ -236,7 +204,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 15:
+            case 6:
                 touched = answerTouchListener(x, y);
                 if (touched == 4) {
                     correctAnswers++;
@@ -247,7 +215,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 16:
+            case 7:
                 touched = answerTouchListener(x, y);
                 if (touched == 2) {
                     correctAnswers++;
@@ -258,7 +226,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 17:
+            case 8:
                 touched = answerTouchListener(x, y);
                 if (touched == 1) {
                     correctAnswers++;
@@ -271,7 +239,7 @@ public class ChapterTwo extends ChapterCore {
                 if (isTeacher)
                     return displayLastSectionButtons(2, 4, x, y);
                 break;
-            case 18:
+            case 9:
                 touched = answerTouchListener(x, y);
                 if (touched == 2) {
                     correctAnswers++;
@@ -282,7 +250,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 19:
+            case 10:
                 touched = answerTouchListener(x, y);
                 if (touched == 3) {
                     correctAnswers++;
@@ -293,7 +261,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 20:
+            case 11:
                 return displayLastSectionButtons(2, 4, x, y);
         }
         return 100;
@@ -302,15 +270,9 @@ public class ChapterTwo extends ChapterCore {
     @Override
     protected void toggleSoundVolume() {
         introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        d1.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        d2.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        d32.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        d4.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        d5.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        m1.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        m2.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        m3.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        m4.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        m.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+       
     }
 
     /**
@@ -326,69 +288,28 @@ public class ChapterTwo extends ChapterCore {
                 backgroundSprite.setTexture(introBgTexture);
                 balloonSprite.setTexture(introBalloonTexture);
                 balloonSprite.setAlpha(1);
+                introS.play();
+                d.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);
                 balloonSprite.setAlpha(0);
                 introS.stop();
+                d.play();
+                m.stop();
                 break;
             case 2:
-                balloonSprite.setTexture(direction1BalloonTexture);
-                balloonSprite.setAlpha(1);
-                
-                d2.stop();
-                break;
-            case 3:
-                balloonSprite.setTexture(direction2BalloonTexture);
-                d1.stop();
-                d32.stop();
-                break;
-            case 4:
-                balloonSprite.setTexture(direction3BalloonTexture);
-                d2.stop();
-                d4.stop();
-                break;
-            case 5:
-                balloonSprite.setTexture(direction4BalloonTexture);
-                d32.stop();
-                d5.stop();
-                break;
-            case 6:
-                balloonSprite.setAlpha(1);
-                backgroundSprite.setTexture(directionTexture);
-                balloonSprite.setTexture(direction5BalloonTexture);
-                d4.stop();
-                m1.stop();
-                break;
-            case 7:
                 backgroundSprite.setTexture(mapTexture);
                 balloonSprite.setAlpha(0);
                 balloonSprite.setTexture(map1BalloonTexture);
-                d5.stop();
+                d.stop();
+                m.play();
                
                 break;
-            case 8:
-                balloonSprite.setAlpha(1);
-                m1.stop();
-                m2.stop();
-                break;
-            case 9:
-                balloonSprite.setTexture(map2BalloonTexture);
-              
-                m3.stop();
-                break;
-            case 10:
-                balloonSprite.setTexture(map3BalloonTexture);
-                m2.stop();
-                m4.stop();
-                break;
-            case 11:
-                backgroundSprite.setTexture(mapTexture);
-                balloonSprite.setTexture(map4BalloonTexture);
-                m3.stop();
-                break;
-            case 12: // This is now the game/question area, hide girl & balloon
-            	m4.stop();
+            case 3: // This is now the game/question area, hide girl & balloon
+            	introS.stop();
+            	d.stop();
+            	m.stop();
                 question.setScale(getQuestionFontScale());
                 questionX = (screenWidth / 1.7f) - (question.getWrappedBounds(tanong, questionWidth).width / 2);
                 questionY = (screenHeight - (screenHeight / 11)) - ((question.getMultiLineBounds(tanong).height / 2));
@@ -399,29 +320,29 @@ public class ChapterTwo extends ChapterCore {
                 answer3.setColor(1, 1, 1, 1);
                 answer4.setColor(1, 1, 1, 1);
                 break;
-            case 13:
+            case 4:
                 if (isTeacher)
                     backgroundSprite.setTexture(ansKey1Texture);
                 else
                     backgroundSprite.setTexture(questionBg);
                 tanong = "SAANG DAKO NG PILIPINAS MATAGTAGPUAN ANG BATANES?";
                 break;
-            case 14:
+            case 5:
                 if (isTeacher)
                     backgroundSprite.setTexture(ansKey2Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG SULU?";
                 break;
-            case 15:
+            case 6:
                 if (isTeacher)
                     backgroundSprite.setTexture(ansKey3Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG DAGAT NG PILIPINAS?";
                 break;
-            case 16:
+            case 7:
                 if (isTeacher)
                     backgroundSprite.setTexture(ansKey4Texture);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG KARAGATANG PASIPIKO?";
                 break;
-            case 17:
+            case 8:
                 if (isTeacher)
                     displayQuizResult(CHAPTER_TWO_SCORE, 4);
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG LUZON?";
@@ -429,13 +350,13 @@ public class ChapterTwo extends ChapterCore {
                 ans2.setSize(answer2.getBounds(ans2Char).width, answer2.getBounds(ans2Char).height);
                 answer4.setColor(1, 1, 1, 0); // Hide the 4th choice
                 break;
-            case 18:
+            case 9:
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG VISAYAS?";
                 break;
-            case 19:
+            case 10:
                 tanong = "SAANG DAKO NG PILIPINAS MATATAGPUAN ANG MINDANAO?";
                 break;
-            case 20:
+            case 11:
                 tanong = correctAnswers >= 4 ? "CONGRATULATIONS!\n You're Passed!\nScore: " + correctAnswers : "YOU'RE FAILED!\nScore: " + correctAnswers;
                 answer1.setColor(1, 1, 1, 0);
                 answer2.setColor(1, 1, 1, 0);

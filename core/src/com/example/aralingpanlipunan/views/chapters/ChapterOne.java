@@ -80,24 +80,24 @@ public class ChapterOne extends ChapterCore {
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
 
         baybayinBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayin.mp3"));
-        baybayinBGs.setVolume(0.1f);
+        
         lungsodBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/lungsod.mp3"));
-        lungsodBGs.setVolume(0.1f);
+        
         bukidBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/bukid.mp3"));
-        bukidBGs.setVolume(0.1f);
+        
         kabundukanBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/kabundukan.mp3"));
-        kabundukanBGs.setVolume(0.1f);
+        
 
         intros = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_intro1.mp3"));
-        intros.setVolume(2);
+        
         baybayins = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_baybayin1.mp3"));
-        baybayins.setVolume(2);
+       
         bukids = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bukid1.mp3"));
-        bukids.setVolume(2);
+       
         lungsods = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_lungsod1.mp3"));
-        lungsods.setVolume(2);
+        
         bundoks = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bundok1.mp3"));
-        bundoks.setVolume(2);
+        
         
         startQuizTexture = new Texture("buttons/menu/start.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
@@ -230,16 +230,16 @@ public class ChapterOne extends ChapterCore {
     @Override
     protected void toggleSoundVolume() {
         
-        intros.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        baybayins.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lungsods.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bukids.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        baybayins.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bundoks.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        baybayinBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bukidBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kabundukanBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lungsodBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intros.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        baybayins.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        lungsods.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        bukids.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        bundoks.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        baybayinBGs.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+        bukidBGs.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+        kabundukanBGs.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+        lungsodBGs.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+       
     }
 
     @Override
