@@ -30,7 +30,7 @@ public class ChapterFour extends ChapterCore {
         lastChapterSection = 6;
         
         
-        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        titleBgTexture = new Texture("titlepages/chapter4.png");
         
         introBg = new Texture("chapters/chapter4/backgrounds/intro.png");
         libanganBg = new Texture("chapters/chapter4/backgrounds/Libangan.png");

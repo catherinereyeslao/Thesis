@@ -20,9 +20,7 @@ public class ChapterEight extends ChapterCore {
 			pagsayawBalloon2, pagsayawBalloon3, boxTexture, gameBg,
 			habi1Texture, habi2Texture, painter1Texture,
 			painter2Texture;
-	private Music intro1S, intro2S, paghahabi1S, paghahabi2S, paghahabi3S,
-			paghahabi4S, pagpinta1S, pagpinta2S, pagpinta3S, panitikan1S,
-			panitikan2S, panitikan3S, pagsayaw1S, pagsayaw2S, pagsayaw3S;
+	private Music introS, paghahabiS, pagpintaS, panitikanS, pagsayawS;
 	private TextureAtlas dancerAtlas, readerAtlas;
 	private Animation dancerAnimation, readerAnimation;
 	private Sprite box, box2, box3, box4, character, dancer, reader;
@@ -41,40 +39,16 @@ public class ChapterEight extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 15;
-		lastChapterSection = 16;
+		startOfQuestionSection = 7;
+		lastChapterSection = 8;
+		titleBgTexture = new Texture("titlepages/chapter8.png");
 
 		// sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/introchap8.m4a"));
-		intro2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/intro2chap8.m4a"));
-		paghahabi1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/paghahabi.m4a"));
-		paghahabi2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/paghahabi2.m4a"));
-		paghahabi3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/paghahabi3.m4a"));
-		paghahabi4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/paghahabi4.m4a"));
-		pagpinta1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagpinta1.m4a"));
-		pagpinta2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagpinta2.m4a"));
-		pagpinta3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagpinta3.m4a"));
-		panitikan1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/panitikan.m4a"));
-		panitikan2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/panitikan2.m4a"));
-		panitikan3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/panitikan3.m4a"));
-		pagsayaw1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagsayaw1.m4a"));
-		pagsayaw2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagsayaw2.m4a"));
-		pagsayaw3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter8/sounds/pagsayaw3.m4a"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/introchap8.mp3"));
+		paghahabiS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/paghahabi.mp3"));
+		pagpintaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/pagpinta1.mp3"));
+		pagsayawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/pagsayaw1.mp3"));
+		panitikanS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/panitikan1.mp3"));
 
 		// backgrounds
         introBg = new Texture("chapters/chapter8/backgrounds/IntroForChapter8.png");
@@ -129,35 +103,7 @@ public class ChapterEight extends ChapterCore {
 		sayawBg = new Texture(
 				"chapters/chapter8/backgrounds/Background sa Sayaw.png");
 
-		// balloons
-		introBalloon1 = new Texture("chapters/chapter8/balloons/Intro1.png");
-		introBalloon2 = new Texture("chapters/chapter8/balloons/Intro2.png");
-		paghahabiBalloon1 = new Texture(
-				"chapters/chapter8/balloons/Paghahabi1.png");
-		paghahabiBalloon2 = new Texture(
-				"chapters/chapter8/balloons/Paghahabi2.png");
-		paghahabiBalloon3 = new Texture(
-				"chapters/chapter8/balloons/Paghahabi3.png");
-		paghahabiBalloon4 = new Texture(
-				"chapters/chapter8/balloons/Paghahabi4.png");
-		pagpintaBalloon1 = new Texture(
-				"chapters/chapter8/balloons/Pagpinta1.png");
-		pagpintaBalloon2 = new Texture(
-				"chapters/chapter8/balloons/Pagpinta2.png");
-		pagpintaBalloon3 = new Texture(
-				"chapters/chapter8/balloons/Pagpinta3.png");
-		panitikanBalloon1 = new Texture(
-				"chapters/chapter8/balloons/Panitikan1.png");
-		panitikanBalloon2 = new Texture(
-				"chapters/chapter8/balloons/Panitikan2.png");
-		panitikanBalloon3 = new Texture(
-				"chapters/chapter8/balloons/Panitikan3.png");
-		pagsayawBalloon1 = new Texture(
-				"chapters/chapter8/balloons/Pagsayaw1.png");
-		pagsayawBalloon2 = new Texture(
-				"chapters/chapter8/balloons/Pagsayaw2.png");
-		pagsayawBalloon3 = new Texture(
-				"chapters/chapter8/balloons/Pagsayaw3.png");
+		
 
 		// characters
 		habi1Texture = new Texture("chapters/chapter8/characters/habi1.png");
@@ -199,46 +145,25 @@ public class ChapterEight extends ChapterCore {
 
         if (!viewingSettings) {
             switch (chapterSection) {
+                case 1:
+                    drawHabi(batch);
+                    break;
                 case 2:
                     drawHabi(batch);
                     break;
                 case 3:
-                    drawHabi(batch);
+                    drawPainter(batch);
                     break;
                 case 4:
-                    drawHabi(batch);
+                    drawPainter(batch);
                     break;
                 case 5:
-                    drawHabi(batch);
+                    drawDancer(batch);
                     break;
                 case 6:
-                    drawPainter(batch);
+                    drawReader(batch);
                     break;
                 case 7:
-                    drawPainter(batch);
-                    break;
-                case 8:
-                    drawPainter(batch);
-                    break;
-                case 9:
-                    drawDancer(batch);
-                    break;
-                case 10:
-                    drawDancer(batch);
-                    break;
-                case 11:
-                    drawDancer(batch);
-                    break;
-                case 12:
-                    drawReader(batch);
-                    break;
-                case 13:
-                    drawReader(batch);
-                    break;
-                case 14:
-                    drawReader(batch);
-                    break;
-                case 15:
                     if (!isTeacher) {
                         box.draw(batch);
                         box2.draw(batch);
@@ -247,7 +172,7 @@ public class ChapterEight extends ChapterCore {
                         next.draw(batch);
                     }
                     break;
-                case 16:
+                case 8:
                     drawQuizResult(batch);
                     break;
             }
@@ -312,109 +237,80 @@ public class ChapterEight extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon1);
-			intro2S.stop();
+			introS.play();
+			paghahabiS.stop();
 			break;
-		case 1:
-			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon2);
-			intro1S.stop();
-			paghahabi1S.stop();
-			break;
+		
 		case 2:
+			introS.stop();
+			paghahabiS.play();
+			
 			animationCounter = 0;
 			backgroundSprite.setTexture(paghahabiBg);
-			balloonSprite.setTexture(paghahabiBalloon1);
+			
 			characterX = (screenWidth / 2) - (character.getWidth() / 2);
 			characterY = (screenHeight / 4) - (character.getHeight() / 2);
 			character.setPosition(characterX, characterY);
-			intro2S.stop();
-			paghahabi2S.stop();
+			
 			break;
-		case 3:
-			balloonSprite.setTexture(paghahabiBalloon2);
-			paghahabi1S.stop();
-			paghahabi3S.stop();
-			break;
-		case 4:
-			balloonSprite.setTexture(paghahabiBalloon3);
-			paghahabi2S.stop();
-			paghahabi4S.stop();
-			break;
+		
 		case 5:
+			pagpintaS.stop();
 			backgroundSprite.setTexture(paghahabiBg);
-			balloonSprite.setTexture(paghahabiBalloon4);
+			
 			character.setTexture(habi1Texture);
 			characterX = (screenWidth / 2) - (character.getWidth() / 2);
 			character.setPosition(characterX, characterY);
-			paghahabi3S.stop();
-			pagpinta1S.stop();
+			
 			break;
 		case 6:
+			paghahabiS.stop();
+			pagpintaS.play();
 			animationCounter = 0;
 			backgroundSprite.setTexture(pagpintaBg);
-			balloonSprite.setTexture(pagpintaBalloon1);
+			
 			character.setTexture(painter2Texture);
-			paghahabi4S.stop();
-			pagpinta2S.stop();
+			
 			break;
-		case 7:
-			balloonSprite.setTexture(pagpintaBalloon2);
-			pagpinta1S.stop();
-			pagpinta3S.stop();
-			break;
+		
 		case 8:
+			pagsayawS.stop();
 			characterY = (screenHeight / 4) - (character.getHeight() / 2);
 			backgroundSprite.setTexture(pagpintaBg);
-			balloonSprite.setTexture(pagpintaBalloon3);
+			
 			character.setTexture(painter2Texture);
-			pagpinta2S.stop();
-			pagsayaw1S.stop();
+			
 			break;
 		case 9:
+			pagpintaS.stop();
+			pagsayawS.play();
+			panitikanS.stop();
 			if (!renderedDancer) {
 				characterX = -character.getWidth();
 				characterY = (screenHeight / 3) - (character.getHeight() / 2);
 				renderedDancer = true;
 			}
 			backgroundSprite.setTexture(sayawBg);
-			balloonSprite.setTexture(pagsayawBalloon1);
-			pagpinta3S.stop();
-			pagsayaw2S.stop();
+			
 			break;
-		case 10:
-			balloonSprite.setTexture(pagsayawBalloon2);
-			pagsayaw1S.stop();
-			pagsayaw3S.stop();
-			break;
-		case 11:
-			backgroundSprite.setTexture(sayawBg);
-			balloonSprite.setTexture(pagsayawBalloon3);
-			pagsayaw2S.stop();
-			panitikan1S.stop();
-			break;
+		
 		case 12:
+			pagsayawS.stop();
+			panitikanS.play();
 			characterX = (screenWidth / 1.5f) - (reader.getWidth() / 2);
 			characterY = (screenHeight / 3) - (reader.getHeight() / 2);
 			reader.setPosition(characterX, characterY);
 			backgroundSprite.setTexture(panitikanBg);
-			balloonSprite.setTexture(panitikanBalloon1);
-			pagsayaw3S.stop();
-			panitikan2S.stop();
+			
 			break;
-		case 13:
-			balloonSprite.setTexture(panitikanBalloon2);
-			panitikan1S.stop();
-			panitikan3S.stop();
-			break;
-		case 14:
-            backgroundSprite.setTexture(panitikanBg);
-			balloonSprite.setTexture(panitikanBalloon3);
-			panitikan2S.stop();
-			break;
-		case 15:
+		
+		case 15://game
 			backgroundSprite.setTexture(gameBg);
-			panitikan3S.stop();
+			introS.stop();
+			panitikanS.stop();
+			pagsayawS.stop();
+			pagpintaS.stop();
+			paghahabiS.stop();
 			break;
 		case 16:
             if (isTeacher) {
@@ -468,57 +364,26 @@ public class ChapterEight extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        intro1S.stop();
-        intro2S.stop();
-        paghahabi1S.stop();
-        paghahabi2S.stop();
-        paghahabi3S.stop();
-        paghahabi4S.stop();
-        pagpinta1S.stop();
-        pagpinta2S.stop();
-        pagpinta3S.stop();
-        panitikan1S.stop();
-        panitikan2S.stop();
-        panitikan3S.stop();
-        pagsayaw1S.stop();
-        pagsayaw2S.stop();
-        pagsayaw3S.stop();
+       introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        paghahabiS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pagsayawS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikanS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pagpintaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
     }
 
     @Override
 	public void dispose() {
 		//sounds
-		intro1S.stop();
-		intro2S.stop();
-		paghahabi1S.stop();
-		paghahabi2S.stop();
-		paghahabi3S.stop();
-		paghahabi4S.stop();
-		pagpinta1S.stop();
-		pagpinta2S.stop();
-		pagpinta3S.stop();
-		panitikan1S.stop();
-		panitikan2S.stop();
-		panitikan3S.stop();
-		pagsayaw1S.stop();
-		pagsayaw2S.stop();
-		pagsayaw3S.stop();
-		
-		intro1S.dispose();
-		intro2S.dispose();
-		paghahabi1S.dispose();
-		paghahabi2S.dispose();
-		paghahabi3S.dispose();
-		paghahabi4S.dispose();
-		pagpinta1S.dispose();
-		pagpinta2S.dispose();
-		pagpinta3S.dispose();
-		panitikan1S.dispose();
-		panitikan2S.dispose();
-		panitikan3S.dispose();
-		pagsayaw1S.dispose();
-		pagsayaw2S.dispose();
-		pagsayaw3S.dispose();
+    	introS.stop();
+        paghahabiS.stop();
+        pagsayawS.stop();
+        panitikanS.stop();
+        pagpintaS.stop();
+        introS.dispose();
+        paghahabiS.dispose();
+        pagsayawS.dispose();
+        panitikanS.dispose();
+        pagpintaS.dispose();
 		
 		introBg.dispose();
 		paghahabiBg.dispose();

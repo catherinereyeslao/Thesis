@@ -37,7 +37,7 @@ public class ChapterFive extends ChapterCore {
         characterSpeed = getCharacterVelocityByScreen();
         boxTexture = new Texture("box.png");
 
-        titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
+        titleBgTexture = new Texture("titlepages/chatper5.png");
         
         
         if (isTeacher) {

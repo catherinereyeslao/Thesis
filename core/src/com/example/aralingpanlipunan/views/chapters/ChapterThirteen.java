@@ -36,7 +36,7 @@ public class ChapterThirteen extends ChapterCore {
 		super.setUp(screenW, screenH);
 		startOfQuestionSection = 8;
 		lastChapterSection = 11;
-		assetNeedUpdate = true;
+		titleBgTexture = new Texture("titlepages/chatper13.png");
 		
 		//sounds
 		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter13/sound2/intro1chap13.mp3"));
