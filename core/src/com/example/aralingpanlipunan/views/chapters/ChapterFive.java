@@ -140,7 +140,7 @@ public class ChapterFive extends ChapterCore {
         intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/intro1chap5.mp3"));
         magsasaka = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/magsasaka1.mp3"));
         mangangalakal = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/mangangalakal1.mp3"));
-        pangingisda = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/pangingisada1.mp3"));
+        pangingisda = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sound2/pangingisda1.mp3"));
         pagmimina = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter5/sounds/pagmimina.m4a"));
 		
 		//backgrounds

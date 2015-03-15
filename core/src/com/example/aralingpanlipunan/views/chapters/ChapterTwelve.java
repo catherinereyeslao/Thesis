@@ -25,8 +25,8 @@ public class ChapterTwelve extends ChapterCore {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-        startOfQuestionSection = 17;
-        lastChapterSection = 19;
+        startOfQuestionSection = 5;
+        lastChapterSection = 7;
         
         //sounds
         introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/intro1chap12.mp3"));
@@ -139,34 +139,42 @@ public class ChapterTwelve extends ChapterCore {
         switch (chapterSection) {
             case 0:
                 backgroundSprite.setTexture(introTexture);
-                
+                introS.play();
+                musikaS.stop();
                 break;
             case 1:
-                backgroundSprite.setTexture(introTexture);
-               
-                break;
-            case 2:
                 backgroundSprite.setTexture(musikaTexture);
-                
+                introS.stop();
+                musikaS.play();
+                pintaS.stop();
                 break;
             
-            case 6:
+            case 2:
                 backgroundSprite.setTexture(pagPintaTexture);
-               
+               musikaS.stop();
+               pintaS.play();
+               panitikanS.stop();
                 break;
            
-            case 8:
+            case 3:
                 backgroundSprite.setTexture(panitikanTexture);
-                
+                pintaS.stop();
+                panitikanS.play();
+                sayawS.stop();
                 break;
        
-            case 14:
+            case 4:
                 backgroundSprite.setTexture(sayawTexture);
-                
+                panitikanS.stop();
+                sayawS.play();
                 break;
        
-            case 17: // Start of game/quiz
-            	
+            case 5: // Start of game/quiz
+            	introS.stop();
+            	musikaS.stop();
+            	pintaS.stop();
+            	panitikanS.stop();
+            	sayawS.stop();
                 backgroundSprite.setTexture(question1Texture);
 
                 if (!isTeacher) {
@@ -249,7 +257,7 @@ public class ChapterTwelve extends ChapterCore {
                     ans4D.setAlpha(0);
                 }
                 break;
-            case 18:
+            case 6:
                 backgroundSprite.setTexture(question2Texture);
 
                 if (!isTeacher) {
@@ -326,7 +334,7 @@ public class ChapterTwelve extends ChapterCore {
                     ans4D.setAlpha(0);
                 }
                 break;
-            case 19:
+            case 7:
                 if (!isTeacher && ans5Correct) correctAnswers++;
                 if (!isTeacher && ans6Correct) correctAnswers++;
                 if (!isTeacher && ans7Correct) correctAnswers++;
@@ -342,7 +350,7 @@ public class ChapterTwelve extends ChapterCore {
 
         if (!isTeacher) {
             switch (chapterSection) {
-                case 17:
+                case 5:
                     if (ans1A.getBoundingRectangle().contains(x, y)) {
                         ans1A.setAlpha(1);
                         ans1B.setAlpha(0);
@@ -447,7 +455,7 @@ public class ChapterTwelve extends ChapterCore {
                         ans4Correct = false;
                     }
                     break;
-                case 18:
+                case 6:
                     if (ans1A.getBoundingRectangle().contains(x, y)) {
                         ans1A.setAlpha(1);
                         ans1B.setAlpha(0);
@@ -537,6 +545,17 @@ public class ChapterTwelve extends ChapterCore {
 
 	@Override
     public void dispose() {
+		
+		introS.stop();
+    	musikaS.stop();
+    	pintaS.stop();
+    	panitikanS.stop();
+    	sayawS.stop();
+    	introS.dispose();
+    	musikaS.dispose();
+    	pintaS.dispose();
+    	panitikanS.dispose();
+    	sayawS.dispose();
 		
         introTexture.dispose();
         pagPintaTexture.dispose();
