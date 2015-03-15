@@ -133,6 +133,7 @@ public class ChapterTwelve extends ChapterCore {
             loadNextButton();
         }
         assetNeedUpdate = true;
+        toggleSoundVolume();
     }
 
     @Override
@@ -629,7 +630,28 @@ public class ChapterTwelve extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        musika1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        musika2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        musika3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        musika4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan5S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panitikan6S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pinta1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pinta2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sayaw1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sayaw2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        sayaw3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
     public void dispose() {
 		intro1S.stop();
 		intro2S.stop();

@@ -137,6 +137,7 @@ public class ChapterEighteen extends ChapterCore {
 
             loadNextButton();
         }
+        toggleSoundVolume();
     }
 
     @Override
@@ -276,7 +277,36 @@ public class ChapterEighteen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        malinis1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        malinis2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        malinis3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        malinis4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puno1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puno2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puno3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puno4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanim1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanim2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanim3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanim4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura5S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura6S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        basura7S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalikasan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalikasan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalikasan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalikasan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
     public void dispose() {
         super.dispose();
         intro1S.stop();

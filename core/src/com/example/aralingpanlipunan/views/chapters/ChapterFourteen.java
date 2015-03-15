@@ -181,7 +181,7 @@ public class ChapterFourteen extends ChapterCore {
 				"chapters/chapter14/balloons/Talampas2.png");
 		talonBalloon1 = new Texture("chapters/chapter14/balloons/Talon1.png");
 		talonBalloon2 = new Texture("chapters/chapter14/balloons/Talon2.png");
-
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -555,7 +555,39 @@ public class ChapterFourteen extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bukal1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bukal2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bulkan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bulkan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bundok1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bundok2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        burol1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        burol2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        burol3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        dagat1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        dagat2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ilog1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ilog2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ilog3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        patag1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        patag2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        karagatan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        karagatan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lambak1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lambak2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lawa1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lawa2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        talampas1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        talampas2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        talon1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        talon2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
 		super.dispose();
 		intro1S.stop();

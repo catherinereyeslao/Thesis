@@ -123,6 +123,7 @@ public class ChapterTwo extends ChapterCore {
         ans4 = new Sprite(startQuiz.getTexture());
         ans4.setSize(answer4.getBounds(ans4Char).width, answer4.getBounds(ans4Char).height);
         ans4.setPosition(answer4X, answer4Y - answer4.getBounds(ans4Char).height);
+        toggleSoundVolume();
     }
 
     @Override
@@ -296,6 +297,20 @@ public class ChapterTwo extends ChapterCore {
                 return displayLastSectionButtons(2, 4, x, y);
         }
         return 100;
+    }
+
+    @Override
+    protected void toggleSoundVolume() {
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d1.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d2.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d32.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d4.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        d5.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        m1.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        m2.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        m3.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        m4.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
     }
 
     /**

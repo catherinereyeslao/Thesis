@@ -153,6 +153,7 @@ public class ChapterTen extends ChapterCore {
 		undasBalloon5 = new Texture("chapters/chapter10/balloons/Undas5.png");
 
         assetNeedUpdate = true;
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -288,7 +289,30 @@ public class ChapterTen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	private void assetManager() {
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagongTaon1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagongTaon2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagongTaon3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        salo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        salo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        salo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        galang1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        galang2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        galang3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        galang4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanggap1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanggap2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        tanggap3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        undas1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        undas2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        undas3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        undas4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        undas5S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    private void assetManager() {
         float ansMarkerX, ansMarker2X, ansMarkerY, ansMarker3Y, ansMarker5Y, ansMarker7Y, ansMarker9Y, ansMarker11Y;
 		switch (chapterSection) {
 		case 0:

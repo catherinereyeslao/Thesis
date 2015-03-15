@@ -175,7 +175,7 @@ public class ChapterThirteen extends ChapterCore {
 				"chapters/chapter13/balloons/NinoyAquino2.png");
 		aquinoBalloon3 = new Texture(
 				"chapters/chapter13/balloons/NinoyAquino3.png");
-
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -720,7 +720,36 @@ public class ChapterThirteen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	@Override
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bonifacio1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bonifacio2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bonifacio3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        watawat1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        watawat2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        watawat3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aguinaldo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aguinaldo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aguinaldo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        rizal1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        rizal2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        rizal3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        rizal4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lapu1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lapu2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lapu3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lapu4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        simbolo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        simbolo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        simbolo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aquino1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aquino2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        aquino3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
 		intro1S.stop();
 		intro2S.stop();

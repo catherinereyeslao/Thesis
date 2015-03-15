@@ -232,6 +232,7 @@ public class ChapterEleven extends ChapterCore {
 				"chapters/chapter11/balloons/Santacruzan1.png");
 		santacruzanBalloon2 = new Texture(
 				"chapters/chapter11/balloons/Santacruzan2.png");
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -806,68 +807,105 @@ public class ChapterEleven extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	@Override
+    /**
+     * Toggles volumes of all music in the chapter. This is where you should
+     * set the volume to mute or max depending on how the user set their sounds
+     * in the settings menu
+     */
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalayaan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalayaan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalayaan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kalayaan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ama1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ama2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ama3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ama4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        guro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        guro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        guro3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        guro4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        guro5S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ina1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ina2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        ina3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puso1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        puso2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        mahalNaAraw1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        mahalNaAraw2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        mahalNaAraw3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pasko1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pasko2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pasko3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pista1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        pista2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        santa1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        santa2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    @Override
 	public void dispose() {
-			intro1S.stop();
-			
-	        kalayaan1S.stop();
-	        kalayaan2S.stop();
-	        kalayaan3S.stop();
-	        kalayaan4S.stop();
-	        ama1S.stop();
-	        ama2S.stop();
-	        ama3S.stop();
-	        ama4S.stop();
-	        guro1S.stop();
-	        guro2S.stop();
-	        guro3S.stop();
-	        guro4S.stop();
-	        guro5S.stop();
-	        ina1S.stop();
-	        ina2S.stop();
-	        ina3S.stop();
-	        puso1S.stop();
-	        puso2S.stop();
-	        mahalNaAraw1S.stop();
-	        mahalNaAraw2S.stop();
-	        mahalNaAraw3S.stop();
-	        pasko1S.stop();
-	        pasko2S.stop();
-	        pasko3S.stop();
-	        pista1S.stop();
-	        pista2S.stop();
-	        santa1S.stop();
-	        santa2S.stop();
-		
-	        intro1S.dispose();
-	        kalayaan1S.dispose();
-	        kalayaan2S.dispose();
-	        kalayaan3S.dispose();
-	        kalayaan4S.dispose();
-	        ama1S.dispose();
-	        ama2S.dispose();
-	        ama3S.dispose();
-	        ama4S.dispose();
-	        guro1S.dispose();
-	        guro2S.dispose();
-	        guro3S.dispose();
-	        guro4S.dispose();
-	        guro5S.dispose();
-	        ina1S.dispose();
-	        ina2S.dispose();
-	        ina3S.dispose();
-	        puso1S.dispose();
-	        puso2S.dispose();
-	        mahalNaAraw1S.dispose();
-	        mahalNaAraw2S.dispose();
-	        mahalNaAraw3S.dispose();
-	        pasko1S.dispose();
-	        pasko2S.dispose();
-	        pasko3S.dispose();
-	        pista1S.dispose();
-	        pista2S.dispose();
-	        santa1S.dispose();
-	        santa2S.dispose();
+        intro1S.stop();
+        kalayaan1S.stop();
+        kalayaan2S.stop();
+        kalayaan3S.stop();
+        kalayaan4S.stop();
+        ama1S.stop();
+        ama2S.stop();
+        ama3S.stop();
+        ama4S.stop();
+        guro1S.stop();
+        guro2S.stop();
+        guro3S.stop();
+        guro4S.stop();
+        guro5S.stop();
+        ina1S.stop();
+        ina2S.stop();
+        ina3S.stop();
+        puso1S.stop();
+        puso2S.stop();
+        mahalNaAraw1S.stop();
+        mahalNaAraw2S.stop();
+        mahalNaAraw3S.stop();
+        pasko1S.stop();
+        pasko2S.stop();
+        pasko3S.stop();
+        pista1S.stop();
+        pista2S.stop();
+        santa1S.stop();
+        santa2S.stop();
+
+        intro1S.dispose();
+        kalayaan1S.dispose();
+        kalayaan2S.dispose();
+        kalayaan3S.dispose();
+        kalayaan4S.dispose();
+        ama1S.dispose();
+        ama2S.dispose();
+        ama3S.dispose();
+        ama4S.dispose();
+        guro1S.dispose();
+        guro2S.dispose();
+        guro3S.dispose();
+        guro4S.dispose();
+        guro5S.dispose();
+        ina1S.dispose();
+        ina2S.dispose();
+        ina3S.dispose();
+        puso1S.dispose();
+        puso2S.dispose();
+        mahalNaAraw1S.dispose();
+        mahalNaAraw2S.dispose();
+        mahalNaAraw3S.dispose();
+        pasko1S.dispose();
+        pasko2S.dispose();
+        pasko3S.dispose();
+        pista1S.dispose();
+        pista2S.dispose();
+        santa1S.dispose();
+        santa2S.dispose();
 		
 		introBg.dispose();
 		kalayaanBg.dispose();

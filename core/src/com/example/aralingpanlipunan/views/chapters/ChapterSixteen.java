@@ -124,6 +124,7 @@ public class ChapterSixteen extends ChapterCore {
 
 			loadNextButton();
 		}
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -299,7 +300,23 @@ public class ChapterSixteen extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	private void assetManager() {
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        hb1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        hb2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        hb3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        produkto1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        produkto2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        produkto3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        produkto4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        serbisyo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        serbisyo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        serbisyo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        serbisyo4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    private void assetManager() {
 		float row1, row2, row3, row4, row5, row6, ans1Col, ans2Col, ans3Col, ans4Col, ans5Col;
 		switch (chapterSection) {
 		case 0:

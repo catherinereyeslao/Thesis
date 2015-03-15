@@ -86,7 +86,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         rightArrowTexture = new Texture("help/next.png");
         leftArrowTexture = new Texture("help/prev.png");
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
-        bgMusic.play();
+        if (appPreferences.getSoundPreference()) bgMusic.play();
 
         nextSlide = new Sprite(rightArrowTexture);
         nextSlide.setSize(nextSlide.getWidth() * getButtonScale() / 2, nextSlide.getHeight() * getButtonScale() / 2);
@@ -260,7 +260,8 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
         }
 
         if (viewingSettings) {
-            settings.touchDown(x, y);
+            if (settings.touchDown(x, y) == 1)
+                toggleSoundVolume();
             return 100;
         }
 
@@ -444,4 +445,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
             backToChapters.draw(batch);
         }
     }
+
+    /**
+     * Toggles volumes of all music in the chapter. This is where you should
+     * set the volume to mute or max depending on how the user set their sounds
+     * in the settings menu
+     */
+    protected abstract void toggleSoundVolume();
 }

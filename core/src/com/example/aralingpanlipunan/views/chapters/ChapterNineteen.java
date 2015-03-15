@@ -89,6 +89,7 @@ public class ChapterNineteen extends ChapterCore {
 
             loadNextButton();
         }
+        toggleSoundVolume();
     }
 
     @Override
@@ -693,6 +694,11 @@ public class ChapterNineteen extends ChapterCore {
         if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(19, 15, x, y);
         return super.touchDown(x, y);
+    }
+
+    @Override
+    protected void toggleSoundVolume() {
+        // No sounds here
     }
 
     private void assetManager() {

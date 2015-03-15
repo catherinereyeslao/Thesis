@@ -155,6 +155,7 @@ public class ChapterSeventeen extends ChapterCore {
 
 			loadNextButton();
 		}
+        toggleSoundVolume();
 	}
 
 	@Override
@@ -356,7 +357,25 @@ public class ChapterSeventeen extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	private void assetManager() {
+    @Override
+    protected void toggleSoundVolume() {
+        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagyo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagyo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagyo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagyo4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panahon1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panahon2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panahon3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panahon4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        uri1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        uri2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        uri3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        uri4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    }
+
+    private void assetManager() {
 		float row1, row2, row3, row4, row5, leftCol, rightCol;
 		switch (chapterSection) {
 		case 0:
