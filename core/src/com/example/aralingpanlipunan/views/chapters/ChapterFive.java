@@ -179,7 +179,6 @@ public class ChapterFive extends ChapterCore {
 
         characterX = truck.getWidth() * -1.25f; // Start truck from outer left portion of screen
         characterY = (screenHeight / 3) - (truck.getHeight() / 2);
-        toggleSoundVolume();
 	}
 
 	@Override
@@ -394,16 +393,7 @@ public class ChapterFive extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    @Override
-    protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        magsasaka.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pagmimina.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pangingisda.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        mangangalakal.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-    }
-
-    @Override
+	@Override
 	public void dispose(){
 		super.dispose();
 		intro1S.stop();
@@ -531,4 +521,16 @@ public class ChapterFive extends ChapterCore {
     private float getAnswerHeight(Sprite answer) {
         return (answer.getHeight() * getButtonScale() * 1.6f);
     }
+
+	@Override
+	protected void toggleSoundVolume() {
+		// TODO Auto-generated method stub
+		intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		magsasaka.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		pagmimina.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		pangingisda.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		mangangalakal.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		
+		
+	}
 }

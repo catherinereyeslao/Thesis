@@ -62,8 +62,7 @@ public class ChapterOne extends ChapterCore {
             studentAnswer.setScale(getQuestionFontScale());
             currentRecordedScore = android.getScoresByStudent(loggedInStudent, studentPassword).get(0);
         }
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
-
+        
         /*baybayin1sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin1.mp3"));
         baybayin2sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin2.mp3"));
         baybayin3sound = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sounds/baybayin3.mp3"));
@@ -80,17 +79,26 @@ public class ChapterOne extends ChapterCore {
         kabundukanBg = new Texture("chapters/chapter1/backgrounds/kabundukan.png");
         lungsodBg = new Texture("chapters/chapter1/backgrounds/lungsod.png");
 
-        baybayinBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayinBg.mp3"));
+        baybayinBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/baybayin.mp3"));
+        baybayinBGs.setVolume(0.1f);
         lungsodBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/lungsod.mp3"));
+        lungsodBGs.setVolume(0.1f);
         bukidBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/bukid.mp3"));
+        bukidBGs.setVolume(0.1f);
         kabundukanBGs = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/bgsounds/kabundukan.mp3"));
+        kabundukanBGs.setVolume(0.1f);
 
         intros = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_intro1.mp3"));
+        intros.setVolume(2);
         baybayins = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_baybayin1.mp3"));
+        baybayins.setVolume(2);
         bukids = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bukid1.mp3"));
+        bukids.setVolume(2);
         lungsods = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_lungsod1.mp3"));
+        lungsods.setVolume(2);
         bundoks = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter1/sound2/G_bundok1.mp3"));
-
+        bundoks.setVolume(2);
+        
         startQuizTexture = new Texture("buttons/menu/start.png");
         intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
 
@@ -120,20 +128,19 @@ public class ChapterOne extends ChapterCore {
     @Override
     public void dispose() {
         super.dispose();
-        bgMusic.stop();
+
         intros.stop();
         baybayins.stop();
         lungsods.stop();
         bukids.stop();
-        baybayins.stop();
         bundoks.stop();
 
         baybayinBGs.stop();
         bukidBGs.stop();
-        lungsods.stop();
-        bundoks.stop();
+        lungsodBGs.stop();
+        kabundukanBGs.stop();
 
-        bgMusic.dispose();
+        
         intros.dispose();
         baybayins.dispose();
         lungsods.dispose();
@@ -143,8 +150,8 @@ public class ChapterOne extends ChapterCore {
 
         baybayinBGs.dispose();
         bukidBGs.dispose();
-        lungsods.dispose();
-        bundoks.dispose();
+        lungsodBGs.dispose();
+        kabundukanBGs.dispose();
 
         /*baybayinBgS.stop();
         baybayin1sound.stop();
@@ -183,7 +190,7 @@ public class ChapterOne extends ChapterCore {
         kabundukanBg.dispose();
         lungsodBg.dispose();
         startQuizTexture.dispose();
-        bgMusic.dispose();
+
         baybayinBGs.dispose();
         fourPicsOneWordUtil.dispose();
         if (!isTeacher) {
@@ -222,7 +229,7 @@ public class ChapterOne extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        bgMusic.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        
         intros.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
         baybayins.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
         lungsods.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
@@ -231,8 +238,8 @@ public class ChapterOne extends ChapterCore {
         bundoks.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
         baybayinBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
         bukidBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lungsods.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bundoks.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        kabundukanBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        lungsodBGs.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
     }
 
     @Override
@@ -260,20 +267,22 @@ public class ChapterOne extends ChapterCore {
                     backgroundSprite.setTexture(introBg);
                 intros.play();
                 baybayins.stop();
+                baybayinBGs.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(baybayinBg);
                 intros.stop();
                 baybayins.play();
+                baybayinBGs.play();
                 bukids.stop();
                 bukidBGs.stop();
                 break;
             case 2:
                 backgroundSprite.setTexture(kabukirinBg);
-
                 baybayinBGs.stop();
                 baybayins.stop();
                 bukids.play();
+                bukidBGs.play();
                 bundoks.stop();
                 kabundukanBGs.stop();
                 break;
@@ -284,6 +293,7 @@ public class ChapterOne extends ChapterCore {
                 bukids.stop();
                 bukidBGs.stop();
                 bundoks.play();
+                kabundukanBGs.play();
                 lungsodBGs.stop();
                 lungsods.stop();
                 break;
@@ -292,6 +302,7 @@ public class ChapterOne extends ChapterCore {
                 bundoks.stop();
                 kabundukanBGs.stop();
                 lungsods.play();
+                lungsodBGs.play();
                 break;
             case 5: // Start of game
                 lungsodBGs.stop();
