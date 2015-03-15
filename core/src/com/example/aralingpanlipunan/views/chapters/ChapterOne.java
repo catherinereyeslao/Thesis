@@ -211,11 +211,6 @@ public class ChapterOne extends ChapterCore {
             assetNeedUpdate = true;
             ansCorrect = false;
         } else {
-            if (soundSprite.getBoundingRectangle().contains(x, y)) {
-                playSoundForSection();
-            }
-
-
             if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection)
                 Gdx.input.setOnscreenKeyboardVisible(true);
             else if (chapterSection == lastChapterSection)
@@ -234,51 +229,6 @@ public class ChapterOne extends ChapterCore {
     public void keyPressed(char character) {
         if (!isTeacher && typedAnswer.length() < 10 && Character.isLetter(character))
             typedAnswer.append(character);
-    }
-
-    /**
-     * When the sound button is clicked, the appropriate
-     * sound is played according to current chapter section
-     */
-    private void playSoundForSection() {
-        /*switch (chapterSection) {
-            case 0:
-                intro1sound.stop();
-                intro1sound.play();
-                break;
-            case 1:
-                intro2sound.stop();
-                intro2sound.play();
-                break;
-            case 2:
-                baybayin1sound.stop();
-                baybayin1sound.play();
-                break;
-            case 3:
-                baybayin2sound.stop();
-                baybayin2sound.play();
-                break;
-            case 4:
-                baybayin3sound.stop();
-                baybayin3sound.play();
-                break;
-            case 5:
-                bukid1sound.stop();
-                bukid1sound.play();
-                break;
-            case 6:
-                bukid2sound.stop();
-                bukid2sound.play();
-                break;
-            case 7:
-                lungsod1sound.stop();
-                lungsod1sound.play();
-                break;
-            case 8:
-                lungsod2sound.stop();
-                lungsod2sound.play();
-                break;
-        }*/
     }
 
     /**

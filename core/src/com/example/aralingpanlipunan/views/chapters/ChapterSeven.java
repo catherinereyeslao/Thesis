@@ -15,7 +15,8 @@ public class ChapterSeven extends ChapterCore {
 			habilisBalloon1, habilisBalloon2, sapiensBalloon1, sapiensBalloon2,
 			sapiensBalloon3, question1Bg, question2Bg, selectedAnsTexture,
 			erectusTexture, habilisTexture, sapiensTexture;
-	private Music introS, erectusS, habilisS, sapiensS;
+	private Music intro1S, intro2S, erectus1S, erectus2S, erectus3S, habilis1S,
+			habilis2S, sapiens1S, sapiens2S, sapiens3S;
 	private Sprite ans, ans2, ans3, ans4, ans5, ans6, extraCharacterSprite;
 	private boolean ansTouched, ans2Touched, ans3Touched, ans4Touched,
 			ans5Touched, ans6Touched = false;
@@ -31,16 +32,30 @@ public class ChapterSeven extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 4;
-		lastChapterSection = 6;
+		startOfQuestionSection = 10;
+		lastChapterSection = 12;
 
-		titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
 		// sounds
-		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter7/sound2/intro1chap7.mp3"));
-		habilisS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter7/sound2/intro1chap7.mp3"));
-		erectusS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter7/sound2/intro1chap7.mp3"));
-		sapiensS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter7/sound2/intro1chap7.mp3"));
-		
+		intro1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/intro1chap7.m4a"));
+		intro2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/intro2chap7.m4a"));
+		erectus1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/homoerectus1.m4a"));
+		erectus2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/homorectus2.m4a"));
+		erectus3S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/homoerectus3.m4a"));
+		habilis1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/habilis1.m4a"));
+		habilis2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/habilis2.m4a"));
+		sapiens1S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/sapiens1.m4a"));
+		sapiens2S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/sapiens2.m4a"));
+		sapiens3S = Gdx.audio.newMusic(Gdx.files
+				.internal("chapters/chapter7/sounds/sapiens3.m4a"));
 
 		// backgrounds
 		introBg = new Texture(
@@ -182,36 +197,68 @@ public class ChapterSeven extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			introS.play();
-			erectusS.stop();
+			balloonSprite.setTexture(introBalloon1);
+			intro2S.stop();
 			break;
+
 		case 1:
-			backgroundSprite.setTexture(erectusBg);
-            extraCharacterSprite.setTexture(erectusTexture);
-            introS.stop();
-            erectusS.play();
-            habilisS.stop();
+			backgroundSprite.setTexture(introBg);
+			balloonSprite.setTexture(introBalloon2);
+			intro1S.stop();
+			erectus1S.stop();
 			break;
 		case 2:
+			backgroundSprite.setTexture(erectusBg);
+			balloonSprite.setTexture(erectusBalloon1);
+            extraCharacterSprite.setTexture(erectusTexture);
+			intro2S.stop();
+			erectus2S.stop();
+			break;
+		case 3:
+			balloonSprite.setTexture(erectusBalloon2);
+			erectus1S.stop();
+			erectus3S.stop();
+			break;
+		case 4:
+            backgroundSprite.setTexture(erectusBg);
+			balloonSprite.setTexture(erectusBalloon3);
+            extraCharacterSprite.setTexture(erectusTexture);
+			erectus2S.stop();
+			habilis1S.stop();
+			break;
+		case 5:
 			backgroundSprite.setTexture(habilisBg);
             extraCharacterSprite.setTexture(habilisTexture);
-			erectusS.stop();
-			habilisS.play();
-			sapiensS.stop();
+			balloonSprite.setTexture(habilisBalloon1);
+			erectus3S.stop();
+			habilis2S.stop();
 			break;
-		
-		case 3:
+		case 6:
+            backgroundSprite.setTexture(habilisBg);
+			balloonSprite.setTexture(habilisBalloon2);
+            extraCharacterSprite.setTexture(habilisTexture);
+			habilis1S.stop();
+			sapiens1S.stop();
+			break;
+		case 7:
 			backgroundSprite.setTexture(sapiensBg);
             extraCharacterSprite.setTexture(sapiensTexture);
-			habilisS.stop();
-			sapiensS.play();
+			balloonSprite.setTexture(sapiensBalloon1);
+			habilis2S.stop();
+			sapiens2S.stop();
 			break;
-		
-		case 4://game	
-			introS.stop();
-			erectusS.stop();
-			habilisS.stop();
-			sapiensS.stop();
+		case 8:
+			balloonSprite.setTexture(sapiensBalloon2);
+			sapiens1S.stop();
+			sapiens3S.stop();
+			break;
+		case 9:
+            backgroundSprite.setTexture(sapiensBg);
+			balloonSprite.setTexture(sapiensBalloon3);
+			sapiens2S.stop();
+			break;
+		case 10:
+			sapiens3S.stop();
             backgroundSprite.setTexture(question1Bg);
             if (!isTeacher) {
                 ansTouched = ans2Touched = ans3Touched = ans4Touched = ans5Touched = ans6Touched = false;
@@ -223,7 +270,7 @@ public class ChapterSeven extends ChapterCore {
                 ans6.setAlpha(0);
             }
 			break;
-		case 5:
+		case 11:
             if (!isTeacher) {
                 // Count correct answers from the first 3 questions, then hide all
                 // box markers
@@ -267,7 +314,7 @@ public class ChapterSeven extends ChapterCore {
 
 			backgroundSprite.setTexture(question2Bg);
 			break;
-		case 6:
+		case 12:
             if (!isTeacher) {
                 if (ansTouched)
                     correctAnswers++;
@@ -290,7 +337,6 @@ public class ChapterSeven extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		
 		if (chapterSection == lastChapterSection)
 			return displayLastSectionButtons(7, 3, x, y);
 
@@ -330,19 +376,30 @@ public class ChapterSeven extends ChapterCore {
 		return super.touchDown(x, y);
 	}
 
-	
-
 	@Override
 	public void dispose() {
         super.dispose();
-		introS.stop();
-		erectusS.stop();
-		habilisS.stop();
-		sapiensS.stop();
-		introS.dispose();
-		erectusS.dispose();
-		habilisS.dispose();
-		sapiensS.dispose();
+		intro1S.stop();
+		intro2S.stop();
+		erectus1S.stop();
+		erectus2S.stop();
+		erectus3S.stop();
+		habilis1S.stop();
+		habilis2S.stop();
+		sapiens1S.stop();
+		sapiens2S.stop();
+		sapiens3S.stop();
+
+		intro1S.dispose();
+		intro2S.dispose();
+		erectus1S.dispose();
+		erectus2S.dispose();
+		erectus3S.dispose();
+		habilis1S.dispose();
+		habilis2S.dispose();
+		sapiens1S.dispose();
+		sapiens2S.dispose();
+		sapiens3S.dispose();
 		introBg.dispose();
 		erectusBg.dispose();
 		habilisBg.dispose();

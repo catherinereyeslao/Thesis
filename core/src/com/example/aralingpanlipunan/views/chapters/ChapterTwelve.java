@@ -339,7 +339,7 @@ public class ChapterTwelve extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	
+
         if (!isTeacher) {
             switch (chapterSection) {
                 case 17:
@@ -534,7 +534,6 @@ public class ChapterTwelve extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-   
 
 	@Override
     public void dispose() {

@@ -308,9 +308,6 @@ public class ChapterFifteen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         switch (chapterSection) {
             case 16:
                 if (!isTeacher) {
@@ -427,77 +424,6 @@ public class ChapterFifteen extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    private void playSoundForSection() {
-		// TODO Auto-generated method stub
-    	switch (chapterSection) {
-    	case 0:
-    		intro1S.stop();
-    		intro1S.play();
-    		break;
-    	case 1:
-    		intro2S.stop();
-    		intro2S.play();
-    		break;
-    	case 2:
-    		epekto1S.stop();
-    		epekto1S.play();
-    		break;
-    	case 3:
-    		epekto2S.stop();
-    		epekto2S.play();
-    		break;
-    	case 4:
-    		epekto3S.stop();
-    		epekto3S.play();
-    		break;
-    	case 5:
-    		gawain1S.stop();
-    		gawain1S.play();
-    		break;
-    	case 6:
-    		gawain2S.stop();
-    		gawain2S.play();
-    		break;
-    	case 7:
-    		gawain3S.stop();
-    		gawain3S.play();
-    		break;
-    	case 8:
-    		gawain4S.stop();
-    		gawain4S.play();
-    		break;
-    	case 9:
-    		kailangan1S.stop();
-    		kailangan1S.play();
-    		break;
-    	case 10:
-    		kailangan2S.stop();
-    		kailangan2S.play();
-    		break;
-    	case 11:
-    		kailangan3S.stop();
-    		kailangan3S.play();
-    		break;
-    	case 12:
-    		kailangan4S.stop();
-    		kailangan4S.play();
-    		break;
-    	case 13:
-    		katulong1S.stop();
-    		katulong1S.play();
-    		break;
-    	case 14:
-    		katulong2S.stop();
-    		katulong2S.play();
-    		break;
-    	case 15:
-    		katulong3S.stop();
-    		katulong3S.play();
-    		break;
-    	
-    	}
-		
-	}
 	@Override
 	public void dispose() {
 		intro1S.stop();

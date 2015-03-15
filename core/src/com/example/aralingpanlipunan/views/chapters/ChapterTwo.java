@@ -199,9 +199,6 @@ public class ChapterTwo extends ChapterCore {
     @Override
     public int touchDown(float x, float y) {
         super.touchDown(x, y);
-        if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         int touched;
         switch (chapterSection) {
             
@@ -300,56 +297,6 @@ public class ChapterTwo extends ChapterCore {
         }
         return 100;
     }
-    
-    private void playSoundForSection() {
-        switch (chapterSection) {
-        case 0:
-            introS.stop();
-            introS.play();
-            break;
-        case 1:
-        	break;
-        case 2:
-        	d1.stop();
-        	d1.play();
-        	break;
-        case 3:
-        	d2.stop();
-        	d2.play();
-        	break;
-        case 4:
-        	d32.stop();
-        	d32.play();
-        	break;
-        case 5:
-        	d4.stop();
-        	d4.play();
-        	break;
-        case 6:
-        	d5.stop();
-        	d5.play();
-        	break;
-        case 7:
-        	m1.stop();
-        	m1.play();
-        	break;
-        case 8:
-        	
-        	break;
-        case 9:
-        	m2.stop();
-        	m2.play();
-        	break;
-        case 10:
-        	m3.stop();
-        	m3.play();
-        	break;
-        case 11:
-        	m4.stop();
-        	m4.play();
-        	break;
-        }
-        }
 
     /**
      * This assetManager manages asset on Demand (assetNeedUpdate = true)
