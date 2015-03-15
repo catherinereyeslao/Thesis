@@ -132,7 +132,6 @@ public class ChapterTwelve extends ChapterCore {
             ans4D.setSize(ans1A.getWidth(), ans1A.getHeight());
             loadNextButton();
         }
-        assetNeedUpdate = true;
         toggleSoundVolume();
     }
 
