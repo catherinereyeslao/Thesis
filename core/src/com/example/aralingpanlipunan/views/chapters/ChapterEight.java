@@ -196,7 +196,7 @@ public class ChapterEight extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-        if (!viewingHelp) {
+        if (!viewingSettings) {
             switch (chapterSection) {
                 case 2:
                     drawHabi(batch);
