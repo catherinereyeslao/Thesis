@@ -487,9 +487,6 @@ public class ChapterNine extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         if (chapterSection >= lastChapterSection)
             return displayLastSectionButtons(9, 3, x, y);
 
@@ -553,104 +550,6 @@ public class ChapterNine extends ChapterCore {
 
         return super.touchDown(x, y);
     }
-
-	private void playSoundForSection() {
-		// TODO Auto-generated method stub
-		switch (chapterSection) {
-        case 0:
-            intro1S.stop();
-            intro1S.play();
-            break;
-        case 1:
-       	 intro2S.stop();
-       	 intro2S.play();
-       	 break;
-        case 2:
-       	ati1S.stop();
-       	ati1S.play();
-       	break;
-        case 3:
-        ati2S.stop();
-        ati2S.play();
-        break;
-        case 4:
-        ati3S.stop();
-        ati3S.play();
-        break;
-        case 5:
-        blaan1S.stop();
-        blaan1S.play();
-        break;
-        case 6:
-        blaan2S.stop();
-        blaan2S.play();
-        break;
-        case 7:
-        blaan3S.stop();
-        blaan3S.play();
-        break;
-        case 8:
-        blaan4S.stop();
-        blaan4S.play();
-        break;
-        case 9:
-        bontoc1S.stop();
-        bontoc1S.play();
-        break;
-        case 10:
-        bontoc2S.stop();
-        bontoc2S.play();
-        break;
-        case 11:
-        bontoc3S.stop();
-        bontoc3S.play();
-        break;
-        case 12:
-        ifugao1S.stop();
-        ifugao1S.play();
-        break;
-        case 13:
-        ifugao2S.stop();
-        ifugao2S.play();
-        break;
-        case 14:
-        ifugao3S.stop();
-        ifugao3S.play();
-        break;
-        case 15:
-        sulod1S.stop();
-        sulod1S.play();
-        break;
-        case 16:
-        sulod2S.stop();
-        sulod2S.play();
-        break;
-        case 17:
-        sulod3S.stop();
-        sulod3S.play();
-        break;
-        case 18:
-        sulod4S.stop();
-        sulod4S.play();
-        break;
-        case 19:
-		tboli1S.stop();
-		tboli1S.play();
-		break;
-        case 20:
-		tboli2S.stop();
-		tboli2S.play();
-		break;
-        case 21:
-		tboli3S.stop();
-		tboli3S.play();
-		break;
-        case 22:
-		tboli4S.stop();
-		tboli4S.play();
-		}
-		
-	}
 
 	@Override
 	public void dispose() {

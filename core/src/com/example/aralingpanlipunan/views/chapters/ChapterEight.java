@@ -196,7 +196,7 @@ public class ChapterEight extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-        if (!viewingHelp) {
+        if (!viewingSettings) {
             switch (chapterSection) {
                 case 2:
                     drawHabi(batch);
@@ -438,9 +438,6 @@ public class ChapterEight extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
 		if (chapterSection == lastChapterSection)
 			return displayLastSectionButtons(8, 2, x, y);
 
@@ -467,73 +464,6 @@ public class ChapterEight extends ChapterCore {
 			}
 		}
 		return super.touchDown(x, y);
-	}
-
-	private void playSoundForSection() {
-		switch (chapterSection) {
-        case 0:
-            intro1S.stop();
-            intro1S.play();
-            break;
-        case 1:
-       	
-       	 intro2S.stop();
-       	 intro2S.play();
-       	 break;
-        case 2:
-        	paghahabi1S.stop();
-        	paghahabi1S.play();
-        	break;
-        case 3:
-        	paghahabi2S.stop();
-        	paghahabi2S.play();
-        	break;
-        case 4:
-        	paghahabi3S.stop();
-        	paghahabi3S.play();
-        	break;
-        case 5:
-        	paghahabi4S.stop();
-        	paghahabi4S.play();
-        	break;
-        case 6:
-        	pagpinta1S.stop();
-        	pagpinta1S.play();
-        	break;
-        case 7:
-        	pagpinta2S.stop();
-        	pagpinta2S.play();
-        	break;
-        case 8:
-        	pagpinta3S.stop();
-        	pagpinta3S.play();
-        	break;
-        case 9:
-        	pagsayaw1S.stop();
-        	pagsayaw1S.play();
-        	break;
-        case 10:
-        	pagsayaw2S.stop();
-        	pagsayaw2S.play();
-        	break;
-        case 11:
-        	pagsayaw3S.stop();
-        	pagsayaw3S.play();
-        	break;
-        case 12:
-        	panitikan1S.stop();
-        	panitikan1S.play();
-        	break;
-        case 13:
-        	panitikan2S.stop();
-        	panitikan2S.play();
-        	break;
-        case 14:
-        	panitikan3S.stop();
-        	panitikan3S.play();
-        	break;
-		}
-		
 	}
 
 	@Override

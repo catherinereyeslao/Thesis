@@ -435,9 +435,6 @@ public class ChapterTwelve extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         if (!isTeacher) {
             switch (chapterSection) {
                 case 17:
@@ -631,80 +628,6 @@ public class ChapterTwelve extends ChapterCore {
             return displayLastSectionButtons(12, 4, x, y);
         return super.touchDown(x, y);
     }
-
-    private void playSoundForSection() {
-		// TODO Auto-generated method stub
-    	switch (chapterSection) {
-        case 0:
-            intro1S.stop();
-            intro1S.play();
-            break;
-        case 1:
-       	 	intro2S.stop();
-       	 	intro2S.play();
-       	 	break;
-        case 2:
-    	 	musika1S.stop();
-    	 	musika1S.play();
-    	 	break;
-        case 3:
-	    	musika2S.stop();
-	    	musika2S.play();
-        case 4:
-	    	musika3S.stop();
-	    	musika3S.play();
-	    	break;
-        case 5:
-	    	musika4S.stop();
-	    	musika4S.play();
-	    	break;
-        case 6:
-	    	panitikan1S.stop();
-	    	panitikan1S.play();
-	    	break;
-       case 7:
-	    	panitikan2S.stop();
-	    	panitikan2S.play();
-	    	break;
-       case 8:
-	    	panitikan3S.stop();
-	    	panitikan3S.play();
-	    	break;
-       case 9:
-	    	panitikan4S.stop();
-	    	panitikan4S.play();
-	    	break;
-       case 10:
-	    	panitikan5S.stop();
-	    	panitikan5S.play();
-	    	break;
-       case 11:
-	    	panitikan6S.stop();
-	    	panitikan6S.play();
-	    	break;
-       case 12:
-	    	pinta1S.stop();
-	    	pinta1S.play();
-	    	break;
-       case 13:	    	
-	    	pinta2S.stop();
-	    	pinta2S.play();
-	    	break;
-       case 14:
-	    	sayaw1S.stop();
-	    	sayaw1S.play();
-	    	break;
-       case 15:
-	    	sayaw2S.stop();
-	    	sayaw2S.play();
-	    	break;
-        case 16:
-	    	sayaw3S.stop();
-	    	sayaw3S.play();
-	    	break;
-    	}
-		
-	}
 
 	@Override
     public void dispose() {

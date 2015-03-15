@@ -11,12 +11,8 @@ import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 
 public class ChapterFive extends ChapterCore {
     //TODO: still no manggagawa balloon, removed manggagawa bg
-	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,
-					introBalloon1, introBalloon2, mangangalakalBalloon1, mangangalakalBalloon2,
-					pagmiminaBalloon, pagsasakaBalloon1, pagsasakaBalloon2, 
-					pangingisdaBalloon1, pangingisdaBalloon2, truckTexture, minerTexture,
-                    farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,
-                    kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
+	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,truckTexture, minerTexture,
+                    farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
                     question1Bg;
 	private Music intro1S,  magsasaka, mangangalakal,pagmimina, pangingisda; /*intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
 					pangingisda1S, pangingisda2S;*/
@@ -99,7 +95,6 @@ public class ChapterFive extends ChapterCore {
             parke.setBounds(parkeX, parkeY, parke.getWidth(), parke.getHeight());
 
             backgroundSprite.setTexture(introBg);
-            balloonSprite.setTexture(introBalloon1);
 
             boxTexture = new Texture("box.png");
             box = new Sprite(boxTexture);
@@ -315,9 +310,6 @@ public class ChapterFive extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         if (chapterSection == lastChapterSection)
             return displayLastSectionButtons(5, 3, x, y);
 
@@ -401,50 +393,6 @@ public class ChapterFive extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-	private void playSoundForSection() {
-		// TODO Auto-generated method stub
-	    	/* switch (chapterSection) {
-	         case 0:
-	             intro1S.stop();
-	             intro1S.play();
-	             break;
-	         case 1:
-	        	
-	        	 intro2S.stop();
-	        	 intro2S.play();
-	        	 break;
-	         case 2:
-	        	 mangangalakal1S.stop();
-	        	 mangangalakal1S.play();
-	        	 break;
-	         case 3:
-	        	 mangangalakal2S.stop();
-	        	 mangangalakal2S.play();
-	        	 break;
-	         case 4:
-	        	 pagmimina1S.stop();
-	        	 pagmimina1S.play();
-	        	 break;
-	         case 5:
-	        	 magsasaka1S.stop();
-	        	 magsasaka1S.play();
-	        	 break;
-	         case 6:
-	        	 magsasaka2S.stop();
-	        	 magsasaka2S.play();
-	        	 break;
-	         case 7:
-	        	 pangingisda1S.stop();
-	        	 pangingisda1S.play();
-	        	 break;
-	         case 8:
-	        	 pangingisda2S.stop();
-	        	 pangingisda2S.play();
-	        	 break;
-	         
-	    	 }*/
-	}
-
 	@Override
 	public void dispose(){
 		super.dispose();
@@ -464,15 +412,6 @@ public class ChapterFive extends ChapterCore {
 		pagmiminaBg.dispose();
 		pagsasakaBg.dispose();
 		pangingisdaBg.dispose();
-		introBalloon1.dispose();
-		introBalloon2.dispose();
-		mangangalakalBalloon1.dispose();
-		mangangalakalBalloon2.dispose();
-		pagmiminaBalloon.dispose();
-		pagsasakaBalloon1.dispose();
-		pagsasakaBalloon2.dispose();
-		pangingisdaBalloon1.dispose();
-		pangingisdaBalloon2.dispose();
 		questionBg.dispose();
         if (!isTeacher) {
             boxTexture.dispose();

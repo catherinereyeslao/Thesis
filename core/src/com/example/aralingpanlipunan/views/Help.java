@@ -4,6 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+/**
+ * Displays the Help screen.
+ * @deprecated Currently not in use and has been replaced by settings.
+ * This may be completely deleted in the future if decided
+ */
 public class Help extends AppView {
     private static final byte HELP_MENU = 0;
     private static final byte CHAPTER1 = 1;

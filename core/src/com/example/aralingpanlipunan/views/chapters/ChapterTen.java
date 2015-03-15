@@ -186,9 +186,6 @@ public class ChapterTen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
         if (!isTeacher && (chapterSection == 19 || chapterSection == 20)) {
             // Detect answer in question 1
             if (ansMarker.getBoundingRectangle().contains(x, y)) {
@@ -290,89 +287,6 @@ public class ChapterTen extends ChapterCore {
             return displayLastSectionButtons(10, 3, x, y);
         return super.touchDown(x, y);
     }
-
-	private void playSoundForSection() {
-		// TODO Auto-generated method stub
-		switch (chapterSection) {
-        case 0:
-            intro1S.stop();
-            intro1S.play();
-            break;
-        case 1:
-        	bagongTaon1S.stop();
-        	bagongTaon1S.play();
-        	break;
-        case 2:
-        	bagongTaon2S.stop();
-        	bagongTaon2S.play();
-        	break;
-        case 3:
-        	bagongTaon3S.stop();
-           	bagongTaon3S.play();
-           	break;
-        case 4:
-        	salo1S.stop();
-        	salo1S.play();
-        	break;
-        case 5:
-        	salo2S.stop();
-        	salo2S.play();
-        	break;
-        case 6:
-        	salo3S.stop();
-        	salo3S.play();
-        	break;
-        case 7:
-        	galang1S.stop();
-        	galang1S.play();
-        	break;
-        case 8:
-        	galang2S.stop();
-        	galang2S.play();
-        	break;
-        case 9:
-        	galang3S.stop();
-        	galang3S.play();
-        	break;
-        case 10:       	
-        	galang4S.stop();
-        	galang4S.play();
-        	break;
-        case 11:
-        	tanggap1S.stop();
-        	tanggap1S.play();
-        	break;
-        case 12:
-        	tanggap2S.stop();
-        	tanggap2S.play();
-        	break;
-        case 13:
-        	tanggap3S.stop();
-        	tanggap3S.play();
-        	break;
-        case 14:
-        	undas1S.stop();
-        	undas1S.play();
-        	break;
-        case 15:
-        	undas2S.stop();
-        	undas2S.play();
-        	break;
-        case 16:
-        	undas3S.stop();
-        	undas3S.play();
-        	break;
-        case 17:
-        	undas4S.stop();
-        	undas4S.play();
-        	break;
-        case 18:
-        	undas5S.stop();
-        	undas5S.play();
-        	break;
-		}
-		
-	}
 
 	private void assetManager() {
         float ansMarkerX, ansMarker2X, ansMarkerY, ansMarker3Y, ansMarker5Y, ansMarker7Y, ansMarker9Y, ansMarker11Y;

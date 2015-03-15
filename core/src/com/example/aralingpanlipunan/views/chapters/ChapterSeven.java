@@ -337,9 +337,6 @@ public class ChapterSeven extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		if (soundSprite.getBoundingRectangle().contains(x, y)) {
-			playSoundForSection();
-		}
 		if (chapterSection == lastChapterSection)
 			return displayLastSectionButtons(7, 3, x, y);
 
@@ -377,53 +374,6 @@ public class ChapterSeven extends ChapterCore {
 			}
 		}
 		return super.touchDown(x, y);
-	}
-
-	private void playSoundForSection() {
-		switch (chapterSection) {
-		case 0:
-			intro1S.stop();
-			intro1S.play();
-			break;
-		case 1:
-			intro2S.stop();
-			intro2S.play();
-			break;
-		case 2:
-			erectus1S.stop();
-			erectus1S.play();
-			break;
-		case 3:
-			erectus2S.stop();
-			erectus2S.play();
-			break;
-		case 4:
-			erectus3S.stop();
-			erectus3S.play();
-			break;
-		case 5:
-			habilis1S.stop();
-			habilis1S.play();
-			break;
-		case 6:
-			habilis2S.stop();
-			habilis2S.play();
-			break;
-		case 7:
-			sapiens1S.stop();
-			sapiens1S.play();
-			break;
-		case 8:
-			sapiens2S.stop();
-			sapiens2S.play();
-			break;
-		case 9:
-			sapiens3S.stop();
-			sapiens3S.play();
-			break;
-
-		}
-
 	}
 
 	@Override

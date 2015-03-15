@@ -163,9 +163,6 @@ public class ChapterEighteen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-			playSoundForSection();
-		}
         switch (chapterSection) {
             case 25:
                 if (!isTeacher) {
@@ -278,114 +275,6 @@ public class ChapterEighteen extends ChapterCore {
         }
         return super.touchDown(x, y);
     }
-
-    private void playSoundForSection() {
-		// TODO Auto-generated method stub
-    	switch (chapterSection) {
-    	case 0:
-    		intro1S.stop();
-    		intro1S.play();
-    		break;
-    	case 1:
-    		intro2S.stop();
-    		intro2S.play();
-    		break;
-    	case 2:
-    		basura1S.stop();
-    		basura1S.play();
-    		break;
-    	case 3:
-    		basura2S.stop();
-    		basura2S.play();
-    		break;
-    	case 4:
-    		basura3S.stop();
-    		basura3S.play();
-    		break;
-    	case 5:
-    		basura4S.stop();
-    		basura4S.play();
-    		break;
-    	case 6:
-    		basura5S.stop();
-    		basura5S.play();
-    		break;
-    	case 7:
-    		basura6S.stop();
-    		basura6S.play();
-    		break;
-    	case 8:
-    		basura7S.stop();
-    		basura7S.play();
-    		break;
-    	case 9:
-    		puno1S.stop();
-    		puno1S.play();
-    		break;
-    	case 10:
-    		puno2S.stop();
-    		puno2S.play();
-    		break;
-    	case 11:
-    		puno3S.stop();
-    		puno3S.play();
-    		break;
-    	case 12:
-    		puno4S.stop();
-    		puno4S.play();
-    		break;
-    	case 13:
-    		kalikasan1S.stop();
-    		kalikasan1S.play();
-    		break;
-    	case 14:
-    		kalikasan2S.stop();
-    		kalikasan2S.play();
-    		break;
-    	case 15:
-    		kalikasan3S.stop();
-    		kalikasan3S.play();
-    		break;
-    	case 16:
-    		kalikasan4S.stop();
-    		kalikasan4S.play();
-    		break;
-    	case 17:
-    		malinis1S.stop();
-    		malinis1S.play();
-    		break;
-    	case 18:
-    		malinis2S.stop();
-    		malinis2S.play();
-    		break;
-    	case 19:
-    		malinis3S.stop();
-    		malinis3S.play();
-    		break;
-    	case 20:
-    		malinis4S.stop();
-    		malinis4S.play();
-    		break;
-    	case 21:
-    		tanim1S.stop();
-    		tanim1S.play();
-    		break;
-    	case 22:
-    		tanim2S.stop();
-    		tanim2S.play();
-    		break;
-    	case 23:
-    		tanim3S.stop();
-    		tanim3S.play();
-    		break;
-    	case 24:
-    		tanim4S.stop();
-    		tanim4S.play();
-    		break;
-    		
-    	}
-		
-	}
 
 	@Override
     public void dispose() {

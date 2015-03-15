@@ -740,9 +740,6 @@ public class ChapterEleven extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		if (soundSprite.getBoundingRectangle().contains(x, y)) {
-			playSoundForSection();
-		}
 		if (!isTeacher && chapterSection >= startOfQuestionSection
 				&& chapterSection < lastChapterSection) {
 			if (ansMarker.getBoundingRectangle().contains(x, y)) {
@@ -807,128 +804,6 @@ public class ChapterEleven extends ChapterCore {
 			return displayLastSectionButtons(11, 5, x, y);
 
 		return super.touchDown(x, y);
-	}
-
-	private void playSoundForSection() {
-		switch (chapterSection) {
-		case 0:
-			intro1S.stop();
-			intro1S.play();
-			break;
-		case 1:
-			kalayaan1S.stop();
-			kalayaan1S.play();
-			break;
-		case 2:
-			kalayaan2S.stop();
-			kalayaan2S.play();
-			break;
-		case 3:
-			kalayaan3S.stop();
-			kalayaan3S.play();
-			break;
-		case 4:
-			kalayaan4S.stop();
-			kalayaan4S.play();
-			break;
-		case 5:
-			ama1S.stop();
-			ama1S.play();
-			break;
-		case 6:
-			ama2S.stop();
-			ama2S.play();
-			break;
-		case 7:
-			ama3S.stop();
-			ama3S.play();
-			break;
-		case 8:
-			ama4S.stop();
-			ama4S.play();
-			break;
-		case 9:
-			guro1S.stop();
-			guro1S.play();
-			break;
-		case 10:
-			guro2S.stop();
-			guro2S.play();
-			break;
-		case 11:
-			guro3S.stop();
-			guro3S.play();
-			break;
-		case 12:
-			guro4S.stop();
-			guro4S.play();
-			break;
-		case 13:
-			guro5S.stop();
-			guro5S.play();
-			break;
-		case 14:
-			ina1S.stop();
-			ina1S.play();
-			break;
-		case 15:
-			ina2S.stop();
-			ina2S.play();
-			break;
-		case 16:
-			ina3S.stop();
-			ina3S.play();
-			break;
-		case 17:
-			puso1S.stop();
-			puso1S.play();
-			break;
-		case 18:
-			puso2S.stop();
-			puso2S.play();
-			break;
-		case 19:
-			mahalNaAraw1S.stop();
-			mahalNaAraw1S.play();
-			break;
-		case 20:
-			mahalNaAraw2S.stop();
-			mahalNaAraw2S.play();
-			break;
-		case 21:
-			mahalNaAraw3S.stop();
-			mahalNaAraw3S.play();
-			break;
-		case 22:
-			pasko1S.stop();
-			pasko1S.play();
-			break;
-		case 23:
-			pasko2S.stop();
-			pasko2S.play();
-			break;
-		case 24:
-			pasko3S.stop();
-			pasko3S.play();
-			break;
-		case 25:
-			pista1S.stop();
-			pista1S.play();
-			break;
-		case 26:
-			pista2S.stop();
-			pista2S.play();
-			break;
-		case 27:
-			santa1S.stop();
-			santa1S.play();
-			break;
-		case 28:
-			santa2S.stop();
-			santa2S.play();
-			break;
-		}
-
 	}
 
 	@Override

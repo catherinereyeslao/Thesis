@@ -11,7 +11,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterSeventeen extends ChapterCore {
 	private Texture introBg, epektoBagyoBg, epektoKabuhayanBg, uriBg,
 			question1Bg, question2Bg, question3Bg, intro1Balloon,
-			intro2Balloon, epektoBagypBalloon1, epektoBagyo1Balloon,
+			intro2Balloon, epektoBagyo1Balloon,
 			epektoBagyo2Balloon, epektoBagyo3Balloon, epektoBagyo4Balloon,
 			epektoPanahon1Balloon, epektoPanahon2Balloon,
 			epektoPanahon3Balloon, epektoPanahon4Balloon, uri1Balloon,
@@ -240,9 +240,6 @@ public class ChapterSeventeen extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		if (soundSprite.getBoundingRectangle().contains(x, y)) {
-			playSoundForSection();
-		}
 		switch (chapterSection) {
 		case 14:
 			if (!isTeacher) {
@@ -357,75 +354,6 @@ public class ChapterSeventeen extends ChapterCore {
 			return displayLastSectionButtons(17, 5, x, y);
 		}
 		return super.touchDown(x, y);
-	}
-
-	private void playSoundForSection() {
-		// TODO Auto-generated method stub
-		switch (chapterSection) {
-		case 0:
-			intro1S.stop();
-			intro1S.play();
-			break;
-		case 1:
-			intro2S.stop();
-			intro2S.play();
-			break;
-		case 2:
-			bagyo1S.stop();
-			bagyo1S.play();
-			
-			break;
-		case 3:
-			bagyo2S.stop();
-			bagyo2S.play();
-			break;
-		case 4:
-			bagyo3S.stop();
-			bagyo3S.play();
-			break;
-		case 5:
-			bagyo4S.stop();
-			bagyo4S.play();
-			break;
-		case 6:
-			panahon1S.stop();
-			panahon1S.play();
-			break;
-		case 7:
-			panahon2S.stop();
-			panahon2S.play();
-			break;
-			
-		case 8:
-			panahon3S.stop();
-			panahon3S.play();
-			break;
-			
-		case 9:
-			panahon4S.stop();
-			panahon4S.play();
-			break;
-			
-		case 10:
-			uri1S.stop();
-			uri1S.play();
-			break;
-		case 11:
-			
-			uri2S.stop();
-			uri2S.play();
-			break;
-		case 12:
-			uri3S.stop();
-			uri3S.play();
-			break;
-		case 13:
-			uri4S.stop();
-			uri4S.play();
-			break;
-
-		}
-
 	}
 
 	private void assetManager() {

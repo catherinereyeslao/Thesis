@@ -204,9 +204,6 @@ public class ChapterSixteen extends ChapterCore {
 
 	@Override
 	public int touchDown(float x, float y) {
-		if (soundSprite.getBoundingRectangle().contains(x, y)) {
-			playSoundForSection();
-		}
 		switch (chapterSection) {
 		case 12:
 			if (!isTeacher) {
@@ -300,61 +297,6 @@ public class ChapterSixteen extends ChapterCore {
 			return displayLastSectionButtons(16, 3, x, y);
 		}
 		return super.touchDown(x, y);
-	}
-
-	private void playSoundForSection() {
-		// TODO Auto-generated method stub
-		switch (chapterSection) {
-		case 0:
-			intro1S.stop();
-			intro1S.play();
-			break;
-		case 1:
-			hb1S.stop();
-			hb1S.play();
-			break;
-		case 2:
-			hb2S.stop();
-			hb2S.play();
-			break;
-		case 3:
-			hb3S.stop();
-			hb3S.play();
-			break;
-		case 4:
-			produkto1S.stop();
-			produkto1S.play();
-			break;
-		case 5:
-			produkto2S.stop();
-			produkto2S.play();
-			break;
-		case 6:
-			produkto3S.stop();
-			produkto3S.play();
-			break;
-		case 7:
-			produkto4S.stop();
-			produkto4S.play();
-			break;
-		case 8:
-			serbisyo1S.stop();
-			serbisyo1S.play();
-			break;
-		case 9:
-			serbisyo2S.stop();
-			serbisyo2S.play();
-			break;
-		case 10:
-			serbisyo3S.stop();
-			serbisyo3S.play();
-			break;
-		case 11:
-			serbisyo4S.stop();
-			serbisyo4S.play();
-			break;
-		}
-		
 	}
 
 	private void assetManager() {
