@@ -11,8 +11,7 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 public class ChapterTwelve extends ChapterCore {
     private Texture pagPintaTexture, panitikanTexture, sayawTexture, introTexture, musikaTexture, question1Texture, question2Texture, intro1Balloon, intro2Balloon, musika1Balloon, musika2Balloon, musika3Balloon, musika4Balloon, pagpinta1Balloon, pagpinta2Balloon, panitikan1Balloon, panitikan2Balloon, panitikan3Balloon, panitikan4Balloon, panitikan5Balloon, panitikan6Balloon, sayaw1Balloon, sayaw2Balloon, sayaw3Balloon, ansMarkerTexture;
     private Sprite ans1A, ans1B, ans1C, ans1D, ans2A, ans2B, ans2C, ans2D, ans3A, ans3B, ans3C, ans3D, ans4A, ans4B, ans4C, ans4D;
-    private Music intro1S, intro2S, musika1S, musika2S, musika3S, musika4S, panitikan1S, panitikan2S, panitikan3S, panitikan4S,
-    			  panitikan5S, panitikan6S, pinta1S, pinta2S, sayaw1S, sayaw2S, sayaw3S;
+    private Music introS,musikaS,panitikanS,pintaS, sayawS;
     private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct, ans5Correct, ans6Correct, ans7Correct;
 
     public ChapterTwelve(AndroidInterface androidInterface, String studentName, String password) {
@@ -30,23 +29,11 @@ public class ChapterTwelve extends ChapterCore {
         lastChapterSection = 19;
         
         //sounds
-        intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/intro1chap12.m4a"));
-        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/intro2chap12.m4a"));
-        musika1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/musika1.m4a"));
-        musika2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/musika2.m4a"));
-        musika3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/musika3.m4a"));
-        musika4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/musika4.m4a"));
-        panitikan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan1.m4a"));
-        panitikan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan2.m4a"));
-        panitikan3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan3.m4a"));
-        panitikan4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan4.m4a"));
-        panitikan5S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan5.m4a"));
-        panitikan6S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/panitikan6.m4a"));
-        pinta1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/pinta1.m4a"));
-        pinta2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/pinta2.m4a"));
-        sayaw1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/sayaw1.m4a"));
-        sayaw2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/sayaw2.m4a"));
-        sayaw3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sounds/sayaw3.m4a"));
+        introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/intro1chap12.mp3"));
+        musikaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/musika4.mp3"));
+        panitikanS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/panitikan1.mp3"));
+        pintaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/pinta2.mp3"));
+        sayawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter12/sound2/sayaw3.mp3"));
 
         // backgrounds
         introTexture = new Texture("chapters/chapter12/backgrounds/intro.png");
@@ -55,24 +42,7 @@ public class ChapterTwelve extends ChapterCore {
         panitikanTexture = new Texture("chapters/chapter8/backgrounds/Background sa Panitikan.png");
         musikaTexture = new Texture("chapters/chapter12/backgrounds/Musika.jpg");
 
-        // balloons
-        intro1Balloon = new Texture("chapters/chapter12/balloons/intro1.png");
-        intro2Balloon = new Texture("chapters/chapter12/balloons/intro2.png");
-        musika1Balloon = new Texture("chapters/chapter12/balloons/musika1.png");
-        musika2Balloon = new Texture("chapters/chapter12/balloons/musika2.png");
-        musika3Balloon = new Texture("chapters/chapter12/balloons/musika3.png");
-        musika4Balloon = new Texture("chapters/chapter12/balloons/musika4.png");
-        pagpinta1Balloon = new Texture("chapters/chapter12/balloons/pagpinta1.png");
-        pagpinta2Balloon = new Texture("chapters/chapter12/balloons/pagpinta2.png");
-        panitikan1Balloon = new Texture("chapters/chapter12/balloons/panitikan1.png");
-        panitikan2Balloon = new Texture("chapters/chapter12/balloons/panitikan2.png");
-        panitikan3Balloon = new Texture("chapters/chapter12/balloons/panitikan3.png");
-        panitikan4Balloon = new Texture("chapters/chapter12/balloons/panitikan4.png");
-        panitikan5Balloon = new Texture("chapters/chapter12/balloons/panitikan5.png");
-        panitikan6Balloon = new Texture("chapters/chapter12/balloons/panitikan6.png");
-        sayaw1Balloon = new Texture("chapters/chapter12/balloons/sayaw1.png");
-        sayaw2Balloon = new Texture("chapters/chapter12/balloons/sayaw2.png");
-        sayaw3Balloon = new Texture("chapters/chapter12/balloons/sayaw3.png");
+       
 
         if (isTeacher) {
             question1Texture = new Texture("chapters/chapter12/answerkeys/answer1.jpg");
@@ -132,7 +102,7 @@ public class ChapterTwelve extends ChapterCore {
             ans4D.setSize(ans1A.getWidth(), ans1A.getHeight());
             loadNextButton();
         }
-        assetNeedUpdate = true;
+//        assetNeedUpdate = true;
     }
 
     @Override
@@ -169,100 +139,34 @@ public class ChapterTwelve extends ChapterCore {
         switch (chapterSection) {
             case 0:
                 backgroundSprite.setTexture(introTexture);
-                balloonSprite.setTexture(intro1Balloon);
-                intro2S.stop();
+                
                 break;
             case 1:
                 backgroundSprite.setTexture(introTexture);
-                balloonSprite.setTexture(intro2Balloon);
-                intro1S.stop();
-                musika1S.stop();
+               
                 break;
             case 2:
                 backgroundSprite.setTexture(musikaTexture);
-                balloonSprite.setTexture(musika1Balloon);
-                intro2S.stop();
-                musika2S.stop();
+                
                 break;
-            case 3:
-                balloonSprite.setTexture(musika2Balloon);
-                musika1S.stop();
-                musika3S.stop();
-                break;
-            case 4:
-                balloonSprite.setTexture(musika3Balloon);
-                musika2S.stop();
-                musika4S.stop();
-                break;
-            case 5:
-                backgroundSprite.setTexture(musikaTexture);
-                backgroundSprite.setTexture(musikaTexture);
-                balloonSprite.setTexture(musika4Balloon);
-                musika3S.stop();
-                pinta1S.stop();
-                break;
+            
             case 6:
                 backgroundSprite.setTexture(pagPintaTexture);
-                balloonSprite.setTexture(pagpinta1Balloon);
-                musika4S.stop();
-                pinta2S.stop();
+               
                 break;
-            case 7:
-                backgroundSprite.setTexture(pagPintaTexture);
-                balloonSprite.setTexture(pagpinta2Balloon);
-                panitikan1S.stop();
-                pinta1S.stop();
-                break;
+           
             case 8:
                 backgroundSprite.setTexture(panitikanTexture);
-                balloonSprite.setTexture(panitikan1Balloon);
-                pinta2S.stop();
-                panitikan2S.stop();
+                
                 break;
-            case 9:
-                balloonSprite.setTexture(panitikan2Balloon);
-                panitikan1S.stop();
-                panitikan3S.stop();
-                break;
-            case 10:
-                balloonSprite.setTexture(panitikan3Balloon);
-                panitikan2S.stop();
-                panitikan4S.stop();
-                break;
-            case 11:
-                balloonSprite.setTexture(panitikan4Balloon);
-                panitikan3S.stop();
-                panitikan5S.stop();
-                break;
-            case 12:
-                balloonSprite.setTexture(panitikan5Balloon);
-                panitikan4S.stop();
-                panitikan6S.stop();
-                break;
-            case 13:
-                backgroundSprite.setTexture(panitikanTexture);
-                balloonSprite.setTexture(panitikan6Balloon);
-                panitikan5S.stop();
-                sayaw1S.stop();
-                break;
+       
             case 14:
                 backgroundSprite.setTexture(sayawTexture);
-                balloonSprite.setTexture(sayaw1Balloon);
-                panitikan6S.stop();
-                sayaw2S.stop();
+                
                 break;
-            case 15:
-                balloonSprite.setTexture(sayaw2Balloon);
-                sayaw1S.stop();
-                sayaw3S.stop();
-                break;
-            case 16:
-                backgroundSprite.setTexture(sayawTexture);
-                balloonSprite.setTexture(sayaw3Balloon);
-                sayaw2S.stop();
-                break;
+       
             case 17: // Start of game/quiz
-            	sayaw3S.stop();
+            	
                 backgroundSprite.setTexture(question1Texture);
 
                 if (!isTeacher) {
@@ -435,9 +339,7 @@ public class ChapterTwelve extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-    	if (soundSprite.getBoundingRectangle().contains(x, y)) {
-            playSoundForSection();
-        }
+    	
         if (!isTeacher) {
             switch (chapterSection) {
                 case 17:
@@ -632,117 +534,10 @@ public class ChapterTwelve extends ChapterCore {
         return super.touchDown(x, y);
     }
 
-    private void playSoundForSection() {
-		// TODO Auto-generated method stub
-    	switch (chapterSection) {
-        case 0:
-            intro1S.stop();
-            intro1S.play();
-            break;
-        case 1:
-       	 	intro2S.stop();
-       	 	intro2S.play();
-       	 	break;
-        case 2:
-    	 	musika1S.stop();
-    	 	musika1S.play();
-    	 	break;
-        case 3:
-	    	musika2S.stop();
-	    	musika2S.play();
-        case 4:
-	    	musika3S.stop();
-	    	musika3S.play();
-	    	break;
-        case 5:
-	    	musika4S.stop();
-	    	musika4S.play();
-	    	break;
-        case 6:
-	    	panitikan1S.stop();
-	    	panitikan1S.play();
-	    	break;
-       case 7:
-	    	panitikan2S.stop();
-	    	panitikan2S.play();
-	    	break;
-       case 8:
-	    	panitikan3S.stop();
-	    	panitikan3S.play();
-	    	break;
-       case 9:
-	    	panitikan4S.stop();
-	    	panitikan4S.play();
-	    	break;
-       case 10:
-	    	panitikan5S.stop();
-	    	panitikan5S.play();
-	    	break;
-       case 11:
-	    	panitikan6S.stop();
-	    	panitikan6S.play();
-	    	break;
-       case 12:
-	    	pinta1S.stop();
-	    	pinta1S.play();
-	    	break;
-       case 13:	    	
-	    	pinta2S.stop();
-	    	pinta2S.play();
-	    	break;
-       case 14:
-	    	sayaw1S.stop();
-	    	sayaw1S.play();
-	    	break;
-       case 15:
-	    	sayaw2S.stop();
-	    	sayaw2S.play();
-	    	break;
-        case 16:
-	    	sayaw3S.stop();
-	    	sayaw3S.play();
-	    	break;
-    	}
-		
-	}
+   
 
 	@Override
     public void dispose() {
-		intro1S.stop();
-		intro2S.stop();
-		musika1S.stop();
-		musika2S.stop();
-		musika3S.stop();
-		musika4S.stop();
-		panitikan1S.stop();
-		panitikan2S.stop();
-		panitikan3S.stop();
-		panitikan4S.stop();
-		panitikan5S.stop();
-		panitikan6S.stop();
-		pinta1S.stop();
-		pinta2S.stop();
-		sayaw1S.stop();
-		sayaw2S.stop();
-		sayaw3S.stop();
-		
-		intro1S.dispose();
-		intro2S.dispose();
-		musika1S.dispose();
-		musika2S.dispose();
-		musika3S.dispose();
-		musika4S.dispose();
-		panitikan1S.dispose();
-		panitikan2S.dispose();
-		panitikan3S.dispose();
-		panitikan4S.dispose();
-		panitikan5S.dispose();
-		panitikan6S.dispose();
-		pinta1S.dispose();
-		pinta2S.dispose();
-		sayaw1S.dispose();
-		sayaw2S.dispose();
-		sayaw3S.dispose();
 		
         introTexture.dispose();
         pagPintaTexture.dispose();
