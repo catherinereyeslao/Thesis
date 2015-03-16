@@ -19,12 +19,9 @@ public class ChapterFourteen extends ChapterCore {
 			karagatanBalloon1, karagatanBalloon2, lambakBalloon1,
 			lambakBalloon2, lawaBalloon1, lawaBalloon2, talampasBalloon1,
 			talampasBalloon2, talonBalloon1, talonBalloon2, question1Bg,
-			question2Bg, question3Bg, ansMarkerTexture;
-	private Music intro1S, intro2S, bukal1S, bukal2S, bulkan1S, bulkan2S,
-			bundok1S, bundok2S, burol1S, burol2S, burol3S, dagat1S, dagat2S,
-			ilog1S, ilog2S, ilog3S, patag1S, patag2S, karagatan1S, karagatan2S,
-			lambak1S, lambak2S, lawa1S, lawa2S, talampas1S, talampas2S,
-			talon1S, talon2S;
+			question2Bg, question3Bg, ansMarkerTexture,lupa, kapatagan, kabundukan, burol, talampas, lambak, bulkan , tubig, karagatan,
+			dagat, ilog, talon,lawa, bukal;
+	private Music introS, bukalS, bulkanS, bundokS, burolS, dagatS, ilogS, patagS, karagatanS, lambakS, lawaS, talampasS, talonS;
 	private Sprite ans1A, ans1B, ans2A, ans2B;
 	private boolean ans1Correct, ans2Correct;
 
@@ -39,78 +36,63 @@ public class ChapterFourteen extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 28;
-		lastChapterSection = 31;
+		startOfQuestionSection = 15;
+		lastChapterSection = 18;
+		
+		titleBgTexture = new Texture("titlepages/chatper14.png");
 
 		// sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files
+		introS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/intro1chap14.m4a"));
-		intro2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/intro2chap14.m4a"));
-		bukal1S = Gdx.audio.newMusic(Gdx.files
+		bukalS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/bukal1.m4a"));
-		bukal2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/bukal2.m4a"));
-		bulkan1S = Gdx.audio.newMusic(Gdx.files
+		bulkanS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/bulkan1.m4a"));
-		bulkan2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/bulkan2.m4a"));
-		bundok1S = Gdx.audio.newMusic(Gdx.files
+		bundokS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/bundok1.m4a"));
-		bundok2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/bundok2.m4a"));
-		burol1S = Gdx.audio.newMusic(Gdx.files
+		burolS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/burol1.m4a"));
-		burol2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/burol2.m4a"));
-		burol3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/burol3.m4a"));
-		dagat1S = Gdx.audio.newMusic(Gdx.files
+		dagatS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/dagat1.m4a"));
-		dagat2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/dagat2.m4a"));
-		ilog1S = Gdx.audio.newMusic(Gdx.files
+		ilogS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/ilog1.m4a"));
-		ilog2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/ilog2.m4a"));
-		ilog3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/ilog3.m4a"));
-		patag1S = Gdx.audio.newMusic(Gdx.files
+		patagS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/kapatagan1.m4a"));
-		patag2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/kapatagan2.m4a"));
-
-		karagatan1S = Gdx.audio.newMusic(Gdx.files
+		karagatanS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/karagatan1.m4a"));
-		karagatan2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/karagatan2.m4a"));
-		lambak1S = Gdx.audio.newMusic(Gdx.files
+		lambakS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/lambak1.m4a"));
-		lambak2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/lambak2.m4a"));
-		lawa1S = Gdx.audio.newMusic(Gdx.files
+		lawaS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/lawa1.m4a"));
-		lawa2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/lawa2.m4a"));
-		talampas1S = Gdx.audio.newMusic(Gdx.files
+		talampasS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/talampas1.m4a"));
-		talampas2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/talampas2.m4a"));
-		talon1S = Gdx.audio.newMusic(Gdx.files
+		talonS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter14/sounds/talon1.m4a"));
-		talon2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter14/sounds/talon2.m4a"));
-
+		
 		// backgrounds
-
 		introBg = new Texture(
 				"chapters/chapter14/backgrounds/IntroForChapter14.png");
+		lupa = new Texture(
+				"chapters/chapter14/backgrounds/lupa.png");
+		kapatagan = new Texture("chapters/chapter14/backgrounds/kapatagan.png");
+		kabundukan = new Texture("chapters/chapter14/backgrounds/kabundukan.png");
+		burol  = new Texture("chapters/chapter14/backgrounds/burol.png");
+		talampas = new Texture("chapters/chapter14/backgrounds/talampas.png");
+		lambak = new Texture("chapters/chapter14/backgrounds/lambak.png");
+		bulkan = new Texture("chapters/chapter14/backgrounds/bulkan.png");
 		lupaBg1 = new Texture("chapters/chapter14/backgrounds/Lupa1.png");
 		lupaBg2 = new Texture("chapters/chapter14/backgrounds/Lupa2.png");
 		lupaBg3 = new Texture("chapters/chapter14/backgrounds/Lupa3.png");
 		tubigBg1 = new Texture("chapters/chapter14/backgrounds/Tubig1.png");
 		tubigBg2 = new Texture("chapters/chapter14/backgrounds/Tubig2.png");
 		tubigBg3 = new Texture("chapters/chapter14/backgrounds/Tubig3.png");
+		tubig  = new Texture("chapters/chapter14/backgrounds/tubig.png");
+		karagatan = new Texture("chapters/chapter14/backgrounds/karagatan.png");
+		dagat = new Texture("chapters/chapter14/backgrounds/dagat.png");
+		ilog = new Texture("chapters/chapter14/backgrounds/ilog.png");
+		talon = new Texture("chapters/chapter14/backgrounds/talon.png");
+		lawa = new Texture("chapters/chapter14/backgrounds/lawa.png");
+		bukal = new Texture("chapters/chapter14/backgrounds/bukal.png");
 
 		// Question/game backgrounds
 		if (isTeacher) {
@@ -146,41 +128,7 @@ public class ChapterFourteen extends ChapterCore {
 			loadNextButton();
 		}
 
-		// balloons
-		introBalloon1 = new Texture("chapters/chapter14/balloons/Intro1.png");
-		introBalloon2 = new Texture("chapters/chapter14/balloons/Intro2.png");
-		bukalBalloon1 = new Texture("chapters/chapter14/balloons/Bukal1.png");
-		bukalBalloon2 = new Texture("chapters/chapter14/balloons/Bukal2.png");
-		bulkanBalloon1 = new Texture("chapters/chapter14/balloons/Bulkan1.png");
-		bulkanBalloon2 = new Texture("chapters/chapter14/balloons/Bulkan2.png");
-		bundokBalloon1 = new Texture("chapters/chapter14/balloons/Bundok1.png");
-		bundokBalloon2 = new Texture("chapters/chapter14/balloons/Bundok2.png");
-		burolBalloon1 = new Texture("chapters/chapter14/balloons/Burol1.png");
-		burolBalloon2 = new Texture("chapters/chapter14/balloons/Burol2.png");
-		burolBalloon3 = new Texture("chapters/chapter14/balloons/Burol3.png");
-		dagatBalloon1 = new Texture("chapters/chapter14/balloons/Dagat1.png");
-		dagatBalloon2 = new Texture("chapters/chapter14/balloons/Dagat2.png");
-		ilogBalloon1 = new Texture("chapters/chapter14/balloons/Ilog1.png");
-		ilogBalloon2 = new Texture("chapters/chapter14/balloons/Ilog2.png");
-		ilogBalloon3 = new Texture("chapters/chapter14/balloons/Ilog3.png");
-		kapataganBalloon1 = new Texture(
-				"chapters/chapter14/balloons/Kapatagan1.png");
-		kapataganBalloon2 = new Texture(
-				"chapters/chapter14/balloons/Kapatagan2.png");
-		karagatanBalloon1 = new Texture(
-				"chapters/chapter14/balloons/karagatan1.png");
-		karagatanBalloon2 = new Texture(
-				"chapters/chapter14/balloons/karagatan2.png");
-		lambakBalloon1 = new Texture("chapters/chapter14/balloons/Lambak1.png");
-		lambakBalloon2 = new Texture("chapters/chapter14/balloons/Lambak2.png");
-		lawaBalloon1 = new Texture("chapters/chapter14/balloons/Lawa1.png");
-		lawaBalloon2 = new Texture("chapters/chapter14/balloons/Lawa2.png");
-		talampasBalloon1 = new Texture(
-				"chapters/chapter14/balloons/Talampas1.png");
-		talampasBalloon2 = new Texture(
-				"chapters/chapter14/balloons/Talampas2.png");
-		talonBalloon1 = new Texture("chapters/chapter14/balloons/Talon1.png");
-		talonBalloon2 = new Texture("chapters/chapter14/balloons/Talon2.png");
+		
         toggleSoundVolume();
 	}
 
@@ -207,158 +155,103 @@ public class ChapterFourteen extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon1);
-			intro2S.stop();
+			introS.play();
+			
 			break;
 		case 1:
-			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon2);
-			intro1S.stop();
-			patag1S.stop();
+			backgroundSprite.setTexture(lupa);
+			introS.stop();
+			patagS.stop();
 			break;
 		case 2:
-			backgroundSprite.setTexture(lupaBg1);
-			balloonSprite.setTexture(kapataganBalloon1);
-			intro2S.stop();
-			patag2S.stop();
+			backgroundSprite.setTexture(kapatagan);
+			patagS.play();
+			bundokS.stop();
 			break;
 		case 3:
-			balloonSprite.setTexture(kapataganBalloon2);
-			patag1S.stop();
-			bundok1S.stop();
+			backgroundSprite.setTexture(kabundukan);
+			patagS.stop();
+			bundokS.play();
+			burolS.stop();
 			break;
 		case 4:
-			balloonSprite.setTexture(bundokBalloon1);
-			patag2S.stop();
-			bundok2S.stop();
+			backgroundSprite.setTexture(burol);
+			bundokS.stop();
+			burolS.play();
+			talampasS.stop();
 			break;
 		case 5:
-            backgroundSprite.setTexture(lupaBg1);
-			balloonSprite.setTexture(bundokBalloon2);
-			bundok1S.stop();
-			burol1S.stop();
+            backgroundSprite.setTexture(talampas);
+			burolS.stop();
+			talampasS.play();
+			lambakS.stop();
 			break;
 		case 6:
-			backgroundSprite.setTexture(lupaBg2);
-			balloonSprite.setTexture(burolBalloon1);
-			bundok2S.stop();
-			burol2S.stop();
+			backgroundSprite.setTexture(lambak);
+			talampasS.stop();
+			lambakS.play();
+			bulkanS.stop();
 			break;
 		case 7:
-			balloonSprite.setTexture(burolBalloon2);
-			burol1S.stop();
-			burol3S.stop();
+            backgroundSprite.setTexture(bulkan);
+			lambakS.stop();
+			bulkanS.play();
 			break;
 		case 8:
-			balloonSprite.setTexture(burolBalloon3);
-			burol2S.stop();
-			talampas1S.stop();
+			backgroundSprite.setTexture(tubig);
+			bulkanS.stop();
+			karagatanS.stop();
 			break;
 		case 9:
-			balloonSprite.setTexture(talampasBalloon1);
-			burol3S.stop();
-			talampas2S.stop();
+			backgroundSprite.setTexture(karagatan);
+			karagatanS.play();
+			dagatS.stop();
 			break;
 		case 10:
-            backgroundSprite.setTexture(lupaBg2);
-			balloonSprite.setTexture(talampasBalloon2);
-			talampas1S.stop();
-			lambak1S.stop();
+			backgroundSprite.setTexture(dagat);
+			karagatanS.stop();
+			dagatS.play();
+			ilogS.stop();
 			break;
 		case 11:
-			backgroundSprite.setTexture(lupaBg3);
-			balloonSprite.setTexture(lambakBalloon1);
-			talampas2S.stop();
-			lambak2S.stop();
+			backgroundSprite.setTexture(ilog);
+			dagatS.stop();
+			ilogS.play();
+			talonS.stop();
 			break;
+		
 		case 12:
-			balloonSprite.setTexture(lambakBalloon2);
-			lambak1S.stop();
-			bulkan1S.stop();
+			backgroundSprite.setTexture(talon);
+			ilogS.stop();
+			talonS.play();
+			lawaS.stop();
 			break;
 		case 13:
-			balloonSprite.setTexture(bulkanBalloon1);
-			lambak2S.stop();
-			bulkan2S.stop();
+			backgroundSprite.setTexture(lawa);
+			talonS.stop();
+			lawaS.play();
+			bukalS.stop();
 			break;
+		
 		case 14:
-            backgroundSprite.setTexture(lupaBg3);
-			balloonSprite.setTexture(bulkanBalloon2);
-			bulkan1S.stop();
-			karagatan1S.stop();
+            backgroundSprite.setTexture(bukal);
+            lawaS.stop();
+            bukalS.play();
 			break;
-		case 15:
-			backgroundSprite.setTexture(tubigBg1);
-			balloonSprite.setTexture(karagatanBalloon1);
-			bulkan2S.stop();
-			karagatan2S.stop();
-			break;
-		case 16:
-			balloonSprite.setTexture(karagatanBalloon2);
-			karagatan1S.stop();
-			dagat1S.stop();
-			break;
-		case 17:
-			balloonSprite.setTexture(dagatBalloon1);
-			karagatan2S.stop();
-			dagat2S.stop();
-			break;
-		case 18:
-            backgroundSprite.setTexture(tubigBg1);
-			balloonSprite.setTexture(dagatBalloon2);
-			dagat1S.stop();
-			ilog1S.stop();
-			break;
-		case 19:
-			backgroundSprite.setTexture(tubigBg2);
-			balloonSprite.setTexture(ilogBalloon1);
-			dagat2S.stop();
-			ilog2S.stop();
-			break;
-		case 20:
-			balloonSprite.setTexture(ilogBalloon2);
-			ilog1S.stop();
-			ilog3S.stop();
-			break;
-		case 21:
-			balloonSprite.setTexture(ilogBalloon3);
-			ilog2S.stop();
-			talon1S.stop();
-			break;
-		case 22:
-			balloonSprite.setTexture(talonBalloon1);
-			ilog3S.stop();
-			talon2S.stop();
-			break;
-		case 23:
-            backgroundSprite.setTexture(tubigBg2);
-			balloonSprite.setTexture(talonBalloon2);
-			talon1S.stop();
-			lawa1S.stop();
-			break;
-		case 24:
-			backgroundSprite.setTexture(tubigBg3);
-			balloonSprite.setTexture(lawaBalloon1);
-			talon2S.stop();
-			lawa2S.stop();
-			break;
-		case 25:
-			balloonSprite.setTexture(lawaBalloon2);
-			lawa1S.stop();
-			bukal1S.stop();
-			break;
-		case 26:
-			balloonSprite.setTexture(bukalBalloon1);
-			lawa2S.stop();
-			bukal2S.stop();
-			break;
-		case 27:
-            backgroundSprite.setTexture(tubigBg3);
-			balloonSprite.setTexture(bukalBalloon2);
-			bukal1S.stop();
-			break;
-		case 28: // Start of game
-			bukal2S.stop();
+		case 15: // Start of game
+			introS.stop();
+			bukalS.stop();
+			bulkanS.stop();
+			bundokS.stop();
+			burolS.stop();
+			dagatS.stop();
+			ilogS.stop();
+			patagS.stop();
+			karagatanS.stop();
+			lambakS.stop();
+			lawaS.stop();
+			talampasS.stop();
+			talonS.stop();
 			backgroundSprite.setTexture(question1Bg);
 			if (!isTeacher) {
 				ans1Correct = ans2Correct = false;
@@ -389,7 +282,7 @@ public class ChapterFourteen extends ChapterCore {
 				ans2B.setAlpha(0);
 			}
 			break;
-		case 29:
+		case 16:
 			backgroundSprite.setTexture(question2Bg);
 			if (!isTeacher) {
 				if (ans1Correct)
@@ -425,7 +318,7 @@ public class ChapterFourteen extends ChapterCore {
 				ans2B.setAlpha(0);
 			}
 			break;
-		case 30:
+		case 17:
 			backgroundSprite.setTexture(question3Bg);
 			if (!isTeacher) {
 				if (ans1Correct)
@@ -461,7 +354,7 @@ public class ChapterFourteen extends ChapterCore {
 				ans2B.setAlpha(0);
 			}
 			break;
-		case 31:
+		case 18:
 			if (isTeacher) {
 				correctAnswers = 6;
 			} else {
@@ -480,7 +373,7 @@ public class ChapterFourteen extends ChapterCore {
 	@Override
 	public int touchDown(float x, float y) {
 		switch (chapterSection) {
-		case 28:
+		case 15:
 			if (!isTeacher) {
 				if (ans1A.getBoundingRectangle().contains(x, y)) {
 					ans1A.setAlpha(1);
@@ -503,7 +396,7 @@ public class ChapterFourteen extends ChapterCore {
 				}
 			}
 			break;
-		case 29:
+		case 16:
 			if (!isTeacher) {
 				if (ans1A.getBoundingRectangle().contains(x, y)) {
 					ans1A.setAlpha(1);
@@ -526,7 +419,7 @@ public class ChapterFourteen extends ChapterCore {
 				}
 			}
 			break;
-		case 30:
+		case 17:
 			if (!isTeacher) {
 				if (ans1A.getBoundingRectangle().contains(x, y)) {
 					ans1A.setAlpha(1);
@@ -549,7 +442,7 @@ public class ChapterFourteen extends ChapterCore {
 				}
 			}
 			break;
-		case 31:
+		case 18:
 			return displayLastSectionButtons(14, 3, x, y);
 		}
 		return super.touchDown(x, y);
@@ -557,98 +450,38 @@ public class ChapterFourteen extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bukal1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bukal2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bulkan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bulkan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bundok1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bundok2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        burol1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        burol2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        burol3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        dagat1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        dagat2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ilog1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ilog2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ilog3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        patag1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        patag2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        karagatan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        karagatan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lambak1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lambak2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lawa1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        lawa2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        talampas1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        talampas2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        talon1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        talon2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+      
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		bukalS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		bulkanS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		bundokS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		burolS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		dagatS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		ilogS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		patagS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		karagatanS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		lambakS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		lawaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		talampasS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		talonS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
     }
 
     @Override
 	public void dispose() {
 		super.dispose();
-		intro1S.stop();
-		intro2S.stop();
-		bukal1S.stop();
-		bukal2S.stop();
-		bulkan1S.stop();
-		bulkan2S.stop();
-		bundok1S.stop();
-		bundok2S.stop();
-		burol1S.stop();
-		burol2S.stop();
-		burol3S.stop();
-		dagat1S.stop();
-		dagat2S.stop();
-		ilog1S.stop();
-		ilog2S.stop();
-		ilog3S.stop();
-		patag1S.stop();
-		patag2S.stop();
-
-		karagatan1S.stop();
-		karagatan2S.stop();
-		lambak1S.stop();
-		lambak2S.stop();
-		lawa1S.stop();
-		lawa2S.stop();
-		talampas1S.stop();
-		talampas2S.stop();
-		talon1S.stop();
-		talon2S.stop();
-
-		intro1S.dispose();
-		intro2S.dispose();
-		bukal1S.dispose();
-		bukal2S.dispose();
-		bulkan1S.dispose();
-		bulkan2S.dispose();
-		bundok1S.dispose();
-		bundok2S.dispose();
-		burol1S.dispose();
-		burol2S.dispose();
-		burol3S.dispose();
-		dagat1S.dispose();
-		dagat2S.dispose();
-		ilog1S.dispose();
-		ilog2S.dispose();
-		ilog3S.dispose();
-		patag1S.dispose();
-		patag2S.dispose();
-
-		karagatan1S.dispose();
-		karagatan2S.dispose();
-		lambak1S.dispose();
-		lambak2S.dispose();
-		lawa1S.dispose();
-		lawa2S.dispose();
-		talampas1S.dispose();
-		talampas2S.dispose();
-		talon1S.dispose();
-		talon2S.dispose();
+		introS.stop();
+		bukalS.stop();
+		bulkanS.stop();
+		bundokS.stop();
+		burolS.stop();
+		dagatS.stop();
+		ilogS.stop();
+		patagS.stop();
+		karagatanS.stop();
+		lambakS.stop();
+		lawaS.stop();
+		talampasS.stop();
+		talonS.stop();
 
 		introBg.dispose();
 		lupaBg1.dispose();
@@ -660,7 +493,23 @@ public class ChapterFourteen extends ChapterCore {
 		question1Bg.dispose();
 		question2Bg.dispose();
 		question3Bg.dispose();
-
+		
+		
+		lupa.dispose();
+		tubig.dispose();
+		kapatagan.dispose();
+		kabundukan.dispose();
+		burol.dispose();
+		talampas.dispose();
+		lambak.dispose();
+		bulkan.dispose();
+		karagatan.dispose();
+		dagat.dispose();
+		talon.dispose();
+		lawa.dispose();
+		bukal.dispose();
+		
+		
 		// balloons
 		introBalloon1.dispose();
 		introBalloon2.dispose();
