@@ -150,16 +150,7 @@ public class ChapterFive extends ChapterCore {
 		pagsasakaBg = new Texture("chapters/chapter5/backgrounds/Pagsasaka.png");
 		pangingisdaBg = new Texture("chapters/chapter5/backgrounds/Pangingisda.png");
 		
-		//balloons
-//		introBalloon1 = new Texture("chapters/chapter5/balloons/Intro1.png");
-//		introBalloon2 = new Texture("chapters/chapter5/balloons/Intro2.png");
-//		mangangalakalBalloon1 = new Texture("chapters/chapter5/balloons/Mangangalakal1.png");
-//		mangangalakalBalloon2 = new Texture("chapters/chapter5/balloons/Mangangalakal2.png");
-//		pagmiminaBalloon = new Texture("chapters/chapter5/balloons/Pagmimina.png");
-//		pagsasakaBalloon1 = new Texture("chapters/chapter5/balloons/Magsasaka1.png");
-//		pagsasakaBalloon2 = new Texture("chapters/chapter5/balloons/Magsasaka2.png");
-//		pangingisdaBalloon1 = new Texture("chapters/chapter5/balloons/Pangingisda1.png");
-//		pangingisdaBalloon2 = new Texture("chapters/chapter5/balloons/Pangingisda2.png");
+		
 
         truckTexture = new Texture("chapters/chapter5/characters/truck.png");
         truck = new Sprite(truckTexture);

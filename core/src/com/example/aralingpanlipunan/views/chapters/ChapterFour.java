@@ -12,7 +12,7 @@ public class ChapterFour extends ChapterCore {
     private Texture introBg, libanganBg, pangEdukasyonBg, pangKalusuganBg, pagkainBg, answerMarker,
             question1Bg, question2Bg, question3Bg;
     private Sprite ans1True, ans1False, ans2True, ans2False, ans3True, ans3False, ans4True, ans4False, ans5True, ans5False;
-    private Music bgMusic, intros, kaligtasans, libangans, pagaarals, pagkain;
+    private Music libanganBgS, intros, kaligtasans, libangans, pagaarals, pagkain;
     private boolean ans1TrueTouched, ans1FalseTouched, ans2TrueTouched, ans2FalseTouched, ans3TrueTouched, ans3FalseTouched, ans4TrueTouched, ans4FalseTouched, ans5TrueTouched, ans5FalseTouched = false;
 
     public ChapterFour(AndroidInterface androidInterface, String studentName, String password) {
@@ -27,43 +27,24 @@ public class ChapterFour extends ChapterCore {
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
         startOfQuestionSection = 5;
-        lastChapterSection = 6;
+        lastChapterSection = 8;
         
         
         titleBgTexture = new Texture("titlepages/chapter4.png");
-        
+        libanganBgS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sound2/libangan1.mp3"));
         introBg = new Texture("chapters/chapter4/backgrounds/intro.png");
         libanganBg = new Texture("chapters/chapter4/backgrounds/Libangan.png");
         pangEdukasyonBg = new Texture("chapters/chapter4/backgrounds/tulong-pang-edukasyon.png");
         pangKalusuganBg = new Texture("chapters/chapter4/backgrounds/tulong-pangkalusugan.png");
         pagkainBg = new Texture("chapters/chapter4/backgrounds/tulong-pagkain.png");
-        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("backgrounds/bgMusic.mp3"));
+       
         intros = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sound2/intro1.mp3"));
         libangans  = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sound2/libangan1.mp3"));
         pagaarals  = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sound2/pagaaral1.mp3"));
         kaligtasans = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sound2/kaligtasan1.mp3"));
         pagkain = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagkain.amr"));
 
-       /* intro1Balloon = new Texture("chapters/chapter4/balloons/intro1.png");
-        intro2Balloon = new Texture("chapters/chapter4/balloons/intro2.png");
-        kaligtasan1Balloon = new Texture("chapters/chapter4/balloons/Kaligtasan1.png");
-        kaligtasan2Balloon = new Texture("chapters/chapter4/balloons/Kaligtasan2.png");
-        libangan1Balloon = new Texture("chapters/chapter4/balloons/Libangan1.png");
-        libangan2Balloon = new Texture("chapters/chapter4/balloons/Libangan2.png");
-        pagaaral1Balloon = new Texture("chapters/chapter4/balloons/Pagaaral1.png");
-        pagaaral2Balloon = new Texture("chapters/chapter4/balloons/Pagaaral2.png");
-        pagkainBalloon = new Texture("chapters/chapter4/balloons/Pagkain.png");
-        */
-        /*intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/intro1.amr"));
-        intro2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/intro2.amr"));
-        kaligtasan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan1.amr"));
-        kaligtasan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/kaligtasan2.amr"));
-        libangan1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/libangan1.amr"));
-        libangan2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/libangan2.amr"));
-        pagaaral1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagaaral1.amr"));
-        pagaaral2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagaaral 2.amr"));
-        pagkain = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter4/sounds/pagkain.amr"));*/
-        
+      
         if (isTeacher) {
 			question1Bg = new Texture(
 					"chapters/chapter4/answerkeys/answer1.jpg");
@@ -155,12 +136,14 @@ public class ChapterFour extends ChapterCore {
         		backgroundSprite.setTexture(libanganBg);
         		kaligtasans.stop();
         		libangans.play();
+        		libanganBgS.play();
         		pagaarals.stop();
         		break;
         	case 3:
         		backgroundSprite.setTexture(pangEdukasyonBg);
         		libangans.stop();
         		pagaarals.play();
+        		libanganBgS.stop();
         		pagkain.stop();
         		break;
         	case 4:
@@ -169,6 +152,10 @@ public class ChapterFour extends ChapterCore {
         		pagkain.play();
         		break;
             case 5: // Start of Game
+            	kaligtasans.stop();
+            	libangans.stop();
+            	libanganBgS.stop();
+            	pagaarals.stop();
             	pagkain.stop();
                 correctAnswers = 0;
                 backgroundSprite.setTexture(question1Bg);
@@ -434,19 +421,20 @@ public class ChapterFour extends ChapterCore {
      */
     @Override
     protected void toggleSoundVolume() {
-        bgMusic.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        intros.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pagaarals.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        libangans.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kaligtasans.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pagkain.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pagkain.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        
+        intros.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        libanganBgS.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+        pagaarals.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        libangans.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        kaligtasans.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        pagkain.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
+        pagkain.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
     }
 
     @Override
     public void dispose() {
         super.dispose();
-        bgMusic.stop();
+        
         intros.stop();
         pagaarals.stop();
         libangans.stop();
@@ -458,10 +446,11 @@ public class ChapterFour extends ChapterCore {
         pagkainBg.dispose();
         pangEdukasyonBg.dispose();
         pangKalusuganBg.dispose();
-        bgMusic.dispose();
+        libanganBgS.dispose();
         intros.dispose();
         pagaarals.dispose();
         libangans.dispose();
+        libanganBgS.stop();
         kaligtasans.dispose();
         pagkain.dispose();
         pagkain.dispose();

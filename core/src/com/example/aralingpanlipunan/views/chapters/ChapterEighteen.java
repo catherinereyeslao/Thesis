@@ -30,8 +30,8 @@ public class ChapterEighteen extends ChapterCore {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-        startOfQuestionSection = 25;
-        lastChapterSection = 27;
+        startOfQuestionSection = 6;
+        lastChapterSection = 8;
         
         titleBgTexture = new Texture("titlepages/chatper18.png");
         //sounds

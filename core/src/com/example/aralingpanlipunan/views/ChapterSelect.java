@@ -42,7 +42,7 @@ public class ChapterSelect extends AppView {
                 loggedInUserName = userName;
                 studentPassword = password;
                 userType = STUDENT;
-                android = androidInterface;
+                android = new DummyAndroidInterface();
                 break;
         }
     }
