@@ -372,22 +372,22 @@ public class ChapterOne extends ChapterCore {
          */
     private void detectCorrectAnswer() {
         switch (chapterSection) {
-            case 5:
+            case 6:
                 if (typedAnswer.toString().toLowerCase().contentEquals("baybayin")) {
                     ansCorrect = true;
                 }
                 break;
-            case 6:
+            case 7:
                 if (typedAnswer.toString().toLowerCase().contentEquals("kabundukan")) {
                     ansCorrect = true;
                 }
                 break;
-            case 7:
+            case 8:
                 if (typedAnswer.toString().toLowerCase().contentEquals("lungsod")) {
                     ansCorrect = true;
                 }
                 break;
-            case 8:
+            case 9:
                 if (typedAnswer.toString().toLowerCase().contentEquals("kabukiran")) {
                     ansCorrect = true;
                 }
