@@ -42,6 +42,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     private boolean passedQuestionSection, tappedChapTitle;
     private Music bgMusic;
     private Settings settings;
+    private boolean isTeacherSkippedLecture;
 
     /**
      * @deprecated We are no longer displaying balloons. Recommend to delete
@@ -206,6 +207,11 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param batch Batch
      */
     protected void renderSharedAssets(Batch batch) {
+    	if (!isTeacherSkippedLecture) {
+    		chapterSection = startOfQuestionSection;
+    		assetNeedUpdate = true;
+    		}
+    	
         if (titleBgTexture != null && !tappedChapTitle) {
             // Display chapter title if it exists
             batch.draw(titleBgTexture, 0, 0, screenWidth, screenHeight);
