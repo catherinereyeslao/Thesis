@@ -142,7 +142,7 @@ public class ChapterSeven extends ChapterCore {
             extraCharacterSprite.draw(batch);
 
 		switch (chapterSection) {
-		case 10:
+		case 4:
             if (!isTeacher) {
                 ans.draw(batch);
                 ans2.draw(batch);
@@ -153,7 +153,7 @@ public class ChapterSeven extends ChapterCore {
                 next.draw(batch);
             }
 			break;
-		case 11:
+		case 5:
             if (!isTeacher) {
                 ans.draw(batch);
                 ans2.draw(batch);
@@ -162,7 +162,7 @@ public class ChapterSeven extends ChapterCore {
                 next.draw(batch);
             }
 			break;
-		case 12:
+		case 6:
 			if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
 			startQuiz.draw(batch);
 			backToChapters.draw(batch);
