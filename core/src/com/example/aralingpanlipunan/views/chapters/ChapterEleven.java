@@ -51,7 +51,7 @@ public class ChapterEleven extends ChapterCore {
 		mahalnaarawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/mahalnaaraw1.mp3"));
 		paskoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/pasko1.mp3"));
 		pistaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/pista1.mp3"));
-		santaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/santa1.mp3"));
+		santaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/santacruzan1.mp3"));
 
 		// background
 		introBg = new Texture(
@@ -673,37 +673,7 @@ public class ChapterEleven extends ChapterCore {
 		pistaBg.dispose();
 		santacruzanBg.dispose();
 		
-		//balloons
-		introBalloon1.dispose();
 		
-		kalayaanBalloon1.dispose();
-		kalayaanBalloon2.dispose();
-		kalayaanBalloon3.dispose();
-		kalayaanBalloon4.dispose();
-		amaBalloon1.dispose();
-		amaBalloon2.dispose();
-		amaBalloon3.dispose();
-		amaBalloon4.dispose();
-		guroBalloon1.dispose();
-		guroBalloon2.dispose();
-		guroBalloon3.dispose();
-		guroBalloon4.dispose();
-		guroBalloon5.dispose();
-		inaBalloon1.dispose();
-		inaBalloon2.dispose();
-		inaBalloon3.dispose();
-		pusoBalloon1.dispose();
-		pusoBalloon2.dispose();
-		mahalNaArawBalloon1.dispose();
-		mahalNaArawBalloon2.dispose();
-		mahalNaArawBalloon3.dispose();
-		paskoBalloon1.dispose();
-		paskoBalloon2.dispose();
-		paskoBalloon3.dispose();
-		pistaBalloon1.dispose();
-		pistaBalloon2.dispose();
-		santacruzanBalloon1.dispose();
-		santacruzanBalloon2.dispose();
         valentinesChar1.dispose();
         valentinesChar2.dispose();
         if (!isTeacher)

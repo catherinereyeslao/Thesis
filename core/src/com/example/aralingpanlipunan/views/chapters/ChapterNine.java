@@ -468,29 +468,7 @@ public class ChapterNine extends ChapterCore {
         sulodBg.dispose();
         tboliBg.dispose();
         //balloons
-        introBalloon1.dispose();
-        introBalloon2.dispose();
-        atiBalloon1.dispose();
-        atiBalloon2.dispose();
-        atiBalloon3.dispose();
-        blaanBalloon1.dispose();
-        blaanBalloon2.dispose();
-        blaanBalloon3.dispose();
-        blaanBalloon4.dispose();
-        bontocBalloon1.dispose();
-        bontocBalloon2.dispose();
-        bontocBalloon3.dispose();
-        ifugaoBalloon1.dispose();
-        ifugaoBalloon2.dispose();
-        ifugaoBalloon3.dispose();
-        sulodBalloon1.dispose();
-        sulodBalloon2.dispose();
-        sulodBalloon3.dispose();
-        sulodBalloon4.dispose();
-        tboliBalloon1.dispose();
-        tboliBalloon2.dispose();
-        tboliBalloon3.dispose();
-        tboliBalloon4.dispose();
+
 
         question1Bg.dispose();
         question2Bg.dispose();

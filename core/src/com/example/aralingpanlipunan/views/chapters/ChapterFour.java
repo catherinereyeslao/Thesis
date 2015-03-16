@@ -129,7 +129,7 @@ public class ChapterFour extends ChapterCore {
         	case 1:
         		backgroundSprite.setTexture(pangKalusuganBg);
         		intros.stop();
-        		kaligtasans.stop();
+        		kaligtasans.play();
         		libangans.stop();
         		break;
         	case 2:
@@ -152,6 +152,7 @@ public class ChapterFour extends ChapterCore {
         		pagkain.play();
         		break;
             case 5: // Start of Game
+            	intros.stop();
             	kaligtasans.stop();
             	libangans.stop();
             	libanganBgS.stop();
@@ -423,7 +424,7 @@ public class ChapterFour extends ChapterCore {
     protected void toggleSoundVolume() {
         
         intros.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
-        libanganBgS.setVolume(appPreferences.getSoundPreference() ? 0.1f : 0);
+        libanganBgS.setVolume(appPreferences.getSoundPreference() ? 0.5f : 0);
         pagaarals.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
         libangans.setVolume(appPreferences.getSoundPreference() ? 5 : 0);
         kaligtasans.setVolume(appPreferences.getSoundPreference() ? 5 : 0);

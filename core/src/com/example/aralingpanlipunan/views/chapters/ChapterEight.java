@@ -48,7 +48,7 @@ public class ChapterEight extends ChapterCore {
 		paghahabiS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/paghahabi.mp3"));
 		pagpintaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/pagpinta1.mp3"));
 		pagsayawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/pagsayaw1.mp3"));
-		panitikanS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/panitikan1.mp3"));
+		panitikanS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter8/sound2/panitikan.mp3"));
 
 		// backgrounds
         introBg = new Texture("chapters/chapter8/backgrounds/IntroForChapter8.png");
@@ -230,7 +230,7 @@ public class ChapterEight extends ChapterCore {
 
 		// Always make sure girl & balloon are not covered
 		girl.draw(batch);
-		balloonSprite.draw(batch);
+
 	}
 
 	private void assetManager() {
@@ -394,21 +394,7 @@ public class ChapterEight extends ChapterCore {
 		if (!isTeacher) boxTexture.dispose();
 
 		// balloons
-		introBalloon1.dispose();
-		introBalloon2.dispose();
-		paghahabiBalloon1.dispose();
-		paghahabiBalloon2.dispose();
-		paghahabiBalloon3.dispose();
-		paghahabiBalloon4.dispose();
-		pagpintaBalloon1.dispose();
-		pagpintaBalloon2.dispose();
-		pagpintaBalloon3.dispose();
-		panitikanBalloon1.dispose();
-		panitikanBalloon2.dispose();
-		panitikanBalloon3.dispose();
-		pagsayawBalloon1.dispose();
-		pagsayawBalloon2.dispose();
-		pagsayawBalloon3.dispose();
+
 
 		dancerAtlas.dispose();
 		readerAtlas.dispose();

@@ -24,11 +24,11 @@ public class ChapterSix extends ChapterCore {
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
 
-        android.playChap6Video();
+        
         startOfQuestionSection = 0;
         lastChapterSection = 7;
         chapterSection = 1;
-
+        titleBgTexture = new Texture("titlepages/chapter6.png");
         if (isTeacher) {
             question1Bg = new Texture("chapters/chapter6/answerkeys/answer1.jpg");
             question2Bg = new Texture("chapters/chapter6/answerkeys/answer2.jpg");
@@ -73,7 +73,11 @@ public class ChapterSix extends ChapterCore {
 
     private void assetManager() {
         switch (chapterSection) {
+        	case 0: 
+        		android.playChap6Video();
+        		break;
             case 1:
+            	
                 backgroundSprite.setTexture(question1Bg);
 
                 if (!isTeacher) {

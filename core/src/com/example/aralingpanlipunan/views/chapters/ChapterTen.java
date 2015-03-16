@@ -34,8 +34,8 @@ public class ChapterTen extends ChapterCore {
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
 
-		startOfQuestionSection = 7;
-		lastChapterSection = 9;
+		startOfQuestionSection = 6;
+		lastChapterSection = 8;
 		
 		titleBgTexture = new Texture("titlepages/chapter10.png");
 		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter10/sounds/introchap10.m4a"));
@@ -139,25 +139,25 @@ public class ChapterTen extends ChapterCore {
 
     @Override
     public int touchDown(float x, float y) {
-        if (!isTeacher && (chapterSection == 7 || chapterSection == 8)) {
+        if (!isTeacher && (chapterSection == 6 || chapterSection == 7)) {
             // Detect answer in question 1
             if (ansMarker.getBoundingRectangle().contains(x, y)) {
                 ansMarker.setAlpha(1);
                 ansMarker2.setAlpha(0);
                 ansMarker3.setAlpha(0);
                 ansMarker4.setAlpha(0);
-                if (chapterSection == 7)
+                if (chapterSection == 6)
                     ans1Correct = false;
-                if (chapterSection == 8)
+                if (chapterSection == 7)
                     ans4Correct = true;
             } else if (ansMarker2.getBoundingRectangle().contains(x, y)) {
                 ansMarker.setAlpha(0);
                 ansMarker2.setAlpha(1);
                 ansMarker3.setAlpha(0);
                 ansMarker4.setAlpha(0);
-                if (chapterSection == 7)
+                if (chapterSection == 6)
                     ans1Correct = true;
-                if (chapterSection == 8)
+                if (chapterSection == 7)
                     ans4Correct = false;
             } else if (ansMarker3.getBoundingRectangle().contains(x, y)) {
                 ansMarker.setAlpha(0);
@@ -179,9 +179,9 @@ public class ChapterTen extends ChapterCore {
                 ansMarker6.setAlpha(0);
                 ansMarker7.setAlpha(0);
                 ansMarker8.setAlpha(0);
-                if (chapterSection == 7)
+                if (chapterSection == 6)
                     ans2Correct = false;
-                if (chapterSection == 8)
+                if (chapterSection == 7)
                     ans5Correct = true;
             } else if (ansMarker6.getBoundingRectangle().contains(x, y)) {
                 ansMarker5.setAlpha(0);
@@ -200,13 +200,13 @@ public class ChapterTen extends ChapterCore {
                 ansMarker6.setAlpha(0);
                 ansMarker7.setAlpha(0);
                 ansMarker8.setAlpha(1);
-                if (chapterSection == 7)
+                if (chapterSection == 6)
                     ans2Correct = true;
-                if (chapterSection == 8)
+                if (chapterSection == 7)
                     ans5Correct = false;
             }
 
-            if (chapterSection == 19) {
+            if (chapterSection == 6) {
                 // Detect answer in question 3
                 if (ansMarker9.getBoundingRectangle().contains(x, y)) {
                     ansMarker9.setAlpha(1);
@@ -266,31 +266,31 @@ public class ChapterTen extends ChapterCore {
 			bagongtaonS.play();
 			paggalangS.stop();
 			break;
-		case 4:
+		case 2:
 			backgroundSprite.setTexture(paggalangBg);
 			bagongtaonS.stop();
 			paggalangS.play();
 			pagdiriwangS.stop();
 			break;
 		
-		case 8:
+		case 3:
 			backgroundSprite.setTexture(salosaloBg);
 			paggalangS.stop();
 			pagdiriwangS.play();
 			tanggapS.stop();
 			break;
-		case 11:
+		case 4:
 			backgroundSprite.setTexture(bisitaBg);
 			pagdiriwangS.stop();
 			tanggapS.play();
 			undasS.stop();
 			break;
-		case 14:
+		case 5:
 			backgroundSprite.setTexture(undasBg);
 			tanggapS.stop();
 			undasS.play();
 			break;
-        case 19: // Start of game
+        case 6: // Start of game
         	introS.stop();
         	bagongtaonS.stop();
         	paggalangS.stop();
@@ -359,7 +359,7 @@ public class ChapterTen extends ChapterCore {
                 ansMarker12.setAlpha(0);
             }
             break;
-        case 20:
+        case 7:
             if (!isTeacher) {
                 if (ans1Correct) correctAnswers++;
                 if (ans2Correct) correctAnswers++;
@@ -412,7 +412,7 @@ public class ChapterTen extends ChapterCore {
 
             backgroundSprite.setTexture(question2Texture);
             break;
-        case 21:
+        case 8:
             if (!isTeacher) {
                 if (ans4Correct) correctAnswers++;
                 if (ans5Correct) correctAnswers++;
@@ -443,25 +443,7 @@ public class ChapterTen extends ChapterCore {
 		salosaloBg.dispose();
 		bisitaBg.dispose();
 		undasBg.dispose();
-		introBalloon1.dispose();
-		bagongTaonBalloon1.dispose();
-		bagongTaonBalloon2.dispose();
-		bagongTaonBalloon3.dispose();
-		salosaloBalloon1.dispose();
-		salosaloBalloon2.dispose();
-		salosaloBalloon3.dispose();
-		paggalangBalloon1.dispose();
-		paggalangBalloon2.dispose();
-		paggalangBalloon3.dispose();
-		paggalangBalloon4.dispose();
-		pagtanggapBalloon1.dispose();
-		pagtanggapBalloon2.dispose();
-		pagtanggapBalloon3.dispose();
-		undasBalloon1.dispose();
-		undasBalloon2.dispose();
-		undasBalloon3.dispose();
-		undasBalloon4.dispose();
-		undasBalloon5.dispose();
+
         question1Texture.dispose();
         question2Texture.dispose();
         if (!isTeacher) {

@@ -115,7 +115,7 @@ public class ChapterOne extends ChapterCore {
         backgroundSprite.setSize(screenWidth, screenHeight);
         balloonSprite.setTexture(intro1balloonTexture);
 
-        intro2balloonTexture = new Texture("chapters/chapter1/balloons/intro2.png");
+        
 
         loadNextButton();
         toggleSoundVolume();
@@ -207,8 +207,6 @@ public class ChapterOne extends ChapterCore {
         bukid1sound.dispose();
         bukid2sound.dispose();*/
         introBg.dispose();
-        intro1balloonTexture.dispose();
-        intro2balloonTexture.dispose();
         baybayinBg.dispose();
         kabukirinBg.dispose();
         kabundukanBg.dispose();

@@ -316,7 +316,7 @@ public class ChapterThree extends ChapterCore {
 		a3s.dispose();
 		a4s.dispose();
 		a5s.dispose();
-        titleBg.dispose();
+
 	}
 
 	private int getAnswerSpacing() {

@@ -69,7 +69,7 @@ public class ChapterTwo extends ChapterCore {
 
        
         introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sounds/b-intro.amr"));
-        d = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sound2/g-dir.mp3"));
+        d = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sound2/g-dir1.mp3"));
         m= Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter2/sound2/g-mapa1.mp3"));
         backgroundSprite.setTexture(introBgTexture);
         balloonSprite.setTexture(introBalloonTexture);
@@ -175,14 +175,14 @@ public class ChapterTwo extends ChapterCore {
                 if (backToChapters.getBoundingRectangle().contains(x, y))
                     return 50;
                 break;
-            case 12:
+            case 4:
                 touched = answerTouchListener(x, y);
                 if (touched != 0) {
                     chapterSection++;
                     assetNeedUpdate = true;
                 }
                 break;
-            case 4:
+            case 5:
                 touched = answerTouchListener(x, y);
                 if (touched == 1) {
                     correctAnswers++;
@@ -193,7 +193,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 5:
+            case 6:
                 touched = answerTouchListener(x, y);
                 if (touched == 3) {
                     correctAnswers++;
@@ -204,7 +204,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 6:
+            case 7:
                 touched = answerTouchListener(x, y);
                 if (touched == 4) {
                     correctAnswers++;
@@ -215,7 +215,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 7:
+            case 8:
                 touched = answerTouchListener(x, y);
                 if (touched == 2) {
                     correctAnswers++;
@@ -226,7 +226,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 8:
+            case 9:
                 touched = answerTouchListener(x, y);
                 if (touched == 1) {
                     correctAnswers++;
@@ -239,7 +239,7 @@ public class ChapterTwo extends ChapterCore {
                 if (isTeacher)
                     return displayLastSectionButtons(2, 4, x, y);
                 break;
-            case 9:
+            case 10:
                 touched = answerTouchListener(x, y);
                 if (touched == 2) {
                     correctAnswers++;
@@ -250,7 +250,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 10:
+            case 11:
                 touched = answerTouchListener(x, y);
                 if (touched == 3) {
                     correctAnswers++;
@@ -261,7 +261,7 @@ public class ChapterTwo extends ChapterCore {
                     assetNeedUpdate = true;
                 }
                 break;
-            case 11:
+            case 12:
                 return displayLastSectionButtons(2, 4, x, y);
         }
         return 100;
@@ -286,22 +286,20 @@ public class ChapterTwo extends ChapterCore {
         switch (chapterSection) {
             case 0:
                 backgroundSprite.setTexture(introBgTexture);
-                balloonSprite.setTexture(introBalloonTexture);
-                balloonSprite.setAlpha(1);
+              
                 introS.play();
                 d.stop();
                 break;
             case 1:
                 backgroundSprite.setTexture(directionTexture);
-                balloonSprite.setAlpha(0);
+               
                 introS.stop();
                 d.play();
                 m.stop();
                 break;
             case 2:
                 backgroundSprite.setTexture(mapTexture);
-                balloonSprite.setAlpha(0);
-                balloonSprite.setTexture(map1BalloonTexture);
+               
                 d.stop();
                 m.play();
                

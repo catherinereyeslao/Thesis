@@ -32,12 +32,12 @@ public class ChapterFive extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH){
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 9;
-		lastChapterSection = 10;
+		startOfQuestionSection = 5;
+		lastChapterSection = 6;
         characterSpeed = getCharacterVelocityByScreen();
         boxTexture = new Texture("box.png");
 
-        titleBgTexture = new Texture("titlepages/chatper5.png");
+        titleBgTexture = new Texture("titlepages/chapter5.png");
         
         
         if (isTeacher) {
@@ -178,28 +178,19 @@ public class ChapterFive extends ChapterCore {
 		renderSharedAssets(batch);
 
 		switch (chapterSection) {
+			case 1:
+				drawMovingTruck(batch);
+				break;
 			case 2:
-				drawMovingTruck(batch);
-				break;
-			case 3:
-				drawMovingTruck(batch);
-				break;
-			case 4:
 				drawMiner(batch);
 				break;
+            case 3:
+                drawFarmer(batch);
+                break;
+            case 4:
+                fisher.draw(batch);
+                break;
             case 5:
-                drawFarmer(batch);
-                break;
-            case 6:
-                drawFarmer(batch);
-                break;
-            case 7:
-                fisher.draw(batch);
-                break;
-            case 8:
-                fisher.draw(batch);
-                break;
-            case 9:
                 if (!isTeacher) {
                     box.draw(batch);
                     box2.draw(batch);
@@ -215,7 +206,7 @@ public class ChapterFive extends ChapterCore {
                     parke.draw(batch);
                 }
                 break;
-            case 10:
+            case 6:
                 if (!isTeacher) question.drawMultiLine(batch, tanong, questionX, questionY);
                 startQuiz.draw(batch);
                 backToChapters.draw(batch);
@@ -236,22 +227,21 @@ public class ChapterFive extends ChapterCore {
 			intro1S.play();
 			mangangalakal.stop();
 			break;
-		case 2:
+		case 1:
 			backgroundSprite.setTexture(mangangalakalBg);
 			intro1S.stop();
 			mangangalakal.play();
 			pagmimina.stop();
 			break;
-		case 4:
+		case 2:
 			backgroundSprite.setTexture(pagmiminaBg);
-			
 			characterX = miner.getWidth() * -1.15f;
 			characterY = 0;
 			mangangalakal.stop();
 			pagmimina.play();
 			magsasaka.stop();
 			break;
-		case 5:
+		case 3:
 			backgroundSprite.setTexture(pagsasakaBg);
 			characterX = farmer.getWidth() * -1.15f;
 			characterY = (screenHeight / 2) - (farmer.getHeight());
@@ -260,7 +250,7 @@ public class ChapterFive extends ChapterCore {
 			pangingisda.stop();
 			break;
 		
-		case 7:
+		case 4:
 			backgroundSprite.setTexture(pangingisdaBg);
 			magsasaka.stop();
 			pangingisda.play();
@@ -270,7 +260,7 @@ public class ChapterFive extends ChapterCore {
            
 			break;
 		//game
-		case 9:
+		case 5:
 			intro1S.stop();
 			mangangalakal.stop();
 			pagmimina.stop();
@@ -291,7 +281,7 @@ public class ChapterFive extends ChapterCore {
            
 
 			break;
-        case 10:
+        case 6:
             if (isTeacher) correctAnswers = 5;
             displayQuizResult(DatabaseSetup.CHAPTER_FIVE_SCORE, 3);
             break;

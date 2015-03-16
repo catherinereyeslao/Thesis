@@ -34,7 +34,7 @@ public class ChapterSeven extends ChapterCore {
 		startOfQuestionSection = 4;
 		lastChapterSection = 6;
 		
-		titleBgTexture = new Texture("titlepages/chatper7.png");
+		titleBgTexture = new Texture("titlepages/chapter7.png");
 		// sounds
 		introS = Gdx.audio.newMusic(Gdx.files
 				.internal("chapters/chapter7/sound2/intro1chap7.mp3"));
@@ -349,16 +349,6 @@ public class ChapterSeven extends ChapterCore {
 		erectusBg.dispose();
 		habilisBg.dispose();
 		sapiensBg.dispose();
-		introBalloon1.dispose();
-		introBalloon2.dispose();
-		erectusBalloon1.dispose();
-		erectusBalloon2.dispose();
-		erectusBalloon3.dispose();
-		habilisBalloon1.dispose();
-		habilisBalloon2.dispose();
-		sapiensBalloon1.dispose();
-		sapiensBalloon2.dispose();
-		sapiensBalloon3.dispose();
 		question1Bg.dispose();
 		question2Bg.dispose();
 		if (!isTeacher) selectedAnsTexture.dispose();
