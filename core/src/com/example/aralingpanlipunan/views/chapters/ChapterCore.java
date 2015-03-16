@@ -207,7 +207,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param batch Batch
      */
     protected void renderSharedAssets(Batch batch) {
-    	if (!isTeacherSkippedLecture) {
+    	if (isTeacherSkippedLecture) {
     		chapterSection = startOfQuestionSection;
     		assetNeedUpdate = true;
     		}

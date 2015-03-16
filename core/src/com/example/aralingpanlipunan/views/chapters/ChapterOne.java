@@ -3,9 +3,11 @@ package com.example.aralingpanlipunan.views.chapters;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.utils.FourPicsOneWordUtil;
 import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
@@ -14,12 +16,16 @@ import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPT
 
 public class ChapterOne extends ChapterCore {
     private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture, question1Texture, question2Texture, question3Texture, question4Texture;
-    private Music bgMusic, baybayinBGs, lungsodBGs, bukidBGs, kabundukanBGs, intros, baybayins, bukids, bundoks, lungsods;/*baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;*/
+    private Music  baybayinBGs, lungsodBGs, bukidBGs, kabundukanBGs, intros, baybayins, bukids, bundoks, lungsods;/*baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;*/
     private BitmapFont studentAnswer;
     private StringBuilder typedAnswer;
     private FourPicsOneWordUtil fourPicsOneWordUtil;
     private float ansX, ansY;
     private boolean ansCorrect;
+    protected TextureAtlas baybayinAtlas;
+    protected Animation baybayinAnimation;
+    protected Sprite baybayin;
+    private float  animationCounter;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -41,6 +47,12 @@ public class ChapterOne extends ChapterCore {
 
         titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
 
+        baybayinAtlas = new TextureAtlas("chapters/chapter1/animate/baybayinBG.atlas");
+        baybayinAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
+        baybayinAnimation = new Animation(0.25f, baybayinAtlas.getRegions());
+        baybayin = new Sprite(baybayinAnimation.getKeyFrames()[0]);
+        baybayin.setSize(screenW, screenH);
+        
         // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
@@ -116,7 +128,15 @@ public class ChapterOne extends ChapterCore {
     public void display(Batch batch) {
         if (assetNeedUpdate) assetManager();
         chapter1Display(batch);
-
+        renderSharedAssets(batch);
+        if (!viewingSettings) {
+            switch (chapterSection) {
+                case 1:
+                    drawBG(batch);
+                    break;
+            }
+        }
+        
         if (ansCorrect) {
             fourPicsOneWordUtil.displayCorrect(batch);
             Gdx.input.setOnscreenKeyboardVisible(false);
@@ -125,7 +145,15 @@ public class ChapterOne extends ChapterCore {
         drawQuizResult(batch);
     }
 
-    @Override
+   
+	private void drawBG(Batch batch) {
+		// TODO Auto-generated method stub
+		animationCounter += Gdx.graphics.getDeltaTime();
+		baybayin.setRegion(baybayinAnimation.getKeyFrame(animationCounter, true));
+		baybayin.draw(batch);
+	}
+
+	@Override
     public void dispose() {
         super.dispose();
 
@@ -270,7 +298,7 @@ public class ChapterOne extends ChapterCore {
                 baybayinBGs.stop();
                 break;
             case 1:
-                backgroundSprite.setTexture(baybayinBg);
+                
                 intros.stop();
                 baybayins.play();
                 baybayinBGs.play();

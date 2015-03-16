@@ -241,7 +241,7 @@ public class ChapterEight extends ChapterCore {
 			paghahabiS.stop();
 			break;
 		
-		case 2:
+		case 1:
 			introS.stop();
 			paghahabiS.play();
 			
@@ -254,7 +254,7 @@ public class ChapterEight extends ChapterCore {
 			
 			break;
 		
-		case 5:
+		case 2:
 			pagpintaS.stop();
 			backgroundSprite.setTexture(paghahabiBg);
 			
@@ -263,7 +263,7 @@ public class ChapterEight extends ChapterCore {
 			character.setPosition(characterX, characterY);
 			
 			break;
-		case 6:
+		case 3:
 			paghahabiS.stop();
 			pagpintaS.play();
 			animationCounter = 0;
@@ -273,7 +273,7 @@ public class ChapterEight extends ChapterCore {
 			
 			break;
 		
-		case 8:
+		case 4:
 			pagsayawS.stop();
 			characterY = (screenHeight / 4) - (character.getHeight() / 2);
 			backgroundSprite.setTexture(pagpintaBg);
@@ -281,7 +281,7 @@ public class ChapterEight extends ChapterCore {
 			character.setTexture(painter2Texture);
 			
 			break;
-		case 9:
+		case 5:
 			pagpintaS.stop();
 			pagsayawS.play();
 			panitikanS.stop();
@@ -294,7 +294,7 @@ public class ChapterEight extends ChapterCore {
 			
 			break;
 		
-		case 12:
+		case 6:
 			pagsayawS.stop();
 			panitikanS.play();
 			characterX = (screenWidth / 1.5f) - (reader.getWidth() / 2);
@@ -304,7 +304,7 @@ public class ChapterEight extends ChapterCore {
 			
 			break;
 		
-		case 15://game
+		case 7://game
 			backgroundSprite.setTexture(gameBg);
 			introS.stop();
 			panitikanS.stop();
@@ -312,7 +312,7 @@ public class ChapterEight extends ChapterCore {
 			pagpintaS.stop();
 			paghahabiS.stop();
 			break;
-		case 16:
+		case 8:
             if (isTeacher) {
                 correctAnswers = 4;
             } else {
