@@ -20,11 +20,7 @@ public class ChapterEleven extends ChapterCore {
 			paskoBalloon2, paskoBalloon3, pistaBalloon1, pistaBalloon2,
 			santacruzanBalloon1, santacruzanBalloon2, question1Bg, question2Bg,
 			question3Bg, question4Bg, question5Bg, ansMarkerTexture;
-	private Music intro1S, kalayaan1S, kalayaan2S, kalayaan3S, kalayaan4S,
-			ama1S, ama2S, ama3S, ama4S, guro1S, guro2S, guro3S, guro4S, guro5S,
-			ina1S, ina2S, ina3S, puso1S, puso2S, mahalNaAraw1S, mahalNaAraw2S,
-			mahalNaAraw3S, pasko1S, pasko2S, pasko3S, pista1S, pista2S,
-			santa1S, santa2S;
+	private Music introS, kalayaanS, amaS, guroS,inaS,pusoS,mahalnaarawS,paskoS,pistaS, santaS;
 	private Sprite ansMarker, ansMarker2, ansMarker3, ansMarker4, ansMarker5,
 			ansMarker6, ansMarker7, ansMarker8, extraCharacterSprite;
     private short valentineElapsed = 0;
@@ -41,69 +37,21 @@ public class ChapterEleven extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 29;
-		lastChapterSection = 34;
+		startOfQuestionSection = 10;
+		lastChapterSection = 15;
 		assetNeedUpdate = true;
 
 		// sound
-		intro1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/introchap11.m4a"));
-		kalayaan1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/kalayaan1.m4a"));
-		kalayaan2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/kalayaan2.m4a"));
-		kalayaan3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/kalayaan3.m4a"));
-		kalayaan4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/kalayaan4.m4a"));
-		ama1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ama1.m4a"));
-		ama2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ama2.m4a"));
-		ama3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ama3.m4a"));
-		ama4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ama4.m4a"));
-		guro1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/guro1.m4a"));
-		guro2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/guro2.m4a"));
-		guro3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/guro3.m4a"));
-		guro4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/guro4.m4a"));
-		guro5S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/guro5.m4a"));
-		ina1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ina1.m4a"));
-		ina2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ina2.m4a"));
-		ina3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/ina3.m4a"));
-		puso1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/puso1.m4a"));
-		puso2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/puso2.m4a"));
-		mahalNaAraw1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/mahalnaaraw1.m4a"));
-		mahalNaAraw2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/mahalnaaraw2.m4a"));
-		mahalNaAraw3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/mahalnaaraw3.m4a"));
-		pasko1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/pasko1.m4a"));
-		pasko2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/pasko2.m4a"));
-		pasko3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/pasko3.m4a"));
-		pista1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/pista1.m4a"));
-		pista2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/pista2.m4a"));
-		santa1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/santacruzan1.m4a"));
-		santa2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter11/sounds/santacruzan2.m4a"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sounds/introchap11.m4a"));
+		kalayaanS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/kalayaan1.mp3"));
+		amaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/ama1.mp3"));
+		guroS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/guro1.mp3"));
+		inaS  = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/ina1.mp3"));
+		pusoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/puso1.mp3"));
+		mahalnaarawS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/mahalnaaraw1.mp3"));
+		paskoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/pasko1.mp3"));
+		pistaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/pista1.mp3"));
+		santaS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter11/sound2/santa1.mp3"));
 
 		// background
 		introBg = new Texture(
@@ -186,52 +134,7 @@ public class ChapterEleven extends ChapterCore {
         extraCharacterSprite.setSize(girl.getWidth(), girl.getHeight());
         extraCharacterSprite.setPosition(screenWidth / 1.4f, 0);
 
-		// balloons
-		introBalloon1 = new Texture("chapters/chapter11/balloons/Intro.png");
-		kalayaanBalloon1 = new Texture(
-				"chapters/chapter11/balloons/Kalayaan1.png");
-		kalayaanBalloon2 = new Texture(
-				"chapters/chapter11/balloons/Kalayaan2.png");
-		kalayaanBalloon3 = new Texture(
-				"chapters/chapter11/balloons/Kalayaan3.png");
-		kalayaanBalloon4 = new Texture(
-				"chapters/chapter11/balloons/Kalayaan4.png");
-		amaBalloon1 = new Texture("chapters/chapter11/balloons/ArawNgAma1.png");
-		amaBalloon2 = new Texture("chapters/chapter11/balloons/ArawNgAma2.png");
-		amaBalloon3 = new Texture("chapters/chapter11/balloons/ArawNgAma3.png");
-		amaBalloon4 = new Texture("chapters/chapter11/balloons/ArawNgAma4.png");
-		guroBalloon1 = new Texture(
-				"chapters/chapter11/balloons/ArawNgGuro1.png");
-		guroBalloon2 = new Texture(
-				"chapters/chapter11/balloons/ArawNgGuro2.png");
-		guroBalloon3 = new Texture(
-				"chapters/chapter11/balloons/ArawNgGuro3.png");
-		guroBalloon4 = new Texture(
-				"chapters/chapter11/balloons/ArawNgGuro4.png");
-		guroBalloon5 = new Texture(
-				"chapters/chapter11/balloons/ArawNgGuro5.png");
-		inaBalloon1 = new Texture("chapters/chapter11/balloons/ArawNgIna1.png");
-		inaBalloon2 = new Texture("chapters/chapter11/balloons/ArawNgIna2.png");
-		inaBalloon3 = new Texture("chapters/chapter11/balloons/ArawNgIna3.png");
-		pusoBalloon1 = new Texture(
-				"chapters/chapter11/balloons/ArawNgPuso1.png");
-		pusoBalloon2 = new Texture(
-				"chapters/chapter11/balloons/ArawNgPuso2.png");
-		mahalNaArawBalloon1 = new Texture(
-				"chapters/chapter11/balloons/MahalNaAraw1.png");
-		mahalNaArawBalloon2 = new Texture(
-				"chapters/chapter11/balloons/MahalNaAraw2.png");
-		mahalNaArawBalloon3 = new Texture(
-				"chapters/chapter11/balloons/MahalNaAraw3.png");
-		paskoBalloon1 = new Texture("chapters/chapter11/balloons/Pasko1.png");
-		paskoBalloon2 = new Texture("chapters/chapter11/balloons/Pasko2.png");
-		paskoBalloon3 = new Texture("chapters/chapter11/balloons/Pasko3.png");
-		pistaBalloon1 = new Texture("chapters/chapter11/balloons/Pista1.png");
-		pistaBalloon2 = new Texture("chapters/chapter11/balloons/Pista2.png");
-		santacruzanBalloon1 = new Texture(
-				"chapters/chapter11/balloons/Santacruzan1.png");
-		santacruzanBalloon2 = new Texture(
-				"chapters/chapter11/balloons/Santacruzan2.png");
+		
         toggleSoundVolume();
 	}
 
@@ -241,7 +144,7 @@ public class ChapterEleven extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-        if (chapterSection == 17 || chapterSection == 18) {
+        if (chapterSection == 17 ) {
             if (valentineElapsed < 160)
                 valentineElapsed++;
             else if (!extraCharacterSprite.getTexture().equals(valentinesChar2))
@@ -274,168 +177,76 @@ public class ChapterEleven extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(introBalloon1);
-			kalayaan1S.stop();
+			introS.play();
+			kalayaanS.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(kalayaanBg);
-			balloonSprite.setTexture(kalayaanBalloon1);
-			intro1S.stop();
-			kalayaan2S.stop();
+			introS.stop();
+			kalayaanS.play();
+			amaS.stop();
 			break;
-		case 2:
-			balloonSprite.setTexture(kalayaanBalloon2);
-			kalayaan1S.stop();
-			kalayaan3S.stop();
-			break;
-		case 3:
-			balloonSprite.setTexture(kalayaanBalloon3);
-			kalayaan2S.stop();
-			kalayaan4S.stop();
-			break;
-		case 4:
-            backgroundSprite.setTexture(kalayaanBg);
-			balloonSprite.setTexture(kalayaanBalloon4);
-			kalayaan3S.stop();
-			ama1S.stop();
-			break;
-		case 5:
+		case 2://2
 			backgroundSprite.setTexture(amaBg);
-			balloonSprite.setTexture(amaBalloon1);
-			kalayaan4S.stop();
-			ama2S.stop();
+			kalayaanS.stop();
+			amaS.play();
+			guroS.stop();
 			break;
-		case 6:
-			balloonSprite.setTexture(amaBalloon2);
-			ama1S.stop();
-			ama3S.stop();
-			break;
-		case 7:
-			balloonSprite.setTexture(amaBalloon3);
-			ama2S.stop();
-			ama4S.stop();
-			break;
-		case 8:
-            backgroundSprite.setTexture(amaBg);
-			balloonSprite.setTexture(amaBalloon4);
-			ama3S.stop();
-			guro1S.stop();
-			break;
-		case 9:
+		case 3://3
 			backgroundSprite.setTexture(guroBg);
-			balloonSprite.setTexture(guroBalloon1);
-			ama4S.stop();
-			guro2S.stop();
+			amaS.stop();
+			guroS.play();
+			inaS.stop();
 			break;
-		case 10:
-			balloonSprite.setTexture(guroBalloon2);
-			guro1S.stop();
-			guro3S.stop();
-			break;
-		case 11:
-			balloonSprite.setTexture(guroBalloon3);
-			guro2S.stop();
-			guro4S.stop();
-			break;
-		case 12:
-			balloonSprite.setTexture(guroBalloon4);
-			guro3S.stop();
-			guro5S.stop();
-			break;
-		case 13:
-            backgroundSprite.setTexture(guroBg);
-			balloonSprite.setTexture(guroBalloon5);
-			guro4S.stop();
-			ina1S.stop();
-			break;
-		case 14:
+		case 4://4
 			backgroundSprite.setTexture(inaBg);
-			balloonSprite.setTexture(inaBalloon1);
-			guro5S.stop();
-			ina2S.stop();
+			guroS.stop();
+			inaS.play();
+			pusoS.stop();
 			break;
-		case 15:
-			balloonSprite.setTexture(inaBalloon2);
-			ina1S.stop();
-			ina3S.stop();
-			break;
-		case 16:
-            backgroundSprite.setTexture(inaBg);
-			balloonSprite.setTexture(inaBalloon3);
-			ina2S.stop();
-			puso1S.stop();
-			break;
-		case 17:
+		case 5://5
 			backgroundSprite.setTexture(pusoBg);
-			balloonSprite.setTexture(pusoBalloon1);
-			ina3S.stop();
-			puso2S.stop();
+			inaS.stop();
+			pusoS.play();
+			mahalnaarawS.stop();
 			break;
-		case 18:
-            backgroundSprite.setTexture(pusoBg);
-			balloonSprite.setTexture(pusoBalloon2);
-			puso1S.stop();
-			mahalNaAraw1S.stop();
-			break;
-		case 19:
+		
+		case 6://6
 			backgroundSprite.setTexture(mahalNaArawBg);
-			balloonSprite.setTexture(mahalNaArawBalloon1);
-			puso2S.stop();
-			mahalNaAraw2S.stop();
+			pusoS.stop();
+			mahalnaarawS.play();
+			paskoS.stop();
 			break;
-		case 20:
-			balloonSprite.setTexture(mahalNaArawBalloon2);
-			mahalNaAraw1S.stop();
-			mahalNaAraw3S.stop();
-			break;
-		case 21:
-            backgroundSprite.setTexture(mahalNaArawBg);
-			balloonSprite.setTexture(mahalNaArawBalloon3);
-			mahalNaAraw2S.stop();
-			pasko1S.stop();
-			break;
-		case 22:
+		case 7://7
 			backgroundSprite.setTexture(paskoBg);
-			balloonSprite.setTexture(paskoBalloon1);
-			mahalNaAraw3S.stop();
-			pasko2S.stop();
+			mahalnaarawS.stop();
+			paskoS.play();
+			pistaS.stop();
 			break;
-		case 23:
-			balloonSprite.setTexture(paskoBalloon2);
-			pasko1S.stop();
-			pasko3S.stop();
-			break;
-		case 24:
-            backgroundSprite.setTexture(paskoBg);
-			balloonSprite.setTexture(paskoBalloon3);
-			pasko2S.stop();
-			pista1S.stop();
-			break;
-		case 25:
+		
+		case 8://8
 			backgroundSprite.setTexture(pistaBg);
-			balloonSprite.setTexture(pistaBalloon1);
-			pasko3S.stop();
-			pista2S.stop();
+			paskoS.stop();
+			pistaS.play();
+			santaS.stop();
 			break;
-		case 26:
-            backgroundSprite.setTexture(pistaBg);
-			balloonSprite.setTexture(pistaBalloon2);
-			pista1S.stop();
-			santa1S.stop();
-			break;
-		case 27:
+		
+		case 9://9
 			backgroundSprite.setTexture(santacruzanBg);
-			balloonSprite.setTexture(santacruzanBalloon1);
-			pista2S.stop();
-			santa2S.stop();
-			break;
-		case 28:
-            backgroundSprite.setTexture(santacruzanBg);
-			balloonSprite.setTexture(santacruzanBalloon2);
-			santa1S.stop();
-			break;
-		case 29: // Start of game section
-			santa2S.stop();
+			pistaS.stop();
+			santaS.play();
+		
+		case 10: // Start of game section 10
+			introS.stop();
+			kalayaanS.stop();
+			amaS.stop();
+			guroS.stop();
+			inaS.stop();
+			pusoS.stop();
+			mahalnaarawS.stop();
+			paskoS.stop();
+			pistaS.stop();
+			santaS.stop();
 			if (!isTeacher) {
 				correctAnswers = 0;
 				ans1Correct = ans2Correct = false;
@@ -492,7 +303,7 @@ public class ChapterEleven extends ChapterCore {
 
 			backgroundSprite.setTexture(question1Bg);
 			break;
-		case 30:
+		case 11://11
 			if (!isTeacher) {
 				if (ans1Correct)
 					correctAnswers++;
@@ -552,7 +363,7 @@ public class ChapterEleven extends ChapterCore {
 
 			backgroundSprite.setTexture(question2Bg);
 			break;
-		case 31:
+		case 12://12
 			if (!isTeacher) {
 				if (ans1Correct)
 					correctAnswers++;
@@ -612,7 +423,7 @@ public class ChapterEleven extends ChapterCore {
 
 			backgroundSprite.setTexture(question3Bg);
 			break;
-		case 32:
+		case 13://13
 			if (!isTeacher) {
 				if (ans1Correct)
 					correctAnswers++;
@@ -672,7 +483,7 @@ public class ChapterEleven extends ChapterCore {
 
 			backgroundSprite.setTexture(question4Bg);
 			break;
-		case 33:
+		case 14://14
 			if (!isTeacher) {
 				if (ans1Correct)
 					correctAnswers++;
@@ -732,7 +543,7 @@ public class ChapterEleven extends ChapterCore {
 
 			backgroundSprite.setTexture(question5Bg);
 			break;
-		case 34:
+		case 15://15
 			displayQuizResult(CHAPTER_ELEVEN_SCORE, 5);
 			break;
 		}
@@ -749,14 +560,14 @@ public class ChapterEleven extends ChapterCore {
 				ansMarker3.setAlpha(0);
 				ansMarker4.setAlpha(0);
 				// answer a is correct only for chapSection 31 / question 5
-				ans1Correct = chapterSection == 31;
+				ans1Correct = chapterSection == 12;
 			} else if (ansMarker2.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(1);
 				ansMarker3.setAlpha(0);
 				ansMarker4.setAlpha(0);
 				// answer b is correct only for chapSection 29 / question 1
-				ans1Correct = chapterSection == 29 || chapterSection == 31;
+				ans1Correct = chapterSection == 10 || chapterSection == 12;
 			} else if (ansMarker3.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(0);
@@ -764,7 +575,7 @@ public class ChapterEleven extends ChapterCore {
 				ansMarker4.setAlpha(0);
 				// answer c is correct only for chapSection 30 & 32 / question 3
 				// & 7
-				ans1Correct = chapterSection == 30 || chapterSection == 32 || chapterSection == 33;
+				ans1Correct = chapterSection == 11 || chapterSection == 13 || chapterSection == 14;
 			} else if (ansMarker4.getBoundingRectangle().contains(x, y)) {
 				ansMarker.setAlpha(0);
 				ansMarker2.setAlpha(0);
@@ -779,19 +590,19 @@ public class ChapterEleven extends ChapterCore {
 					ansMarker6.setAlpha(0);
 					ansMarker7.setAlpha(0);
 					ansMarker8.setAlpha(0);
-					ans2Correct = chapterSection == 29 || chapterSection == 32;
+					ans2Correct = chapterSection == 10 || chapterSection == 13;
 				} else if (ansMarker6.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(0);
 					ansMarker6.setAlpha(1);
 					ansMarker7.setAlpha(0);
 					ansMarker8.setAlpha(0);
-					ans2Correct = chapterSection == 30 || chapterSection == 31;
+					ans2Correct = chapterSection == 11 || chapterSection == 12;
 				} else if (ansMarker7.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(0);
 					ansMarker6.setAlpha(0);
 					ansMarker7.setAlpha(1);
 					ansMarker8.setAlpha(0);
-					ans2Correct = chapterSection == 35;
+					ans2Correct = chapterSection == 16;
 				} else if (ansMarker8.getBoundingRectangle().contains(x, y)) {
 					ansMarker5.setAlpha(0);
 					ansMarker6.setAlpha(0);
@@ -814,98 +625,42 @@ public class ChapterEleven extends ChapterCore {
      */
     @Override
     protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kalayaan1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kalayaan2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kalayaan3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        kalayaan4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ama1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ama2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ama3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ama4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        guro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        guro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        guro3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        guro4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        guro5S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ina1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ina2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        ina3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        puso1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        puso2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        mahalNaAraw1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        mahalNaAraw2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        mahalNaAraw3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pasko1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pasko2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pasko3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pista1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        pista2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        santa1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        santa2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+    	introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		kalayaanS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		amaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		guroS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		inaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		pusoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		mahalnaarawS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		paskoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		pistaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+		santaS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+       
     }
 
     @Override
 	public void dispose() {
-        intro1S.stop();
-        kalayaan1S.stop();
-        kalayaan2S.stop();
-        kalayaan3S.stop();
-        kalayaan4S.stop();
-        ama1S.stop();
-        ama2S.stop();
-        ama3S.stop();
-        ama4S.stop();
-        guro1S.stop();
-        guro2S.stop();
-        guro3S.stop();
-        guro4S.stop();
-        guro5S.stop();
-        ina1S.stop();
-        ina2S.stop();
-        ina3S.stop();
-        puso1S.stop();
-        puso2S.stop();
-        mahalNaAraw1S.stop();
-        mahalNaAraw2S.stop();
-        mahalNaAraw3S.stop();
-        pasko1S.stop();
-        pasko2S.stop();
-        pasko3S.stop();
-        pista1S.stop();
-        pista2S.stop();
-        santa1S.stop();
-        santa2S.stop();
-
-        intro1S.dispose();
-        kalayaan1S.dispose();
-        kalayaan2S.dispose();
-        kalayaan3S.dispose();
-        kalayaan4S.dispose();
-        ama1S.dispose();
-        ama2S.dispose();
-        ama3S.dispose();
-        ama4S.dispose();
-        guro1S.dispose();
-        guro2S.dispose();
-        guro3S.dispose();
-        guro4S.dispose();
-        guro5S.dispose();
-        ina1S.dispose();
-        ina2S.dispose();
-        ina3S.dispose();
-        puso1S.dispose();
-        puso2S.dispose();
-        mahalNaAraw1S.dispose();
-        mahalNaAraw2S.dispose();
-        mahalNaAraw3S.dispose();
-        pasko1S.dispose();
-        pasko2S.dispose();
-        pasko3S.dispose();
-        pista1S.dispose();
-        pista2S.dispose();
-        santa1S.dispose();
-        santa2S.dispose();
+    	introS.stop();
+		kalayaanS.stop();
+		amaS.stop();
+		guroS.stop();
+		inaS.stop();
+		pusoS.stop();
+		mahalnaarawS.stop();
+		paskoS.stop();
+		pistaS.stop();
+		santaS.stop();
+		
+		introS.dispose();
+		kalayaanS.dispose();
+		amaS.dispose();
+		guroS.dispose();
+		inaS.dispose();
+		pusoS.dispose();
+		mahalnaarawS.dispose();
+		paskoS.dispose();
+		pistaS.dispose();
+		santaS.dispose();
 		
 		introBg.dispose();
 		kalayaanBg.dispose();

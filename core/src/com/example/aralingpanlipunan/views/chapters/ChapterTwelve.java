@@ -44,24 +44,7 @@ public class ChapterTwelve extends ChapterCore {
         panitikanTexture = new Texture("chapters/chapter8/backgrounds/Background sa Panitikan.png");
         musikaTexture = new Texture("chapters/chapter12/backgrounds/Musika.jpg");
 
-        // balloons
-        intro1Balloon = new Texture("chapters/chapter12/balloons/intro1.png");
-        intro2Balloon = new Texture("chapters/chapter12/balloons/intro2.png");
-        musika1Balloon = new Texture("chapters/chapter12/balloons/musika1.png");
-        musika2Balloon = new Texture("chapters/chapter12/balloons/musika2.png");
-        musika3Balloon = new Texture("chapters/chapter12/balloons/musika3.png");
-        musika4Balloon = new Texture("chapters/chapter12/balloons/musika4.png");
-        pagpinta1Balloon = new Texture("chapters/chapter12/balloons/pagpinta1.png");
-        pagpinta2Balloon = new Texture("chapters/chapter12/balloons/pagpinta2.png");
-        panitikan1Balloon = new Texture("chapters/chapter12/balloons/panitikan1.png");
-        panitikan2Balloon = new Texture("chapters/chapter12/balloons/panitikan2.png");
-        panitikan3Balloon = new Texture("chapters/chapter12/balloons/panitikan3.png");
-        panitikan4Balloon = new Texture("chapters/chapter12/balloons/panitikan4.png");
-        panitikan5Balloon = new Texture("chapters/chapter12/balloons/panitikan5.png");
-        panitikan6Balloon = new Texture("chapters/chapter12/balloons/panitikan6.png");
-        sayaw1Balloon = new Texture("chapters/chapter12/balloons/sayaw1.png");
-        sayaw2Balloon = new Texture("chapters/chapter12/balloons/sayaw2.png");
-        sayaw3Balloon = new Texture("chapters/chapter12/balloons/sayaw3.png");
+       
 
         if (isTeacher) {
             question1Texture = new Texture("chapters/chapter12/answerkeys/answer1.jpg");
