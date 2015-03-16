@@ -12,8 +12,7 @@ public class ChapterSixteen extends ChapterCore {
 	private Texture intro, job1, job2, job3, product1, product2, product3,
 			product4, service1, service2, service3, service4, introBg, jobsBg,
 			productBg, serviceBg, gameBg, ansMarkerTexture;
-	private Music intro1S, hb1S, hb2S, hb3S, produkto1S, produkto2S,
-				  produkto3S, produkto4S, serbisyo1S, serbisyo2S, serbisyo3S, serbisyo4S;
+	private Music introS, hanapbuhayS, produktoS, serbisyoS;
 	private Sprite ans1A, ans1B, ans1C, ans2A, ans2B, ans2C, ans3A, ans3B,
 			ans3C, ans4A, ans4B, ans4C, ans5A, ans5B, ans5C;
 	private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct,
@@ -30,22 +29,14 @@ public class ChapterSixteen extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 12;
-		lastChapterSection = 13;
-
+		startOfQuestionSection = 4;
+		lastChapterSection = 5;
+		titleBgTexture = new Texture("titlepages/chatper16.png");
 		//spunds
-		intro1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/introchap16.m4a"));
-		hb1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/hanapbuhay1.m4a"));
-		hb2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/hanapbuhay2.m4a"));
-		hb3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/hanapbuhay3.m4a"));
-		produkto1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/produkto1.m4a"));
-		produkto2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/produkto2.m4a"));
-		produkto3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/produkto3.m4a"));
-		produkto4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/produkto4.m4a"));
-		serbisyo1S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/serbisyo1.m4a"));
-		serbisyo2S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/serbisyo2.m4a"));
-		serbisyo3S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/serbisyo3.m4a"));
-		serbisyo4S = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/serbisyo4.m4a"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sounds/introchap16.m4a"));
+		hanapbuhayS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sound2/hanapbuhay1.mp3"));
+		produktoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sound2/produkto1.mp3"));
+		serbisyoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter16/sound2/serbisyo1.mp3"));
 
 		
 		// backgrounds
@@ -56,19 +47,7 @@ public class ChapterSixteen extends ChapterCore {
 		serviceBg = new Texture(
 				"chapters/chapter16/backgrounds/service-provider.png");
 
-		// balloons
-		intro = new Texture("chapters/chapter16/balloons/intro.png");
-		job1 = new Texture("chapters/chapter16/balloons/job1.png");
-		job2 = new Texture("chapters/chapter16/balloons/job2.png");
-		job3 = new Texture("chapters/chapter16/balloons/job3.png");
-		product1 = new Texture("chapters/chapter16/balloons/product1.png");
-		product2 = new Texture("chapters/chapter16/balloons/product2.png");
-		product3 = new Texture("chapters/chapter16/balloons/product3.png");
-		product4 = new Texture("chapters/chapter16/balloons/product4.png");
-		service1 = new Texture("chapters/chapter16/balloons/service1.png");
-		service2 = new Texture("chapters/chapter16/balloons/service2.png");
-		service3 = new Texture("chapters/chapter16/balloons/service3.png");
-		service4 = new Texture("chapters/chapter16/balloons/service4.png");
+		
 
 		// questions
 		if (isTeacher) {
@@ -133,7 +112,7 @@ public class ChapterSixteen extends ChapterCore {
 			assetManager();
 		renderSharedAssets(batch);
 
-		if (!isTeacher && chapterSection == 12) {
+		if (!isTeacher && chapterSection == 4) {
 			ans1A.draw(batch);
 			ans1B.draw(batch);
 			ans1C.draw(batch);
@@ -158,31 +137,14 @@ public class ChapterSixteen extends ChapterCore {
 	@Override
 	public void dispose() {
 		super.dispose();
-		intro1S.stop();
-		hb1S.stop();
-		hb2S.stop();
-		hb3S.stop();
-		produkto1S.stop();
-		produkto2S.stop();
-		produkto3S.stop();
-		produkto4S.stop();
-		serbisyo1S.stop();
-		serbisyo2S.stop();
-		serbisyo3S.stop();
-		serbisyo4S.stop();
-		
-		intro1S.dispose();
-		hb1S.dispose();
-		hb2S.dispose();
-		hb3S.dispose();
-		produkto1S.dispose();
-		produkto2S.dispose();
-		produkto3S.dispose();
-		produkto4S.dispose();
-		serbisyo1S.dispose();
-		serbisyo2S.dispose();
-		serbisyo3S.dispose();
-		serbisyo4S.dispose();
+		introS.stop();
+		hanapbuhayS.stop();
+		produktoS.stop();
+		serbisyoS.stop();
+		introS.dispose();
+		hanapbuhayS.dispose();
+		produktoS.dispose();
+		serbisyoS.dispose();
 		introBg.dispose();
 		jobsBg.dispose();
 		productBg.dispose();
@@ -206,7 +168,7 @@ public class ChapterSixteen extends ChapterCore {
 	@Override
 	public int touchDown(float x, float y) {
 		switch (chapterSection) {
-		case 12:
+		case 4:
 			if (!isTeacher) {
 				if (ans1A.getBoundingRectangle().contains(x, y)) {
 					ans1A.setAlpha(1);
@@ -294,7 +256,7 @@ public class ChapterSixteen extends ChapterCore {
 				}
 			}
 			break;
-		case 13:
+		case 5:
 			return displayLastSectionButtons(16, 3, x, y);
 		}
 		return super.touchDown(x, y);
@@ -302,18 +264,11 @@ public class ChapterSixteen extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        hb1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        hb2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        hb3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        produkto1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        produkto2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        produkto3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        produkto4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        serbisyo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        serbisyo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        serbisyo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        serbisyo4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        hanapbuhayS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        produktoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        serbisyoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        
     }
 
     private void assetManager() {
@@ -321,71 +276,31 @@ public class ChapterSixteen extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(intro);
-			hb1S.stop();
+			introS.play();
+			hanapbuhayS.stop();
 			break;
 		case 1:
 			backgroundSprite.setTexture(jobsBg);
-			balloonSprite.setTexture(job1);
-			intro1S.stop();
-			hb2S.stop();
+			introS.stop();
+			hanapbuhayS.play();
+			produktoS.stop();
 			break;
 		case 2:
-			balloonSprite.setTexture(job2);
-			hb1S.stop();
-			hb3S.stop();
+			backgroundSprite.setTexture(productBg);
+			hanapbuhayS.stop();
+			produktoS.play();
+			serbisyoS.stop();
 			break;
 		case 3:
-			backgroundSprite.setTexture(jobsBg);
-			balloonSprite.setTexture(job3);
-			hb2S.stop();
-			produkto1S.stop();
-			break;
-		case 4:
-			backgroundSprite.setTexture(productBg);
-			balloonSprite.setTexture(product1);
-			hb3S.stop();
-			produkto2S.stop();
-			break;
-		case 5:
-			balloonSprite.setTexture(product2);
-			produkto1S.stop();
-			produkto3S.stop();
-			break;
-		case 6:
-			balloonSprite.setTexture(product3);
-			produkto2S.stop();
-			produkto4S.stop();
-			break;
-		case 7:
-			backgroundSprite.setTexture(productBg);
-			balloonSprite.setTexture(product4);
-			produkto3S.stop();
-			serbisyo1S.stop();
-			break;
-		case 8:
 			backgroundSprite.setTexture(serviceBg);
-			balloonSprite.setTexture(service1);
-			produkto4S.stop();
-			serbisyo2S.stop();
+			produktoS.stop();
+			serbisyoS.play();
 			break;
-		case 9:
-			balloonSprite.setTexture(service2);
-			serbisyo1S.stop();
-			serbisyo3S.stop();
-			break;
-		case 10:
-			balloonSprite.setTexture(service3);
-			serbisyo2S.stop();
-			serbisyo4S.stop();
-			break;
-		case 11:
-            backgroundSprite.setTexture(serviceBg);
-			balloonSprite.setTexture(service4);
-			serbisyo3S.stop();
-			break;
-		case 12: // Start of game
-			serbisyo4S.stop();
+		case 4: // Start of game3
+			introS.stop();
+			hanapbuhayS.stop();
+			produktoS.stop();
+			serbisyoS.stop();
 			backgroundSprite.setTexture(gameBg);
 			if (!isTeacher) {
 				ans1Correct = ans2Correct = ans3Correct = ans4Correct = ans5Correct = false;
@@ -480,7 +395,7 @@ public class ChapterSixteen extends ChapterCore {
 				correctAnswers = 5;
 			}
 			break;
-		case 13:
+		case 5:
 			if (ans1Correct)
 				correctAnswers++;
 			if (ans2Correct)
