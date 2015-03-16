@@ -18,9 +18,7 @@ public class ChapterSeventeen extends ChapterCore {
 			uri2Balloon, uri3Balloon, uri4Balloon, ansMarkerTexture;
 	private Sprite ans1True, ans1False, ans2True, ans2False, ans3True,
 			ans3False, ans4True, ans4False, ans5True, ans5False;
-	private Music intro1S, intro2S, bagyo1S, bagyo2S, bagyo3S, bagyo4S,
-			panahon1S, panahon2S, panahon3S, panahon4S, uri1S, uri2S, uri3S,
-			uri4S;
+	private Music introS, bagyoS, panahonS, uriS;
 	private boolean ans1Correct, ans2Correct, ans3Correct, ans4Correct,
 			ans5Correct;
 
@@ -36,38 +34,15 @@ public class ChapterSeventeen extends ChapterCore {
 	@Override
 	public void setUp(int screenW, int screenH) {
 		super.setUp(screenW, screenH);
-		startOfQuestionSection = 14;
-		lastChapterSection = 17;
-
+		startOfQuestionSection = 4;
+		lastChapterSection = 7;
+		titleBgTexture = new Texture("titlepages/chatper17.png");
 		// sounds
-		intro1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/intro2chap17.m4a"));
-		intro2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/intro1chap17.m4a"));
-		bagyo1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/bagyo1.m4a"));
-		bagyo2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/bagyo2.m4a"));
-		bagyo3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/bagyo3.m4a"));
-		bagyo4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/bagyo4.m4a"));
-		panahon1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/panahon1.m4a"));
-		panahon2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/panahon2.m4a"));
-		panahon3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/panahon3.m4a"));
-		panahon4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/panahon4.m4a"));
-		uri1S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/uri1.m4a"));
-		uri2S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/uri2.m4a"));
-		uri3S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/uri3.m4a"));
-		uri4S = Gdx.audio.newMusic(Gdx.files
-				.internal("chapters/chapter17/sounds/uri4.m4a"));
+		introS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sound2/intro1chap17.mp3"));
+		bagyoS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sound2/bagyo1.mp3"));
+		panahonS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sound2/panahon1.mp3"));
+		uriS = Gdx.audio.newMusic(Gdx.files.internal("chapters/chapter17/sound2/uri1.mp3"));
+		
 
 		// backgrounds
 		introBg = new Texture("chapters/chapter17/backgrounds/intro.png");
@@ -77,33 +52,7 @@ public class ChapterSeventeen extends ChapterCore {
 				"chapters/chapter17/backgrounds/epekto-sa-kabuhayan.png");
 		uriBg = new Texture("chapters/chapter17/backgrounds/uri-ng-panahon.png");
 
-		// balloons
-		intro1Balloon = new Texture("chapters/chapter17/balloons/intro1.png");
-		intro2Balloon = new Texture("chapters/chapter17/balloons/intro2.png");
-		epektoBagyo1Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgBagyo1.png");
-		epektoBagyo2Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgBagyo2.png");
-		epektoBagyo3Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgBagyo3.png");
-		epektoBagyo4Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgBagyo4.png");
-		epektoPanahon1Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgPanahon1.png");
-		epektoPanahon2Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgPanahon2.png");
-		epektoPanahon3Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgPanahon3.png");
-		epektoPanahon4Balloon = new Texture(
-				"chapters/chapter17/balloons/EpektoNgPanahon4.png");
-		uri1Balloon = new Texture(
-				"chapters/chapter17/balloons/UriNgPanahon1.png");
-		uri2Balloon = new Texture(
-				"chapters/chapter17/balloons/UriNgPanahon2.png");
-		uri3Balloon = new Texture(
-				"chapters/chapter17/balloons/UriNgPanahon3.png");
-		uri4Balloon = new Texture(
-				"chapters/chapter17/balloons/UriNgPanahon4.png");
+		
 
 		// questions
 		if (isTeacher) {
@@ -186,34 +135,15 @@ public class ChapterSeventeen extends ChapterCore {
 	@Override
 	public void dispose() {
 		super.dispose();
-		intro1S.stop();
-		intro2S.stop();
-		bagyo1S.stop();
-		bagyo2S.stop();
-		bagyo3S.stop();
-		bagyo4S.stop();
-		panahon1S.stop();
-		panahon2S.stop();
-		panahon3S.stop();
-		panahon4S.stop();
-		uri1S.stop();
-		uri2S.stop();
-		uri3S.stop();
-		uri4S.stop();
-		intro1S.dispose();
-		intro2S.dispose();
-		bagyo1S.dispose();
-		bagyo2S.dispose();
-		bagyo3S.dispose();
-		bagyo4S.dispose();
-		panahon1S.dispose();
-		panahon2S.dispose();
-		panahon3S.dispose();
-		panahon4S.dispose();
-		uri1S.dispose();
-		uri2S.dispose();
-		uri3S.dispose();
-		uri4S.dispose();
+		introS.stop();
+		panahonS.stop();
+		bagyoS.stop();
+		uriS.stop();
+		
+		introS.dispose();
+		panahonS.dispose();
+		bagyoS.dispose();
+		uriS.dispose();
 		introBg.dispose();
 		epektoBagyoBg.dispose();
 		epektoKabuhayanBg.dispose();
@@ -242,7 +172,7 @@ public class ChapterSeventeen extends ChapterCore {
 	@Override
 	public int touchDown(float x, float y) {
 		switch (chapterSection) {
-		case 14:
+		case 4:
 			if (!isTeacher) {
 				if (ans1True.getBoundingRectangle().contains(x, y)) {
 					ans1True.setAlpha(1);
@@ -295,7 +225,7 @@ public class ChapterSeventeen extends ChapterCore {
 				}
 			}
 			break;
-		case 15:
+		case 5:
 			if (!isTeacher) {
 				if (ans1True.getBoundingRectangle().contains(x, y)) {
 					ans1True.setAlpha(1);
@@ -338,7 +268,7 @@ public class ChapterSeventeen extends ChapterCore {
 				}
 			}
 			break;
-		case 16:
+		case 6:
 			if (!isTeacher) {
 				if (ans1True.getBoundingRectangle().contains(x, y)) {
 					ans1True.setAlpha(1);
@@ -351,7 +281,7 @@ public class ChapterSeventeen extends ChapterCore {
 				}
 			}
 			break;
-		case 17:
+		case 7:
 			return displayLastSectionButtons(17, 5, x, y);
 		}
 		return super.touchDown(x, y);
@@ -359,20 +289,11 @@ public class ChapterSeventeen extends ChapterCore {
 
     @Override
     protected void toggleSoundVolume() {
-        intro1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        intro2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bagyo1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bagyo2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bagyo3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        bagyo4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        panahon1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        panahon2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        panahon3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        panahon4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        uri1S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        uri2S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        uri3S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
-        uri4S.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        introS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        bagyoS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        panahonS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        uriS.setVolume(appPreferences.getSoundPreference() ? 1 : 0);
+        
     }
 
     private void assetManager() {
@@ -380,81 +301,32 @@ public class ChapterSeventeen extends ChapterCore {
 		switch (chapterSection) {
 		case 0:
 			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(intro1Balloon);
-			intro2S.stop();
+			introS.play();
+			bagyoS.stop();
 			break;
-		case 1:
-			backgroundSprite.setTexture(introBg);
-			balloonSprite.setTexture(intro2Balloon);
-			intro1S.stop();
-			bagyo1S.stop();
-			break;
-		case 2:
+		
+		case 1://bagyo
 			backgroundSprite.setTexture(epektoBagyoBg);
-			balloonSprite.setTexture(epektoBagyo1Balloon);
-			intro2S.stop();
-			bagyo2S.stop();
+			introS.stop();
+			bagyoS.play();
+			uriS.stop();
 			break;
-		case 3:
-			balloonSprite.setTexture(epektoBagyo2Balloon);
-			bagyo1S.stop();
-			bagyo3S.stop();
-			break;
-		case 4:// bagy3
-			balloonSprite.setTexture(epektoBagyo3Balloon);
-			bagyo2S.stop();
-			bagyo4S.stop();
-			break;
-		case 5:// bagyo4
-			balloonSprite.setTexture(epektoBagyo4Balloon);
-			bagyo3S.stop();
-			panahon1S.stop();
-			break;
-		case 6:// uri1
+		case 2:// uri1
 			backgroundSprite.setTexture(epektoKabuhayanBg);
-			balloonSprite.setTexture(epektoPanahon1Balloon);
-			bagyo4S.stop();
-			panahon2S.stop();
+			bagyoS.stop();
+			uriS.play();
+			panahonS.stop();
 			break;
-		case 7:// uri2
-			balloonSprite.setTexture(epektoPanahon2Balloon);
-			panahon1S.stop();
-			panahon3S.stop();
-			break;
-		case 8:// uri3
-			balloonSprite.setTexture(epektoPanahon3Balloon);
-			panahon2S.stop();
-			panahon4S.stop();
-			break;
-		case 9:// uri4
-			
-			balloonSprite.setTexture(epektoPanahon4Balloon);
-			panahon3S.stop();
-			uri1S.stop();
-			break;
-		case 10:// panahon1
+		case 3:// panahon1
 			backgroundSprite.setTexture(uriBg);
-			balloonSprite.setTexture(uri1Balloon);
-			panahon4S.stop();
-			uri2S.stop();
+			uriS.stop();
+			panahonS.play();
 			break;
-		case 11:// p2
-			balloonSprite.setTexture(uri2Balloon);
-			uri1S.stop();
-			uri3S.stop();
-			break;
-		case 12:// p3
-			balloonSprite.setTexture(uri3Balloon);
-			uri2S.stop();
-			uri4S.stop();
-			break;
-		case 13:// p4
-			
-			balloonSprite.setTexture(uri4Balloon);
-			uri3S.stop();
-			break;
-		case 14: // Start of game
-			uri4S.stop();
+		case 4: // Start of game
+			introS.stop();
+			panahonS.stop();
+			bagyoS.stop();
+			uriS.stop();
 			backgroundSprite.setTexture(question1Bg);
 			if (!isTeacher) {
 				ans1Correct = ans2Correct = ans3Correct = ans4Correct = ans5Correct = false;
@@ -517,7 +389,7 @@ public class ChapterSeventeen extends ChapterCore {
 				ans5False.setAlpha(0);
 			}
 			break;
-		case 15:
+		case 5:
 			backgroundSprite.setTexture(question2Bg);
 			if (!isTeacher) {
 				if (ans1Correct)
@@ -583,7 +455,7 @@ public class ChapterSeventeen extends ChapterCore {
 				ans5False.setAlpha(0);
 			}
 			break;
-		case 16:
+		case 6:
 			backgroundSprite.setTexture(question3Bg);
 			if (!isTeacher) {
 				if (ans1Correct)
@@ -620,7 +492,7 @@ public class ChapterSeventeen extends ChapterCore {
 				ans5False.setAlpha(0);
 			}
 			break;
-		case 17:
+		case 7:
 			if (isTeacher) {
 				correctAnswers = 10;
 			} else {
