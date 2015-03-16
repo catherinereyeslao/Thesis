@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.BackgroundMusic;
 import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class ChapterSelect extends AppView {
     public void setUp(int screenW, int screenH) {
         screenHeight = screenH;
         screenWidth = screenW;
+
+        BackgroundMusic.stopBgMusic();
 
         if (userType != TEACHER) {
             if (loggedInUserName == null)

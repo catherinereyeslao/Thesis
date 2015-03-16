@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
+import com.example.aralingpanlipunan.utils.BackgroundMusic;
 
 /**
  * This is displayed after a user touches the start button from the Main Menu
@@ -23,6 +24,10 @@ public class Start extends AppView implements AppFragment, Disposable {
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+
+        if (!BackgroundMusic.isBgMUsicPlaying())
+            BackgroundMusic.playBgMusic();
+
         background = new Texture("backgrounds/start-background.jpg");
         exitTexture = new Texture("buttons/exit.png");
         studentTexture = new Texture("buttons/start/stud.png");

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Disposable;
 import com.example.aralingpanlipunan.AppFragment;
+import com.example.aralingpanlipunan.utils.BackgroundMusic;
 
 /**
  * This renders the Main Menu which can be seen once the App is opened
@@ -26,12 +27,14 @@ public class Menu extends AppView implements Disposable, AppFragment {
         screenWidth = screenW;
         screenHeight = screenH;
 
+        if (!BackgroundMusic.isBgMUsicPlaying())
+            BackgroundMusic.playBgMusic();
+
         startTexture = new Texture("buttons/menu/start.png");
         exitTexture = new Texture("buttons/exit.png");
         splashScreen = new Texture("backgrounds/splash.jpg");
         background = new Texture("backgrounds/menu-background.jpg");
 
-        //TODO: Rewrite this!
         start = new Sprite(startTexture);
         start.setScale(getButtonScale());
         final float startX = (screenWidth - (screenWidth / 4)) - start.getWidth()/ 1.7f;

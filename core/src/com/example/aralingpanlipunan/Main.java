@@ -11,6 +11,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 import com.example.aralingpanlipunan.android.AndroidInterface;
+import com.example.aralingpanlipunan.utils.BackgroundMusic;
 import com.example.aralingpanlipunan.utils.DummyAndroidInterface;
 import com.example.aralingpanlipunan.views.Menu;
 import com.example.aralingpanlipunan.views.Start;
@@ -48,6 +49,8 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 		menu = new Menu();
 
 		menu.setUp(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        BackgroundMusic.playBgMusic();
 
 		// Set input listeners
 		InputMultiplexer im = new InputMultiplexer();
@@ -143,7 +146,11 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
                 } else if (menu.clickedMenu(x, normalisedY) == Menu.EXIT) {
                     triage = EXIT;
                     dispose();
-                    if (android != null) android.exit();
+                    if (android != null) {
+                        BackgroundMusic.stopBgMusic();
+                        BackgroundMusic.disposeBgMusic();
+                        android.exit();
+                    }
                 }
                 break;
             case START:
@@ -204,7 +211,11 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
 			switch (triage) {
 				case MENU:
 					menu.dispose();
-					if (android != null) android.exit();
+					if (android != null) {
+                        BackgroundMusic.stopBgMusic();
+                        BackgroundMusic.disposeBgMusic();
+                        android.exit();
+                    }
 					break;
 				case START:
 					start.dispose();
@@ -303,6 +314,8 @@ public class Main extends ApplicationAdapter implements ApplicationListener, Ges
                     triage = MINI_GAMES;
                     break;
 				case Start.EXIT:
+                    BackgroundMusic.stopBgMusic();
+                    BackgroundMusic.disposeBgMusic();
 					start.dispose();
 					android.exit();
 					break;
