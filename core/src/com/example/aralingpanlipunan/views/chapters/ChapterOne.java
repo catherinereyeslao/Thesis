@@ -24,7 +24,6 @@ public class ChapterOne extends ChapterCore {
     private boolean ansCorrect;
     protected TextureAtlas baybayinAtlas;
     protected Animation baybayinAnimation;
-    protected Sprite baybayin;
     private float  animationCounter;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
@@ -50,9 +49,7 @@ public class ChapterOne extends ChapterCore {
         baybayinAtlas = new TextureAtlas("chapters/chapter1/animate/baybayinBG.atlas");
         baybayinAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
         baybayinAnimation = new Animation(0.25f, baybayinAtlas.getRegions());
-        baybayin = new Sprite(baybayinAnimation.getKeyFrames()[0]);
-        baybayin.setSize(screenW, screenH);
-        
+
         // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
             answer1Texture = new Texture("chapters/chapter1/answerkeys/answer1.jpg");
@@ -149,8 +146,7 @@ public class ChapterOne extends ChapterCore {
 	private void drawBG(Batch batch) {
 		// TODO Auto-generated method stub
 		animationCounter += Gdx.graphics.getDeltaTime();
-		baybayin.setRegion(baybayinAnimation.getKeyFrame(animationCounter, true));
-		baybayin.draw(batch);
+		backgroundSprite.setRegion(baybayinAnimation.getKeyFrame(animationCounter, true));
 	}
 
 	@Override
