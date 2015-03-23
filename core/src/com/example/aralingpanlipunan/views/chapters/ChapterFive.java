@@ -14,8 +14,7 @@ public class ChapterFive extends ChapterCore {
 	private Texture introBg, mangangalakalBg, pagmiminaBg, pagsasakaBg, pangingisdaBg,truckTexture, minerTexture,
                     farmerTexture, fisherTexture, baybayinTexture, ibaTexture, kabukiranTexture,kabundukanTexture, lungsodTexture, parkeTexture, boxTexture, nextTexture,
                     question1Bg;
-	private Music intro1S,  magsasaka, mangangalakal,pagmimina, pangingisda; /*intro2S, magsasaka1S, magsasaka2S, mangangalakal1S, mangangalakal2S, pagmimina1S, 
-					pangingisda1S, pangingisda2S;*/
+	private Music intro1S,  magsasaka, mangangalakal,pagmimina, pangingisda;
 	private Sprite truck, miner, farmer, fisher, baybayin, iba, kabukiran, kabundukan, lungsod, parke, box, box2, box3, box4, box5, touchedAnswer, next;
 	private float characterX, characterY, characterSpeed, baybayinX, baybayinY, ibaX, ibaY, kabukiranX, kabukiranY, kabundukanX, kabundukanY, lungsodX, lungsodY, parkeX, parkeY;
     private boolean box1Set, box2Set, box3Set, box4Set, box5Set;
@@ -216,7 +215,6 @@ public class ChapterFive extends ChapterCore {
 		// Make sure no other characters are blocking the talkative girl and balloon
 		if (chapterSection > 1 && chapterSection < startOfQuestionSection) {
 			girl.draw(batch);
-			balloonSprite.draw(batch);
 		}
 	}
 

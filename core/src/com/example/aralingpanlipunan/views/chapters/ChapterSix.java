@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.example.aralingpanlipunan.android.AndroidInterface;
 import com.example.aralingpanlipunan.android.database.DatabaseSetup;
 
-
 public class ChapterSix extends ChapterCore {
     private Texture question1Bg, question2Bg, question3Bg, question4Bg, question5Bg, question6Bg, answerMarker;
     private Sprite ans1, ans2;
@@ -23,12 +22,11 @@ public class ChapterSix extends ChapterCore {
     @Override
     public void setUp(int screenW, int screenH) {
         super.setUp(screenW, screenH);
-
         
         startOfQuestionSection = 0;
         lastChapterSection = 7;
+        passedQuestionSection = true;
         chapterSection = 1;
-        titleBgTexture = new Texture("titlepages/chapter6.png");
         if (isTeacher) {
             question1Bg = new Texture("chapters/chapter6/answerkeys/answer1.jpg");
             question2Bg = new Texture("chapters/chapter6/answerkeys/answer2.jpg");

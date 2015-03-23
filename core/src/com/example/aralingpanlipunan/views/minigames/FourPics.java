@@ -3,7 +3,9 @@ package com.example.aralingpanlipunan.views.minigames;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.example.aralingpanlipunan.utils.FourPicsOneWordUtil;
+import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import com.example.aralingpanlipunan.views.AppView;
 
 import java.security.InvalidParameterException;
@@ -19,17 +21,21 @@ public class FourPics extends AppView {
     private ArrayList<Texture> questionPic;
     private StringBuilder typedAnswer;
     private boolean ansCorrect;
+    private BitmapFont font;
     private FourPicsOneWordUtil fourPicsOneWordUtil;
 
     @Override
     public void setUp(int screenW, int screenH) {
         screenWidth = screenW;
         screenHeight = screenH;
+        ScreenSizeUtil screenSizeUtil = new ScreenSizeUtil();
         fourPicsOneWordUtil = new FourPicsOneWordUtil();
         fourPicsOneWordUtil.loadAssets(screenW, screenH);
 
         questionNum = 0;
         typedAnswer = new StringBuilder();
+        font = new BitmapFont(screenSizeUtil.fontAsset(screenW));
+        font.setScale(1.5f);
         bayaniTexture = new Texture("minigames/fourpics/bayani.png");
         hanapbuhayTexture = new Texture("minigames/fourpics/hanapbuhay.png");
         pagdiriwangTexture = new Texture("minigames/fourpics/pagdiriwang.png");
@@ -49,6 +55,7 @@ public class FourPics extends AppView {
 
     @Override
     public void display(Batch batch) {
+        float answerFontX = (screenWidth / 2) - (font.getBounds(typedAnswer.toString()).width / 2);
         switch (questionNum) {
             case 0:
                 batch.draw(questionPic.get(0), 0, 0, screenWidth, screenHeight);
@@ -69,6 +76,7 @@ public class FourPics extends AppView {
                 batch.draw(questionPic.get(5), 0, 0, screenWidth, screenHeight);
                 break;
         }
+        font.draw(batch, typedAnswer.toString(), answerFontX, screenHeight / 3.6f);
         if (ansCorrect) {
             fourPicsOneWordUtil.displayCorrect(batch);
         }
@@ -79,6 +87,7 @@ public class FourPics extends AppView {
         for (Texture pic : questionPic) {
             pic.dispose();
         }
+        font.dispose();
         fourPicsOneWordUtil.dispose();
     }
 

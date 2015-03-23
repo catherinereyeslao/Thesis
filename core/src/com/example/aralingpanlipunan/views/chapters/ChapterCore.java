@@ -30,7 +30,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     protected String loggedInStudent, studentPassword;
     protected int chapterSection, correctAnswers = 0;
     protected int startOfQuestionSection, lastChapterSection = 10;
-    protected boolean assetNeedUpdate, lectureStarted, isTeacher, viewingSettings;
+    protected boolean passedQuestionSection, assetNeedUpdate, lectureStarted, isTeacher, viewingSettings;
     protected float animationCounter, questionX, questionY, questionWidth = 0;
     protected String tanong = "PILIIN ANG URI NG KOMUNIDAD NA MAKIKITA SA LARAWAN";
     protected Texture questionBg, retakeTexture, nextChapTexture, nextTexture, titleBgTexture;
@@ -39,10 +39,9 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
     private Texture settingsIconTexture, startQuizTexture, backToChapterTexture, rightArrowTexture, leftArrowTexture;
     private Sprite nextSlide, prevSlide;
     private Trivia trivia;
-    private boolean passedQuestionSection, tappedChapTitle;
+    private boolean tappedChapTitle;
     private Music bgMusic;
     private Settings settings;
-    private boolean isTeacherSkippedLecture;
 
     /**
      * @deprecated We are no longer displaying balloons. Recommend to delete
@@ -113,17 +112,13 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
 
         girlAtlas = new TextureAtlas("characters/girl/girl.atlas");
         girlAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
-        girlAnimation = new Animation(0.25f, girlAtlas.getRegions());
+        girlAnimation = new Animation(0.5f, girlAtlas.getRegions());
         girl = new Sprite(girlAnimation.getKeyFrames()[0]);
         girl.setSize(girl.getWidth() * getButtonScale() * 1.1f, girl.getHeight() * getButtonScale() * 1.1f);
         final float girlX = (screenW / 6) * -1;
         final float girlY = (screenH / 2.4f) - (girl.getHeight() / 2);
         girl.setPosition(girlX, girlY);
         girl.setBounds(girlX, girlY, girl.getWidth(), girl.getHeight());
-
-        balloonSprite = new Sprite(introBalloonTexture);
-        balloonSprite.setSize(balloonSprite.getWidth() * getButtonScale() * 2.3f, balloonSprite.getHeight() * getButtonScale() * 2.3f);
-        balloonSprite.setPosition((screenW / 5) + (girl.getWidth() / 2), girlY + (girl.getHeight() / 2));
 
         settingsIcon = new Sprite(settingsIconTexture);
         settingsIcon.setSize((settingsIcon.getWidth() * getButtonScale() / 1.8f), (settingsIcon.getHeight() * getButtonScale() / 1.8f));
@@ -207,7 +202,7 @@ public abstract class ChapterCore extends AppView implements AppFragment, Dispos
      * @param batch Batch
      */
     protected void renderSharedAssets(Batch batch) {
-    	if (!isTeacherSkippedLecture&&isTeacher) {
+    	if (isTeacher) {
     		chapterSection = startOfQuestionSection;
     		assetNeedUpdate = true;
     		}

@@ -15,7 +15,7 @@ import com.example.aralingpanlipunan.utils.ScreenSizeUtil;
 import static com.example.aralingpanlipunan.android.database.DatabaseSetup.CHAPTER_ONE_SCORE;
 
 public class ChapterOne extends ChapterCore {
-    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, intro1balloonTexture, intro2balloonTexture, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture, question1Texture, question2Texture, question3Texture, question4Texture;
+    private Texture introBg, baybayinBg, kabukirinBg, kabundukanBg, lungsodBg, startQuizTexture, answer1Texture, answer2Texture, answer3Texture, answer4Texture, question1Texture, question2Texture, question3Texture, question4Texture;
     private Music  baybayinBGs, lungsodBGs, bukidBGs, kabundukanBGs, intros, baybayins, bukids, bundoks, lungsods;/*baybayin1sound, baybayin2sound, baybayin3sound, bukid1sound, bukid2sound, intro1sound, intro2sound, lungsod1sound, lungsod2sound;*/
     private BitmapFont studentAnswer;
     private StringBuilder typedAnswer;
@@ -24,7 +24,6 @@ public class ChapterOne extends ChapterCore {
     private boolean ansCorrect;
     protected TextureAtlas baybayinAtlas;
     protected Animation baybayinAnimation;
-    private float  animationCounter;
 
     public ChapterOne(AndroidInterface androidInterface, String studentName, String password) {
         super(androidInterface, studentName, password);
@@ -47,8 +46,7 @@ public class ChapterOne extends ChapterCore {
         titleBgTexture = new Texture("chapters/chapter1/backgrounds/chapter1title.png");
 
         baybayinAtlas = new TextureAtlas("chapters/chapter1/animate/baybayinBG.atlas");
-        baybayinAtlas.getRegions().removeIndex(0); // Remove waved hand for now, seems ugly to have this
-        baybayinAnimation = new Animation(0.25f, baybayinAtlas.getRegions());
+        baybayinAnimation = new Animation(1, baybayinAtlas.getRegions());
 
         // If user type is teacher, Load answer keys backgrounds & set their score to be perfect
         if (isTeacher) {
@@ -109,13 +107,9 @@ public class ChapterOne extends ChapterCore {
         
         
         startQuizTexture = new Texture("buttons/menu/start.png");
-        intro1balloonTexture = new Texture("chapters/chapter1/balloons/intro1.png");
 
         backgroundSprite = new Sprite(introBg);
         backgroundSprite.setSize(screenWidth, screenHeight);
-        balloonSprite.setTexture(intro1balloonTexture);
-
-        
 
         loadNextButton();
         toggleSoundVolume();
@@ -125,7 +119,6 @@ public class ChapterOne extends ChapterCore {
     public void display(Batch batch) {
         if (assetNeedUpdate) assetManager();
         chapter1Display(batch);
-        renderSharedAssets(batch);
         if (!viewingSettings) {
             switch (chapterSection) {
                 case 1:
@@ -145,7 +138,6 @@ public class ChapterOne extends ChapterCore {
    
 	private void drawBG(Batch batch) {
 		// TODO Auto-generated method stub
-		animationCounter += Gdx.graphics.getDeltaTime();
 		backgroundSprite.setRegion(baybayinAnimation.getKeyFrame(animationCounter, true));
 	}
 
@@ -164,7 +156,6 @@ public class ChapterOne extends ChapterCore {
         lungsodBGs.stop();
         kabundukanBGs.stop();
 
-        
         intros.dispose();
         baybayins.dispose();
         lungsods.dispose();
@@ -286,13 +277,12 @@ public class ChapterOne extends ChapterCore {
         switch (chapterSection) {
             case 0:
                 if (backgroundSprite.getTexture() != introBg)
-                    backgroundSprite.setTexture(introBg);
+                    resetBackgroundSprite(introBg);
                 intros.play();
                 baybayins.stop();
                 baybayinBGs.stop();
                 break;
             case 1:
-                
                 intros.stop();
                 baybayins.play();
                 baybayinBGs.play();
@@ -300,7 +290,7 @@ public class ChapterOne extends ChapterCore {
                 bukidBGs.stop();
                 break;
             case 2:
-                backgroundSprite.setTexture(kabukirinBg);
+                resetBackgroundSprite(kabukirinBg);
                 baybayinBGs.stop();
                 baybayins.stop();
                 bukids.play();
@@ -418,25 +408,38 @@ public class ChapterOne extends ChapterCore {
     }
 
     /**
+     * After using the background sprite as an animating
+     * background, it should be reset so it can be used
+     * normally for other textures
+     * @param newSpriteTexture The new texture for the background
+     */
+    private void resetBackgroundSprite(Texture newSpriteTexture) {
+        backgroundSprite = new Sprite(newSpriteTexture);
+        backgroundSprite.setSize(screenWidth, screenHeight);
+        backgroundSprite.setPosition(0, 0);
+    }
+
+    /**
      * Renders the content for Chapter 1
      * @param batch The batch of the main game
      */
     private void chapter1Display(Batch batch) {
         backgroundSprite.draw(batch);
         renderSharedAssets(batch);
-    if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
-        next.draw(batch);
+        if (!isTeacher && chapterSection >= startOfQuestionSection && chapterSection < lastChapterSection) {
+            next.draw(batch);
 
-        if (chapterSection == 9) {
-            detectCorrectAnswer();
-            ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
-            ansY = (screenHeight / 2.9f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
-        } else if (chapterSection > 9 && chapterSection < lastChapterSection) {
-            detectCorrectAnswer();
-            ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
-            ansY = (screenHeight / 2.35f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
+            if (chapterSection == startOfQuestionSection) {
+                detectCorrectAnswer();
+                ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
+                ansY = (screenHeight / 2.9f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
+            } else if (chapterSection > startOfQuestionSection && chapterSection < lastChapterSection) {
+                detectCorrectAnswer();
+                ansX = (screenWidth / 1.6f) - (studentAnswer.getBounds(typedAnswer.toString()).width / 2);
+                ansY = (screenHeight / 2.35f) - (studentAnswer.getBounds(typedAnswer.toString()).height / 2);
+            }
+            studentAnswer.draw(batch, typedAnswer.toString(), ansX, ansY);
         }
         studentAnswer.draw(batch, typedAnswer.toString(), ansX, ansY);
     }
-}
 }
